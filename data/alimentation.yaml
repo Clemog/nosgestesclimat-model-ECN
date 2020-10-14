@@ -34,7 +34,7 @@ alimentation . laitages:
 
 alimentation . boisson: 
   icônes: 🚰
-  formule: chaude
+  formule: froide + chaude
   
 alimentation . boisson . chaude: 
   formule:
