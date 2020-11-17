@@ -1,0 +1,69 @@
+
+profil: 
+  couleur: '#0c2461'
+  icônes: 🙂
+  description: |
+    C'est l'empreinte carbone "fixe" liée au profil d'un usager de l'ECN.
+
+    Cette partie prend en compte l'ensemble des émissions de CO2 qui résultent des achats, équipements, bâtiments, chauffage, électricité.
+
+    C'est une poste sur lequel nous n'avons pas d'influence directe en tant qu'usager.
+
+    Les chiffres sont basés sur les résultats du bilan carbone de l'ECN 2018.
+  unité: kgCO2e
+  formule:
+    somme :
+      - valeur profil
+
+profil . profil-type:
+  question: Vous êtes ?
+  par défaut : étudiant
+  formule:
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités: 
+        - étudiant
+        - doctorant
+        - personnel de recherche/enseignement
+        - autre personnel
+
+profil . profil-type . étudiant: 
+profil . profil-type . doctorant: 
+profil . profil-type . personnel de recherche/enseignement:
+profil . profil-type . autre personnel:
+
+profil . valeur profil: 
+  formule: 
+    correspondance: 
+      variable: profil-type
+      tableau: 
+        étudiant: 300
+        doctorant: 2450
+        personnel de recherche/enseignement: 2500
+        autre personnel: 450
+
+# profil . valeur étudiant: 
+#   applicable si: profil-type . étudiant
+#   formule: 10000
+
+# profil . valeur étudiant . année étudiant:
+#   question: blabla
+#   formule:
+#     une possibilité: 
+#       choix obligatoire: oui
+#       possibilités: 
+#         - 1ère année
+#         - 2ème année
+#         - 3ème année
+
+# profil . année étudiant . 1ère année:
+# profil . année étudiant . 2ème année:
+# profil . année étudiant . 3ème année:
+
+
+
+
+
+
+
+

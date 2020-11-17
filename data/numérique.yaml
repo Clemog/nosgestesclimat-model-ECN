@@ -1,16 +1,16 @@
 numérique:
   couleur: '#B53471'
   icônes: 📺
-  formule: 
-    somme: 
-      - téléphone
-      - TV
-      - ordinateur
-      - internet
-      - tablette
-      - vidéoprojecteur
-      - appareil photo
-      - home cinéma
+  formule: 0
+    # somme: 
+    #   - téléphone
+    #   - TV
+    #   - ordinateur
+    #   - internet
+    #   - tablette
+    #   - vidéoprojecteur
+    #   - appareil photo
+    #   - home cinéma
 
 numérique . internet: 
   formule: empreinte horaire * durée journalière * 365
@@ -27,7 +27,7 @@ numérique . internet . consommation horaire:
   références: 
     - https://www.carbonbrief.org/factcheck-what-is-the-carbon-footprint-of-streaming-video-on-netflix
 numérique . internet . empreinte horaire:
-  formule: consommation horaire * logement . électricité . intensité carbone
+  formule: consommation horaire * 1
   unité: kgCO2e/heure
 
 numérique . internet . durée journalière: 

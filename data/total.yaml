@@ -16,12 +16,11 @@ bilan:
 
   formule: 
     somme: 
-      - logement
       - transport
       - alimentation
       - numérique
       - divers
-      - services publics
+      - profil
   références: 
     - http://avenirclimatique.org/les-outils
     - https://www.statistiques.developpement-durable.gouv.fr/chiffres-cles-du-climat-france-europe-et-monde-edition-2020-0

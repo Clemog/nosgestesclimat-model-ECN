@@ -1,11 +1,11 @@
 divers:
-  icônes: 📦
   couleur: '#0984e3'
-  formule: 
-    somme:
-      - textile
-      - électroménager
-      - autres produits
+  icônes: 📦
+  formule: 0
+    # somme:
+    #   - textile
+    #   - électroménager
+    #   - autres produits
 
 
 divers . textile: 
