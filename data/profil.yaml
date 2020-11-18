@@ -14,6 +14,8 @@ profil:
   formule:
     somme :
       - valeur profil
+      # - année étudiant
+
 
 profil . profil-type:
   question: Vous êtes ?
@@ -42,11 +44,9 @@ profil . valeur profil:
         personnel de recherche/enseignement: 2500
         autre personnel: 450
 
-# profil . valeur étudiant: 
-#   applicable si: profil-type . étudiant
-#   formule: 10000
 
-# profil . valeur étudiant . année étudiant:
+# profil . année étudiant :
+#   applicable si: valeur profil = 300
 #   question: blabla
 #   formule:
 #     une possibilité: 
