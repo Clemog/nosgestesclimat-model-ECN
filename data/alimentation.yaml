@@ -10,30 +10,17 @@ alimentation:
       - il faut nourrir les animaux avec des productions céréalières que l'on aurait pu manger nous-même, souvent issues de la déforestation.
 
     Contrairement à ce que l'on entend souvent, la distance parcourue par nos aliments et la quantité d'emballages plastique sont au second plan sur le plan des émissions carbone.
-  formule: 
+  formule:
     somme:
       - déjeuner
       - distributeur automatique
-
-alimentation . nbre semaines: 
-  include_vars:
-  file: profil.yaml
-  name: profil . profil-type
-  formule: 
-    correspondance: 
-      variable: profil . profil-type
-      tableau: 
-        étudiant: 39
-        doctorant: 47
-        personnel de recherche/enseignement: 47
-        autre personnel: 47
 
 #------------------------------------------- Déjeuner -------------------------------------------
 
 # Ajouter sandwich ? 
 
 alimentation . déjeuner:
-  formule: par semaine * nbre semaines
+  formule: par semaine * profil . nbre semaines
 
 alimentation . déjeuner . par semaine:
   formule: plats
@@ -263,7 +250,7 @@ alimentation . distributeur automatique . boissons chaudes:
   formule:
     multiplication:
       assiette: tasse de thé + tasse de café
-      facteur: nbre semaines
+      facteur: profil . nbre semaines
   note: Nous faisons ici une moyenne grossière.
 
 alimentation . distributeur automatique . boissons chaudes . tasse de thé:
@@ -331,7 +318,7 @@ alimentation . distributeur automatique . boissons froides . sucrées:
   formule:
     multiplication:
       assiette: litres
-      facteur: nbre semaines
+      facteur: profil . nbre semaines
 
 alimentation . distributeur automatique . boissons froides . sucrées . facteur: 
   formule: 1.1
@@ -356,7 +343,7 @@ alimentation . distributeur automatique . boissons froides . eau en bouteille :
   formule:
     multiplication:
       assiette: litres
-      facteur: nbre semaines
+      facteur: profil . nbre semaines
 
 alimentation . distributeur automatique . boissons froides . eau en bouteille . facteur: 
   formule: 0.393

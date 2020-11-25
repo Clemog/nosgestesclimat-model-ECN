@@ -1,4 +1,3 @@
-
 profil: 
   couleur: '#0c2461'
   icônes: 🙂
@@ -14,24 +13,26 @@ profil:
   formule:
     somme :
       - valeur profil
-      # - année étudiant
-
 
 profil . profil-type:
   question: Vous êtes ?
-  par défaut : étudiant
+  par défaut : EI1
   formule:
     une possibilité: 
       choix obligatoire: oui
       possibilités: 
-        - étudiant
+        - EI1
+        - EI2
+        - EI3
         - doctorant
-        - personnel de recherche/enseignement
+        - personnel de recherche ou enseignement
         - autre personnel
 
-profil . profil-type . étudiant: 
+profil . profil-type . EI1:
+profil . profil-type . EI2:
+profil . profil-type . EI3: 
 profil . profil-type . doctorant: 
-profil . profil-type . personnel de recherche/enseignement:
+profil . profil-type . personnel de recherche ou enseignement:
 profil . profil-type . autre personnel:
 
 profil . valeur profil: 
@@ -39,31 +40,24 @@ profil . valeur profil:
     correspondance: 
       variable: profil-type
       tableau: 
-        étudiant: 300
-        doctorant: 2450
-        personnel de recherche/enseignement: 2500
-        autre personnel: 450
+        EI1: 320
+        EI2: 320
+        EI3: 320
+        doctorant: 2440
+        personnel de recherche ou enseignement: 2440
+        autre personnel: 400
 
-
-# profil . année étudiant :
-#   applicable si: valeur profil = 300
-#   question: blabla
-#   formule:
-#     une possibilité: 
-#       choix obligatoire: oui
-#       possibilités: 
-#         - 1ère année
-#         - 2ème année
-#         - 3ème année
-
-# profil . année étudiant . 1ère année:
-# profil . année étudiant . 2ème année:
-# profil . année étudiant . 3ème année:
-
-
-
-
-
+profil . nbre semaines: 
+  formule: 
+    correspondance: 
+      variable: profil-type
+      tableau: 
+        EI1: 39
+        EI2: 27
+        EI3: 27
+        doctorant: 47
+        personnel de recherche ou enseignement: 47
+        autre personnel: 47
 
 
 

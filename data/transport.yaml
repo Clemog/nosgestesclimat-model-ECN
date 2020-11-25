@@ -6,11 +6,709 @@ transport:
 
   couleur: '#b71540'
   icônes: 🚦
-  formule: 0
-    # somme: 
-    #   - domicile-travail
-    #   - déplacement professionel
-    #   - mobilité internationale
+  formule:
+    somme: 
+      - domicile-travail
+      - déplacements professionels
+      - mobilité internationale
+
+#------------------------------------------- Domicile-Travail -------------------------------------------
 
 transport . domicile-travail:
+  non applicable si: vélo
+  formule:
+    somme:
+      - voiture
+      - tram 
+      - bus
+
+#------------------------------------------- Domicile-Travail Voiture -------------------------------------------
+
+transport . domicile-travail . voiture :
+  description: |
+    ![](https://images.unsplash.com/photo-1572312284222-ecf6d70f1907?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80)
+    
+    La voiture est aujourd'hui en France essentiellement thermique (essence, diesel), bien que l'électrique progresse lentement.
+    
+    Pourtant, électrique ou thermique, elle reste un moyen de déplacement très peu efficient : 
+    **il s'agit en moyenne de déplacer un humain de 80kg dans une boîte en métal de 1200kg**.
+    
+    Un peu comme si chaque midi, nous faisions à manger pour 10 avant de jeter 90% de la nourriture, 
+    ou que nous décidions de chauffer tout le pâté de maison plutôt que l'intérieur de chacune des 10 maisons.
+    
+    Notons finalement qu'il est important de prendre en compte à la fois l'usage (les km parcourus) et la construction de ce véhicule de plus d'une tonne de matériaux divers.
+  applicable si : affirmatif
+  formule: (construction amortie + impact usage) / voyageurs
+  unité: kgCO2e
+
+transport . domicile-travail . voiture . affirmatif :
+  question: Utilisez-vous la voiture pour faire le trajet entre votre domicile et Centrale ?
+  par défaut: non
+
+transport . domicile-travail . voiture . km trajet:
+  question: Quelle est la distance moyenne de votre trajet en voiture ?
+  description: |
+    Ne comptez que les kilomètres d'*un* trajet pour rejoindre votre lieu de travail habituel depuis votre domicile.
+    Par exemple, si vous êtes en mission professionnelle dans un autre département ou un autre pays : ne le comptez pas ici.
+    
+    Nous parlons donc ici de la distance *aller*, avec le mode de transport que vous privilégiez.
+    
+    70% des travailleurs en France travaillent à moins de 15km de chez eux.
+
+    57% travaillent à moins de 10km et 78% à moins de 20km. 
+
+    Source : études INSEE 2004 et 2013, chiffres stables.
+  note: Mettre un lien vers l'étude et mettre à jour avec les statistiques de l'enquête déplacement 2020 si disponible.
+  par défaut: 15
+  unité: km/trajet
+  suggestions:
+    10km: 10
+    20km: 20
+    30km: 30
+
+transport . domicile-travail . voiture . km:
+  description: |
+    Distance moyenne parcourue par l'usager à l'année.
+  unité: km
+  formule: km trajet * 2 * (profil . nbre semaines * 5)
+
+transport . domicile-travail . voiture . impact usage:
+  formule: km * empreinte au kilomètre
+  unité: kgCO2e
+
+transport . domicile-travail . voiture . empreinte au kilomètre: 
+  formule: 
+    variations: 
+      - si: motorisation = 'thermique'
+        alors: thermique . empreinte au kilomètre
+      - si: motorisation = 'hybride'
+        alors: thermique . empreinte au kilomètre * 0.85
+      - sinon: électrique . empreinte au kilomètre
+
+transport . domicile-travail . voiture . motorisation: 
+  question: Quel type de voiture utilisez-vous ?
+  description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
+  par défaut: thermique
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - thermique
+        - hybride
+        - électrique
+transport . domicile-travail . voiture . motorisation . thermique:
+transport . domicile-travail . voiture . motorisation . électrique:
+transport . domicile-travail . voiture . motorisation . hybride:
+
+transport . domicile-travail . voiture . thermique:
+transport . domicile-travail . voiture . thermique . consommation aux 100:
+  question: Quelle est la consommation moyenne de la voiture ?
+  description: |
+    Comme pour la motorisation, si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
+  par défaut: 6.5
+  unité: l/100km
+  note: Les suggestions de réponse sont à la louche, à préciser et sourcer.
+  suggestions: 
+    petite: 6
+    moyenne: 7
+    berline: 9
+    SUV: 11
+
+transport . domicile-travail . voiture . thermique . consommation au kilomètre:
+  formule: consommation aux 100 / 100
+  unité: l/km
+
+transport . domicile-travail . voiture . thermique . empreinte au litre:
+  formule: 2.9
+  unité: kgCO2e/l
+
+transport . domicile-travail . voiture . thermique . empreinte au kilomètre:
+  titre: empreinte au km thermique
+  formule: consommation au kilomètre * empreinte au litre
+
+transport . domicile-travail . voiture . électrique:
+transport . domicile-travail . voiture . électrique . empreinte au kilomètre:
+  titre: empreinte au km électrique
+  formule: 0.020
+  unité: kgCO2e/km
+  note: Pas de variations en fonction de la taille de la voiture, il nous faudra trouver ces donnnées
+
+
+transport . domicile-travail . voiture . voyageurs:
+  question: Quel est le nombre moyen de voyageurs dans la voiture ?
+  par défaut: 1
+  unité: voyageurs
+  suggestions:  
+    je suis le seul: 1
+    seul ou à deux selon le trajet: 1.5
+    à deux: 2
+    à cinq: 5
+
+transport . domicile-travail . voiture . construction amortie:
+  formule: 
+    variations: 
+      - si: propriétaire
+        alors: construction * amortissement particulier
+      - sinon: (construction / durée de vie) * facteur location
+  unité: kgCO2e
+  note: Attention division par 0.
+
+transport . domicile-travail . voiture . propriétaire:
+  question: Avez-vous votre propre voiture individuelle ?
+  description: |
+    Par opposition à l'utilisation exclusive de voitures de location partagées par d'autres personnes le reste du temps, ou l'utilisation de la voiture d'un ami, de la famille.
+    Si votre entreprise vous met à disposition une voiture dont vous êtes le principal utilisateur, vous pouvez considérer que c'est votre voiture individuelle.
+  par défaut: oui
+
+  
+transport . domicile-travail . voiture . construction:
+  formule: 
+    correspondance: 
+      variable: motorisation
+      tableau: 
+        thermique: 7000
+        hybride: 7000
+        électrique: 12000
+  unité: kgCO2e
+  description: |
+    Une voiture est un gros, très gros objet, qui pèse souvent plus d'une tonne et demi. En conséquence, sa construction a une empreinte importante. 
+    En particulier, la construction d'une voiture électrique de gamme équivalente à une thermique émet plus de gaz à effet de serre. C'est notamment du à la batterie et son poids important.
+    Malgré cela, en France, sur la durée de vie de la voiture et donc les km parcourus, le choix de la voiture électrique est nettement mieux pour le climat. 
+    Mieux, mais loin d'être faible ! En 2020, il ne s'agit plus seulement de comparer des solutions techniques entre elles, il s'agit d'évaluer ses achats par rapport aux objectifs climat.
+    
+  note: Il nous faudra trouver les variations d'empreinte de la construction, c'est surement significatif, au moins pour l'électrique.
+
+transport . domicile-travail . voiture . amortissement particulier:
+  description: |
+    Quand on achète une voiture, on fait émettre une quantité donnée de GES. Disons par exemple, 10 tonnes, pour une durée de vie de la voiture de 10 ans. Ces gaz sont émis l'année de l'achat, ou plus ou moins (certains composants auront déjà été produits). 
+    Il serait donc logique du point de vue de l'empreinte sur le climat, d'attribuer les émissions de la construction à la 1ère année : l'effet de serre réchauffant commence dès l'achat !
+    Sauf que beaucoup de voitures sont achetées par des entreprises avant d'être vendues d'occasion aux particuliers, ou entre particuliers. Il semble donc légitime de distribuer l'attribution dans le temps, donc au fur et à mesure des propriétaires. De la même façon, il faut aussi penser aux utilisateurs qui découvrivraient cet outil seulement l'année suivant l'achat d'une voiture : il est légitime de leur réserver une partie des émissions émises.
+    Deuxièmement, en attribuant toute l'empreinte à l'achat, on enverrait un signal fort qui désavantagerait le choix d'une voiture électrique par rapport à une thermique, alors qu'en France les émissions de cette dernière rattrapent la première dès les premières années d'usage.
+    D'où le choix d'amortir l'achat sur les 10 premières années (la durée de vie moyenne d'une voiture), avec un taux dégressif, en s'assurant bien que la somme de la part de chaque année donne 100%.
+    
+    En bref, nous faisons un compromis entre un modèle cohérent du point de vue du climat et un modèle plus pratique dans le contexte d'un simulateur pédagogique pas forcément utilisé chaque année.
+    
+    Pour voir la réflexion ayant mené à cette méthode, voir [cette discussion](https://github.com/betagouv/ecolab-data/issues/225#issuecomment-689472950).
+  note: |
+    Quand on aura mis à jour le code avec la dernière version de publi.codes, on pourra utiliser le [mécanisme `grille`](https://publi.codes/mécanismes#grille) qui fait exactement ça.
+  formule: 
+    variations: 
+      - si: âge < 1
+        alors: 40%
+      - si: âge < 2
+        alors: 20%
+      - si: âge < 3
+        alors: 10%
+      - si: âge < 10
+        alors: 5%
+      - sinon: 0%
+
+transport . domicile-travail . voiture . âge:
+  question: Quelle est l'âge de votre voiture ?
+  description: |
+    Pour calculer l'empreinte de la construction de la voiture, qu'il ne faut pas négliger, nous utilisons l'âge de la voiture.
+    
+    Répondez bien avec *l'âge de la voiture*, pas le nombre d'année qu'elle a passé en votre possession : il y a en effet de grandes chances que vous l'ayez achetée d'occasion.
+    Si vous êtes deux à utiliser deux voitures, vous pouvez simplement vous en attribuer une, ou entrer une moyenne de leurs caractéristiques.
+    Si vous possédez plusieurs voitures utilisées uniquement par vous même, ~~vendez au moins la deuxième~~ ce cas n'est pas encore prévu.
+  unité: années
+  par défaut: 8
+  suggestions: 
+    6 mois: 0.5 
+    1 an et demi: 1.5
+    5 ans: 5
+    10 ans: 10
+
+transport . domicile-travail . voiture . durée de vie: 
+  formule: 10
+  description: |
+    Nous considérons qu'une voiture de particulier, comme une voiture de location, est utilisée en moyenne 10 ans avant d'être mise à la casse [source](https://fr.wikipedia.org/wiki/Parc_automobile_fran%C3%A7ais#Anciennet%C3%A9). Cette source donne 9 ans, nous arrondissons à 10.
+    En effet, bon nombre de voitures sont par exemple achetées neuves par des entreprises de location, et seront ensuite aquises par un particulier d'occasion.
+
+transport . domicile-travail . voiture . construction amortie . facteur location: 
+  formule: km / 16300
+  note: |
+    On attribue à l'utilisateur l'impact de la construction au pro rata de son utilisation par rapport au km parcourus par la voiture sur une année.  
+  références: 
+    - https://www.ademe.fr/sites/default/files/assets/documents/enquete-autopartage-2019-rapport.pdf
+
+#------------------------------------------- Domicile-Travail Tram -------------------------------------------
+
+transport . domicile-travail . tram:
+  description: |
+    ![](https://images.unsplash.com/photo-1581262208435-41726149a759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60)
+  applicable si: affirmatif
+  formule: heures par jour * impact par heure * profil . nbre semaines * 5
+
+transport . domicile-travail . tram . affirmatif:
+  question: Utilisez-vous le tramway pour faire le trajet entre votre domicile et Centrale ?
+  par défaut: oui
+
+transport . domicile-travail . tram . impact par heure:
+  formule: 0.17
+  unité: kgCO2e/heures
+  note: Nous avons confondu tram et métro, alors que le modèle MicMac v2.6 ne parle que de métro. 
+  description: |
+    Sur la base de 6,63 gCO2e/(passager.km) et de 25 km/h de vitesse moyenne. Base Carbone consultée le 22/06/19- Métro/tram/Trolley, réseaux urbains Classe 1 - amont et combustion ; transports.blog.lemonde.fr, consulté le 05/09/2014
+  références: 
+   - http://transports.blog.lemonde.fr/2013/03/11/les-petits-secrets-de-la-ratp-reveles-au-public/
+    - http://www.bilans-ges.ademe.fr/
+
+transport . domicile-travail . tram . minutes par trajet:
+  question: Combien de temps, en moyenne, dure votre trajet en tramway ?
+  suggestions: 
+    10 minutes / trajet: 10
+    20 minutes / trajet: 20
+    30 minutes / jour: 30
+  unité: minutes/trajet
+  par défaut: 15
+
+transport . domicile-travail . tram . heures par jour:
+  formule: 2 * minutes par trajet / 60
+  unité: heures/jour
+
+#------------------------------------------- Domicile-Travail Bus -------------------------------------------
+
+transport . domicile-travail . bus:
+  description: |
+    ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Alliance_Auch_ligne_6_Allées_Baylac.JPG/640px-Alliance_Auch_ligne_6_Allées_Baylac.JPG)
+  applicable si: affirmatif
+  formule: heures par jour * impact par heure * profil . nbre semaines * 5
+
+transport . domicile-travail . bus . affirmatif:
+  question: Utilisez-vous le bus pour faire le trajet entre votre domicile et Centrale ?
+  par défaut: non
+
+transport . domicile-travail . bus . impact par heure:
+  formule: 1.99
+  unité: kgCO2e/heure
+  description: |
+    Sur la base de 166 gCO2e/(passager.km) et de 12 km/h de vitesse moyenne - Base Carbone consultée le 22/06/19 - Bus, moyen, réseaux urbains Classe 2 (zone urbaine et interurbaine) - amont et combustion ; Mairie de Paris pour la vitesse des bus, consulté le 05/09/2014
+  références: 
+    - http://www.paris.fr/pratique/deplacements-voirie/transports-en-commun/promouvoir-les-transports-collectifs/rub_385_stand_10755_port_1208
+    - http://www.bilans-ges.ademe.fr/
+
+transport . domicile-travail . bus . minutes par trajet:
+  question: Combien de temps, en moyenne, dure votre trajet en bus ?
+  suggestions: 
+    10 minutes / trajet: 10
+    20 minutes / trajet: 20
+    30 minutes / jour: 30
+  unité: minutes/trajet
+  par défaut: 15
+
+transport . domicile-travail . bus . heures par jour:
+  formule: 2 * minutes par trajet / 60
+  unité: heures/jour
+
+#------------------------------------------- Domicile-Travail Vélo ou à pied -------------------------------------------
+
+transport . domicile-travail . vélo:
+  question: Vous rendez-vous à Centrale en vélo ou à pied ? 
+  par défaut: non
+
+#------------------------------------------- Déplacement Pro ----------------------------------------------------
+
+transport . déplacements professionels:
+  description: |
+    A compléter
+  applicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'EI1'
+      - profil . profil-type = 'EI2'
+      - profil . profil-type = 'EI3'
+  formule:
+    somme:
+      - voiture
+      - train
+      - avion
+
+transport . déplacements professionels . affirmatif:
+  question: Êtes-vous amené à effectuer des déplacements professionels ?
+  par défaut: non
+
+#----------------------------------------------- Voiture -----------------------------------------------------
+
+transport . déplacements professionels . voiture :
+  description: |
+    A compléter  
+  applicable si : affirmatif
+  formule: (construction amortie + impact usage) / voyageurs
+  unité: kgCO2e
+
+transport . déplacements professionels . voiture . affirmatif:
+  question: Utilisez-vous la voiture pour vos déplacements professionels?
+  par défaut: non
+
+transport . déplacements professionels . voiture . voyageurs:
+  question: Quel est le nombre moyen de voyageurs dans la voiture ?
+  par défaut: 1
+  unité: voyageurs
+  suggestions:  
+    je suis le seul: 1
+    seul ou à deux selon le trajet: 1.5
+    à deux: 2
+    à cinq: 5
+
+transport . déplacements professionels . voiture . km:
+  description: |
+    Distance moyenne parcourue par l'usager à l'année.
+  question: Combien de kilomètres parcourez-vous en voiture par an pour vos déplacements professionels ?
+  unité: km
+  par défaut: 100
+
+transport . déplacements professionels . voiture . impact usage:
+  formule: km * empreinte au kilomètre
+  unité: kgCO2e
+
+transport . déplacements professionels . voiture . empreinte au kilomètre: 
+  description: |
+    La valeur de l'empreinte au kilomètre pour les véhicules de l'école a été calculé en considérant une consomation moyenne de 7L au 100. 
+  formule: 
+    variations: 
+      - si: type = 'personnelle'
+        alors: domicile-travail . voiture . empreinte au kilomètre
+      - si: type = 'location'
+        alors: domicile-travail . voiture . empreinte au kilomètre
+      - si: type = 'école'
+        alors: 0.203
+
+transport . déplacements professionels . voiture . type: 
+  question: Utilisez-vous votre voiture personnelle, une voiture de location ou bien une voiture de l'école ?
+  description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
+  par défaut: personnelle
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - personnelle
+        - location
+        - école
+
+transport . déplacements professionels . voiture . type . personnelle:
+transport . déplacements professionels . voiture . type . location:
+transport . déplacements professionels . voiture . type . école:
+
+transport . déplacements professionels . voiture . construction amortie:
+  formule: 
+    variations: 
+      - si: type = 'personnelle'
+        alors: domicile-travail . voiture . construction * domicile-travail . voiture . amortissement particulier
+      - si: type = 'école'
+        alors: construction école * amortissement particulier école
+      - si: type = 'location'
+        alors: (domicile-travail . voiture . construction / domicile-travail . voiture . durée de vie) * domicile-travail . voiture . construction amortie . facteur location
+  unité: kgCO2e
+  note: Attention division par 0.
+
+transport . déplacements professionels . voiture . construction école:
+  formule: 7000
+  description: |
+    Le parc auto de l'école ne comporte que des voitures thermiques.
+  unité: kgCO2e
+
+transport . déplacements professionels . voiture . amortissement particulier école:
+  formule: 5%
+  description: |
+    LEs voitures ont en moyenne 7,85 ans. Cela correspond à 40% selon la grille prédéfinie par ecolab (cf amortissement particulier)
+  unité: kgCO2e
+
+#----------------------------------------------- Train -----------------------------------------------------
+
+transport . déplacements professionels . train:
+  description: |
+    ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
+  applicable si: affirmatif
+  formule: km * impact par km
+
+transport . déplacements professionels . train . affirmatif:
+  question: Utilisez-vous le train pour vos déplacements professionels?
+  par défaut: non
+
+transport . déplacements professionels . train . impact par km:
+  formule: 0.0056
+  unité: kgCO2e/km
+
+transport . déplacements professionels . train . km:
+  question: Combien de kilomètres parcourez-vous en train par an pour vos déplacements professionels ?
+  description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
+  suggestions: 
+    Nantes↔Paris: 700
+    Nantes↔Lyon: 1000
+    Nantes↔Marseille: 1400 
+  unité: km/an
+  par défaut: 1000
+
+#----------------------------------------------- Avion -----------------------------------------------------
+
+transport . déplacements professionels . avion:
+  applicable si: usager
+  description: |
+    ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
+    
+    L'empreinte de l'avion est conséquente. Il n'est pas forcément plus polluant *au kilomètre* qu'une voiture qui ne déplace qu'une personne, 
+    mais la distance et surtout la distance parcourue en une heure (qu'on appelle couramment la vitesse), permet de changer de continent pour un week-end.
+    
+    Gardons aussi en tête que le Français moyen ne prend pas ou peu l'avion. L'essentiel de l'empreinte de l'aviation est donc concentrée sur 10% ou moins des Français.
+    
+  note: |
+    Nous avons fait le choix de demander le total d'heures de vol, plutôt que de demander à l'utilisateur de renseigner chacun de ses vols 
+    via l'aéroport de départ, d'arrivée et la classe économique. C'est une évolution possible par la suite, 
+    voir [ce simulateur](https://futur.eco/simulateur/transport/avion/impact) où une partie du travail est déjà faite.
+    
+    A noter aussi que les escales entrainent des décollages supplémentaires, qui consomment plus de carburant qu'une vitesse de croisière.
+    C'est aussi un paramètre à prendre en compte par la suite.
+    
+    Pour un modèle plus détaillé de l'empreinte de l'avion, nous avons trouvé deux sources.
+    
+    L'algorithme complet de l'appli North, disponible [ici](https://github.com/tmrowco/northapp-contrib/blob/master/co2eq/flights/index.js).  
+    
+    Le pseudo-algorithme de myclimate.org, ci-dessous.
+    ![](https://imgur.com/hIVvuIw.jpg).
+  formule: 
+    somme: 
+      - court courrier
+      - moyen courrier
+      - long courrier
+
+
+transport . déplacements professionels . avion . usager:
+  question: Prenez-vous l'avion pour vos déplacements professionnels ?
+  par défaut: non
+
+transport . déplacements professionels . avion . court courrier:
+  formule:  heures de vol * vitesse moyenne * empreinte par km
+transport . déplacements professionels . avion . court courrier . vitesse moyenne:
+  formule: 600 / 1.3
+  unité: km/h
+  note: |
+    Nous utilisons la vitesse moyenne de vol pour un Paris Toulouse.
+transport . déplacements professionels . avion . court courrier . empreinte par km:
+  formule: 0.230
+  note: |
+    Nous utilisons le facteur d'émission de la tranche de distance < 1000 km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
+  unité: kgCO2e/km
+
+transport . déplacements professionels . avion . court courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous en avion en France métropolitaine pour vos déplacements professionels?
+  description: |
+    Comptez les heures que vous avez passé dans un avion pour des vols d'une distance inférieure à 1000km (à peu près). Si vous faites des escales, additionnez simplement les durées de chaque vol.
+    Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
+    💡 Ne comptez que les km de déplacement personnel et de déplacement domicile travail pour rejoindre votre lieu de travail habituel.
+    Par exemple, si vous êtes en mission professionnelle dans un autre pays, cela rentre dans la comptabilité de votre entreprise.
+  suggestions:
+    🚫✈️: 0
+    Nantes🔁Paris: 2
+    Nantes🔁Lyon: 2.6
+    Nantes🔁Marseille: 2.8
+  unité: h/an
+  par défaut: 0
+
+transport . déplacements professionels . avion . moyen courrier:
+  formule:  heures de vol * vitesse moyenne * empreinte par km
+transport . déplacements professionels . avion . moyen courrier . vitesse moyenne:
+  formule: 1350 / 2.5
+  unité: km/h
+  note: |
+    Nous utilisons la vitesse moyenne de vol pour un Paris Alger.
+transport . déplacements professionels . avion . moyen courrier . empreinte par km:
+  formule: (0.186 + 0.178) / 2
+  note: |
+    Nous utilisons la moyenne des facteurs d'émissions des tranches de distance 1000-2000km et 2000-3500km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
+  unité: kgCO2e/km
+
+transport . déplacements professionels . avion . moyen courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous en avion vers l'Europe pour vos déplacements professionels ?
+  description: |
+    Comptez les heures que vous avez passé dans un avion pour des vols d'une distance entre 1000km et 3500km (à peu près). Si vous faites des escales, additionnez simplement les durées de chaque vol.
+    Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
+    💡 Ne comptez que les km de déplacement personnel et de déplacement domicile travail pour rejoindre votre lieu de travail habituel.
+    Par exemple, si vous êtes en mission professionnelle dans un autre pays, cela rentre dans la comptabilité de votre entreprise.
+  suggestions:
+    🚫✈️: 0
+    Nantes🔁Copenhague: 4
+    Nantes🔁Madrid: 5
+    Nantes🔁Athènes: 6
+    Nantes🔁autre: 8
+  unité: h/an
+  par défaut: 1
+
+transport . déplacements professionels . avion . long courrier:
+  formule: heures de vol * vitesse moyenne * empreinte par km
+transport . déplacements professionels . avion . long courrier . vitesse moyenne:
+  formule: 5800 / 8.5
+  unité: km/h
+  note: |
+    Nous utilisons la vitesse moyenne de vol du modèle MicMac v2.6, déterminée selon [ces données](http://www.abm.fr/voyager-en-avion-le-guide-du-passager/en-complement/distances-et-durees-de-vol.html).
+transport . déplacements professionels . avion . long courrier . empreinte par km:
+  formule: 0.151
+  note: |
+    Nous utilisons le facteur d'émissions de la tranche > 3500km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
+  unité: kgCO2e/km
+
+transport . déplacements professionels . avion . long courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous au-delà en vol long courrier  pour vos déplacements professionels?
+  description: |
+    Comptez les heures que vous avez passé dans un avion pour des vols d'une distance supérieure à 3500km, c'est-à-dire au-delà de l'Europe et du pourtour méditerranéen. 
+    Si vous faites des escales, additionnez simplement les durées de chaque vol.
+    Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
+    💡 Ne comptez que les km de déplacement personnel et de déplacement domicile travail pour rejoindre votre lieu de travail habituel.
+    Par exemple, si vous êtes en mission professionnelle dans un autre pays, cela rentre dans la comptabilité de votre entreprise.
+  suggestions:
+    🚫✈️: 0
+    Nantes🔁Kinshasa: 16
+    Nantes🔁New York: 17
+    Nantes🔁Tokyo: 24
+    Nantes🔁Lima: 36
+    Nantes🔁Sydney: 40
+  unité: h/an
+  par défaut: 1
+
+#------------------------------------------- Mobilité Internationale ----------------------------------------------------
+
+transport . mobilité internationale:
+  description: |
+    A compléter
+  applicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule:
+    somme:
+      - voiture
+      - train
+      - avion
+
+transport . mobilité internationale . affirmatif:
+  question: Avez-vous effectué une mobilité internationale cette année dans le cadre de vos études ?
+  par défaut: non
+
+#----------------------------------------------- Voiture -----------------------------------------------------
+
+transport . mobilité internationale . voiture :
+  description: |
+    A compléter  
+  applicable si : affirmatif
+  formule: (construction amortie + impact usage) / voyageurs
+  unité: kgCO2e
+
+transport . mobilité internationale . voiture . affirmatif:
+  question: Avez-vous utilisé une voiture pour effectuer le trajet ?
+  par défaut: non
+
+transport . mobilité internationale . voiture . voyageurs:
+  question: Quel était le nombre moyen de voyageurs dans la voiture ?
+  par défaut: 1
+  unité: voyageurs
+  suggestions:  
+    je suis le seul: 1
+    seul ou à deux selon le trajet: 1.5
+    à deux: 2
+    à cinq: 5
+
+transport . mobilité internationale . voiture . km:
+  description: |
+    Distance moyenne parcourue par l'usager à l'année.
+  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  unité: km
+  par défaut: 100
+
+transport . mobilité internationale . voiture . impact usage:
+  formule: km * empreinte au kilomètre
+  unité: kgCO2e
+
+transport . mobilité internationale . voiture . empreinte au kilomètre: 
+  description: |
+    La valeur de l'empreinte au kilomètre pour les véhicules de l'école a été calculé en considérant une consomation moyenne de 7L au 100. 
+  formule: domicile-travail . voiture . empreinte au kilomètre
+
+transport . mobilité internationale . voiture . construction amortie:
+  formule: domicile-travail . voiture . construction * domicile-travail . voiture . amortissement particulier
+  unité: kgCO2e
+  note: Attention division par 0.
+
+#----------------------------------------------- Train -----------------------------------------------------
+
+transport . mobilité internationale . train:
+  description: |
+    ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
+  applicable si: affirmatif
+  formule: km * impact par km
+
+transport . mobilité internationale . train . affirmatif:
+  question: Avez-vous utilisé le train pour effectuer le trajet ?
+  par défaut: non
+
+transport . mobilité internationale . train . impact par km:
+  formule: 0.0056
+  unité: kgCO2e/km
+
+transport . mobilité internationale . train . km:
+  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
+  suggestions: 
+    Nantes↔Paris: 700
+    Nantes↔Lyon: 1000
+    Nantes↔Marseille: 1400 
+  unité: km/an
+  par défaut: 1000
+
+#----------------------------------------------- Avion -----------------------------------------------------
+
+transport . mobilité internationale . avion:
+  applicable si: usager
+  description: |
+    ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
+    
+    L'empreinte de l'avion est conséquente. Il n'est pas forcément plus polluant *au kilomètre* qu'une voiture qui ne déplace qu'une personne, 
+    mais la distance et surtout la distance parcourue en une heure (qu'on appelle couramment la vitesse), permet de changer de continent pour un week-end.
+    
+    Gardons aussi en tête que le Français moyen ne prend pas ou peu l'avion. L'essentiel de l'empreinte de l'aviation est donc concentrée sur 10% ou moins des Français.
+    
+  note: |
+    Nous avons fait le choix de demander le total d'heures de vol, plutôt que de demander à l'utilisateur de renseigner chacun de ses vols 
+    via l'aéroport de départ, d'arrivée et la classe économique. C'est une évolution possible par la suite, 
+    voir [ce simulateur](https://futur.eco/simulateur/transport/avion/impact) où une partie du travail est déjà faite.
+    
+    A noter aussi que les escales entrainent des décollages supplémentaires, qui consomment plus de carburant qu'une vitesse de croisière.
+    C'est aussi un paramètre à prendre en compte par la suite.
+    
+    Pour un modèle plus détaillé de l'empreinte de l'avion, nous avons trouvé deux sources.
+    
+    L'algorithme complet de l'appli North, disponible [ici](https://github.com/tmrowco/northapp-contrib/blob/master/co2eq/flights/index.js).  
+    
+    Le pseudo-algorithme de myclimate.org, ci-dessous.
+    ![](https://imgur.com/hIVvuIw.jpg).
+  formule: 2 * heures de vol * vitesse moyenne * empreinte par km
+
+transport . mobilité internationale . avion . usager:
+  question: Avez-vous pris l'avion pour faire le voyage ?
+  par défaut: non
+
+transport . mobilité internationale . avion . vitesse moyenne:
+  formule: 5800 / 8.5
+  unité: km/h
+  note: |
+    Nous utilisons la vitesse moyenne de vol du modèle MicMac v2.6, déterminée selon [ces données](http://www.abm.fr/voyager-en-avion-le-guide-du-passager/en-complement/distances-et-durees-de-vol.html).
+
+transport . mobilité internationale . avion . empreinte par km:
+  formule: 0.151
+  note: |
+    Nous utilisons le facteur d'émissions de la tranche > 3500km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
+  unité: kgCO2e/km
+
+transport . mobilité internationale . avion . heures de vol:
+  question: Combien d'heures durait votre vol (aller seulement) ?
+  description: à compléter
+  suggestions:
+    Paris🔁Kinshasa: 16
+    Paris🔁New York: 17
+    Paris🔁Tokyo: 24
+    Paris🔁Lima: 36
+    Paris🔁Sydney: 40
+  unité: h/an
+  par défaut: 1
 
