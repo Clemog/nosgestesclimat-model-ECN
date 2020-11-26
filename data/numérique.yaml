@@ -1,116 +1,32 @@
 numérique:
   couleur: '#B53471'
   icônes: 📺
-  formule: 0
-    # somme: 
-    #   - téléphone
-    #   - TV
-    #   - ordinateur
-    #   - internet
-    #   - tablette
-    #   - vidéoprojecteur
-    #   - appareil photo
-    #   - home cinéma
-
-numérique . internet: 
-  formule: empreinte horaire * durée journalière * 365
-  unité: kgCO2e
-numérique . internet . consommation horaire:
-  formule: (0.12 + 0.24) / 2
-  unité: kWh/h
-  note: |
-    Ce chiffre a été retenu dans le calculateur MicMac version 2.6. La source est un article de CarbonBrief utilisant des données AIE, et critiquant les calculs du Shift Project.
-
-    > Taken together, my analysis suggests that streaming a Netflix video in 2019 typically consumed 0.12-0.24kWh of electricity per hour.
-
-    A faire : comment les calculs en source pondèrent-ils les usages (streaming, navigation Web, etc.) ? Est-ce une estimation de consommation de données par heure d'usage ? 
-  références: 
-    - https://www.carbonbrief.org/factcheck-what-is-the-carbon-footprint-of-streaming-video-on-netflix
-numérique . internet . empreinte horaire:
-  formule: consommation horaire * 1
-  unité: kgCO2e/heure
-
-numérique . internet . durée journalière: 
-  question: Combien d'heures passez-vous par jour sur internet hors bureau (envoi de mail, surf Web, streaming vidéo, etc.) ?
-  description: Comptez seulement une estimation à la louche de vos heures hors bureau, car ce que vous faites au boulot entre dans la comptabilité de votre entreprise ou organisation.
-  unité: heure
-  par défaut: 2
-  suggestions: 
-    zéro: 0
-    modérément: 2
-    je ne décroche pas: 8
-
-    
-
-numérique . appareil photo . présent:
-  note: On range l'appareil photo dans la catégorie numérique vu la rareté des appareils argentiques aujourd'hui.
-  question: Utilisez-vous un appareil photo ?
-  par défaut: non
-numérique . appareil photo . durée:
-  question: Quel âge a-t-il ? 
-  unité: ans
-  par défaut: 4
-numérique . appareil photo:
-  applicable si: présent
-  formule: 30 / (durée + 1)
-  unité: kgCO2e
-  note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
-
-numérique . home cinéma . présent:
-  question: Utilisez-vous un home cinéma ?
-  par défaut: non
-numérique . home cinéma . durée:
-  question: Quel âge a-t-il ? 
-  unité: ans
-  par défaut: 4
-numérique . home cinéma:
-  applicable si: présent
-  formule: 133 / (durée + 1)
-  unité: kgCO2e
-  note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
-
-
-numérique . ordinateur . présent:
-  question: Utilisez-vous un ordinateur ?
-  par défaut: oui
-numérique . ordinateur . durée:
-  question: Quel âge a-t-il ? 
-  unité: ans
-  par défaut: 4
-numérique . ordinateur:
-  note: |
-    Pour l'instant, l'utilisateur a un ordinateur fixe avec écran, un portable sans écran, ou rien.
-
-    Or il peut avoir un fixe et un portable. Ou un portable avec écran fixe.
-  
-    Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
-
-  applicable si: présent
-  formule: facteur / (durée + 1)
-  unité: kgCO2e
-numérique . ordinateur . facteur: 
   formule:
-    variations: 
-      - si: fixe
-        alors: 296 + écran fixe
-      - sinon: 156
+    somme: 
+      - téléphone
+      - ordinateur
+      - tablette
+      - visio
+      - internet
 
-numérique . ordinateur . fixe: 
-  question: Est-ce un ordinateur fixe (avec une tour détachée de l'écran) ?
+#------------------------------------------------ Téléphone --------------------------------------------------
+
+numérique . téléphone:
+  applicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'EI1'
+      - profil . profil-type = 'EI2'
+      - profil . profil-type = 'EI3'
+  formule: impact / (durée + 1)
+  note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
+
+numérique . téléphone . affirmatif:
+  question: Avez-vous un téléphone portable professionel ?
   par défaut: non
-  note: |
-    Le modèle MicMac parle d'ordinateur fixe haute performance ou d'ordinateur portable. 
-    C'est perturbant pour l'utilisateur, car l'option ordinateur fixe pas haute performance n'est pas proposée. 
-    Nous avons donc confondu fixe et fixe haute performance.
-numérique . ordinateur . écran fixe: 
-  formule: 222
-  note: Valeur pour un écran de 21 pouces.
-
-
-
 
 numérique . téléphone . type:
-  icônes: 🤙📱
+  icônes: 📱
   question: Quel téléphone avez-vous ?
   formule:
     une possibilité:
@@ -121,10 +37,6 @@ numérique . téléphone . type:
         - smartphone moins de 5 pouces
         - smartphone plus de 5 pouces
   par défaut: smartphone moins de 5 pouces
-
-numérique . téléphone:
-  formule: impact / (durée + 1)
-  note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
 
 numérique . téléphone . durée:
   question: Quel âge a-t-il ? 
@@ -163,54 +75,140 @@ numérique . téléphone . type . smartphone moins de 4,5 pouces:
 numérique . téléphone . type . smartphone moins de 5 pouces:
 numérique . téléphone . type . smartphone plus de 5 pouces:
 
+#------------------------------------------------ ordinateur --------------------------------------------------
 
-numérique . tablette . présent:
-  question: Utilisez-vous une tablette ?
-  par défaut: non
-numérique . tablette . durée:
-  question: Quel âge a-t-elle ? 
+numérique . ordinateur:
+  note: |
+    Pour l'instant, l'utilisateur a un ordinateur fixe avec écran, un portable sans écran, ou rien.
+
+    Or il peut avoir un fixe et un portable. Ou un portable avec écran fixe.
+  
+    Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
+
+  applicable si: affirmatif
+  formule: facteur / (durée + 1)
+  unité: kgCO2e
+
+numérique . ordinateur . affirmatif:
+  question: Utilisez-vous un ordinateur personnel pour la cadre professionel ?
+  par défaut: oui
+
+numérique . ordinateur . durée:
+  question: Quel âge a-t-il ?
   unité: ans
   par défaut: 4
+
+numérique . ordinateur . facteur: 
+  formule:
+    variations: 
+      - si: type = 'fixe'
+        alors: 296 + écran fixe
+      - si: type = 'portable'
+        alors: 156
+
+numérique . ordinateur . type: 
+  question: Est-ce un ordinateur portable ou bien fixe (avec une tour détachée de l'écran) ?
+  note: |
+    Le modèle MicMac parle d'ordinateur fixe haute performance ou d'ordinateur portable. 
+    C'est perturbant pour l'utilisateur, car l'option ordinateur fixe pas haute performance n'est pas proposée. 
+    Nous avons donc confondu fixe et fixe haute performance.
+  par défaut: portable
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - portable
+        - fixe
+numérique . ordinateur . type . portable:
+numérique . ordinateur . type . fixe:
+
+numérique . ordinateur . écran fixe: 
+  formule: 222
+  note: Valeur pour un écran de 21 pouces.
+
+#------------------------------------------------ Tablette --------------------------------------------------
+
 numérique . tablette:
-  applicable si: présent
+  applicable si: affirmatif
   formule: 63 / (durée + 1)
   unité: kgCO2e
   note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
 
-numérique . TV . présent:
-  question: Utilisez-vous une TV ?
-  par défaut: oui
-numérique . TV . durée:
+numérique . tablette . affirmatif:
+  question: Utilisez-vous une tablette personnelle pour la cadre professionel ?
+  par défaut: non
+
+numérique . tablette . durée:
   question: Quel âge a-t-elle ? 
   unité: ans
   par défaut: 4
-numérique . TV:
-  applicable si: présent
-  formule: 63 / (durée + 1)
+
+#------------------------------------------------ Visio --------------------------------------------------
+
+numérique . visio:
+  description: |
+    A completer
+    Une visioconférence sur mobile est en moyenne 3 fois plus impactante pour l’environnement quand on ajoute la vidéo à l’audio.
+  formule: empreinte horaire * durée journalière * (profil . nbre semaines * 5)
+  applicable si: affirmatif
   unité: kgCO2e
+
+numérique . visio . affirmatif:
+  question: Utilisez-vous la visioconférence ?
+  par défaut: oui
+
+numérique . visio . empreinte horaire:
+  formule: empreinte par minute * 60
+  unité: kgCO2e/heure
+
+numérique . visio . empreinte par minute:
+  formule: 0.0003
+  unité: kgCO2e/minutes
+  références: https://greenspector.com/fr/quelle-application-mobile-de-visioconference-pour-reduire-votre-impact/
   note: |
-    Valeur pour 40-49 pouces.
-    
-    Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
-    
-    La taille étant très variable, il serait mieux d'en faire des variations. 
+    On se base sur une étude de Greenspector. Ce chiffre correspond à la moyenne de trois scénarios : 
+    audio, audio et vidéo, audio et partage d’écran.
 
-    Notons aussi : 
-      - la résolution (empreinte d'une 8k ?)
-      - la technologie d'affichage (LED, plasma, etc.)
-
-
-numérique . vidéoprojecteur . présent:
-  question: Utilisez-vous un vidéoprojecteur ?
-  par défaut: non
-numérique . vidéoprojecteur . durée:
-  question: Quel âge a-t-il ? 
-  unité: ans
+numérique . visio . durée journalière:
+  question: Combien d'heures passez-vous en moyenne en visioconférence par jour dans le cadre professionel ?
+  unité: heure
   par défaut: 4
-numérique . vidéoprojecteur:
-  applicable si: présent
-  formule: 94 / (durée + 1)
+  suggestions: 
+    peu: 2
+    beaucoup: 5
+    toute la journée: 8
+
+
+
+#------------------------------------------------ Internet --------------------------------------------------
+
+numérique . internet: 
+  formule: empreinte horaire * durée journalière * (profil . nbre semaines * 5)
   unité: kgCO2e
+  note: on ne prend pas en compte l'utilisation d'internet le week-end, à modifier peut-être.
+
+numérique . internet . empreinte horaire:
+  formule: 0.036
+  unité: kgCO2e/heure
+  note: |
+     La source est un article de CarbonBrief utilisant des données AIE, et critiquant les calculs du Shift Project.
+     25/11/2020: The energy intensity figures for data centres and data transmission networks have been updated 
+     to reflect more recent data and research. As a result, the central IEA estimate for one hour of streaming video
+     in 2019 is now 36gCO2, down from 82gCO2 in the original analysis published in February 2020.
+     Il est nécessaire de passer du temps sur ce point pour vérifier ce facteur.
+  références: 
+    - https://www.carbonbrief.org/factcheck-what-is-the-carbon-footprint-of-streaming-video-on-netflix
+
+numérique . internet . durée journalière: 
+  question: Combien d'heures passez-vous par jour sur internet dans la cadre professionel (envoi de mail, Web, streaming vidéo, etc.) ?
+  unité: heure
+  par défaut: 4
+  suggestions: 
+    peu: 2
+    beaucoup: 5
+    toute la journée: 8
+
+
 
 
 
