@@ -3,7 +3,7 @@ transport . arrêter l'avion:
   applicable si: 
     une de ces conditions:
       - transport . déplacements professionels . avion . usager
-      - transport . mobilité internationale . avion . usager
+      - transport . mobilité internationale . avion . heures de vol != 0
   formule:
     somme:
       - transport . déplacements professionels . avion

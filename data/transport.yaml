@@ -527,10 +527,9 @@ transport . déplacements professionels . avion . moyen courrier . heures de vol
     Par exemple, si vous êtes en mission professionnelle dans un autre pays, cela rentre dans la comptabilité de votre entreprise.
   suggestions:
     🚫✈️: 0
-    Nantes🔁Copenhague: 4
-    Nantes🔁Madrid: 5
-    Nantes🔁Athènes: 6
-    Nantes🔁autre: 8
+    Nantes🔁Madrid: 1.5
+    Nantes🔁Copenhague: 3
+    Nantes🔁Athènes: 4
   unité: h/an
   par défaut: 1
 
@@ -557,11 +556,9 @@ transport . déplacements professionels . avion . long courrier . heures de vol:
     Par exemple, si vous êtes en mission professionnelle dans un autre pays, cela rentre dans la comptabilité de votre entreprise.
   suggestions:
     🚫✈️: 0
-    Nantes🔁Kinshasa: 16
-    Nantes🔁New York: 17
-    Nantes🔁Tokyo: 24
-    Nantes🔁Lima: 36
-    Nantes🔁Sydney: 40
+    Paris🔁New York: 8.5
+    Paris🔁Pekin: 10
+    Paris🔁Sydney: 20
   unité: h/an
   par défaut: 1
 
@@ -577,27 +574,41 @@ transport . mobilité internationale:
       - profil . profil-type = 'personnel de recherche ou enseignement'
       - profil . profil-type = 'autre personnel'
   formule:
-    somme:
-      - voiture
-      - train
-      - avion
+    variations: 
+      - si: moyen = 'voiture'
+        alors: transport . mobilité internationale . voiture
+      - si: moyen = 'train'
+        alors: transport . mobilité internationale . train
+      - si: moyen = 'avion'
+        alors: transport . mobilité internationale . avion
 
 transport . mobilité internationale . affirmatif:
   question: Avez-vous effectué une mobilité internationale cette année dans le cadre de vos études ?
   par défaut: non
+
+transport . mobilité internationale . moyen:
+  question: Quel moyen de transport avez-vous utlisé pour votre mobilité ?
+  par défaut: avion
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - voiture
+        - train
+        - avion
+
+transport . mobilité internationale . moyen . voiture:
+transport . mobilité internationale . moyen . train:  
+transport . mobilité internationale . moyen . avion:
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
 transport . mobilité internationale . voiture :
   description: |
     A compléter  
-  applicable si : affirmatif
   formule: (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
 
-transport . mobilité internationale . voiture . affirmatif:
-  question: Avez-vous utilisé une voiture pour effectuer le trajet ?
-  par défaut: non
 
 transport . mobilité internationale . voiture . voyageurs:
   question: Quel était le nombre moyen de voyageurs dans la voiture ?
@@ -635,12 +646,8 @@ transport . mobilité internationale . voiture . construction amortie:
 transport . mobilité internationale . train:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
-  applicable si: affirmatif
   formule: km * impact par km
 
-transport . mobilité internationale . train . affirmatif:
-  question: Avez-vous utilisé le train pour effectuer le trajet ?
-  par défaut: non
 
 transport . mobilité internationale . train . impact par km:
   formule: 0.0056
@@ -659,7 +666,6 @@ transport . mobilité internationale . train . km:
 #----------------------------------------------- Avion -----------------------------------------------------
 
 transport . mobilité internationale . avion:
-  applicable si: usager
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
@@ -684,9 +690,6 @@ transport . mobilité internationale . avion:
     ![](https://imgur.com/hIVvuIw.jpg).
   formule: 2 * heures de vol * vitesse moyenne * empreinte par km
 
-transport . mobilité internationale . avion . usager:
-  question: Avez-vous pris l'avion pour faire le voyage ?
-  par défaut: non
 
 transport . mobilité internationale . avion . vitesse moyenne:
   formule: 5800 / 8.5
@@ -704,11 +707,9 @@ transport . mobilité internationale . avion . heures de vol:
   question: Combien d'heures durait votre vol (aller seulement) ?
   description: à compléter
   suggestions:
-    Paris🔁Kinshasa: 16
-    Paris🔁New York: 17
-    Paris🔁Tokyo: 24
-    Paris🔁Lima: 36
-    Paris🔁Sydney: 40
+    Paris🔁New York: 8.5
+    Paris🔁Pekin: 10
+    Paris🔁Sydney: 20
   unité: h/an
   par défaut: 1
 
