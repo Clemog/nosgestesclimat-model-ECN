@@ -15,12 +15,58 @@ transport:
 #------------------------------------------- Domicile-Travail -------------------------------------------
 
 transport . domicile-travail:
-  non applicable si: vélo
+  non applicable si:
+    une de ces conditions:
+      - jours par semaine = 0
+      - vélo
   formule:
-    somme:
-      - voiture
-      - tram 
-      - bus
+    multiplication:
+      assiette:
+        somme:
+          - voiture
+          - tram 
+          - bus
+      facteur: facteur aller-retour
+
+transport . domicile-travail . jours par semaine:
+  question: En moyenne, combien de jours par semaine vous rendez-vous à Centrale (jours non télétravaillés)?
+  par défaut: 5
+  unité: jours
+  suggestions:
+    zéro: 0
+    1 fois/semaine: 1
+    2 fois/semaine: 2
+    3 fois/semaine: 3
+    4 fois/semaine: 4
+    tous les jours: 5
+
+transport . domicile-travail . aller-retour:
+  question: Vous arrive-t-il de faire un aller-retour dans la journée (pour la pause méridienne par exemple)?
+  par défaut: jamais
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - jamais
+        - de temps en temps
+        - souvent
+        - tous les jours
+
+transport . domicile-travail . aller-retour . jamais:
+transport . domicile-travail . aller-retour . de temps en temps:
+transport . domicile-travail . aller-retour . souvent:
+transport . domicile-travail . aller-retour . tous les jours:
+
+transport . domicile-travail . facteur aller-retour: 
+  note: augmentation de 30%, 60% ou 100% respectivement pour de temps en temps, souvent et tous les jours. 
+  formule: 
+    correspondance: 
+      variable: aller-retour
+      tableau: 
+        jamais: 1
+        de temps en temps: 1.3
+        souvent: 1.6
+        tous les jours: 2
 
 #------------------------------------------- Domicile-Travail Voiture -------------------------------------------
 
@@ -70,7 +116,8 @@ transport . domicile-travail . voiture . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année.
   unité: km
-  formule: km trajet * 2 * (profil . nbre semaines * 5)
+  formule: km trajet * 2 * (profil . nbre semaines * jours par semaine)
+
 
 transport . domicile-travail . voiture . impact usage:
   formule: km * empreinte au kilomètre
@@ -238,7 +285,7 @@ transport . domicile-travail . tram:
   description: |
     ![](https://images.unsplash.com/photo-1581262208435-41726149a759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60)
   applicable si: affirmatif
-  formule: heures par jour * impact par heure * profil . nbre semaines * 5
+  formule: heures par jour * impact par heure * profil . nbre semaines * jours par semaine
 
 transport . domicile-travail . tram . affirmatif:
   question: Utilisez-vous le tramway pour faire le trajet entre votre domicile et Centrale ?
@@ -273,7 +320,7 @@ transport . domicile-travail . bus:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Alliance_Auch_ligne_6_Allées_Baylac.JPG/640px-Alliance_Auch_ligne_6_Allées_Baylac.JPG)
   applicable si: affirmatif
-  formule: heures par jour * impact par heure * profil . nbre semaines * 5
+  formule: heures par jour * impact par heure * profil . nbre semaines * jours par semaine
 
 transport . domicile-travail . bus . affirmatif:
   question: Utilisez-vous le bus pour faire le trajet entre votre domicile et Centrale ?
