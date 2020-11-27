@@ -193,7 +193,7 @@ transport . boulot . télétravail:
 
   note: On considère ici que cette action concerne les personnes qui utilisent leur voiture pour se rendre au travail.
 
-  applicable si: transport . domicile-travail . voiture . affirmatif
+  applicable si: transport . domicile-travail . jours par semaine = 5
   formule: empreinte jour voiture * jours télétravaillés * profil . nbre semaines
 
 transport . boulot . empreinte jour voiture: 

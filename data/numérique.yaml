@@ -42,6 +42,10 @@ numérique . téléphone . durée:
   question: Quel âge a-t-il ? 
   unité: ans
   par défaut: 2
+  suggestions:
+    1 an: 1
+    3 ans: 3
+    5 ans: 5
 
 numérique . téléphone . impact:
   icônes: 📱✨
@@ -97,6 +101,10 @@ numérique . ordinateur . durée:
   question: Quel âge a-t-il ?
   unité: ans
   par défaut: 4
+  suggestions:
+    1 an: 1
+    3 ans: 3
+    5 ans: 5
 
 numérique . ordinateur . facteur: 
   formule:

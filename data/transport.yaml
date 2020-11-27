@@ -351,8 +351,9 @@ transport . domicile-travail . bus . heures par jour:
 #------------------------------------------- Domicile-Travail Vélo ou à pied -------------------------------------------
 
 transport . domicile-travail . vélo:
-  question: Vous rendez-vous à Centrale en vélo ou à pied ? 
+  question: Utilisez-vous un moyen de transport neutre en CO2 pour vous rendre à Centrale (à pied, vélo, skate ...)? 
   par défaut: non
+  note: Pas de prise en compte de l'amortissement ici.
 
 #------------------------------------------- Déplacement Pro ----------------------------------------------------
 
