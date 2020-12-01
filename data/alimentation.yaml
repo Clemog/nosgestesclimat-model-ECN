@@ -269,7 +269,7 @@ alimentation . distributeur automatique . boissons chaudes . tasse de thé . aff
   par défaut : oui
 
 alimentation . distributeur automatique . boissons chaudes . tasse de thé . conso thé:
-  question: Quelle est votre consomation de thé sur une semaine ?
+  question: Quelle est votre consommation de thé sur une semaine ?
   par défaut: 5
   unité: tasses par semaine
   suggestions:
@@ -294,7 +294,7 @@ alimentation . distributeur automatique . boissons chaudes . tasse de café . af
   par défaut : oui
 
 alimentation . distributeur automatique . boissons chaudes . tasse de café . conso café:
-  question: Quelle est votre consomation de café sur une semaine ?
+  question: Quelle est votre consommation de café sur une semaine ?
   par défaut: 5
   unité: tasses par semaine
   suggestions:

@@ -631,7 +631,7 @@ transport . mobilité internationale:
         alors: transport . mobilité internationale . avion
 
 transport . mobilité internationale . affirmatif:
-  question: Avez-vous effectué une mobilité internationale cette année dans le cadre de vos études ?
+  question: Avez-vous effectué une mobilité internationale durant cette année scolaire dans le cadre de vos études ?
   par défaut: non
 
 transport . mobilité internationale . moyen:

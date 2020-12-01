@@ -94,7 +94,7 @@ numérique . ordinateur:
   unité: kgCO2e
 
 numérique . ordinateur . affirmatif:
-  question: Utilisez-vous un ordinateur personnel pour la cadre professionel ?
+  question: Utilisez-vous un ordinateur personnel pour la cadre professionnel ?
   par défaut: oui
 
 numérique . ordinateur . durée:
@@ -143,7 +143,7 @@ numérique . tablette:
   note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
 
 numérique . tablette . affirmatif:
-  question: Utilisez-vous une tablette personnelle pour la cadre professionel ?
+  question: Utilisez-vous une tablette personnelle pour la cadre professionnel ?
   par défaut: non
 
 numérique . tablette . durée:
@@ -178,7 +178,7 @@ numérique . visio . empreinte par minute:
     audio, audio et vidéo, audio et partage d’écran.
 
 numérique . visio . durée journalière:
-  question: Combien d'heures passez-vous en moyenne en visioconférence par jour dans le cadre professionel ?
+  question: Combien d'heures passez-vous en moyenne en visioconférence par jour dans le cadre professionnel ?
   unité: heure
   par défaut: 4
   suggestions: 
@@ -203,12 +203,12 @@ numérique . internet . empreinte horaire:
      25/11/2020: The energy intensity figures for data centres and data transmission networks have been updated 
      to reflect more recent data and research. As a result, the central IEA estimate for one hour of streaming video
      in 2019 is now 36gCO2, down from 82gCO2 in the original analysis published in February 2020.
-     Il est nécessaire de passer du temps sur ce point pour vérifier ce facteur.
+     Il est nécessaire de passer du temps sur ce point pour vérifier ce facteur puisqu'on choisit une utilisation d'internet en streaming vidéo.
   références: 
     - https://www.carbonbrief.org/factcheck-what-is-the-carbon-footprint-of-streaming-video-on-netflix
 
 numérique . internet . durée journalière: 
-  question: Combien d'heures passez-vous par jour sur internet dans la cadre professionel (envoi de mail, Web, streaming vidéo, etc.) ?
+  question: Combien d'heures passez-vous par jour sur internet dans la cadre professionnel (envoi de mail, Web, etc.) ?
   unité: heure
   par défaut: 4
   suggestions: 
