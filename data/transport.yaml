@@ -579,7 +579,7 @@ transport . déplacements professionels . avion . moyen courrier . heures de vol
     Nantes🔁Copenhague: 3
     Nantes🔁Athènes: 4
   unité: h/an
-  par défaut: 1
+  par défaut: 0
 
 transport . déplacements professionels . avion . long courrier:
   formule: heures de vol * vitesse moyenne * empreinte par km
@@ -608,7 +608,7 @@ transport . déplacements professionels . avion . long courrier . heures de vol:
     Paris🔁Pekin: 10
     Paris🔁Sydney: 20
   unité: h/an
-  par défaut: 1
+  par défaut: 0
 
 #------------------------------------------- Mobilité Internationale ----------------------------------------------------
 
@@ -759,5 +759,5 @@ transport . mobilité internationale . avion . heures de vol:
     Paris🔁Pekin: 10
     Paris🔁Sydney: 20
   unité: h/an
-  par défaut: 1
+  par défaut: 0
 
