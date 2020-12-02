@@ -3,7 +3,7 @@ alimentation . réduire viande:
 alimentation . réduire viande . par deux:
   applicable si: nombre de plats viande > 0
   titre: Manger 2 fois moins de viande
-  formule: par semaine * 52
+  formule: par semaine * profil . nbre semaines
   icônes: 🍖📉
   description: |
     Il est tout à fait possible de réduire significativement l'empreinte de son alimentation, sans devenir strictement végétarien.
@@ -27,7 +27,7 @@ alimentation . réduire viande . par deux . par semaine . nouveau régime . comp
 
 alimentation . devenir végétarien:
   applicable si: nombre de plats viande > 0
-  formule: par semaine * 52
+  formule: par semaine * profil . nbre semaines
   icônes: 🥗🧀
   description: |
     Adopter un régime végétarien, donc sans viande ni poisson (mais avec des oeufs, du lait, du fromage, des yaourts).
@@ -39,12 +39,12 @@ alimentation . devenir végétarien . par semaine:
   formule: plats - une semaine végétarienne
 
 alimentation . une semaine végétarienne:
-  formule: 14 * plats . végétarien . empreinte
+  formule: 5 * plats . végétarien . empreinte
 
 
 alimentation . devenir végétalien:
   applicable si: plats . végétarien . nombre > 0
-  formule: par semaine * 52
+  formule: par semaine * profil . nbre semaines
   icônes: 🥗🌾
   description: Adopter un régime végétalien, donc sans produits animaux.
 
@@ -53,7 +53,7 @@ alimentation . devenir végétalien . par semaine:
   formule: plats - une semaine végétalien
 
 alimentation . une semaine végétalien:
-  formule: 14 * plats . végétalien . empreinte
+  formule: 5 * plats . végétalien . empreinte
 
 
 alimentation . gaspillage alimentaire:
