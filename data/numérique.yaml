@@ -115,7 +115,7 @@ numérique . ordinateur . facteur:
         alors: 156
 
 numérique . ordinateur . type: 
-  question: Est-ce un ordinateur portable ou bien fixe (avec une tour détachée de l'écran) ?
+  question: Est-ce un ordinateur portable ou fixe (avec une tour détachée de l'écran) ?
   note: |
     Le modèle MicMac parle d'ordinateur fixe haute performance ou d'ordinateur portable. 
     C'est perturbant pour l'utilisateur, car l'option ordinateur fixe pas haute performance n'est pas proposée. 

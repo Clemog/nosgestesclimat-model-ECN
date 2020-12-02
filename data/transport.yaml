@@ -18,7 +18,7 @@ transport . domicile-travail:
   non applicable si:
     une de ces conditions:
       - jours par semaine = 0
-      - vélo
+      - neutre
   formule:
     multiplication:
       assiette:
@@ -29,7 +29,7 @@ transport . domicile-travail:
       facteur: facteur aller-retour
 
 transport . domicile-travail . jours par semaine:
-  question: En moyenne, combien de jours par semaine vous rendez-vous à Centrale (jours non télétravaillés)?
+  question: En moyenne, combien de jours par semaine allez-vous à Centrale ?
   par défaut: 5
   unité: jours
   suggestions:
@@ -348,10 +348,10 @@ transport . domicile-travail . bus . heures par jour:
   formule: 2 * minutes par trajet / 60
   unité: heures/jour
 
-#------------------------------------------- Domicile-Travail Vélo ou à pied -------------------------------------------
+#------------------------------------------- Domicile-Travail Neutre -------------------------------------------
 
-transport . domicile-travail . vélo:
-  question: Utilisez-vous un moyen de transport neutre en CO2 pour vous rendre à Centrale (à pied, vélo, skate ...)? 
+transport . domicile-travail . neutre:
+  question: Utilisez-vous un moyen de transport neutre en CO2 pour vous rendre à Centrale (marche, vélo, skate)? 
   par défaut: non
   note: Pas de prise en compte de l'amortissement ici.
 
@@ -550,7 +550,7 @@ transport . déplacements professionels . avion . court courrier . heures de vol
     Nantes🔁Paris: 2
     Nantes🔁Lyon: 2.6
     Nantes🔁Marseille: 2.8
-  unité: h/an
+  unité: h
   par défaut: 0
 
 transport . déplacements professionels . avion . moyen courrier:
@@ -708,7 +708,7 @@ transport . mobilité internationale . train . km:
     Nantes↔Paris: 700
     Nantes↔Lyon: 1000
     Nantes↔Marseille: 1400 
-  unité: km/an
+  unité: km
   par défaut: 1000
 
 #----------------------------------------------- Avion -----------------------------------------------------
@@ -758,6 +758,6 @@ transport . mobilité internationale . avion . heures de vol:
     Paris🔁New York: 8.5
     Paris🔁Pekin: 10
     Paris🔁Sydney: 20
-  unité: h/an
+  unité: h
   par défaut: 0
 
