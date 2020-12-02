@@ -3,9 +3,9 @@ numérique:
   icônes: 📺
   formule:
     somme: 
-      - téléphone
-      - ordinateur
-      - tablette
+      #- téléphone (compté dans les achats pro)
+      #- ordinateur
+      #- tablette
       - visio
       - internet
 
@@ -92,7 +92,7 @@ numérique . ordinateur:
   applicable si: affirmatif
   formule: facteur / (durée + 1)
   unité: kgCO2e
-
+  
 numérique . ordinateur . affirmatif:
   question: Utilisez-vous un ordinateur personnel pour la cadre professionnel ?
   par défaut: oui
