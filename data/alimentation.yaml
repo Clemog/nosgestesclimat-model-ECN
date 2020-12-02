@@ -239,47 +239,42 @@ alimentation . régime . planétaire:
 #------------------------------------------- Distributeur Automatique -------------------------------------------
 
 alimentation . distributeur automatique:
-  icones: 🍫
-  formule:
-    somme:
-      - boissons chaudes
-      - boissons froides
-
-alimentation . distributeur automatique . boissons chaudes: 
-  icônes: ☕
+  icones: 🍫☕
+  applicable si: affirmatif
   formule:
     multiplication:
-      assiette: tasse de thé + tasse de café
+      assiette:
+        somme :
+          - thé
+          - café
+          - chocolat chaud
+          # - boissons sucrées
+          # - eau
+          # - barres chocolatée
+          # - sandwich
       facteur: profil . nbre semaines
   note: Nous faisons ici une moyenne grossière.
 
-alimentation . distributeur automatique . boissons chaudes . tasse de thé:
-  applicable si: affirmatif
-  icônes: 🍵
+alimentation . distributeur automatique . affirmatif:
+  question : Utilisez-vous les distributeurs automatiques de la cafétéria ?
+  par défaut : non
+
+alimentation . distributeur automatique . consos:
+  question : Que consommez-vous au distributeur automatique ?
   formule:
-    multiplication:
-      assiette: 0.0123
-      facteur: conso thé
-  unité: kgCO2e
-  références:
-    - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - café
+        - thé
+        - chocolat chaud
 
-alimentation . distributeur automatique . boissons chaudes . tasse de thé . affirmatif:
-  question : Consommez-vous du thé des distributeurs automatiques à Centrale ?
-  par défaut : oui
+alimentation . distributeur automatique . consos . café:
+alimentation . distributeur automatique . consos . thé:
+alimentation . distributeur automatique . consos . chocolat chaud:
 
-alimentation . distributeur automatique . boissons chaudes . tasse de thé . conso thé:
-  question: Quelle est votre consommation de thé sur une semaine ?
-  par défaut: 5
-  unité: tasses par semaine
-  suggestions:
-    Rarement: 2
-    1 par jour: 5
-    2 par jour: 10
-    3 par jour: 15
-
-alimentation . distributeur automatique . boissons chaudes . tasse de café:
-  applicable si: affirmatif
+alimentation . distributeur automatique . café:
+  applicable si: alimentation . distributeur automatique . consos = 'café'
   icônes: ☕
   formule: 
     multiplication:
@@ -289,11 +284,8 @@ alimentation . distributeur automatique . boissons chaudes . tasse de café:
   références:
     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
-alimentation . distributeur automatique . boissons chaudes . tasse de café . affirmatif:
-  question : Consommez-vous du café des distributeurs automatiques à Centrale ?
-  par défaut : oui
 
-alimentation . distributeur automatique . boissons chaudes . tasse de café . conso café:
+alimentation . distributeur automatique . café . conso café:
   question: Quelle est votre consommation de café sur une semaine ?
   par défaut: 5
   unité: tasses par semaine
@@ -302,6 +294,49 @@ alimentation . distributeur automatique . boissons chaudes . tasse de café . co
     1/jour: 5
     2/jour: 10
     3/jour: 15
+
+
+alimentation . distributeur automatique . thé:
+  applicable si: alimentation . distributeur automatique . consos = 'thé'
+  icônes: 🍵
+  formule:
+    multiplication:
+      assiette: 0.0123
+      facteur: conso thé
+  unité: kgCO2e
+  références:
+    - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
+
+alimentation . distributeur automatique . thé . conso thé:
+  question: Quelle est votre consommation de thé sur une semaine ?
+  par défaut: 5
+  unité: tasses par semaine
+  suggestions:
+    Rarement: 2
+    1 par jour: 5
+    2 par jour: 10
+    3 par jour: 15
+
+alimentation . distributeur automatique . chocolat chaud:
+  applicable si: alimentation . distributeur automatique . consos = 'chocolat chaud'
+  icônes: 🍵
+  formule:
+    multiplication:
+      assiette: 0.0123
+      facteur: conso chocolat chaud
+  unité: kgCO2e
+  références:
+    - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
+
+alimentation . distributeur automatique . chocolat chaud . conso chocolat chaud:
+  question: Quelle est votre consommation de chocolat chaud sur une semaine ?
+  par défaut: 5
+  unité: tasses par semaine
+  suggestions:
+    Rarement: 2
+    1 par jour: 5
+    2 par jour: 10
+    3 par jour: 15
 
 alimentation . distributeur automatique . boissons froides:
   icônes: 🥤
