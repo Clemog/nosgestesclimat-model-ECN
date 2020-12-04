@@ -58,10 +58,10 @@ transport . arrêter l'avion court:
 transport . éco-conduite: 
   titre: Faire de l'éco-conduite
   icônes: 🚗☮
-  applicable si: transport . domicile-travail . voiture . affirmatif
+  applicable si: transport . moyens de transport . voiture . pourcent > 0
   formule:
     somme:
-      - transport . domicile-travail . voiture . impact usage * 20%
+      - transport . moyens de transport . voiture . impact usage * 20%
       - transport . déplacements professionels . voiture . impact usage * 20%
       - transport . mobilité internationale . voiture . impact usage * 20%
   description: |
@@ -76,96 +76,96 @@ transport . éco-conduite:
     Source : ADEME - [La mobilité en 10 questions](https://www.ademe.fr/mobilite-10-questions), septembre 2020, page 10.
   note: La source ne donne pas le détail du calcul, nous n'avons que le chiffre de 20% de réduction de consommation.
     
-transport . boulot:
-transport . boulot . covoiturage:
-  titre: Aller au travail en covoiturage
-  applicable si:
-    toutes ces conditions:
-      - transport . domicile-travail . voiture . propriétaire
-      - transport . domicile-travail . voiture . affirmatif
-      - transport . domicile-travail . voiture . voyageurs = 1
-  icônes: 🚗👥
-  formule: transport . domicile-travail . voiture . km * transport . domicile-travail . voiture . empreinte au kilomètre * réduction covoiturage
-  description: |
-    Si le covoiturage longue distance est bien connu en France, celui des courtes distances est presque inexistant : aujourd’hui seuls 3 % des déplacements domicile-travail sont réalisés en covoiturage.
+# transport . boulot:
+# transport . boulot . covoiturage:
+#   titre: Aller au travail en covoiturage
+#   applicable si:
+#     toutes ces conditions:
+#       - transport . domicile-travail . moyens de transport . voiture . propriétaire
+#       - transport . moyens de transport . voiture . pourcent > 0
+#       - transport . domicile-travail . moyens de transport . voiture . voyageurs = 1
+#   icônes: 🚗👥
+#   formule: transport . domicile-travail . moyens de transport . voiture . km * transport . domicile-travail . moyens de transport . voiture . empreinte au kilomètre * réduction covoiturage
+#   description: |
+#     Si le covoiturage longue distance est bien connu en France, celui des courtes distances est presque inexistant : aujourd’hui seuls 3 % des déplacements domicile-travail sont réalisés en covoiturage.
 
-    Sachez que depuis 2020, vous pouvez demander à votre employeur le [forfait mobilité durable](https://www.service-public.fr/particuliers/actualites/A14046), pour que votre covoiturage soit rémunéré jusqu'à 400€/an, exonérés d'impôt et de cotisations sociales !
+#     Sachez que depuis 2020, vous pouvez demander à votre employeur le [forfait mobilité durable](https://www.service-public.fr/particuliers/actualites/A14046), pour que votre covoiturage soit rémunéré jusqu'à 400€/an, exonérés d'impôt et de cotisations sociales !
     
-    Dans tous les cas, pensez à adapter votre mode de transport à la distance et à privilégier les modes doux ou transports en commun (bus, métro, vélo, marche, etc.) le plus possible. Le [calculateur transport](https://ecolab.ademe.fr/apps/transport) vous permet de visualiser et comparer l'impact des différents modes de transport.
+#     Dans tous les cas, pensez à adapter votre mode de transport à la distance et à privilégier les modes doux ou transports en commun (bus, métro, vélo, marche, etc.) le plus possible. Le [calculateur transport](https://ecolab.ademe.fr/apps/transport) vous permet de visualiser et comparer l'impact des différents modes de transport.
 
-  références: 
-    - https://theconversation.com/a-quelles-conditions-le-covoiturage-sera-t-il-un-mode-de-transport-durable-124122
+#   références: 
+#     - https://theconversation.com/a-quelles-conditions-le-covoiturage-sera-t-il-un-mode-de-transport-durable-124122
 
-transport . réduction covoiturage:
-  formule: 20%
-  description: |
-    On pourrait penser que le covoiturage divise par 2 l'empreinte par personne. Mais en réalité, une étude menée en Île-de-France montre que les réductions sont plutôt de l'ordre de 20%... avant les effets rebonds, qui réduisent le gain final du covoiturage à seulement 6%.
+# transport . réduction covoiturage:
+#   formule: 20%
+#   description: |
+#     On pourrait penser que le covoiturage divise par 2 l'empreinte par personne. Mais en réalité, une étude menée en Île-de-France montre que les réductions sont plutôt de l'ordre de 20%... avant les effets rebonds, qui réduisent le gain final du covoiturage à seulement 6%.
 
-    ![](https://images.theconversation.com/files/297327/original/file-20191016-98644-c9y1zz.png?ixlib=rb-1.1.0&q=30&auto=format&w=754&h=588&fit=crop&dpr=2)
-  références: 
-    - https://theconversation.com/a-quelles-conditions-le-covoiturage-sera-t-il-un-mode-de-transport-durable-124122
-    - https://www.sciencedirect.com/science/article/pii/S1361920918303201
+#     ![](https://images.theconversation.com/files/297327/original/file-20191016-98644-c9y1zz.png?ixlib=rb-1.1.0&q=30&auto=format&w=754&h=588&fit=crop&dpr=2)
+#   références: 
+#     - https://theconversation.com/a-quelles-conditions-le-covoiturage-sera-t-il-un-mode-de-transport-durable-124122
+#     - https://www.sciencedirect.com/science/article/pii/S1361920918303201
 
 #transport . empreinte au km covoiturage: 0.2 kgCO2e/km
 
 
-transport . boulot . commun:
-  titre: Aller au travail en transport en commun
-  icônes: 🚌🚃
-  description: |
-    Quand c'est possible, prendre les transports en commun pour aller au boulot réduit notre empreinte climat, mais améliore aussi notre qualité de vie.
+# transport . boulot . commun:
+#   titre: Aller au travail en transport en commun
+#   icônes: 🚌🚃
+#   description: |
+#     Quand c'est possible, prendre les transports en commun pour aller au boulot réduit notre empreinte climat, mais améliore aussi notre qualité de vie.
 
-    [70%](https://www.ecologie-solidaire.gouv.fr/covoiturage-en-france-avantages-et-reglementationen-vigueur) des déplacements domicile-travail sont réalisés avec des véhicules individuels, la plupart seuls dans sa voiture. C'est ce qu'on appelle l'auto-solisme.
+#     [70%](https://www.ecologie-solidaire.gouv.fr/covoiturage-en-france-avantages-et-reglementationen-vigueur) des déplacements domicile-travail sont réalisés avec des véhicules individuels, la plupart seuls dans sa voiture. C'est ce qu'on appelle l'auto-solisme.
 
-    En plus d'émettre beaucoup de gaz à effet de serre cet autosolisme déteriore la qualité de l'air de nos villes et donc notre santé, et encombre les voies urbaines.
+#     En plus d'émettre beaucoup de gaz à effet de serre cet autosolisme déteriore la qualité de l'air de nos villes et donc notre santé, et encombre les voies urbaines.
 
-    > A titre d'exemple les bouchons représentent en Île-de-France par an et par personne [163 heures perdues](https://www.tomtom.com/en_gb/traffic-index/paris-traffic) soit environ 6 jours. 
+#     > A titre d'exemple les bouchons représentent en Île-de-France par an et par personne [163 heures perdues](https://www.tomtom.com/en_gb/traffic-index/paris-traffic) soit environ 6 jours. 
 
-  applicable si: transport . domicile-travail . voiture . affirmatif
-  formule: transport . domicile-travail . voiture . km * gain empreinte au km
+#   applicable si: transport . moyens de transport . voiture . pourcent > 0
+#   formule: transport . domicile-travail . voiture . km * gain empreinte au km
 
-transport . boulot . commun . gain empreinte au km:
-  formule: transport . domicile-travail . voiture . empreinte au kilomètre - empreinte
+# transport . boulot . commun . gain empreinte au km:
+#   formule: transport . domicile-travail . voiture . empreinte au kilomètre - empreinte
 
-transport . boulot . commun . empreinte:
-  titre: Empreinte transport en commun choisi
-  formule:
-    variations:
-      - si: type = 'bus'
-        alors: bus . empreinte
-      - si: type = 'tramway'
-        alors: tramway . empreinte
-      # - si: type = 'TER'
-      #   alors: TER . empreinte
-      # - si: type = 'métro'
-      #   alors: métro . empreinte
+# transport . boulot . commun . empreinte:
+#   titre: Empreinte transport en commun choisi
+#   formule:
+#     variations:
+#       - si: type = 'bus'
+#         alors: bus . empreinte
+#       - si: type = 'tramway'
+#         alors: tramway . empreinte
+#       # - si: type = 'TER'
+#       #   alors: TER . empreinte
+#       # - si: type = 'métro'
+#       #   alors: métro . empreinte
   
-transport . boulot . commun . type:
-  question: Si vous deviez ne plus prendre votre voiture pour vous rendre au travail quel type de transport en commun pourriez-vous utiliser ?
-  par défaut: bus
-  formule: 
-    une possibilité: 
-      choix obligatoire: oui
-      possibilités: 
-        - bus
-        - tramway
+# transport . boulot . commun . type:
+#   question: Si vous deviez ne plus prendre votre voiture pour vous rendre au travail quel type de transport en commun pourriez-vous utiliser ?
+#   par défaut: bus
+#   formule: 
+#     une possibilité: 
+#       choix obligatoire: oui
+#       possibilités: 
+#         - bus
+#         - tramway
         
-transport . boulot . commun . type . bus:
-transport . boulot . commun . type . métro:
-# transport . boulot . commun . type . tramway:
-# transport . boulot . commun . type . TER:
+# transport . boulot . commun . type . bus:
+# transport . boulot . commun . type . métro:
+# # transport . boulot . commun . type . tramway:
+# # transport . boulot . commun . type . TER:
 
-transport . bus . empreinte:
-  formule: 0.129
-  unité: kgCO2e/km 
-  description: |
-    Base Carbone consultée le 02/10/20 Autobus moyen - Agglomération de plus de 250 000 habitants
+# transport . bus . empreinte:
+#   formule: 0.129
+#   unité: kgCO2e/km 
+#   description: |
+#     Base Carbone consultée le 02/10/20 Autobus moyen - Agglomération de plus de 250 000 habitants
 
-transport . tramway . empreinte:
-  formule: 0.0022
-  unité: kgCO2e/km 
-  description: |
-    Base Carbone consultée le 02/10/20 Tramway - 2019 - Île-de-France
+# transport . tramway . empreinte:
+#   formule: 0.0022
+#   unité: kgCO2e/km 
+#   description: |
+#     Base Carbone consultée le 02/10/20 Tramway - 2019 - Île-de-France
 
 # transport . TER . empreinte:
 #   formule: 0.0248
@@ -179,37 +179,38 @@ transport . tramway . empreinte:
 #   description: |
 #     Base Carbone consultée le 02/10/20 Métro - 2019 - Île-de-France
 
-transport . boulot . télétravail: 
-  titre: Faire du télétravail
-  icônes: 🏠💻
-  description: |
-    Le télétravail permet d'éviter des déplacements journaliers pour se rendre au boulot.
+# transport . boulot . télétravail: 
+#   titre: Faire du télétravail
+#   icônes: 🏠💻
+#   description: |
+#     Le télétravail permet d'éviter des déplacements journaliers pour se rendre au boulot.
 
-    Il n'est évidemment pas possible pour de nombreux salariés, mais la crise sanitaire de 2020 a montré que beaucoup de métiers sont effectivement télétravaillables.
+#     Il n'est évidemment pas possible pour de nombreux salariés, mais la crise sanitaire de 2020 a montré que beaucoup de métiers sont effectivement télétravaillables.
 
-    Dans ce calcul, nous ne prenons en compte que les jours télétravaillés qui évitent un déplacement en voiture individuelle.
+#     Dans ce calcul, nous ne prenons en compte que les jours télétravaillés qui évitent un déplacement en voiture individuelle.
 
-    L'impact numérique engendré par le télétravail n'est pas pris en compte ici pour le moment.
+#     L'impact numérique engendré par le télétravail n'est pas pris en compte ici pour le moment.
 
-  note: On considère ici que cette action concerne les personnes qui utilisent leur voiture pour se rendre au travail.
+#   note: On considère ici que cette action concerne les personnes qui utilisent leur voiture pour se rendre au travail.
 
-  applicable si: transport . domicile-travail . jours par semaine = 5
-  formule: empreinte jour voiture * jours télétravaillés * profil . nbre semaines
+#   applicable si: transport . domicile-travail . jours par semaine = 5
+#   formule: empreinte jour voiture * jours télétravaillés * profil . nbre semaines
 
-transport . boulot . empreinte jour voiture: 
-  formule: (2 * transport . domicile-travail . voiture . km trajet) * transport . domicile-travail . voiture . empreinte au kilomètre
-  unité: kgCO2e/jours
+# transport . boulot . empreinte jour voiture: 
+#   formule: (2 * transport . domicile-travail . voiture . km trajet) * transport . domicile-travail . voiture . empreinte au kilomètre
+#   unité: kgCO2e/jours
 
-transport . boulot . jours télétravaillés:
-  question: Combien de jours de télétravail par semaine pourriez-vous faire ?
-  par défaut: 2
-  unité: jours
-  suggestions: 
-    1: 1
-    2: 2
-    3: 3
-    4: 4
-    5: 5
+# transport . boulot . jours télétravaillés:
+#   question: Combien de jours de télétravail par semaine pourriez-vous faire ?
+#   par défaut: 2
+#   unité: jours
+#   suggestions: 
+#     1: 1
+#     2: 2
+#     3: 3
+#     4: 4
+#     5: 5
+
 # TODO introduire des contrôles (mise à jour de publicodes nécessaire) ici : pas de jours de télétravail supplémentaires à 
   
 

@@ -9,6 +9,7 @@ divers:
 
 divers . associatif : 
   icônes: 👊🔥
+  description: En développement, le but est d'intégrer la part d'associatif selon l'adhésion à l'asso.
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -21,5 +22,4 @@ divers . associatif :
 
 divers . associatif . affirmatif: 
   question: Faites vous parti d'une association ?
-  description: En développement, le but est d'intégrer la part d'associatif selon l'adhésion à l'asso.
   par défaut: oui
