@@ -5,11 +5,11 @@ actions:
       - transport . arrêter l'avion court
       - transport . éco-conduite
       # - transport . boulot . covoiturage
-      # - transport . boulot . commun
+      # - transport . boulot . commun 
+      # - transport . boulot . télétravail
       - alimentation . réduire viande . par deux
       - alimentation . devenir végétarien
         # J'ai désactivé cette action dans un 1er temps, elle est trop proche en empreinte du végétarien
         #  A discuter
         #     - alimentation . devenir végétalien
-      # - transport . boulot . télétravail
-      
+      # - humour . partage NGC
