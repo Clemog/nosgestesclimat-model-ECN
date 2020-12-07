@@ -36,24 +36,63 @@ transport . arrêter l'avion:
 
     Deuxièmement, on ne peut comparer la voiture et l'avion simplement parce qu'un trajet en avion est en général bien plus long. Quand il s'agit de choisir la destination des vacances par exemple, un trajet en voiture a donc toutes les chances d'être beaucoup moins polluant. Cela dit, notons aussi que nos kilométrages en voiture sont tels que le match est relancé quand on regarde l'empreinte à l'année.
 
-transport . arrêter l'avion court: 
-  titre: Privilégier le train au lieu de l'avion
+
+transport . remplacer avion par train mobilité: 
+  titre: Privilégier le train au lieu de l'avion pour votre mobilité internationale
   icônes: 🛬🚆
-  non applicable si: transport . déplacements professionels . avion . court courrier . heures de vol = 0
-  formule: transport . déplacements professionels . avion . court courrier
+  non applicable si: transport . mobilité internationale . avion . heures de vol > 5
+  applicable si: transport . mobilité internationale . moyen = 'avion'
+  formule: transport . mobilité internationale . avion - impact train mobilité
   # Mettre histogramme GES qui compare les trajets train vs avion.
   description: |
+
+    Pour cette action, nous vous porposons de remplacer les trajets courts courrier en avion par des trajets en train. 
+
     L’avion a bouleversé nos modes de vies et nos façons de voyager. Nous pouvons maintenant aller plus loin, plus vite, plus fréquemment. L’accélération de nos
     modes de vie que permet l’avion n’est malheureusement pas sans contrepartie sur notre empreinte carbone et sur le climat en général. En effet, il existe
     notamment un rapport de 100 entre les facteurs d’émissions (quantité de CO2 émise par km parcouru) d’un avion et celui d’un train. A titre d’exemple, un 
-    aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train. C’est pourquoi adapter nos week-ends et nos vacances 
+    aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train. C’est pourquoi adapter nos déplacements 
     en nous tournant vers des offres de mobilités bas carbone et/ou en repensant notre manière de voyager est donc essentiel si l’on souhaite tant à 
-    l’échelle individuelle qu’à l’échelle de la société réduire notre impact sur le climat
+    l’échelle individuelle qu’à l’échelle de la société réduire notre impact sur le climat.
     [Comparer les modes de transport ici](https://ecolab.ademe.fr/apps/transport) 
     
   #chiffres clefs
    #Un aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train (source Base Carbone)
    #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
+
+transport . remplacer avion par train mobilité . km mobilité:
+  formule: transport . mobilité internationale . avion . heures de vol * transport . mobilité internationale . avion . vitesse moyenne
+
+transport . remplacer avion par train mobilité . impact train mobilité :
+  formule: km mobilité * transport . mobilité internationale . train . impact par km
+
+transport . remplacer avion par train pro : 
+  titre: Privilégier le train au lieu de l'avion pour vos déplacements courts
+  icônes: 🛬🚆
+  applicable si: transport . déplacements professionels . avion . court courrier . heures de vol != 0
+  formule: transport . déplacements professionels . avion . court courrier - impact train pro
+  # Mettre histogramme GES qui compare les trajets train vs avion.
+  description: |
+
+    Pour cette action, nous vous porposons de remplacer les trajets courts courrier en avion par des trajets en train. 
+
+    L’avion a bouleversé nos modes de vies et nos façons de voyager. Nous pouvons maintenant aller plus loin, plus vite, plus fréquemment. L’accélération de nos
+    modes de vie que permet l’avion n’est malheureusement pas sans contrepartie sur notre empreinte carbone et sur le climat en général. En effet, il existe
+    notamment un rapport de 100 entre les facteurs d’émissions (quantité de CO2 émise par km parcouru) d’un avion et celui d’un train. A titre d’exemple, un 
+    aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train. C’est pourquoi adapter nos déplacements 
+    en nous tournant vers des offres de mobilités bas carbone et/ou en repensant notre manière de voyager est donc essentiel si l’on souhaite tant à 
+    l’échelle individuelle qu’à l’échelle de la société réduire notre impact sur le climat.
+    [Comparer les modes de transport ici](https://ecolab.ademe.fr/apps/transport) 
+    
+  #chiffres clefs
+   #Un aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train (source Base Carbone)
+   #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
+
+transport . remplacer avion par train pro . km pro:
+  formule: transport . déplacements professionels . avion . court courrier . heures de vol * transport . déplacements professionels . avion . court courrier . vitesse moyenne
+
+transport . remplacer avion par train pro . impact train pro :
+  formule: km pro * transport . déplacements professionels . train . impact par km
 
 transport . éco-conduite: 
   titre: Faire de l'éco-conduite

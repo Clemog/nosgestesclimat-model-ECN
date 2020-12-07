@@ -711,10 +711,10 @@ transport . déplacements professionels . avion . court courrier . heures de vol
     Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
   suggestions:
     🚫✈️: 0
-    Nantes🔁Paris: 2
-    Nantes🔁Lyon: 2.6
-    Nantes🔁Marseille: 2.8
-  unité: h
+    Nantes🔁Paris(A/R): 2.5
+    Nantes🔁Lyon(A/R): 2.5
+    Nantes🔁Marseille(A/R): 3
+  unité: heures
   par défaut: 0
 
 transport . déplacements professionels . avion . moyen courrier:
@@ -737,10 +737,10 @@ transport . déplacements professionels . avion . moyen courrier . heures de vol
     Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
   suggestions:
     🚫✈️: 0
-    Nantes🔁Madrid: 1.5
-    Nantes🔁Copenhague: 3
-    Nantes🔁Athènes: 4
-  unité: h/an
+    Nantes🔁Madrid(A/R): 3
+    Nantes🔁Copenhague(A/R): 6
+    Nantes🔁Athènes(A/R): 8
+  unité: heures
   par défaut: 0
 
 transport . déplacements professionels . avion . long courrier:
@@ -764,10 +764,10 @@ transport . déplacements professionels . avion . long courrier . heures de vol:
     Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
   suggestions:
     🚫✈️: 0
-    Paris🔁New York: 8.5
-    Paris🔁Pekin: 10
-    Paris🔁Sydney: 20
-  unité: h/an
+    Paris🔁New York(A/R): 17
+    Paris🔁Pekin(A/R): 20
+    Paris🔁Sydney(A/R): 40
+  unité: heures
   par défaut: 0
 
 #------------------------------------------- Mobilité Internationale ----------------------------------------------------
@@ -899,7 +899,7 @@ transport . mobilité internationale . avion:
     
     Le pseudo-algorithme de myclimate.org, ci-dessous.
     ![](https://imgur.com/hIVvuIw.jpg).
-  formule: 2 * heures de vol * vitesse moyenne * empreinte par km
+  formule: heures de vol * vitesse moyenne * empreinte par km
 
 
 transport . mobilité internationale . avion . vitesse moyenne:
@@ -915,12 +915,12 @@ transport . mobilité internationale . avion . empreinte par km:
   unité: kgCO2e/km
 
 transport . mobilité internationale . avion . heures de vol:
-  question: Combien d'heures durait votre vol (aller seulement) ?
-  description: à compléter
+  question: Combien d'heures avez-vous passé dans l'avion pour rejoindre votre lieu de mobilité (aller-retour)?
+  description: 
   suggestions:
-    Paris🔁New York: 8.5
-    Paris🔁Pekin: 10
-    Paris🔁Sydney: 20
+    Paris🔁New York(A/R): 17
+    Paris🔁Pekin(A/R): 20
+    Paris🔁Sydney(A/R): 40
   unité: h
-  par défaut: 0
+  par défaut: 10
 

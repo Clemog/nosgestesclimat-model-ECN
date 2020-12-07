@@ -2,7 +2,8 @@ actions:
   formule: 
     somme:
       - transport . arrêter l'avion
-      - transport . arrêter l'avion court
+      - transport . remplacer avion par train mobilité
+      - transport . remplacer avion par train pro
       - transport . éco-conduite
       # - transport . boulot . covoiturage
       # - transport . boulot . commun 
