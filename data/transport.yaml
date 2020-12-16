@@ -52,7 +52,7 @@ transport . moyens de transport:
 
 transport . domicile-travail . aller-retour:
   description: Augmentation de la part de transport Domicile-Travail de 20%, 60% ou 100% respectivement pour de temps en temps (1 fois sur 5), souvent (3 fois sur 5) et tous les jours. 
-  question: Vous arrive-t-il de faire un aller-retour dans la journée (pour la pause méridienne par exemple)?
+  question: Vous arrive-t-il de faire un aller-retour dans la journée (pour la pause-dej par exemple)?
   par défaut: jamais
   formule: 
     une possibilité: 
@@ -125,7 +125,7 @@ transport . moyens de transport . voiture . pourcent:
   période: semaine
 
 transport . moyens de transport . voiture . km trajet:
-  question: Quelle est la distance moyenne de votre trajet en voiture ?
+  question: Quelle est la distance moyenne de votre trajet en voiture (aller simple)?
   description: |
     Ne comptez que les kilomètres d'*un* trajet pour rejoindre votre lieu de travail habituel ou un point relais depuis votre domicile.
     Par exemple, si vous êtes en mission professionnelle dans un autre département ou un autre pays : ne le comptez pas ici.
@@ -342,7 +342,7 @@ transport . moyens de transport . tram . impact par heure:
    - http://www.bilans-ges.ademe.fr/
 
 transport . moyens de transport . tram . minutes par trajet:
-  question: Combien de temps, en moyenne, dure votre trajet en tramway ?
+  question: Combien de temps, en moyenne, dure votre trajet en tramway (aller simple)?
   suggestions: 
     10 minutes / trajet: 10
     20 minutes / trajet: 20
@@ -385,7 +385,7 @@ transport . moyens de transport . bus . impact par heure:
     - http://www.bilans-ges.ademe.fr/
 
 transport . moyens de transport . bus . minutes par trajet:
-  question: Combien de temps, en moyenne, dure votre trajet en bus ?
+  question: Combien de temps, en moyenne, dure votre trajet en bus (aller simple)?
   suggestions: 
     10 minutes / trajet: 10
     20 minutes / trajet: 20
@@ -426,7 +426,7 @@ transport . moyens de transport . train . impact par heure:
     - http://www.bilans-ges.ademe.fr/
 
 transport . moyens de transport . train . minutes par trajet:
-  question: Combien de temps, en moyenne, dure votre trajet en train ?
+  question: Combien de temps, en moyenne, dure votre trajet en train (aller simple)?
   suggestions: 
     20 minutes / trajet: 20
     30 minutes / jour: 30
@@ -456,8 +456,8 @@ transport . moyens de transport . deux roues . pourcent:
   par défaut: 0
   période: semaine
 
-transport . moyens de transport . deux roues . km trajet:
-  question: Quelle est la distance moyenne de votre trajet en deux-roues ?
+transport . moyens de transport . deux roues . km trajet :
+  question: Quelle est la distance moyenne de votre trajet en deux-roues (aller simple)?
   description: |
     Ne comptez que les kilomètres d'*un* trajet pour rejoindre votre lieu de travail habituel ou un point relais depuis votre domicile.
     Par exemple, si vous êtes en mission professionnelle dans un autre département ou un autre pays : ne le comptez pas ici.

@@ -261,6 +261,7 @@ alimentation . distributeur automatique . affirmatif:
 
 alimentation . distributeur automatique . consos:
   question : Que consommez-vous au distributeur automatique ?
+  par défaut: café
   formule:
     une possibilité: 
       choix obligatoire: oui
