@@ -319,8 +319,8 @@ transport . moyens de transport . tram:
   description: |
     J'utilise le tram à hauteur de :
 
-    ![](https://upload.wikimedia.org/wikipedia/commons/d/de/Tram-de-Nantes.jpg)
-  icônes: 🚄
+    ![](https://upload.wikimedia.org/wikipedia/commons/d/de/Tram-de-Nantes.jpg) 🚄
+  icônes: 🚋
   formule:
     multiplication:
       assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
