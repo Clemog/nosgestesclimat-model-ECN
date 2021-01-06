@@ -245,37 +245,22 @@ alimentation . distributeur automatique:
     multiplication:
       assiette:
         somme :
-          - thé
           - café
-          - chocolat chaud
+          # - café
+          # - chocolat chaud
           # - boissons sucrées
           # - eau
           # - barres chocolatée
           # - sandwich
       facteur: profil . nbre semaines
-  note: Nous faisons ici une moyenne grossière.
+  note: Nous faisons ici l'hypothèse que la majorité des consommations aux distributeurs sont du café. Une future version prendra en compte tous les produits disponibles.
 
 alimentation . distributeur automatique . affirmatif:
-  question : Utilisez-vous les distributeurs automatiques de la cafétéria ?
+  question : Utilisez-vous les distributeurs automatiques de la cafétéria pour votre consommation de café?
   par défaut : non
 
-alimentation . distributeur automatique . consos:
-  question : Que consommez-vous au distributeur automatique ?
-  par défaut: café
-  formule:
-    une possibilité: 
-      choix obligatoire: oui
-      possibilités:
-        - café
-        - thé
-        - chocolat chaud
-
-alimentation . distributeur automatique . consos . café:
-alimentation . distributeur automatique . consos . thé:
-alimentation . distributeur automatique . consos . chocolat chaud:
-
 alimentation . distributeur automatique . café:
-  applicable si: alimentation . distributeur automatique . consos = 'café'
+  applicable si: affirmatif
   icônes: ☕
   formule: 
     multiplication:
@@ -284,7 +269,6 @@ alimentation . distributeur automatique . café:
   unité: kgCO2e
   références:
     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
-
 
 alimentation . distributeur automatique . café . conso café:
   question: Quelle est votre consommation de café sur une semaine ?
@@ -295,108 +279,145 @@ alimentation . distributeur automatique . café . conso café:
     1/jour: 5
     2/jour: 10
     3/jour: 15
+    
+# alimentation . distributeur automatique . consos:
+#   question : Que consommez-vous au distributeur automatique ?
+#   par défaut: café
+#   formule:
+#     une possibilité: 
+#       choix obligatoire: oui
+#       possibilités:
+#         - café
+#         - thé
+#         - chocolat chaud
+
+# alimentation . distributeur automatique . consos . café:
+# alimentation . distributeur automatique . consos . thé:
+# alimentation . distributeur automatique . consos . chocolat chaud:
+
+# alimentation . distributeur automatique . café:
+#   applicable si: alimentation . distributeur automatique . consos = 'café'
+#   icônes: ☕
+#   formule: 
+#     multiplication:
+#       assiette: 0.0503
+#       facteur: conso café
+#   unité: kgCO2e
+#   références:
+#     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
 
-alimentation . distributeur automatique . thé:
-  applicable si: alimentation . distributeur automatique . consos = 'thé'
-  icônes: 🍵
-  formule:
-    multiplication:
-      assiette: 0.0123
-      facteur: conso thé
-  unité: kgCO2e
-  références:
-    - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
+# alimentation . distributeur automatique . café . conso café:
+#   question: Quelle est votre consommation de café sur une semaine ?
+#   par défaut: 5
+#   unité: tasses par semaine
+#   suggestions:
+#     Rarement: 2
+#     1/jour: 5
+#     2/jour: 10
+#     3/jour: 15
 
-alimentation . distributeur automatique . thé . conso thé:
-  question: Quelle est votre consommation de thé sur une semaine ?
-  par défaut: 5
-  unité: tasses par semaine
-  suggestions:
-    Rarement: 2
-    1 par jour: 5
-    2 par jour: 10
-    3 par jour: 15
 
-alimentation . distributeur automatique . chocolat chaud:
-  applicable si: alimentation . distributeur automatique . consos = 'chocolat chaud'
-  icônes: 🍵
-  formule:
-    multiplication:
-      assiette: 0.0123
-      facteur: conso chocolat chaud
-  unité: kgCO2e
-  références:
-    - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
+# alimentation . distributeur automatique . thé:
+#   applicable si: alimentation . distributeur automatique . consos = 'thé'
+#   icônes: 🍵
+#   formule:
+#     multiplication:
+#       assiette: 0.0123
+#       facteur: conso thé
+#   unité: kgCO2e
+#   références:
+#     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
-alimentation . distributeur automatique . chocolat chaud . conso chocolat chaud:
-  question: Quelle est votre consommation de chocolat chaud sur une semaine ?
-  par défaut: 5
-  unité: tasses par semaine
-  suggestions:
-    Rarement: 2
-    1 par jour: 5
-    2 par jour: 10
-    3 par jour: 15
+# alimentation . distributeur automatique . thé . conso thé:
+#   question: Quelle est votre consommation de thé sur une semaine ?
+#   par défaut: 5
+#   unité: tasses par semaine
+#   suggestions:
+#     Rarement: 2
+#     1 par jour: 5
+#     2 par jour: 10
+#     3 par jour: 15
 
-alimentation . distributeur automatique . boissons froides:
-  icônes: 🥤
-  formule: 
-    somme: 
-      - sucrées
-      - eau en bouteille
+# alimentation . distributeur automatique . chocolat chaud:
+#   applicable si: alimentation . distributeur automatique . consos = 'chocolat chaud'
+#   icônes: 🍵
+#   formule:
+#     multiplication:
+#       assiette: 0.0123
+#       facteur: conso chocolat chaud
+#   unité: kgCO2e
+#   références:
+#     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
-alimentation . distributeur automatique . boissons froides . sucrées:
-  description: |
-    Notons que des alternatives au soda, très simples à préparer maison, sont possibles : c'est le cas du [kéfir](https://fr.wikipedia.org/wiki/K%C3%A9fir) ou [Kombucha](https://fr.wikipedia.org/wiki/Kombucha).
-    Nous n'avons pas évalué les gains d'empreinte offerts par ces alternatives, mais la préparation locale pour cet aliment très lourd, qui évite transports et emballages est sans doutes significative.
-  unité: kgCO2e
-  formule:
-    multiplication:
-      assiette: litres
-      facteur: profil . nbre semaines
+# alimentation . distributeur automatique . chocolat chaud . conso chocolat chaud:
+#   question: Quelle est votre consommation de chocolat chaud sur une semaine ?
+#   par défaut: 5
+#   unité: tasses par semaine
+#   suggestions:
+#     Rarement: 2
+#     1 par jour: 5
+#     2 par jour: 10
+#     3 par jour: 15
 
-alimentation . distributeur automatique . boissons froides . sucrées . facteur: 
-  formule: 1.1
-  unité: kgCO2e/l
-  note: Cette valeur est bien sûr très approximative.
+# alimentation . distributeur automatique . boissons froides:
+#   icônes: 🥤
+#   formule: 
+#     somme: 
+#       - sucrées
+#       - eau en bouteille
 
-alimentation . distributeur automatique . boissons froides . sucrées . litres: 
-  titre: Consommation de boissons sucrées
-  question: Quelle est votre consommation par semaine de sodas ou jus de fruit au distributeur?
-  suggestions: 
-    nulle: 0
-    1 canette/semaine: 0.33
-    1 canette/jour: 1.65
-  unité: l/semaine
-  par défaut: 0.33
+# alimentation . distributeur automatique . boissons froides . sucrées:
+#   description: |
+#     Notons que des alternatives au soda, très simples à préparer maison, sont possibles : c'est le cas du [kéfir](https://fr.wikipedia.org/wiki/K%C3%A9fir) ou [Kombucha](https://fr.wikipedia.org/wiki/Kombucha).
+#     Nous n'avons pas évalué les gains d'empreinte offerts par ces alternatives, mais la préparation locale pour cet aliment très lourd, qui évite transports et emballages est sans doutes significative.
+#   unité: kgCO2e
+#   formule:
+#     multiplication:
+#       assiette: litres
+#       facteur: profil . nbre semaines
 
-alimentation . distributeur automatique . boissons froides . eau en bouteille :
-  description: |
-    Notons que des alternatives au soda, très simples à préparer maison, sont possibles : c'est le cas du [kéfir](https://fr.wikipedia.org/wiki/K%C3%A9fir) ou [Kombucha](https://fr.wikipedia.org/wiki/Kombucha).
-    Nous n'avons pas évalué les gains d'empreinte offerts par ces alternatives, mais la préparation locale pour cet aliment très lourd, qui évite transports et emballages est sans doutes significative.
-  unité: kgCO2e
-  formule:
-    multiplication:
-      assiette: litres
-      facteur: profil . nbre semaines
+# alimentation . distributeur automatique . boissons froides . sucrées . facteur: 
+#   formule: 1.1
+#   unité: kgCO2e/l
+#   note: Cette valeur est bien sûr très approximative.
 
-alimentation . distributeur automatique . boissons froides . eau en bouteille . facteur: 
-  formule: 0.393
-  unité: kgCO2e/l
-  note: Eau - en bouteille PET, plate, 0,5L - en magasin, prêt à consommer. Base carbone consultée le 17/11/20.
-  références: 
-    - http://www.bilans-ges.ademe.fr/
+# alimentation . distributeur automatique . boissons froides . sucrées . litres: 
+#   titre: Consommation de boissons sucrées
+#   question: Quelle est votre consommation par semaine de sodas ou jus de fruit au distributeur?
+#   suggestions: 
+#     nulle: 0
+#     1 canette/semaine: 0.33
+#     1 canette/jour: 1.65
+#   unité: l/semaine
+#   par défaut: 0.33
 
-alimentation . distributeur automatique . boissons froides . eau en bouteille . litres: 
-  titre: Consommation d'eau en bouteille'
-  question: Quelle est votre consommation par semaine d'eau en bouteille au distributeur?
-  suggestions: 
-    nulle: 0
-    1 bouteille/semaine: 0.5
-    1 bouteille/jour: 2.5
-  unité: l/semaine
-  par défaut: 0
+# alimentation . distributeur automatique . boissons froides . eau en bouteille :
+#   description: |
+#     Notons que des alternatives au soda, très simples à préparer maison, sont possibles : c'est le cas du [kéfir](https://fr.wikipedia.org/wiki/K%C3%A9fir) ou [Kombucha](https://fr.wikipedia.org/wiki/Kombucha).
+#     Nous n'avons pas évalué les gains d'empreinte offerts par ces alternatives, mais la préparation locale pour cet aliment très lourd, qui évite transports et emballages est sans doutes significative.
+#   unité: kgCO2e
+#   formule:
+#     multiplication:
+#       assiette: litres
+#       facteur: profil . nbre semaines
+
+# alimentation . distributeur automatique . boissons froides . eau en bouteille . facteur: 
+#   formule: 0.393
+#   unité: kgCO2e/l
+#   note: Eau - en bouteille PET, plate, 0,5L - en magasin, prêt à consommer. Base carbone consultée le 17/11/20.
+#   références: 
+#     - http://www.bilans-ges.ademe.fr/
+
+# alimentation . distributeur automatique . boissons froides . eau en bouteille . litres: 
+#   titre: Consommation d'eau en bouteille'
+#   question: Quelle est votre consommation par semaine d'eau en bouteille au distributeur?
+#   suggestions: 
+#     nulle: 0
+#     1 bouteille/semaine: 0.5
+#     1 bouteille/jour: 2.5
+#   unité: l/semaine
+#   par défaut: 0
 
 
 
