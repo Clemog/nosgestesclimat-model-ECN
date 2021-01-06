@@ -178,10 +178,10 @@ numérique . visio . empreinte par minute:
     audio, audio et vidéo, audio et partage d’écran.
 
 numérique . visio . durée journalière:
-  question: Combien d'heures passez-vous en moyenne en visioconférence par jour dans le cadre scolaire/professionnel ?
+  question: Combien d'heures passez-vous en moyenne en visioconférence par jour dans le cadre scolaire ?
   unité: heure
-  par défaut: 4
-  suggestions: 
+  par défaut: 2
+  suggestions:
     peu: 2
     beaucoup: 5
     toute la journée: 8
@@ -196,16 +196,22 @@ numérique . internet:
   note: on ne prend pas en compte l'utilisation d'internet le week-end, à modifier peut-être.
 
 numérique . internet . empreinte horaire:
-  formule: 0.036
+  formule: 0.0001 * 20 + 0.00005 * 20
   unité: kgCO2e/heure
   note: |
-     La source est un article de CarbonBrief utilisant des données AIE, et critiquant les calculs du Shift Project.
+     Pour ce facteur d'émission, nous nous sommes basé sur une étude de l'entreprise nantaise Greenspector concernnant l'empreinte carbone des moteurs de recherche et les applications de communication en entreprise.
+     Nous avons choisi un facteur d'émission de 0.1 gCO2e / recherche google. On considère qu'un utilisateur effectue 20 recherches en 1 heure.
+     Nous avons choisi un facteur d'émission de 0.05 gCO2e / message envoyé. On considère qu'un utilisateur envoie 20 messages en 1 heure.
+
+     Dans le projet Nos GEStes Climat original, la source est un article de CarbonBrief utilisant des données AIE, et critiquant les calculs du Shift Project.
      25/11/2020: The energy intensity figures for data centres and data transmission networks have been updated 
      to reflect more recent data and research. As a result, the central IEA estimate for one hour of streaming video
      in 2019 is now 36gCO2, down from 82gCO2 in the original analysis published in February 2020.
      Il est nécessaire de passer du temps sur ce point pour vérifier ce facteur puisqu'on choisit une utilisation d'internet en streaming vidéo.
   références: 
     - https://www.carbonbrief.org/factcheck-what-is-the-carbon-footprint-of-streaming-video-on-netflix
+    - https://greenspector.com/fr/moteurs-de-recherches/
+    - https://greenspector.com/fr/apps-communication-equipe/
 
 numérique . internet . durée journalière: 
   question: Combien d'heures passez-vous par jour sur internet dans la cadre professionnel (envoi de mail, Web, etc.) ?

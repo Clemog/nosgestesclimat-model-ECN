@@ -91,7 +91,7 @@ transport . moyens de transport . neutre:
 
 transport . moyens de transport . neutre . pourcent:
   question: Part de la marche ou vélo dans la répartition des moyens de transport sur la semaine
-  par défaut: 50
+  par défaut: 45
   période: semaine
 
 #------------------------------------------- moyen de transport Voiture -------------------------------------------
@@ -121,7 +121,7 @@ transport . moyens de transport . voiture :
 
 transport . moyens de transport . voiture . pourcent:
   question: Part de la voiture dans la répartition des moyens de transport sur la semaine
-  par défaut: 0
+  par défaut: 5
   période: semaine
 
 transport . moyens de transport . voiture . km trajet:
@@ -795,7 +795,7 @@ transport . mobilité internationale . affirmatif:
     La mobilité internationale correspond ici à l'éventuelle mobilité effectuée lors de l'année scolaire en cours. 
     Qu'elle ait lieu dans le cadre d'un stage ou de la césure, la mobilité est prise en compte ici.
   question: Avez-vous ou allez-vous effectué une mobilité internationale durant cette année scolaire dans le cadre de vos études ?
-  par défaut: non
+  par défaut: oui
 
 transport . mobilité internationale . moyen:
   question: Quel moyen de transport avez-vous utlisé pour votre mobilité ?
@@ -922,5 +922,5 @@ transport . mobilité internationale . avion . heures de vol:
     Paris🔁Pekin(A/R): 20
     Paris🔁Sydney(A/R): 40
   unité: h
-  par défaut: 10
+  par défaut: 6
 
