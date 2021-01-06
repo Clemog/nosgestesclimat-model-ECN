@@ -30,7 +30,8 @@ Cette TODO list concerne majoritairement des aspects non techniques du simulateu
 
 ### Quelques points concernant l'application (ecolab-climat)
 
-- [ ] Déployer l'app via Heroku
+- [x] Déployer l'app via Heroku/Netlify
+  - Pourquoi la branche master avait un traitemebnt particulier ?
 
 - [ ] Mettre en place la base de données connectée au simulateur
 
@@ -39,6 +40,8 @@ Cette TODO list concerne majoritairement des aspects non techniques du simulateu
 - [ ] Inclure les questions relatives au ditributeur (en suspens, attente d'un nouveau mécanisme "plusieurs possibilités").
 
 - [ ] Inclure ubne section détaillées sur l'appartenance à une asso ou labo (menu déroulant ? Excel asso/labo par personne et mécanisme "plusieurs possibilités" nécessaire).
+
+- [ ] Si l'on ne change pas la répoartition du transport dom-tr par défaut, la question du temps de trajet n'est pas posée. A résoudre.
 
 - [ ] Afficher les catégories des profils types en fin de simulation.
 
