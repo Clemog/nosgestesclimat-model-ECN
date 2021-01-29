@@ -529,7 +529,7 @@ transport . déplacements professionels:
     une de ces conditions:
       - profil . profil-type = 'EI1'
       - profil . profil-type = 'EI2'
-      - profil . profil-type = 'EI3'
+      - profil . profil-type = 'EI3+'
   formule:
     somme:
       - voiture
@@ -538,7 +538,7 @@ transport . déplacements professionels:
 
 transport . déplacements professionels . affirmatif:
   question: Êtes-vous amené à effectuer des déplacements professionels ?
-  par défaut: non
+  par défaut: oui
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
@@ -637,7 +637,7 @@ transport . déplacements professionels . train:
 
 transport . déplacements professionels . train . affirmatif:
   question: Utilisez-vous le train pour vos déplacements professionels?
-  par défaut: non
+  par défaut: oui
 
 transport . déplacements professionels . train . impact par km:
   formule: 0.0053
@@ -653,7 +653,6 @@ transport . déplacements professionels . train . km:
     Nantes↔Marseille: 1400 
   unité: km/an
   par défaut: 1000
-
 #----------------------------------------------- Avion -----------------------------------------------------
 
 transport . déplacements professionels . avion:

@@ -23,14 +23,14 @@ profil . profil-type:
       possibilités: 
         - EI1
         - EI2
-        - EI3
+        - EI3+
         - doctorant
         - personnel de recherche ou enseignement
         - autre personnel
 
 profil . profil-type . EI1:
 profil . profil-type . EI2:
-profil . profil-type . EI3: 
+profil . profil-type . EI3+: 
 profil . profil-type . doctorant: 
 profil . profil-type . personnel de recherche ou enseignement:
 profil . profil-type . autre personnel:
@@ -42,10 +42,11 @@ profil . valeur profil:
       tableau: 
         EI1: 320
         EI2: 320
-        EI3: 320
+        EI3+: 320
         doctorant: 2440
         personnel de recherche ou enseignement: 2440
         autre personnel: 400
+
 
 profil . nbre semaines: 
   formule: 
@@ -54,10 +55,12 @@ profil . nbre semaines:
       tableau: 
         EI1: 39
         EI2: 27
-        EI3: 27
+        EI3+: 27
         doctorant: 47
         personnel de recherche ou enseignement: 47
         autre personnel: 47
+
+
 
 
 

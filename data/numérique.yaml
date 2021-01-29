@@ -17,7 +17,7 @@ numérique:
 #     une de ces conditions:
 #       - profil . profil-type = 'EI1'
 #       - profil . profil-type = 'EI2'
-#       - profil . profil-type = 'EI3'
+#       - profil . profil-type = 'EI3+'
 #   formule: impact / (durée + 1)
 #   note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
 
