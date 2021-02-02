@@ -8,8 +8,7 @@ divers:
       - Némo
       - BDS
       - BDE
-    #   - activités clubs BDE
-    #   - activités clubs BDA
+      - clubsBDA
     #   - autres produits
 
 
@@ -74,14 +73,24 @@ divers . BDS :
   icônes:
   description:
   applicable si: affirmatif
-  #les doctorants et personnels peuvent cotise à l'AS donc je pense on peut laisser la question pour tous
-  formule: 
+  #les doctorants et personnels peuvent cotiser à l'AS donc je pense on peut laisser la question pour tous
+  formule: rencontres + 20 #ajouter une valeur moyenne pour l'AS, hors rencontres sportives
   unité: kgCO2e
   source: calcul du bc du bds/AS en 2019 (sans la partie transport)
   
 divers . BDS . affirmatif:
   question: Avez-vous cotisé à l'Association Sportive de Centrale Nantes cette année ?
   par défaut: oui
+  
+divers . BDS . rencontre:
+  description:
+  applicable si: affirmatif
+  formule:
+  unité: kgCO2e
+  
+divers . BDS . rencontre . affirmatif:
+  question: Avez-vous participé à des rencontres sportives hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
+  par défaut: non
   
 #BDE
 
@@ -94,10 +103,39 @@ divers . BDE :
       - profil . profil-type = 'doctorant'
       - profil . profil-type = 'personnel de recherche ou enseignement'
       - profil . profil-type = 'autre personnel'
-  formule: 10
+  formule: 10 + clubs
   unité: kgCO2e
   source: calcul du bc du BDE 2019
 
 divers . BDE . affirmatif:
   question: Etes-vous adhérent au BDE ?
   par défaut: oui
+  
+divers . BDE . clubs:
+  description:
+  applicable si: affirmatif
+  formule: #valeur moyenne de l'activité des clubs à calculer
+  unité: kgCO2e
+
+divers . BDE . clubs . affirmatif:
+  question: Participez-vous à l'activité de clubs BDE ?
+  par défaut: oui
+  
+#Clubs BDA
+
+divers . clubsBDA:
+  icônes:
+  description:
+  apllicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: #valeur moyenne à calculer
+  unité: kgCO2e
+  source: calcul du bc du BDA 2019
+  
+divers . clubsBDA . affirmatif:
+  question: Participez-vous à l'activité de clubs BDA ?
+  par défaut: non 
