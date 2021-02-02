@@ -40,7 +40,7 @@ transport . domicile-travail . jours par semaine:
 transport . moyens de transport:
   titre: Proportions moyens de transport
   description: |
-    A répartir : 6 moyens de transport qu'un usager de l'ECN est susceptible de prendre pour se rendre à Centrale (combinaisons possibles).
+    A répartir parmi 6 moyens de transport qu'un usager de l'ECN est susceptible de prendre pour se rendre à Centrale (combinaisons possibles).
   formule: 
     somme:
       - neutre
