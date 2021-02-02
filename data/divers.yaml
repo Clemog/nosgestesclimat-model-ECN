@@ -74,7 +74,7 @@ divers . BDS :
   description:
   applicable si: affirmatif
   #les doctorants et personnels peuvent cotiser à l'AS donc je pense on peut laisser la question pour tous
-  formule: rencontres + 20 #ajouter une valeur moyenne pour l'AS, hors rencontres sportives
+  formule: 8 + rencontres + textiles #valeur moyenne pour l'AS, hors rencontres sportives et textiles
   unité: kgCO2e
   source: calcul du bc du bds/AS en 2019 (sans la partie transport)
   
@@ -82,14 +82,39 @@ divers . BDS . affirmatif:
   question: Avez-vous cotisé à l'Association Sportive de Centrale Nantes cette année ?
   par défaut: oui
   
-divers . BDS . rencontre:
+divers . BDS . rencontres:
   description:
   applicable si: affirmatif
   formule:
   unité: kgCO2e
   
-divers . BDS . rencontre . affirmatif:
+divers . BDS . rencontres . affirmatif:
   question: Avez-vous participé à des rencontres sportives hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
+  par défaut: non
+  
+divers . BDS . textiles:
+  description:
+  formule: sports + autres
+  unité: kgCO2e
+  
+divers . BDS . textiles . sports:
+  description:
+  applicable si: affirmatif
+  formule: 6
+  unité: kgCO2e
+  
+divers . BDS . textiles . sports . affirmatif:
+  question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
+  par défaut: non
+
+divers . BDS . textiles . autres:
+  description:
+  applicable si: affirmatif
+  formule: 25
+  unité: kgCO2e
+  
+divers . BDS . textiles . autres . affirmatif:
+  question: Avez-vous acheté d'autres textiles à Centrale (type pull de promo...) ?
   par défaut: non
   
 #BDE
