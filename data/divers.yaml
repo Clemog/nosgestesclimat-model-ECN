@@ -6,6 +6,10 @@ divers:
       - associatif
       - WEI
       - Némo
+      - BDS
+      - BDE
+    #   - activités clubs BDE
+    #   - activités clubs BDA
     #   - autres produits
 
 
@@ -26,6 +30,8 @@ divers . associatif . affirmatif:
   question: Faites vous partie d'une association ?
   par défaut: oui
 
+# WEI
+
 divers . WEI :
   icônes:
   description:
@@ -35,14 +41,16 @@ divers . WEI :
       - profil . profil-type = 'doctorant'
       - profil . profil-type = 'personnel de recherche ou enseignement'
       - profil . profil-type = 'autre personnel'
-  formules: 35
+  formule: 35
   unité: kgCO2e
   source: moyenne des wei 2018 et 2019 (Bilan carbone - Clubs & assos.xlsx)
   
 divers . WEI . affirmatif:
   question: Avez-vous participé au week-end d'intégration cette année ?
   par défaut: non
-  
+
+#Némo
+
 divers . Némo :
   icônes:
   description:
@@ -52,10 +60,44 @@ divers . Némo :
       - profil . profil-type = 'doctorant'
       - profil . profil-type = 'personnel de recherche ou enseignement'
       - profil . profil-type = 'autre personnel'
-  formules: 30
+  formule: 30
   unité: kgCO2e
   source: calcul du bc du némo 2019 
   
 divers . Némo . affirmatif:
   question: Avez-vous participé au Némo cette année ?
   par défaut: non
+
+#BDS
+  
+divers . BDS :
+  icônes:
+  description:
+  applicable si: affirmatif
+  #les doctorants et personnels peuvent cotise à l'AS donc je pense on peut laisser la question pour tous
+  formule: 
+  unité: kgCO2e
+  source: calcul du bc du bds/AS en 2019 (sans la partie transport)
+  
+divers . BDS . affirmatif:
+  question: Avez-vous cotisé à l'Association Sportive de Centrale Nantes cette année ?
+  par défaut: oui
+  
+#BDE
+
+divers . BDE :
+  icônes:
+  description:
+  apllicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 10
+  unité: kgCO2e
+  source: calcul du bc du BDE 2019
+
+divers . BDE . affirmatif:
+  question: Etes-vous adhérent au BDE ?
+  par défaut: oui
