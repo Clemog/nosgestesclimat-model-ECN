@@ -9,7 +9,7 @@ divers:
 
 divers . associatif : 
   icônes: 👊🔥
-  description: En développement, le but est d'intégrer la part d'associatif selon l'adhésion à l'asso.
+  description: En développement, le but est d'intégrer la part d'associatif selon l'adhésion à l'asso. On peut également rajouter des explications pour la questions.
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
