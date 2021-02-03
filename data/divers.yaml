@@ -9,6 +9,7 @@ divers:
       - BDS
       - BDE
       - clubsBDA
+      - asso
     #   - autres produits
 
 
@@ -164,3 +165,101 @@ divers . clubsBDA:
 divers . clubsBDA . affirmatif:
   question: Participez-vous à l'activité de clubs BDA ?
   par défaut: non 
+
+#asso
+
+divers . asso:
+  icônes:
+  description:
+  formule:
+  somme:
+    - rev
+    - tma
+    - cab
+    - kids
+    - fanfrale
+  
+divers . asso . rev:
+  icônes:
+  description:
+  apllicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 2000
+  unité: kgCO2e
+  source: calcul bc asso 2019
+  
+divers . asso . rev . affirmatif:
+  question: Etes-vous membre de l'association REV ?
+  par défaut: non
+  
+divers . asso . tma:
+  icônes:
+  description:
+  apllicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 500
+  unité: kgCO2e
+  source: calcul bc asso 2019
+  
+divers . asso . tma . affirmatif:
+  question: Etes-vous membre de l'association Take My Andes ?
+  par défaut: non
+  
+divers . asso . cab:
+  icônes:
+  description:
+  apllicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 400
+  unité: kgCO2e
+  source: calcul bc asso 2019
+  
+divers . asso . cab . affirmatif:
+  question: Etes-vous membre de l'association CAB ?
+  par défaut: non
+
+divers . asso . kids:
+  icônes:
+  description:
+  apllicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 1585
+  unité: kgCO2e
+  source: calcul bc asso 2019
+  
+divers . asso . fanfrale . affirmatif:
+  question: Etes-vous membre de l'association Kids Népal ?
+  par défaut: non
+  
+divers . asso . fanfrale:
+  icônes:
+  description:
+  apllicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 30
+  unité: kgCO2e
+  source: calcul bc asso 2019
+  
+divers . asso . fanfrale . affirmatif:
+  question: Etes-vous membre de l'association Kids Népal ?
+  par défaut: non
