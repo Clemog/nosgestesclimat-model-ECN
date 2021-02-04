@@ -224,16 +224,16 @@ alimentation . plats . viande 2 . nombre:
 alimentation . nombre de plats viande: 
   formule: plats . viande 1 . nombre + plats . viande 2 . nombre
 
-alimentation . régime . planétaire: 
-  icônes: 🥗
-  description: |
-    Un régime décrit en 2019 pour concilier santé et environnement.
+# alimentation . régime . planétaire: 
+#   icônes: 🥗
+#   description: |
+#     Un régime décrit en 2019 pour concilier santé et environnement.
 
-    Enormément de légumes et de fruits, beaucoup de céréales complètes, protéines et huiles végétales, un peu de lait et fromage, un peu de viande et de poisson, et un peu de sucres ajoutés.
+#     Enormément de légumes et de fruits, beaucoup de céréales complètes, protéines et huiles végétales, un peu de lait et fromage, un peu de viande et de poisson, et un peu de sucres ajoutés.
 
-    Contrairement au vague régime "flexitarien", le régime planétaire est [décrit très précisément](https://www.culture-nutrition.com/2019/01/28/modele-alimentaire-regime-planetaire/).
+#     Contrairement au vague régime "flexitarien", le régime planétaire est [décrit très précisément](https://www.culture-nutrition.com/2019/01/28/modele-alimentaire-regime-planetaire/).
 
-    ![](https://eatforum.org/content/uploads/2019/02/EAT-Lancet_PHD_Plate_RGB-02.png)
+#     ![](https://eatforum.org/content/uploads/2019/02/EAT-Lancet_PHD_Plate_RGB-02.png)
 
 
 #------------------------------------------- Distributeur Automatique -------------------------------------------

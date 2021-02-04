@@ -16,7 +16,7 @@ profil:
 
 profil . profil-type:
   question: Vous êtes ?
-  par défaut : EI1
+  par défaut : "'EI1'"
   formule:
     une possibilité: 
       choix obligatoire: oui
@@ -37,27 +37,35 @@ profil . profil-type . autre personnel:
 
 profil . valeur profil: 
   formule: 
-    correspondance: 
-      variable: profil-type
-      tableau: 
-        EI1: 320
-        EI2: 320
-        EI3: 320
-        doctorant: 2440
-        personnel de recherche ou enseignement: 2440
-        autre personnel: 400
+    variations: 
+      - si: profil-type = 'EI1'
+        alors: 320
+      - si: profil-type = 'EI2'
+        alors: 320
+      - si: profil-type = 'EI3'
+        alors: 320
+      - si: profil-type = 'doctorant'
+        alors: 2440
+      - si: profil-type = 'personnel de recherche ou enseignement'
+        alors: 2440
+      - si: profil-type = 'autre personnel'
+        alors: 400      
 
 profil . nbre semaines: 
-  formule: 
-    correspondance: 
-      variable: profil-type
-      tableau: 
-        EI1: 39
-        EI2: 27
-        EI3: 27
-        doctorant: 47
-        personnel de recherche ou enseignement: 47
-        autre personnel: 47
+  formule:
+    variations: 
+      - si: profil-type = 'EI1'
+        alors: 39
+      - si: profil-type = 'EI2'
+        alors: 27
+      - si: profil-type = 'EI3'
+        alors: 27
+      - si: profil-type = 'doctorant'
+        alors: 47
+      - si: profil-type = 'personnel de recherche ou enseignement'
+        alors: 47
+      - si: profil-type = 'autre personnel'
+        alors: 47
 
 
 

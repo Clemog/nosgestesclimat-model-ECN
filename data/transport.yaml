@@ -17,9 +17,7 @@ transport:
 #------------------------------------------- Domicile-Travail -------------------------------------------
 
 transport . domicile-travail:
-  non applicable si:
-    une de ces conditions:
-      - jours par semaine = 0
+  applicable si: jours par semaine
   formule:
     multiplication:
       assiette: moyens de transport
@@ -30,7 +28,7 @@ transport . domicile-travail . jours par semaine:
   par défaut: 5
   unité: jours
   suggestions:
-    zéro: 0
+    Jamais: 0
     1 fois/semaine: 1
     2 fois/semaine: 2
     3 fois/semaine: 3
@@ -53,7 +51,7 @@ transport . moyens de transport:
 transport . domicile-travail . aller-retour:
   description: Augmentation de la part de transport Domicile-Travail de 20%, 60% ou 100% respectivement pour de temps en temps (1 fois sur 5), souvent (3 fois sur 5) et tous les jours. 
   question: Vous arrive-t-il de faire un aller-retour dans la journée (pour la pause-dej par exemple)?
-  par défaut: jamais
+  par défaut: "'jamais'"
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -69,14 +67,16 @@ transport . domicile-travail . aller-retour . souvent:
 transport . domicile-travail . aller-retour . tous les jours:
 
 transport . domicile-travail . facteur aller-retour: 
-  formule: 
-    correspondance: 
-      variable: aller-retour
-      tableau: 
-        jamais: 1
-        de temps en temps: 1.2
-        souvent: 1.6
-        tous les jours: 2
+  formule:
+    variations: 
+      - si: aller-retour = 'jamais'
+        alors: 1
+      - si: aller-retour = 'jamais'
+        alors: 1.2
+      - si: aller-retour = 'jamais'
+        alors: 1.6
+      - si: aller-retour = 'jamais'
+        alors: 2
 
 #------------------------------------------- moyens de transport Neutre -------------------------------------------
 
@@ -168,7 +168,7 @@ transport . moyens de transport . voiture . empreinte au kilomètre:
 transport . moyens de transport . voiture . motorisation: 
   question: Quel type de voiture utilisez-vous ?
   description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
-  par défaut: thermique
+  par défaut: "'thermique'"
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -241,13 +241,14 @@ transport . moyens de transport . voiture . propriétaire:
 
   
 transport . moyens de transport . voiture . construction:
-  formule: 
-    correspondance: 
-      variable: motorisation
-      tableau: 
-        thermique: 7000
-        hybride: 7000
-        électrique: 12000
+  formule:
+    variations: 
+      - si: motorisation = 'EI1'
+        alors: 7000
+      - si: motorisation = 'EI2'
+        alors: 7000
+      - si: motorisation = 'EI3'
+        alors: 12000
   unité: kgCO2e
   description: |
     Une voiture est un gros, très gros objet, qui pèse souvent plus d'une tonne et demi. En conséquence, sa construction a une empreinte importante. 
@@ -502,7 +503,7 @@ transport . moyens de transport . deux roues . empreinte au kilomètre:
 transport . moyens de transport . deux roues . type: 
   question: Quel type de deux-roues utilisez-vous ?
   description: Si vous utilisez plusieurs modes de transport parmi les suivants, choisissez la réponse la plus représentative de votre usage.
-  par défaut: scooter thermique
+  par défaut: "'scooter thermique'"
   formule:
     une possibilité: 
       choix obligatoire: oui
@@ -590,7 +591,7 @@ transport . déplacements professionels . voiture . empreinte au kilomètre:
 transport . déplacements professionels . voiture . type: 
   question: Utilisez-vous votre voiture personnelle, une voiture de location ou bien une voiture de l'école ?
   description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
-  par défaut: personnelle
+  par défaut: "'personnelle'"
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -800,7 +801,7 @@ transport . mobilité internationale . affirmatif:
 transport . mobilité internationale . moyen:
   applicable si: mobilité internationale . affirmatif
   question: Quel moyen de transport avez-vous utlisé ou allez-vous utiliser pour votre mobilité ?
-  par défaut: avion
+  par défaut: "'avion'"
   formule: 
     une possibilité: 
       choix obligatoire: oui
