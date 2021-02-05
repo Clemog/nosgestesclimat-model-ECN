@@ -1,9 +1,10 @@
 divers:
   couleur: '#0984e3'
   icônes: 📦
+  description: Le but est de préciser votre Bilan Carbone en vous questionnant sur votre vie associative au sein de l'école.
   formule:
     somme:
-      - associatif
+    # - associatif
       - WEI
       - Némo
       - BDS
@@ -13,28 +14,27 @@ divers:
     #   - autres produits
 
 
-divers . associatif : 
-  icônes: 👊🔥
-  description: En développement, le but est d'intégrer la part d'associatif selon l'adhésion à l'asso. On peut également rajouter des explications pour la questions.
-  applicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
-  formule: 290 
-  unité: kgCO2e
-  source: valeur moyenne du bc associatif par étudiant (profil-type.xls).
+#divers . associatif : 
+  #icônes: 👊🔥
+  #description: En développement, le but est d'intégrer la part d'associatif selon l'adhésion à l'asso. On peut également rajouter des explications pour la questions.
+  #applicable si: affirmatif
+  #non applicable si:
+    #une de ces conditions:
+      #- profil . profil-type = 'doctorant'
+      #- profil . profil-type = 'personnel de recherche ou enseignement'
+      #- profil . profil-type = 'autre personnel'
+  #formule: 290 
+  #unité: kgCO2e
+  #source: valeur moyenne du bc associatif par étudiant (profil-type.xls).
 
-divers . associatif . affirmatif: 
-  question: Faites vous partie d'une association ?
-  par défaut: oui
+#divers . associatif . affirmatif: 
+  #question: Faites vous partie d'une association ?
+  #par défaut: oui
 
 # WEI
 
 divers . WEI :
   icônes:
-  description:
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -53,7 +53,6 @@ divers . WEI . affirmatif:
 
 divers . Némo :
   icônes:
-  description:
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -72,7 +71,7 @@ divers . Némo . affirmatif:
   
 divers . BDS :
   icônes:
-  description:
+  description: L'adhésion à l'Association sportive de Centrale peut engendrer l'émission de plusieurs kilo de CO2 suivant les activités auxquelles vous participez. En effet, si à des rencontres sportives vous participez à des activités sportives hors de Nantes, votre Bilan Carbone sera impacté.
   applicable si: affirmatif
   #les doctorants et personnels peuvent cotiser à l'AS donc je pense on peut laisser la question pour tous
   formule: 8 + rencontres + textiles #valeur moyenne pour l'AS, hors rencontres sportives et textiles
@@ -84,7 +83,6 @@ divers . BDS . affirmatif:
   par défaut: oui
   
 divers . BDS . rencontres:
-  description:
   applicable si: affirmatif
   formule:
   unité: kgCO2e
@@ -94,12 +92,10 @@ divers . BDS . rencontres . affirmatif:
   par défaut: non
   
 divers . BDS . textiles:
-  description:
   formule: sports + autres
   unité: kgCO2e
   
 divers . BDS . textiles . sports:
-  description:
   applicable si: affirmatif
   formule: 6
   unité: kgCO2e
@@ -109,7 +105,6 @@ divers . BDS . textiles . sports . affirmatif:
   par défaut: non
 
 divers . BDS . textiles . autres:
-  description:
   applicable si: affirmatif
   formule: 25
   unité: kgCO2e
@@ -122,7 +117,6 @@ divers . BDS . textiles . autres . affirmatif:
 
 divers . BDE :
   icônes:
-  description:
   apllicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -138,7 +132,6 @@ divers . BDE . affirmatif:
   par défaut: oui
   
 divers . BDE . clubs:
-  description:
   applicable si: affirmatif
   formule: #valeur moyenne de l'activité des clubs à calculer
   unité: kgCO2e
@@ -151,7 +144,6 @@ divers . BDE . clubs . affirmatif:
 
 divers . clubsBDA:
   icônes:
-  description:
   apllicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -170,7 +162,7 @@ divers . clubsBDA . affirmatif:
 
 divers . asso:
   icônes:
-  description:
+  description: Cette question permet de savoir si vous êtes membre de quelques associations particulièrement émittrices de CO2. Le but de cette question n'est pas de stigmatiser les membres de ces assoications. En effet, ces associations ont des bénéfices sociaux importants, ce qui malheureusement n'apparaît pas dans un Bilan Carbone.
   formule:
   somme:
     - rev
@@ -181,7 +173,6 @@ divers . asso:
   
 divers . asso . rev:
   icônes:
-  description:
   apllicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -198,7 +189,6 @@ divers . asso . rev . affirmatif:
   
 divers . asso . tma:
   icônes:
-  description:
   apllicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -215,7 +205,6 @@ divers . asso . tma . affirmatif:
   
 divers . asso . cab:
   icônes:
-  description:
   apllicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -232,7 +221,6 @@ divers . asso . cab . affirmatif:
 
 divers . asso . kids:
   icônes:
-  description:
   apllicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -243,13 +231,12 @@ divers . asso . kids:
   unité: kgCO2e
   source: calcul bc asso 2019
   
-divers . asso . fanfrale . affirmatif:
+divers . asso . kids . affirmatif:
   question: Etes-vous membre de l'association Kids Népal ?
   par défaut: non
   
 divers . asso . fanfrale:
   icônes:
-  description:
   apllicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -261,5 +248,5 @@ divers . asso . fanfrale:
   source: calcul bc asso 2019
   
 divers . asso . fanfrale . affirmatif:
-  question: Etes-vous membre de l'association Kids Népal ?
+  question: Etes-vous membre de la Fanfrale ?
   par défaut: non
