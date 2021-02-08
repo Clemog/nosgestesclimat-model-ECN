@@ -4,249 +4,274 @@ divers:
   description: Le but est de préciser votre Bilan Carbone en vous questionnant sur votre vie associative au sein de l'école.
   formule:
     somme:
-    # - associatif
+    - associatif
+    #   - autres produits
+
+
+divers . associatif : 
+  icônes: 👊🔥
+  description: En développement, le but est d'intégrer la part d'associatif selon l'adhésion à l'asso. On peut également rajouter des explications pour la questions.
+  applicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 
+    somme:
       - WEI
       - Némo
       - BDS
       - BDE
       - clubsBDA
       - asso
-    #   - autres produits
+  unité: kgCO2e
+  source: valeur moyenne du bc associatif par étudiant (profil-type.xls).
 
+divers . associatif . affirmatif: 
+  question: Participez-vous à la vie associative de l'école ?
+  par défaut: oui
 
-#divers . associatif : 
-  #icônes: 👊🔥
-  #description: En développement, le but est d'intégrer la part d'associatif selon l'adhésion à l'asso. On peut également rajouter des explications pour la questions.
-  #applicable si: affirmatif
-  #non applicable si:
-    #une de ces conditions:
-      #- profil . profil-type = 'doctorant'
-      #- profil . profil-type = 'personnel de recherche ou enseignement'
-      #- profil . profil-type = 'autre personnel'
-  #formule: 290 
-  #unité: kgCO2e
-  #source: valeur moyenne du bc associatif par étudiant (profil-type.xls).
-
-#divers . associatif . affirmatif: 
-  #question: Faites vous partie d'une association ?
-  #par défaut: oui
 
 # WEI
 
-divers . WEI :
-  icônes:
+divers . associatif . WEI :
+  icônes: 🎉
   applicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
   formule: 35
   unité: kgCO2e
   source: moyenne des wei 2018 et 2019 (Bilan carbone - Clubs & assos.xlsx)
   
-divers . WEI . affirmatif:
+divers . associatif. WEI . affirmatif:
   question: Avez-vous participé au week-end d'intégration cette année ?
   par défaut: non
 
 #Némo
 
-divers . Némo :
-  icônes:
+divers . associatif . Némo :
+  icônes: 🎉
   applicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
   formule: 30
   unité: kgCO2e
   source: calcul du bc du némo 2019 
   
-divers . Némo . affirmatif:
+divers . associatif . Némo . affirmatif:
   question: Avez-vous participé au Némo cette année ?
   par défaut: non
 
 #BDS
   
-divers . BDS :
-  icônes:
+divers . associatif . BDS :
+  icônes: 🎉
   description: L'adhésion à l'Association sportive de Centrale peut engendrer l'émission de plusieurs kilo de CO2 suivant les activités auxquelles vous participez. En effet, si à des rencontres sportives vous participez à des activités sportives hors de Nantes, votre Bilan Carbone sera impacté.
   applicable si: affirmatif
   #les doctorants et personnels peuvent cotiser à l'AS donc je pense on peut laisser la question pour tous
-  formule: 8 + rencontres + textiles #valeur moyenne pour l'AS, hors rencontres sportives et textiles
+  formule:
+    somme:
+      - évènements
+      - textiles
+  #valeur moyenne pour l'AS, hors rencontres sportives et textiles
   unité: kgCO2e
   source: calcul du bc du bds/AS en 2019 (sans la partie transport)
   
-divers . BDS . affirmatif:
+divers . associatif . BDS . affirmatif:
   question: Avez-vous cotisé à l'Association Sportive de Centrale Nantes cette année ?
   par défaut: oui
   
-divers . BDS . rencontres:
+divers . associatif . BDS . évènements:
   applicable si: affirmatif
-  formule:
+  formule: 10
   unité: kgCO2e
   
-divers . BDS . rencontres . affirmatif:
-  question: Avez-vous participé à des rencontres sportives hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
+divers . associatif . BDS . évènements . affirmatif:
+  question: Avez-vous participé à des évènements sportifs hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
   par défaut: non
   
-divers . BDS . textiles:
-  formule: sports + autres
+divers . associatif . BDS . textiles:
+  applicable si : affirmatif
+  formule: 10
   unité: kgCO2e
   
-divers . BDS . textiles . sports:
-  applicable si: affirmatif
-  formule: 6
-  unité: kgCO2e
-  
-divers . BDS . textiles . sports . affirmatif:
+divers . associatif . BDS . textiles  . affirmatif:
   question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
   par défaut: non
 
-divers . BDS . textiles . autres:
-  applicable si: affirmatif
-  formule: 25
-  unité: kgCO2e
+# divers . BDS . textiles . autres:
+#   applicable si: affirmatif
+#   formule: 25
+#   unité: kgCO2e
   
-divers . BDS . textiles . autres . affirmatif:
-  question: Avez-vous acheté d'autres textiles à Centrale (type pull de promo...) ?
-  par défaut: non
+# divers . BDS . textiles . autres . affirmatif:
+#   question: Avez-vous acheté d'autres textiles à Centrale (type pull de promo...) ?
+#   par défaut: non
   
 #BDE
 
-divers . BDE :
-  icônes:
+divers . associatif . BDE :
+  icônes: 🎉
   apllicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
-  formule: 10 + clubs
+  formule:
+    somme :
+      - 10
+      - clubs
   unité: kgCO2e
   source: calcul du bc du BDE 2019
 
-divers . BDE . affirmatif:
+divers . associatif . BDE . affirmatif:
   question: Etes-vous adhérent au BDE ?
   par défaut: oui
   
-divers . BDE . clubs:
+divers . associatif . BDE . clubs:
   applicable si: affirmatif
-  formule: #valeur moyenne de l'activité des clubs à calculer
+  formule: 10 #valeur moyenne de l'activité des clubs à calculer
   unité: kgCO2e
 
-divers . BDE . clubs . affirmatif:
+divers . associatif . BDE . clubs . affirmatif:
   question: Participez-vous à l'activité de clubs BDE ?
   par défaut: oui
   
 #Clubs BDA
 
-divers . clubsBDA:
-  icônes:
+divers . associatif . clubsBDA:
+  icônes: 🎉
   apllicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
-  formule: #valeur moyenne à calculer
+  formule: 10 #valeur moyenne à calculer
   unité: kgCO2e
   source: calcul du bc du BDA 2019
   
-divers . clubsBDA . affirmatif:
+divers . associatif . clubsBDA . affirmatif:
   question: Participez-vous à l'activité de clubs BDA ?
   par défaut: non 
 
 #asso
 
-divers . asso:
-  icônes:
-  description: Cette question permet de savoir si vous êtes membre de quelques associations particulièrement émittrices de CO2. Le but de cette question n'est pas de stigmatiser les membres de ces assoications. En effet, ces associations ont des bénéfices sociaux importants, ce qui malheureusement n'apparaît pas dans un Bilan Carbone.
+divers . associatif . asso:
+  titre: Empreinte de la vie associative
+  description: |
+      A choisir :  les différentes assos dont vous faites partie. 
+
+      Cette question permet de savoir si vous êtes membre de quelques associations particulièrement émittrices de CO2. Le but de cette question n'est pas de stigmatiser les membres de ces assoications. En effet, ces associations ont des bénéfices sociaux importants, ce qui malheureusement n'apparaît pas dans un Bilan Carbone.
+  icônes: 🎉
   formule:
-  somme:
-    - rev
-    - tma
-    - cab
-    - kids
-    - fanfrale
+    somme:
+      - REV
+      - TMA
+      - CAB
+      - Kids
+      - Fanfrale
+      - une autre
   
-divers . asso . rev:
-  icônes:
-  apllicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
+divers . associatif . asso . REV:
+  formule: empreinte * adhésion
+  icônes: 🎉
+  description: |
+    A compléter.
+
+    A compléter.
+
+divers . associatif . asso . REV . empreinte:
+  aplicable si: affirmatif
   formule: 2000
   unité: kgCO2e
-  source: calcul bc asso 2019
-  
-divers . asso . rev . affirmatif:
-  question: Etes-vous membre de l'association REV ?
-  par défaut: non
-  
-divers . asso . tma:
-  icônes:
-  apllicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
+  source: calcul BC asso 2019
+
+divers . associatif . asso . REV . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+divers . associatif . asso . TMA:
+  formule: empreinte * adhésion
+  icônes: 🎉
+  description: |
+    Take My Andes. A compléter.
+    
+    A compléter.
+
+divers . associatif . asso . TMA . empreinte:
+  aplicable si: affirmatif
   formule: 500
   unité: kgCO2e
-  source: calcul bc asso 2019
-  
-divers . asso . tma . affirmatif:
-  question: Etes-vous membre de l'association Take My Andes ?
-  par défaut: non
-  
-divers . asso . cab:
-  icônes:
-  apllicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
+  source: calcul BC asso 2019
+
+divers . associatif . asso . TMA . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+divers . associatif . asso . CAB:
+  formule: empreinte * adhésion
+  icônes: 🎉
+  description: |
+    A compléter.
+
+    A compléter.
+
+divers . associatif . asso . CAB . empreinte:
+  aplicable si: affirmatif
   formule: 400
   unité: kgCO2e
-  source: calcul bc asso 2019
-  
-divers . asso . cab . affirmatif:
-  question: Etes-vous membre de l'association CAB ?
-  par défaut: non
+  source: calcul BC asso 2019
 
-divers . asso . kids:
-  icônes:
-  apllicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
+divers . associatif . asso . CAB . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+divers . associatif . asso . Kids:
+  formule: empreinte * adhésion
+  icônes: 🎉
+  description: |
+    Kids Népal. A compléter.
+
+    A compléter.
+
+divers . associatif . asso . Kids . empreinte:
+  aplicable si: affirmatif
   formule: 1585
   unité: kgCO2e
-  source: calcul bc asso 2019
-  
-divers . asso . kids . affirmatif:
-  question: Etes-vous membre de l'association Kids Népal ?
-  par défaut: non
-  
-divers . asso . fanfrale:
-  icônes:
-  apllicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
+  source: calcul BC asso 2019
+
+divers . associatif . asso . Kids . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+divers . associatif . asso . Fanfrale:
+  formule: empreinte * adhésion
+  icônes: 🎉
+  description: |
+    A compléter.
+
+    A compléter.
+
+divers . associatif . asso . Fanfrale . empreinte:
+  aplicable si: affirmatif
   formule: 30
   unité: kgCO2e
-  source: calcul bc asso 2019
-  
-divers . asso . fanfrale . affirmatif:
-  question: Etes-vous membre de la Fanfrale ?
-  par défaut: non
+  source: calcul BC asso 2019
+
+divers . associatif . asso . Fanfrale . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+divers . associatif . asso . une autre:
+  formule: empreinte * adhésion
+  icônes: 🎉
+  description: |
+    A compléter.
+
+    A compléter.
+
+divers . associatif . asso . une autre . empreinte:
+  aplicable si: affirmatif
+  formule: 30
+  unité: kgCO2e
+  source: calcul BC asso 2019
+
+divers . associatif . asso . une autre . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
