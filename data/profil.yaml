@@ -6,9 +6,9 @@ profil:
 
     Cette partie prend en compte l'ensemble des émissions de CO2 qui résultent des achats, équipements, bâtiments, chauffage, électricité.
 
-    C'est une poste sur lequel nous n'avons pas d'influence directe en tant qu'usager.
-
     Les chiffres sont basés sur les résultats du bilan carbone de l'ECN 2018.
+
+    N'hésitez pas à parcourir à jeter un oeil aux détails du calcul en cliquant sur "valeur profil" dans l'onglet "Somme" ci-dessous, puis sur le profil que vous avez sélectionné.
   unité: kgCO2e
   formule:
     somme :
@@ -28,36 +28,210 @@ profil . profil-type:
         - personnel de recherche ou enseignement
         - autre personnel
 
-profil . profil-type . EI1:
-profil . profil-type . EI2:
-profil . profil-type . EI3: 
-profil . profil-type . doctorant: 
-profil . profil-type . personnel de recherche ou enseignement:
-profil . profil-type . autre personnel:
-
 profil . valeur profil: 
   formule: 
-    correspondance: 
-      variable: profil-type
-      tableau: 
-        EI1: 320
-        EI2: 320
-        EI3: 320
-        doctorant: 2440
-        personnel de recherche ou enseignement: 2440
-        autre personnel: 400
+    variations: 
+      - si: profil-type = 'EI1'
+        alors: profil-type . EI1
+      - si: profil-type = 'EI2'
+        alors: 320
+      - si: profil-type = 'EI3'
+        alors: 320
+      - si: profil-type = 'doctorant'
+        alors: 2440
+      - si: profil-type = 'personnel de recherche ou enseignement'
+        alors: 2440
+      - si: profil-type = 'autre personnel'
+        alors: 400 
+
+profil . profil-type . EI1:
+  formule:
+    somme:
+      - profil . commun
+      - profil . étudiants
+profil . profil-type . EI2:
+  formule:
+    somme:
+      - profil . commun
+      - profil . étudiants
+profil . profil-type . EI3: 
+  formule:
+    somme:
+      - profil . commun
+      - profil . étudiants
+profil . profil-type . doctorant: 
+  formule:
+    somme:
+      - profil . commun
+      - profil . doctorants
+profil . profil-type . personnel de recherche ou enseignement:
+  formule:
+    somme:
+      - profil . commun
+      - profil . personnels de recherche ou enseignement
+profil . profil-type . autre personnel:
+  formule:
+    somme:
+      - profil . commun
+      - profil . autres personnels
+
+profil . commun:
+  formule:
+    somme:
+      - électricité
+      - moutons
+      - végétation
+      - achats produits et services
+      - constructions
+      - déchets
+      - transport marchandises
+
+profil . commun . électricité:
+  formule: 5.6
+  unité: kgCO2e
+profil . commun . moutons:
+  formule: 0.8
+  unité: kgCO2e
+profil . commun . végétation:
+  formule: -4.7
+  unité: kgCO2e
+profil . commun . achats produits et services:
+  formule: 113.7
+  unité: kgCO2e
+profil . commun . constructions:
+  formule: 36.9
+  unité: kgCO2e
+profil . commun . déchets:
+  formule: 2.2
+  unité: kgCO2e
+profil . commun . transport marchandises:
+  formule: 5.4
+  unité: kgCO2e
+
+profil . étudiants:
+  formule:
+    somme:
+      - essence machines expérimentales
+      - électricité
+      - réseau de chaleur
+      - constructions
+
+profil . étudiants . essence machines expérimentales:
+  formule: 8.8
+  unité: kgCO2e
+profil . étudiants . électricité:
+  formule: 3.7
+  unité: kgCO2e
+profil . étudiants . réseau de chaleur:
+  formule: 47.7
+  unité: kgCO2e
+profil . étudiants . constructions:
+  formule: 101.2
+  unité: kgCO2e 
+
+
+profil . doctorants:
+  formule:
+    somme:
+      - essence machines expérimentales
+      - gaz
+      - fluides frigorifiques
+      - électricité
+      - réseau de chaleur
+      - achat et entretien machines et équipements
+      - constructions
+
+profil . doctorants . essence machines expérimentales:
+  formule: 19.9
+  unité: kgCO2e
+profil . doctorants . gaz:
+  formule: 81
+  unité: kgCO2e
+profil . doctorants . électricité:
+  formule: 43.5
+  unité: kgCO2e
+profil . doctorants . fluides frigorifiques:
+  formule: 9.3
+  unité: kgCO2e
+profil . doctorants . réseau de chaleur:
+  formule: 152.9
+  unité: kgCO2e
+profil . doctorants . achat et entretien machines et équipements:
+  formule: 1266.8
+  unité: kgCO2e
+profil . doctorants . constructions:
+  formule: 705.3
+  unité: kgCO2e
+
+profil . personnels de recherche ou enseignement:
+  formule:
+    somme:
+      - essence machines expérimentales
+      - gaz
+      - fluides frigorifiques
+      - électricité
+      - réseau de chaleur
+      - achat et entretien machines et équipements
+      - constructions
+
+profil . personnels de recherche ou enseignement . essence machines expérimentales:
+  formule: 20
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . gaz:
+  formule: 81.1
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . électricité:
+  formule: 43.6
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . fluides frigorifiques:
+  formule: 9.3
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . réseau de chaleur:
+  formule: 153.1
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . achat et entretien machines et équipements:
+  formule: 1268.6
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . constructions:
+  formule: 706.3
+  unité: kgCO2e
+
+profil . autres personnels:
+  formule:
+    somme:
+      - fluides frigorifiques
+      - électricité
+      - réseau de chaleur
+      - constructions
+
+profil . autres personnels . fluides frigorifiques:
+  formule: 6
+  unité: kgCO2e
+profil . autres personnels . électricité:
+  formule: 2.5
+  unité: kgCO2e
+profil . autres personnels . réseau de chaleur:
+  formule: 67.3
+  unité: kgCO2e
+profil . autres personnels . constructions:
+  formule: 163.2
+  unité: kgCO2e
 
 profil . nbre semaines: 
-  formule: 
-    correspondance: 
-      variable: profil-type
-      tableau: 
-        EI1: 39
-        EI2: 27
-        EI3: 27
-        doctorant: 47
-        personnel de recherche ou enseignement: 47
-        autre personnel: 47
+  formule:
+    variations: 
+      - si: profil-type = 'EI1'
+        alors: 39
+      - si: profil-type = 'EI2'
+        alors: 27
+      - si: profil-type = 'EI3'
+        alors: 27
+      - si: profil-type = 'doctorant'
+        alors: 47
+      - si: profil-type = 'personnel de recherche ou enseignement'
+        alors: 47
+      - si: profil-type = 'autre personnel'
+        alors: 47
 
 
 
