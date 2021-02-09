@@ -163,7 +163,7 @@ divers . associatif . asso:
   
 divers . associatif . asso . REV:
   formule: empreinte * adhésion
-  icônes: 🎉
+  icônes: source/sites/publicodes/images/logo-NCO2.png
   description: |
     A compléter.
 
@@ -182,7 +182,7 @@ divers . associatif . asso . REV . adhésion:
 
 divers . associatif . asso . TMA:
   formule: empreinte * adhésion
-  icônes: 🎉
+  icônes: source/sites/publicodes/images/logo-NCO2.png
   description: |
     Take My Andes. A compléter.
     
@@ -201,7 +201,7 @@ divers . associatif . asso . TMA . adhésion:
 
 divers . associatif . asso . CAB:
   formule: empreinte * adhésion
-  icônes: 🎉
+  icônes: source/sites/publicodes/images/logo-NCO2.png
   description: |
     A compléter.
 
@@ -220,7 +220,7 @@ divers . associatif . asso . CAB . adhésion:
 
 divers . associatif . asso . Kids:
   formule: empreinte * adhésion
-  icônes: 🎉
+  icônes: source/sites/publicodes/images/logo-NCO2.png
   description: |
     Kids Népal. A compléter.
 
@@ -239,7 +239,7 @@ divers . associatif . asso . Kids . adhésion:
 
 divers . associatif . asso . Fanfrale:
   formule: empreinte * adhésion
-  icônes: 🎉
+  icônes: source/sites/publicodes/images/logo-NCO2.png
   description: |
     A compléter.
 
@@ -258,7 +258,7 @@ divers . associatif . asso . Fanfrale . adhésion:
 
 divers . associatif . asso . une autre:
   formule: empreinte * adhésion
-  icônes: 🎉
+  icônes: source/sites/publicodes/images/logo-NCO2.png
   description: |
     A compléter.
 
