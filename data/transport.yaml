@@ -789,6 +789,8 @@ transport . mobilité internationale:
         alors: transport . mobilité internationale . train
       - si: moyen = 'avion'
         alors: transport . mobilité internationale . avion
+      - si: moyen = 'bus'
+        alors: transport . mobilité internationale . bus
 
 transport . mobilité internationale . affirmatif:
   description: |
@@ -808,10 +810,12 @@ transport . mobilité internationale . moyen:
         - voiture
         - train
         - avion
+        - bus
 
 transport . mobilité internationale . moyen . voiture:
 transport . mobilité internationale . moyen . train:  
 transport . mobilité internationale . moyen . avion:
+transport . mobilité int
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
@@ -925,3 +929,24 @@ transport . mobilité internationale . avion . heures de vol:
   unité: h
   par défaut: 6
 
+#----------------------------------------------- Bus -----------------------------------------------------
+
+transport . mobilité internationale . bus:
+  description: |
+    ![](
+  formule: km * impact par km
+
+
+transport . mobilité internationale . bus . impact par km:
+  formule: 0.0352
+  unité: kgCO2e/km
+
+transport . mobilité internationale . bus . km:
+  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
+  suggestions: 
+    Nantes↔Paris: 700
+    Nantes↔Lyon: 1000
+    Nantes↔Marseille: 1400 
+  unité: km
+  par défaut: 1000
