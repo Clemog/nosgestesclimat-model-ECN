@@ -19,7 +19,7 @@ transport:
 transport . domicile-travail:
   non applicable si:
     une de ces conditions:
-      - jours par semaine = 0
+      - facteur jours par semaine = 0
   formule:
     multiplication:
       assiette: moyens de transport
@@ -27,16 +27,38 @@ transport . domicile-travail:
 
 transport . domicile-travail . jours par semaine:
   question: En moyenne, combien de jours par semaine allez-vous à Centrale ?
-  par défaut: 5
-  unité: jours
-  suggestions:
-    zéro: 0
-    1 fois/semaine: 1
-    2 fois/semaine: 2
-    3 fois/semaine: 3
-    4 fois/semaine: 4
-    tous les jours: 5
+  par défaut: 5 fois/semaine
+  unité : jours par semaine
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - zéro
+        - 1 fois/semaine
+        - 2 fois/semaine
+        - 3 fois/semaine
+        - 4 fois/semaine
+        - 5 fois/semaine
 
+transport . domicile-travail . jours par semaine . 0:
+transport . domicile-travail . jours par semaine . 1:
+transport . domicile-travail . jours par semaine . 2:
+transport . domicile-travail . jours par semaine . 3:
+transport . domicile-travail . jours par semaine . 4:
+transport . domicile-travail . jours par semaine . 5:
+
+transport . domicile-travail . facteur jours par semaine: 
+  formule: 
+    correspondance: 
+      variable: jours par semaine
+      tableau: 
+        zéro: 0
+        1 fois/semaine: 1
+        2 fois/semaine: 2
+        3 fois/semaine: 3
+        4 fois/semaine: 4
+        5 fois/semaine: 5
+        
 transport . moyens de transport:
   titre: Proportions moyens de transport
   description: |
@@ -149,7 +171,7 @@ transport . moyens de transport . voiture . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année.
   unité: km
-  formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . jours par semaine)
+  formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . facteur jours par semaine)
 
 
 transport . moyens de transport . voiture . impact usage:
@@ -323,7 +345,7 @@ transport . moyens de transport . tram:
   icônes: 🚋
   formule:
     multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
+      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . facteur jours par semaine
       facteur : pourcent / 100
 
 transport . moyens de transport . tram . pourcent:
@@ -366,7 +388,7 @@ transport . moyens de transport . bus:
   icônes: 🚌
   formule:
     multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
+      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . facteur jours par semaine
       facteur : pourcent / 100
 
 transport . moyens de transport . bus . pourcent:
@@ -409,7 +431,7 @@ transport . moyens de transport . train:
   icônes: 🚂
   formule:
     multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
+      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . facteur jours par semaine
       facteur : pourcent / 100
 
 transport . moyens de transport . train . pourcent:
@@ -481,7 +503,7 @@ transport . moyens de transport . deux roues . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année en deux-roues.
   unité: km
-  formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . jours par semaine)
+  formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . facteur jours par semaine)
 
 transport . moyens de transport . deux roues . empreinte au kilomètre: 
   formule: 
