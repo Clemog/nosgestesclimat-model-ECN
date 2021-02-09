@@ -774,7 +774,7 @@ transport . déplacements professionels . avion . long courrier . heures de vol:
 
 transport . mobilité internationale:
   description: |
-    La mobilité internationale correspond à la mobilité de l'année scolaire en cours.
+    La mobilité internationale correspond à la mobilité de l'année civile en cours.
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -792,9 +792,9 @@ transport . mobilité internationale:
 
 transport . mobilité internationale . affirmatif:
   description: |
-    La mobilité internationale correspond ici à l'éventuelle mobilité effectuée lors de l'année scolaire en cours. 
+    La mobilité internationale correspond ici à l'éventuelle mobilité effectuée lors de l'année civile en cours. 
     Qu'elle ait lieu dans le cadre d'un stage ou de la césure, la mobilité est prise en compte ici.
-  question: Avez-vous effectué ou allez-vous effectuer une mobilité internationale durant cette année scolaire dans le cadre de vos études (hors associatif) ?
+  question: Avez-vous effectué ou allez-vous effectuer une mobilité internationale durant cette année civile dans le cadre de vos études (hors associatif) ?
   par défaut: oui
 
 transport . mobilité internationale . moyen:
