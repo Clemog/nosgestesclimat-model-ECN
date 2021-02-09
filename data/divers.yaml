@@ -177,7 +177,7 @@ divers . associatif . asso . REV . empreinte:
 
 divers . associatif . asso . REV . adhésion:
   question: A compléter
-  par défaut: 0
+  par défaut: 1
   période: semaine
 
 divers . associatif . asso . TMA:
