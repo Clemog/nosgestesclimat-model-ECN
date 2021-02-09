@@ -794,7 +794,7 @@ transport . mobilité internationale . affirmatif:
   description: |
     La mobilité internationale correspond ici à l'éventuelle mobilité effectuée lors de l'année scolaire en cours. 
     Qu'elle ait lieu dans le cadre d'un stage ou de la césure, la mobilité est prise en compte ici.
-  question: Avez-vous effectué ou allez-vous effectuer une mobilité internationale durant cette année scolaire dans le cadre de vos études ?
+  question: Avez-vous effectué ou allez-vous effectuer une mobilité internationale durant cette année scolaire dans le cadre de vos études (hors associatif) ?
   par défaut: oui
 
 transport . mobilité internationale . moyen:
