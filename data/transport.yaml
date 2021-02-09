@@ -799,7 +799,7 @@ transport . mobilité internationale . affirmatif:
 
 transport . mobilité internationale . moyen:
   applicable si: mobilité internationale . affirmatif
-  question: Quel moyen de transport avez-vous utlisé ou allez-vous utiliser pour votre mobilité ?
+  question: Quel moyen de transport avez-vous utilisé ou allez-vous utiliser pour votre mobilité ?
   par défaut: avion
   formule: 
     une possibilité: 
