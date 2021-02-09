@@ -34,15 +34,15 @@ profil . valeur profil:
       - si: profil-type = 'EI1'
         alors: profil-type . EI1
       - si: profil-type = 'EI2'
-        alors: 320
+        alors: profil-type . EI2
       - si: profil-type = 'EI3'
-        alors: 320
+        alors: profil-type . EI3
       - si: profil-type = 'doctorant'
-        alors: 2440
+        alors: profil-type . doctorant
       - si: profil-type = 'personnel de recherche ou enseignement'
-        alors: 2440
+        alors: profil-type . personnel de recherche ou enseignement
       - si: profil-type = 'autre personnel'
-        alors: 400 
+        alors: profil-type . autre personnel
 
 profil . profil-type . EI1:
   formule:
