@@ -33,8 +33,8 @@ alimentation . plats:
       Ceci est la somme de l'empreinte de ces 5 plats.
   formule: 
     somme:
-      - viande 1
-      - viande 2
+      - viandes blanches
+      - viande rouges
       - végétalien
       - végétarien
       # Dans une v4, nous allons introduire ce régime flexitarien bien documenté
