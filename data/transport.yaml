@@ -811,6 +811,8 @@ transport . mobilité internationale:
         alors: transport . mobilité internationale . train
       - si: moyen = 'avion'
         alors: transport . mobilité internationale . avion
+      - si: moyen = 'bus'
+        alors: transport . mobilité internationale . bus
 
 transport . mobilité internationale . affirmatif:
   description: |
@@ -830,10 +832,12 @@ transport . mobilité internationale . moyen:
         - voiture
         - train
         - avion
+        - bus
 
 transport . mobilité internationale . moyen . voiture:
 transport . mobilité internationale . moyen . train:  
 transport . mobilité internationale . moyen . avion:
+transport . mobilité internationale . moyen . bus:
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
@@ -946,4 +950,27 @@ transport . mobilité internationale . avion . heures de vol:
     Paris🔁Sydney(A/R): 40
   unité: h
   par défaut: 6
+
+#----------------------------------------------- Bus -----------------------------------------------------
+
+transport . mobilité internationale . bus :
+  description: |
+    ![](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tictactrip.eu%2Fcompany%2Fbus&psig=AOvVaw3C2Tbas1kMYOgXF5bPJdt0&ust=1613032459626000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLjR2Kn03u4CFQAAAAAdAAAAABAD) 
+  formule: km * impact par km
+  unité: kgCO2e
+
+
+transport . mobilité internationale . bus . impact par km:
+  formule: 0.0352
+  unité: kgCO2e/km
+
+transport . mobilité internationale . bus . km:
+  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  description: Les suggestions sont basées sur la distance par la route, doublée pour considérer un aller-retour.
+  suggestions: 
+    Nantes↔Madrid: 2060
+    Nantes↔Copenhague: 3200
+    Nantes↔Milan: 2240
+  unité: km
+  par défaut: 1000
 
