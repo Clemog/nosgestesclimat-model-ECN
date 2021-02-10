@@ -12,6 +12,7 @@ transport:
       - domicile-travail
       - déplacements professionels
       - mobilité internationale
+      - mobilité france
 
 
 #------------------------------------------- Domicile-Travail -------------------------------------------
@@ -792,7 +793,226 @@ transport . déplacements professionels . avion . long courrier . heures de vol:
   unité: heures
   par défaut: 0
 
-#------------------------------------------- Mobilité Internationale ----------------------------------------------------
+
+#----------------------------------------------- Mobilité en France -----------------------------------------------------
+
+transport . mobilité france:
+  description: |
+    La mobilité en France correspond à la mobilité de l'année scolaire en cours.
+  applicable si: affirmatif
+  non applicable si: nantes
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule:
+    variations: 
+      - si: moyen = 'voiture'
+        alors: transport . mobilité france . voiture * (1 + facteur retour nantes)
+      - si: moyen = 'train'
+        alors: transport . mobilité france . train * (1 + facteur retour nantes)
+      - si: moyen = 'avion'
+        alors: transport . mobilité france . avion * (1 + facteur retour nantes)
+      - si: moyen = 'bus'
+        alors: transport . mobilité france . bus * (1 + facteur retour nantes)
+
+transport . mobilité france . affirmatif:
+  description: |
+    La mobilité en France correspond ici à l'éventuelle mobilité effectuée lors de l'année scolaire en cours. 
+    Qu'elle ait lieu dans le cadre d'un stage, d'un double-diplôme ou d'une césure, la mobilité est prise en compte ici.
+  question: Avez-vous effectué ou allez-vous effectuer une mobilité en France durant cette année scolaire dans le cadre de vos études ?
+  par défaut: oui
+
+transport . mobilité france . nantes:
+  description: |
+      La mobilité à Nantes peut être un double-diplôme avec une autre école Nantaise (Audencia, ENSA) ou un stage/une césure dans une association ou entreprise nantaise.
+  question: Cette mobilité en France a-t-elle été ou va-t-elle être effectuée à Nantes ?
+    par défaut: oui
+
+transport . mobilité france . moyen:
+  applicable si: mobilité france . affirmatif
+  non applicable si: mobilité france . nantes
+  question: Quel moyen de transport avez-vous utlisé ou allez-vous utiliser pour votre mobilité ?
+  par défaut: train
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - voiture
+        - train
+        - avion
+        - bus
+
+transport . mobilité france . moyen . voiture:
+transport . mobilité france . moyen . train:  
+transport . mobilité france . moyen . avion:
+transport . mobilité france . moyen . bus:
+
+transport . mobilité france . retour nantes:
+  applicable si: mobilité france . affirmatif
+  non applicable si: mobilité france . nantes
+  question: Combien avez-vous effectué ou allez-vous effectuer de retours à Nantes sur une année civile lors de votre mobilité en France ?
+  par défaut: 1
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - Aucune
+        - 1 retour
+        - 2 retours
+        - 3 retours
+        - 4 retours
+        - plus de 4 retours
+
+transport . mobilité france . facteur retour nantes: 
+  formule: 
+    correspondance: 
+      variable: retour nantes
+      tableau: 
+        Aucune: 0
+        1 retour: 1
+        2 retours: 2
+        3 retours: 3
+        4 retours: 4
+        plus de 4 retours: 5.5
+        #La valeur pour 4+ retours est arbitraire$
+        
+        #----------------------------------------------- Voiture -----------------------------------------------------
+
+transport . mobilité france . voiture :
+  description: |
+    A compléter  
+  formule: (construction amortie + impact usage) / voyageurs
+  unité: kgCO2e
+
+
+transport . mobilité france . voiture . voyageurs:
+  question: Quel était le nombre moyen de voyageurs dans la voiture ?
+  par défaut: 1
+  unité: voyageurs
+  suggestions:  
+    je suis le seul: 1
+    seul ou à deux selon le trajet: 1.5
+    à deux: 2
+    à cinq: 5
+
+transport . france . voiture . km:
+  description: |
+    C'est la distance parcourue pour vous rendre depuis votre domicile jusqu'au lieu de votre mobilité (aller seulement)
+  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet (aller seulement)?
+  unité: km
+  par défaut: 100
+
+transport . mobilité france . voiture . impact usage:
+  formule: 2 * km * empreinte au kilomètre
+  unité: kgCO2e
+
+transport . mobilité france . voiture . empreinte au kilomètre: 
+  description: |
+    La valeur de l'empreinte au kilomètre pour les véhicules de l'école a été calculé en considérant une consomation moyenne de 7L au 100. 
+  formule: moyens de transport . voiture . empreinte au kilomètre
+
+transport . mobilité france . voiture . construction amortie:
+  formule: moyens de transport . voiture . construction * moyens de transport . voiture . amortissement particulier
+  unité: kgCO2e
+  note: Attention division par 0.
+
+#----------------------------------------------- Train -----------------------------------------------------
+
+transport . mobilité france . train:
+  description: |
+    ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
+  formule: km * impact par km
+
+
+transport . mobilité france . train . impact par km:
+  formule: 0.0053
+  unité: kgCO2e/km
+
+transport . mobilité france . train . km:
+  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
+  suggestions: 
+    Nantes↔Paris: 700
+    Nantes↔Lyon: 1000
+    Nantes↔Marseille: 1400 
+  unité: km
+  par défaut: 1000
+
+#----------------------------------------------- Avion -----------------------------------------------------
+
+transport . mobilité france . avion:
+  description: |
+    ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
+    
+    L'empreinte de l'avion est conséquente. Il n'est pas forcément plus polluant *au kilomètre* qu'une voiture qui ne déplace qu'une personne, 
+    mais la distance et surtout la distance parcourue en une heure (qu'on appelle couramment la vitesse), permet de changer de continent pour un week-end.
+    
+    Gardons aussi en tête que le Français moyen ne prend pas ou peu l'avion. L'essentiel de l'empreinte de l'aviation est donc concentrée sur 10% ou moins des Français.
+    
+  note: |
+    Nous avons fait le choix de demander le total d'heures de vol, plutôt que de demander à l'utilisateur de renseigner chacun de ses vols 
+    via l'aéroport de départ, d'arrivée et la classe économique. C'est une évolution possible par la suite, 
+    voir [ce simulateur](https://futur.eco/simulateur/transport/avion/impact) où une partie du travail est déjà faite.
+    
+    A noter aussi que les escales entrainent des décollages supplémentaires, qui consomment plus de carburant qu'une vitesse de croisière.
+    C'est aussi un paramètre à prendre en compte par la suite.
+    
+    Pour un modèle plus détaillé de l'empreinte de l'avion, nous avons trouvé deux sources.
+    
+    L'algorithme complet de l'appli North, disponible [ici](https://github.com/tmrowco/northapp-contrib/blob/master/co2eq/flights/index.js).  
+    
+    Le pseudo-algorithme de myclimate.org, ci-dessous.
+    ![](https://imgur.com/hIVvuIw.jpg).
+  formule: heures de vol * vitesse moyenne * empreinte par km
+
+
+transport . mobilité france . avion . vitesse moyenne:
+  formule: 5800 / 8.5
+  unité: km/h
+  note: |
+    Nous utilisons la vitesse moyenne de vol du modèle MicMac v2.6, déterminée selon [ces données](http://www.abm.fr/voyager-en-avion-le-guide-du-passager/en-complement/distances-et-durees-de-vol.html).
+
+transport . mobilité france . avion . empreinte par km:
+  formule: 0.230
+  note: |
+    Nous utilisons le facteur d'émissions de la tranche < 1000km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L7).
+  unité: kgCO2e/km
+
+transport . mobilité france . avion . heures de vol:
+  question: Combien d'heures avez-vous passé dans l'avion pour rejoindre votre lieu de mobilité (aller-retour)?
+  description: 
+  suggestions:
+    Nantes🔁Marseille: 1.33
+    Nantes🔁Lille: 3.33
+    Nantes🔁Toulouse: 1.1
+  unité: h
+  par défaut: 1
+
+#----------------------------------------------- Bus -----------------------------------------------------
+
+transport . mobilité france . bus :
+  description: |
+    ![](https://sobusygirls.fr/uploads/editor/octobre/09-10/Les%20ongles%20de%20Laure/j-ai-teste-les-voyages-en-bus-2.jpg) 
+  formule: km * impact par km
+  unité: kgCO2e
+
+
+transport . mobilité france . bus . impact par km:
+  formule: 0.0352
+  unité: kgCO2e/km
+
+transport . mobilité internationale . bus . km:
+  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  description: Les suggestions sont basées sur la distance par la route, doublée pour considérer un aller-retour.
+  suggestions: 
+    Nantes↔Marseille: 2000
+    Nantes↔Lille: 1200
+    Nantes↔Toulouse: 1150
+  unité: km
+  par défaut: 1000
+  
+  #------------------------------------------- Mobilité Internationale ----------------------------------------------------
 
 transport . mobilité internationale:
   description: |
@@ -1001,4 +1221,3 @@ transport . mobilité internationale . bus . km:
     Nantes↔Milan: 2240
   unité: km
   par défaut: 1000
-
