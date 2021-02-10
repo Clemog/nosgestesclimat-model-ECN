@@ -1,5 +1,5 @@
 associatif: 
-  couleur: '#0984e3'
+  couleur: '#77B5FE'
   icônes: 🎉
   description: Le but est de préciser votre Bilan Carbone en vous questionnant sur votre vie associative au sein de l'école.
   formule: 
@@ -146,8 +146,17 @@ associatif . asso . REV:
     A compléter.
 
 associatif . asso . REV . empreinte:
-  formule: 2000
+  formule: total / nbre adhérents
   unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . REV . empreinte . total:
+  formule: 20000
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . REV . empreinte . nbre adhérents:
+  formule: 10
   source: Calcul BC asso 2019
 
 associatif . asso . REV . adhésion:
