@@ -139,23 +139,23 @@ associatif . asso . BDS . talon . nbre adhérents:
   unité: kgCO2e
   source: Calcul BC asso 2019
   
-#associatif . asso . BDS . empreinte . évènements :
-#   applicable si: affirmatif
-#   formule: 47
-#   unité: kgCO2e
-#   source: Calcul BC asso 2019
-
 associatif . asso . BDS . empreinte . évènements :
+  applicable si: affirmatif
+  formule: 47
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDS . empreinte . évènements . affirmatif:
   question: Avez-vous participé à des évènements sportifs hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
   par défaut: non
   
-#associatif . asso . BDS . empreinte . textile :
-#   applicable si: affirmatif
-#   formule: 6
-#   unité: kgCO2e
-#   source: Calcul BC asso 2019
-
 associatif . asso . BDS . empreinte . textile :
+  applicable si: affirmatif
+  formule: 6
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDS . empreinte . textile . affirmatif :
   question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
   par défaut: non
 
@@ -191,7 +191,7 @@ associatif . asso . REV:
   formule: empreinte * adhésion
   icônes: source/sites/publicodes/images/logo-REV.png
   description: |
-    Récup' Eau Viet Nam
+    Récup' Eau Vietnam
 
     A compléter.
 
