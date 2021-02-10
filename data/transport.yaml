@@ -806,13 +806,13 @@ transport . mobilité internationale:
   formule:
     variations: 
       - si: moyen = 'voiture'
-        alors: transport . mobilité internationale . voiture
+        alors: transport . mobilité internationale . voiture * (1 + facteur retour france)
       - si: moyen = 'train'
-        alors: transport . mobilité internationale . train
+        alors: transport . mobilité internationale . train * (1 + facteur retour france)
       - si: moyen = 'avion'
-        alors: transport . mobilité internationale . avion
+        alors: transport . mobilité internationale . avion * (1 + facteur retour france)
       - si: moyen = 'bus'
-        alors: transport . mobilité internationale . bus
+        alors: transport . mobilité internationale . bus * (1 + facteur retour france)
 
 transport . mobilité internationale . affirmatif:
   description: |
@@ -838,6 +838,34 @@ transport . mobilité internationale . moyen . voiture:
 transport . mobilité internationale . moyen . train:  
 transport . mobilité internationale . moyen . avion:
 transport . mobilité internationale . moyen . bus:
+
+transport . mobilité internationale . retour france:
+  applicable si: mobilité internationale . affirmatif
+  question: Combien avez-vous effectué ou allez-vous effectuer de retours en France sur une année civile lors de votre mobilité internationale ?
+  par défaut: 1
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - Aucune
+        - 1 retour
+        - 2 retours
+        - 3 retours
+        - 4 retours
+        - plus de 4 retours
+
+transport . mobilité internationale . facteur retour france: 
+  formule: 
+    correspondance: 
+      variable: retour france
+      tableau: 
+        Aucune: 0
+        1 retour: 1
+        2 retours: 2
+        3 retours: 3
+        4 retours: 4
+        plus de 4 retours: 5.5
+        #La valeur pour 4+ retours est arbitraire
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
