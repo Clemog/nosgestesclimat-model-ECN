@@ -1143,9 +1143,9 @@ transport . mobilité internationale . train . km:
   question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
   description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
   suggestions: 
-    Nantes↔Paris: 700
-    Nantes↔Lyon: 1000
-    Nantes↔Marseille: 1400 
+    Nantes↔Madrid: 1500
+    Nantes↔Berlin: 2400
+    Nantes↔Londres: 1000
   unité: km
   par défaut: 1000
 
