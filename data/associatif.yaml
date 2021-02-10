@@ -8,7 +8,7 @@ associatif:
       - Némo
       - asso
   unité: kgCO2e
-  source: valeur moyenne du BC associatif par étudiant (profil-type.xls).
+  source: Valeur moyenne du BC associatif par étudiant (profil-type.xls).
 
 
 # WEI
@@ -23,7 +23,7 @@ associatif . WEI:
       - profil . profil-type = 'autre personnel'
   formule: 35
   unité: kgCO2e
-  source: moyenne des wei 2018 et 2019 (Bilan carbone - Clubs & assos.xlsx)
+  source: Moyenne des WEI 2018 et 2019 (Bilan carbone - Clubs & assos.xlsx)
   
 associatif . WEI . affirmatif:
   question: Avez-vous participé au week-end d'intégration cette année ?
@@ -41,7 +41,7 @@ associatif . Némo:
       - profil . profil-type = 'autre personnel'
   formule: 30
   unité: kgCO2e
-  source: calcul du bc du némo 2019 
+  source: Calcul du BC du némo 2019 
   
 associatif . Némo . affirmatif:
   question: Avez-vous participé au Némo cette année ?
@@ -82,7 +82,7 @@ associatif . asso . BDE:
 associatif . asso . BDE . empreinte:
   formule: 20
   unité: kgCO2e
-  source: calcul BC asso 2019
+  source: Calcul BC asso 2019
 
 associatif . asso . BDE . adhésion:
   question: A compléter
@@ -90,6 +90,7 @@ associatif . asso . BDE . adhésion:
   période: semaine
 
 associatif . asso . BDS:
+  applicable si: adhésion = 1
   formule: empreinte * adhésion
   icônes: source/sites/publicodes/images/logo-BDS.png
   description: |
@@ -103,20 +104,18 @@ associatif . asso . BDS . empreinte:
       - évènements
       - textile
   unité: kgCO2e
-  source: calcul BC asso 2019
+  source: Calcul BC asso 2019
 
 associatif . asso . BDS . adhésion:
   question: A compléter
-  par défaut: 1
+  par défaut: 0
   période: semaine
 
 associatif . asso . BDS . empreinte . évènements :
-  applicable si: adhésion = 1
   question: Avez-vous participé à des évènements sportifs hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
   par défaut: non
 
 associatif . asso . BDS . empreinte . textile :
-  applicable si: adhésion = 1
   question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
   par défaut: non
 
@@ -131,11 +130,11 @@ associatif . asso . BDA:
 associatif . asso . BDA . empreinte:
   formule: 10
   unité: kgCO2e
-  source: calcul BC asso 2019
+  source: Calcul BC asso 2019
 
 associatif . asso . BDA . adhésion:
   question: A compléter
-  par défaut: 1
+  par défaut: 0
   période: semaine
 
 associatif . asso . REV:
@@ -149,7 +148,7 @@ associatif . asso . REV:
 associatif . asso . REV . empreinte:
   formule: 2000
   unité: kgCO2e
-  source: calcul BC asso 2019
+  source: Calcul BC asso 2019
 
 associatif . asso . REV . adhésion:
   question: A compléter
@@ -167,7 +166,7 @@ associatif . asso . TMA:
 associatif . asso . TMA . empreinte:
   formule: 500
   unité: kgCO2e
-  source: calcul BC asso 2019
+  source: Calcul BC asso 2019
 
 associatif . asso . TMA . adhésion:
   question: A compléter
@@ -185,7 +184,7 @@ associatif . asso . CAB:
 associatif . asso . CAB . empreinte:
   formule: 400
   unité: kgCO2e
-  source: calcul BC asso 2019
+  source: Calcul BC asso 2019
 
 associatif . asso . CAB . adhésion:
   question: A compléter
@@ -203,7 +202,7 @@ associatif . asso . Kids:
 associatif . asso . Kids . empreinte:
   formule: 1585
   unité: kgCO2e
-  source: calcul BC asso 2019
+  source: Calcul BC asso 2019
 
 associatif . asso . Kids . adhésion:
   question: A compléter
@@ -221,7 +220,7 @@ associatif . asso . Fanfrale:
 associatif . asso . Fanfrale . empreinte:
   formule: 30
   unité: kgCO2e
-  source: calcul BC asso 2019
+  source: Calcul BC asso 2019
 
 associatif . asso . Fanfrale . adhésion:
   question: A compléter
