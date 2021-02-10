@@ -77,7 +77,7 @@ associatif . asso . BDE:
   description: |
     Bureau Des Elèves
 
-    A compléter.
+    Cette valeur correspond aux émissions des clubs BDE (hors WEI, Némo et WEN) ainsi que du BDE en lui même
 
 associatif . asso . BDE . empreinte:
   formule: total / nbre adhérents
@@ -85,7 +85,6 @@ associatif . asso . BDE . empreinte:
   source: Calcul BC asso 2019
     
 associatif . asso . BDE . empreinte . total:
-  description: Cette valeur correspond aux émissions des clubs BDE (hors WEI, Némo et WEN) ainsi que du BDE en lui même
   formule: 54000
   unité: kgCO2e
   source: Calcul BC asso 2019
@@ -165,7 +164,7 @@ associatif . asso . BDA:
   description: |
     Bureau Des Arts
 
-    A compléter.
+    Cette valeur correspond aux émissions des clubs BDA ainsi que du BDA en lui même
 
 associatif . asso . BDA . empreinte:
   formule: total / nbre adhérents
