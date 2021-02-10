@@ -866,12 +866,12 @@ transport . mobilité internationale . train:
 
 
 transport . mobilité internationale . train . impact par km:
-  formule: 0.0053
+  formule: 0.0055
   unité: kgCO2e/km
 
 transport . mobilité internationale . train . km:
   question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
-  description: Les suggestions sont basées sur le temps de trajet en train, en prenant pour vitesse moyenne 130 km/h.
+  description: Les suggestions sont basées sur le temps de trajet en train, en prenant pour vitesse moyenne 130 km/h. En ce qui concerne le facteur d'émission, nous avons choisi de prendre la moyenne des facteurs d'émission de train en Europe.
   suggestions: 
     Nantes↔Edimbourg: 1440
     Nantes↔Hambourg: 1615
