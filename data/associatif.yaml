@@ -1,0 +1,321 @@
+associatif: 
+  couleur: '#77B5FE'
+  icônes: 🎉
+  description: Le but est de préciser votre Bilan Carbone en vous questionnant sur votre vie associative au sein de l'école.
+  formule: 
+    somme:
+      - WEI
+      - Némo
+      - asso
+  unité: kgCO2e
+  source: Valeur moyenne du BC associatif par étudiant (profil-type.xls).
+
+
+# WEI
+
+associatif . WEI:
+  icônes: 🎉
+  applicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 35
+  unité: kgCO2e
+  source: Moyenne des WEI 2018 et 2019 (Bilan carbone - Clubs & assos.xlsx)
+  
+associatif . WEI . affirmatif:
+  question: Avez-vous participé au week-end d'intégration cette année ?
+  par défaut: non
+
+#Némo
+
+associatif . Némo:
+  icônes: 🎉
+  applicable si: affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  formule: 30
+  unité: kgCO2e
+  source: Calcul du BC du némo 2019 
+  
+associatif . Némo . affirmatif:
+  question: Avez-vous participé au Némo cette année ?
+  par défaut: non
+
+#asso
+
+associatif . asso:
+  titre: Empreinte de la vie associative
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
+  description: |
+      A choisir :  les différentes assos dont vous faites partie. 
+
+      Cette question permet de savoir si vous êtes membre de quelques associations particulièrement émittrices de CO2. Le but de cette question n'est pas de stigmatiser les membres de ces assoications. En effet, ces associations ont des bénéfices sociaux importants, ce qui malheureusement n'apparaît pas dans un Bilan Carbone.
+  icônes: 🎉
+  formule:
+    somme:
+      - BDE
+      - BDS
+      - BDA
+      - REV
+      - TMA
+      - CAB
+      - Kids
+      - Fanfrale
+  
+associatif . asso . BDE:
+  formule: empreinte * adhésion
+  icônes: source/sites/publicodes/images/logo-BDE.png
+  description: |
+    Bureau Des Elèves
+
+    A compléter.
+
+associatif . asso . BDE . empreinte:
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+    
+associatif . asso . BDE . empreinte . total:
+  description: Cette valeur correspond aux émissions des clubs BDE (hors WEI, Némo et WEN) ainsi que du BDE en lui même
+  formule: 54000
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDE . empreinte . nbre adhérents:
+  formule: 1000
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDE . adhésion:
+  question: A compléter
+  par défaut: 1
+  période: semaine
+
+associatif . asso . BDS:
+  applicable si: adhésion = 1
+  formule: empreinte * adhésion
+  icônes: source/sites/publicodes/images/logo-BDS.png
+  description: |
+    Bureau Des Sports
+
+    A compléter.
+
+associatif . asso . BDS . empreinte:
+  formule:
+    somme:
+      - talon
+      - évènements
+      - textile
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDS . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+  
+associatif . asso . BDS . talon:
+  description: La valeur du talon correspond aux émissions de C02 des activités non sportives de l'AS (achat, entretien de matériel...)
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+  
+associatif . asso . BDS . talon . total:
+  formule: 3250
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDS . talon . nbre adhérents:
+  formule: 350
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+  
+associatif . asso . BDS . empreinte . évènements :
+  applicable si: affirmatif
+  formule: 47
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDS . empreinte . évènements . affirmatif:
+  question: Avez-vous participé à des évènements sportifs hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
+  par défaut: non
+  
+associatif . asso . BDS . empreinte . textile :
+  applicable si: affirmatif
+  formule: 6
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDS . empreinte . textile . affirmatif :
+  question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
+  par défaut: non
+
+associatif . asso . BDA:
+  formule: empreinte * adhésion
+  icônes: source/sites/publicodes/images/logo-BDA.png
+  description: |
+    Bureau Des Arts
+
+    A compléter.
+
+associatif . asso . BDA . empreinte:
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDA . empreinte . total:
+  formule: 8000
+  unité: kgCO2e
+  source: Calucul BC asso 2019
+
+associatif . asso . BDA . empreinte . nbre adhérents:
+  formule: 1000
+  unité: kgCO2e
+  source: Calucul BC asso 2019
+  
+associatif . asso . BDA . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+associatif . asso . REV:
+  formule: empreinte * adhésion
+  icônes: source/sites/publicodes/images/logo-REV.png
+  description: |
+    Récup' Eau Vietnam
+
+    A compléter.
+
+associatif . asso . REV . empreinte:
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . REV . empreinte . total:
+  formule: 60000
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . REV . empreinte . nbre adhérents:
+  formule: 30
+  source: Calcul BC asso 2019
+
+associatif . asso . REV . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+associatif . asso . TMA:
+  formule: empreinte * adhésion
+  icônes: source/sites/publicodes/images/logo-TMA.png
+  description: |
+    Take My Andes.
+    
+    A compléter.
+
+associatif . asso . TMA . empreinte:
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . TMA . empreinte . total:
+  formule: 15500
+  source: Calcul BC asso 2019
+  
+associatif . asso . TMA . empreinte . nbre adhérents:
+  formule: 30
+  source: Calcul BC asso 2019
+
+associatif . asso . TMA . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+associatif . asso . CAB:
+  formule: empreinte * adhésion
+  icônes: source/sites/publicodes/images/logo-CAB.png
+  description: |
+    Culture Au Bénin
+
+    A compléter.
+
+associatif . asso . CAB . empreinte:
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+  
+associatif . asso . CAB . empreinte . total:
+  formule: 12000
+  source: Calcul BC asso 2019
+  
+associatif . asso . CAB . empreinte . nbre adhérents:
+  formule: 30
+  source: Calcul BC asso 2019
+
+associatif . asso . CAB . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+associatif . asso . Kids:
+  formule: empreinte * adhésion
+  icônes: source/sites/publicodes/images/logo-Kids.png
+  description: |
+    Kids Népal
+
+    A compléter.
+
+associatif . asso . Kids . empreinte:
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . Kids . empreinte . total:
+  formule: 47500
+  source: Calcul BC asso 2019
+  
+associatif . asso . Kids . empreinte . nbre adhérents:
+  formule: 30
+  source: Calcul BC asso 2019
+  
+associatif . asso . Kids . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+associatif . asso . Fanfrale:
+  formule: empreinte * adhésion
+  icônes: source/sites/publicodes/images/logo-Fanfrale.png
+  description: |
+    Fanfrale
+
+    A compléter.
+
+associatif . asso . Fanfrale . empreinte:
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . Fanfrale . empreinte . total:
+  formule: 12000
+  source: Calcul BC asso 2019
+  
+associatif . asso . Fanfrale . empreinte . nbre adhérents:
+  formule: 30
+  source: Calcul BC asso 2019
+
+associatif . asso . Fanfrale . adhésion:
+  question: A compléter
+  par défaut: 0
+  période: semaine
+
+
