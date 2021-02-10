@@ -19,11 +19,11 @@ bilan:
 
   formule: 
     somme: 
-      - transport
-      - alimentation
-      - numérique
-      - divers
       - profil
+      - alimentation
+      - transport
+      - numérique
+      - associatif
   références: 
     - http://avenirclimatique.org/les-outils
     - https://www.statistiques.developpement-durable.gouv.fr/chiffres-cles-du-climat-france-europe-et-monde-edition-2020-0
