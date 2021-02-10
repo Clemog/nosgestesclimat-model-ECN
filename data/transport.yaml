@@ -871,11 +871,11 @@ transport . mobilité internationale . train . impact par km:
 
 transport . mobilité internationale . train . km:
   question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
-  description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
+  description: Les suggestions sont basées sur le temps de trajet en train, en prenant pour vitesse moyenne 130 km/h.
   suggestions: 
-    Nantes↔Paris: 700
-    Nantes↔Lyon: 1000
-    Nantes↔Marseille: 1400 
+    Nantes↔Edimbourg: 1440
+    Nantes↔Hambourg: 1615
+    Nantes↔Budapest: 3286
   unité: km
   par défaut: 1000
 
