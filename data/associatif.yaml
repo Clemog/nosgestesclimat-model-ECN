@@ -80,7 +80,18 @@ associatif . asso . BDE:
     A compléter.
 
 associatif . asso . BDE . empreinte:
-  formule: 20
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+    
+associatif . asso . BDE . empreinte . total:
+  description: Cette valeur correspond aux émissions des clubs BDE (hors WEI, Némo et WEN) ainsi que du BDE en lui même
+  formule: 54000
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDE . empreinte . nbre adhérents:
+  formule: 1000
   unité: kgCO2e
   source: Calcul BC asso 2019
 
@@ -101,6 +112,7 @@ associatif . asso . BDS:
 associatif . asso . BDS . empreinte:
   formule:
     somme:
+      - talon
       - évènements
       - textile
   unité: kgCO2e
@@ -110,10 +122,38 @@ associatif . asso . BDS . adhésion:
   question: A compléter
   par défaut: 0
   période: semaine
+  
+associatif . asso . BDS . talon:
+  description: La valeur du talon correspond aux émissions de C02 des activités non sportives de l'AS (achat, entretien de matériel...)
+  formule: total / nbre adhérents
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+  
+associatif . asso . BDS . talon . total:
+  formule: 3250
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . BDS . talon . nbre adhérents:
+  formule: 350
+  unité: kgCO2e
+  source: Calcul BC asso 2019
+  
+#associatif . asso . BDS . empreinte . évènements :
+#   applicable si: affirmatif
+#   formule: 47
+#   unité: kgCO2e
+#   source: Calcul BC asso 2019
 
 associatif . asso . BDS . empreinte . évènements :
   question: Avez-vous participé à des évènements sportifs hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
   par défaut: non
+  
+#associatif . asso . BDS . empreinte . textile :
+#   applicable si: affirmatif
+#   formule: 6
+#   unité: kgCO2e
+#   source: Calcul BC asso 2019
 
 associatif . asso . BDS . empreinte . textile :
   question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
@@ -128,10 +168,20 @@ associatif . asso . BDA:
     A compléter.
 
 associatif . asso . BDA . empreinte:
-  formule: 10
+  formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
 
+associatif . asso . BDA . empreinte . total:
+  formule: 8000
+  unité: kgCO2e
+  source: Calucul BC asso 2019
+
+associatif . asso . BDA . empreinte . nbre adhérents:
+  formule: 1000
+  unité: kgCO2e
+  source: Calucul BC asso 2019
+  
 associatif . asso . BDA . adhésion:
   question: A compléter
   par défaut: 0
@@ -151,12 +201,12 @@ associatif . asso . REV . empreinte:
   source: Calcul BC asso 2019
 
 associatif . asso . REV . empreinte . total:
-  formule: 20000
+  formule: 60000
   unité: kgCO2e
   source: Calcul BC asso 2019
 
 associatif . asso . REV . empreinte . nbre adhérents:
-  formule: 10
+  formule: 30
   source: Calcul BC asso 2019
 
 associatif . asso . REV . adhésion:
@@ -173,8 +223,16 @@ associatif . asso . TMA:
     A compléter.
 
 associatif . asso . TMA . empreinte:
-  formule: 500
+  formule: total / nbre adhérents
   unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . TMA . empreinte . total:
+  formule: 15500
+  source: Calcul BC asso 2019
+  
+associatif . asso . TMA . empreinte . nbre adhérents:
+  formule: 30
   source: Calcul BC asso 2019
 
 associatif . asso . TMA . adhésion:
@@ -191,8 +249,16 @@ associatif . asso . CAB:
     A compléter.
 
 associatif . asso . CAB . empreinte:
-  formule: 400
+  formule: total / nbre adhérents
   unité: kgCO2e
+  source: Calcul BC asso 2019
+  
+associatif . asso . CAB . empreinte . total:
+  formule: 12000
+  source: Calcul BC asso 2019
+  
+associatif . asso . CAB . empreinte . nbre adhérents:
+  formule: 30
   source: Calcul BC asso 2019
 
 associatif . asso . CAB . adhésion:
@@ -209,10 +275,18 @@ associatif . asso . Kids:
     A compléter.
 
 associatif . asso . Kids . empreinte:
-  formule: 1585
+  formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
 
+associatif . asso . Kids . empreinte . total:
+  formule: 47500
+  source: Calcul BC asso 2019
+  
+associatif . asso . Kids . empreinte . nbre adhérents:
+  formule: 30
+  source: Calcul BC asso 2019
+  
 associatif . asso . Kids . adhésion:
   question: A compléter
   par défaut: 0
@@ -227,8 +301,16 @@ associatif . asso . Fanfrale:
     A compléter.
 
 associatif . asso . Fanfrale . empreinte:
-  formule: 30
+  formule: total / nbre adhérents
   unité: kgCO2e
+  source: Calcul BC asso 2019
+
+associatif . asso . Fanfrale . empreinte . total:
+  formule: 12000
+  source: Calcul BC asso 2019
+  
+associatif . asso . Fanfrale . empreinte . nbre adhérents:
+  formule: 30
   source: Calcul BC asso 2019
 
 associatif . asso . Fanfrale . adhésion:
