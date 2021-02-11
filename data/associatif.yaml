@@ -73,7 +73,7 @@ associatif . asso:
   
 associatif . asso . BDE:
   formule: empreinte * adhésion
-  icônes: source/sites/publicodes/images/logo-BDE.png
+  icônes: 'Logo-BDE.png'
   description: |
     Bureau Des Elèves
 
@@ -103,7 +103,7 @@ associatif . asso . BDE . adhésion:
 associatif . asso . BDS:
   applicable si: adhésion = 1
   formule: empreinte * adhésion
-  icônes: source/sites/publicodes/images/logo-BDS.png
+  icônes: 'Logo-BDS.png'
   description: |
     Bureau Des Sports
 
@@ -161,7 +161,7 @@ associatif . asso . BDS . empreinte . textile . affirmatif :
 
 associatif . asso . BDA:
   formule: empreinte * adhésion
-  icônes: source/sites/publicodes/images/logo-BDA.png
+  icônes: 'Logo-BDA.png'
   description: |
     Bureau Des Arts
 
@@ -189,7 +189,7 @@ associatif . asso . BDA . adhésion:
 
 associatif . asso . REV:
   formule: empreinte * adhésion
-  icônes: source/sites/publicodes/images/logo-REV.png
+  icônes: 'Logo-REV.png'
   description: |
     Récup' Eau Vietnam
 
@@ -216,7 +216,7 @@ associatif . asso . REV . adhésion:
 
 associatif . asso . TMA:
   formule: empreinte * adhésion
-  icônes: source/sites/publicodes/images/logo-TMA.png
+  icônes: 'Logo-TMA.png'
   description: |
     Take My Andes.
     
@@ -242,7 +242,7 @@ associatif . asso . TMA . adhésion:
 
 associatif . asso . CAB:
   formule: empreinte * adhésion
-  icônes: source/sites/publicodes/images/logo-CAB.png
+  icônes: 'Logo-CAB.png'
   description: |
     Culture Au Bénin
 
@@ -268,7 +268,7 @@ associatif . asso . CAB . adhésion:
 
 associatif . asso . Kids:
   formule: empreinte * adhésion
-  icônes: source/sites/publicodes/images/logo-Kids.png
+  icônes: 'Logo-Kids.png'
   description: |
     Kids Népal
 
@@ -294,7 +294,7 @@ associatif . asso . Kids . adhésion:
 
 associatif . asso . Fanfrale:
   formule: empreinte * adhésion
-  icônes: source/sites/publicodes/images/logo-Fanfrale.png
+  icônes: 'Logo-Fanfrale.png'
   description: |
     Fanfrale
 
