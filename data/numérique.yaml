@@ -178,7 +178,7 @@ numérique . visio . empreinte par minute:
     audio, audio et vidéo, audio et partage d’écran.
 
 numérique . visio . durée journalière:
-  question: Combien d'heures passez-vous en moyenne en visioconférence par jour dans le cadre scolaire ?
+  question: Combien d'heures passez-vous en moyenne en visioconférence par jour dans le cadre scolaire/professionnel ?
   unité: heure
   par défaut: 2
   suggestions:
