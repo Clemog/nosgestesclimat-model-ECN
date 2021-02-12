@@ -544,7 +544,7 @@ transport . moyens de transport . deux roues . type . vélo électrique:
 
 #------------------------------------------- Déplacement Pro ----------------------------------------------------
 
-transport . déplacements professionels:
+transport . déplacements professionnels:
   description: |
     A compléter
   applicable si: affirmatif
@@ -559,24 +559,24 @@ transport . déplacements professionels:
       - train
       - avion
 
-transport . déplacements professionels . affirmatif:
-  question: Êtes-vous amené à effectuer des déplacements professionels ?
+transport . déplacements professionnels . affirmatif:
+  question: Êtes-vous amené à effectuer des déplacements professionnels ?
   par défaut: non
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
-transport . déplacements professionels . voiture :
+transport . déplacements professionnels . voiture :
   description: |
     A compléter  
   applicable si : affirmatif
   formule: (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
 
-transport . déplacements professionels . voiture . affirmatif:
-  question: Utilisez-vous la voiture pour vos déplacements professionels?
+transport . déplacements professionnels . voiture . affirmatif:
+  question: Utilisez-vous la voiture pour vos déplacements professionnels?
   par défaut: non
 
-transport . déplacements professionels . voiture . voyageurs:
+transport . déplacements professionnels . voiture . voyageurs:
   question: Quel est le nombre moyen de voyageurs dans la voiture ?
   par défaut: 1
   unité: voyageurs
@@ -586,18 +586,18 @@ transport . déplacements professionels . voiture . voyageurs:
     à deux: 2
     à cinq: 5
 
-transport . déplacements professionels . voiture . km:
+transport . déplacements professionnels . voiture . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année.
-  question: Combien de kilomètres parcourez-vous en voiture par an pour vos déplacements professionels ?
+  question: Combien de kilomètres parcourez-vous en voiture par an pour vos déplacements professionnels ?
   unité: km
   par défaut: 100
 
-transport . déplacements professionels . voiture . impact usage:
+transport . déplacements professionnels . voiture . impact usage:
   formule: km * empreinte au kilomètre
   unité: kgCO2e
 
-transport . déplacements professionels . voiture . empreinte au kilomètre: 
+transport . déplacements professionnels . voiture . empreinte au kilomètre: 
   description: |
     La valeur de l'empreinte au kilomètre pour les véhicules de l'école a été calculé en considérant une consomation moyenne de 7L au 100. 
   formule: 
@@ -610,7 +610,7 @@ transport . déplacements professionels . voiture . empreinte au kilomètre:
         alors: 0.203
   note: FE école calculé à partir des données du parc automobile de l'école
 
-transport . déplacements professionels . voiture . type: 
+transport . déplacements professionnels . voiture . type: 
   question: Utilisez-vous votre voiture personnelle, une voiture de location ou bien une voiture de l'école ?
   description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
   par défaut: personnelle
@@ -622,11 +622,11 @@ transport . déplacements professionels . voiture . type:
         - location
         - école
 
-transport . déplacements professionels . voiture . type . personnelle:
-transport . déplacements professionels . voiture . type . location:
-transport . déplacements professionels . voiture . type . école:
+transport . déplacements professionnels . voiture . type . personnelle:
+transport . déplacements professionnels . voiture . type . location:
+transport . déplacements professionnels . voiture . type . école:
 
-transport . déplacements professionels . voiture . construction amortie:
+transport . déplacements professionnels . voiture . construction amortie:
   formule: 
     variations: 
       - si: type = 'personnelle'
@@ -638,13 +638,13 @@ transport . déplacements professionels . voiture . construction amortie:
   unité: kgCO2e
   note: Attention division par 0.
 
-transport . déplacements professionels . voiture . construction école:
+transport . déplacements professionnels . voiture . construction école:
   formule: 7000
   description: |
     Le parc auto de l'école ne comporte que des voitures thermiques.
   unité: kgCO2e
 
-transport . déplacements professionels . voiture . amortissement particulier école:
+transport . déplacements professionnels . voiture . amortissement particulier école:
   formule: 5%
   description: |
     LEs voitures ont en moyenne 7,85 ans. Cela correspond à 40% selon la grille prédéfinie par ecolab (cf amortissement particulier)
@@ -652,23 +652,23 @@ transport . déplacements professionels . voiture . amortissement particulier é
 
 #----------------------------------------------- Train -----------------------------------------------------
 
-transport . déplacements professionels . train:
+transport . déplacements professionnels . train:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
   applicable si: affirmatif
   formule: km * impact par km
 
-transport . déplacements professionels . train . affirmatif:
-  question: Utilisez-vous le train pour vos déplacements professionels?
+transport . déplacements professionnels . train . affirmatif:
+  question: Utilisez-vous le train pour vos déplacements professionnels?
   par défaut: non
 
-transport . déplacements professionels . train . impact par km:
+transport . déplacements professionnels . train . impact par km:
   formule: 0.0053
   unité: kgCO2e/km
   note : FE Train grandes lignes - 2019
 
-transport . déplacements professionels . train . km:
-  question: Combien de kilomètres parcourez-vous en train par an pour vos déplacements professionels ?
+transport . déplacements professionnels . train . km:
+  question: Combien de kilomètres parcourez-vous en train par an pour vos déplacements professionnels ?
   description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
   suggestions: 
     Nantes↔Paris: 700
@@ -679,7 +679,7 @@ transport . déplacements professionels . train . km:
 
 #----------------------------------------------- Avion -----------------------------------------------------
 
-transport . déplacements professionels . avion:
+transport . déplacements professionnels . avion:
   applicable si: usager
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/6/6f/Avion_Eurowings%2C_a%C3%A9roport_de_Vienne_%28Autriche%29_ao%C3%BBt_2019.jpg)
@@ -710,25 +710,25 @@ transport . déplacements professionels . avion:
       - long courrier
 
 
-transport . déplacements professionels . avion . usager:
+transport . déplacements professionnels . avion . usager:
   question: Prenez-vous l'avion pour vos déplacements professionnels ?
   par défaut: non
 
-transport . déplacements professionels . avion . court courrier:
+transport . déplacements professionnels . avion . court courrier:
   formule:  heures de vol * vitesse moyenne * empreinte par km
-transport . déplacements professionels . avion . court courrier . vitesse moyenne:
+transport . déplacements professionnels . avion . court courrier . vitesse moyenne:
   formule: 600 / 1.3
   unité: km/h
   note: |
     Nous utilisons la vitesse moyenne de vol pour un Paris Toulouse.
-transport . déplacements professionels . avion . court courrier . empreinte par km:
+transport . déplacements professionnels . avion . court courrier . empreinte par km:
   formule: 0.230
   note: |
     Nous utilisons le facteur d'émission de la tranche de distance < 1000 km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
   unité: kgCO2e/km
 
-transport . déplacements professionels . avion . court courrier . heures de vol:
-  question: Combien d'heures par an voyagez-vous en avion en France métropolitaine pour vos déplacements professionels?
+transport . déplacements professionnels . avion . court courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous en avion en France métropolitaine pour vos déplacements professionnels?
   description: |
     Comptez les heures que vous avez passé dans un avion pour des vols d'une distance inférieure à 1000km (à peu près). Si vous faites des escales, additionnez simplement les durées de chaque vol.
     Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
@@ -740,21 +740,21 @@ transport . déplacements professionels . avion . court courrier . heures de vol
   unité: heures
   par défaut: 0
 
-transport . déplacements professionels . avion . moyen courrier:
+transport . déplacements professionnels . avion . moyen courrier:
   formule:  heures de vol * vitesse moyenne * empreinte par km
-transport . déplacements professionels . avion . moyen courrier . vitesse moyenne:
+transport . déplacements professionnels . avion . moyen courrier . vitesse moyenne:
   formule: 1350 / 2.5
   unité: km/h
   note: |
     Nous utilisons la vitesse moyenne de vol pour un Paris Alger.
-transport . déplacements professionels . avion . moyen courrier . empreinte par km:
+transport . déplacements professionnels . avion . moyen courrier . empreinte par km:
   formule: (0.186 + 0.178) / 2
   note: |
     Nous utilisons la moyenne des facteurs d'émissions des tranches de distance 1000-2000km et 2000-3500km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
   unité: kgCO2e/km
 
-transport . déplacements professionels . avion . moyen courrier . heures de vol:
-  question: Combien d'heures par an voyagez-vous en avion vers l'Europe pour vos déplacements professionels ?
+transport . déplacements professionnels . avion . moyen courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous en avion vers l'Europe pour vos déplacements professionnels ?
   description: |
     Comptez les heures que vous avez passé dans un avion pour des vols d'une distance entre 1000km et 3500km (à peu près). Si vous faites des escales, additionnez simplement les durées de chaque vol.
     Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
@@ -766,21 +766,21 @@ transport . déplacements professionels . avion . moyen courrier . heures de vol
   unité: heures
   par défaut: 0
 
-transport . déplacements professionels . avion . long courrier:
+transport . déplacements professionnels . avion . long courrier:
   formule: heures de vol * vitesse moyenne * empreinte par km
-transport . déplacements professionels . avion . long courrier . vitesse moyenne:
+transport . déplacements professionnels . avion . long courrier . vitesse moyenne:
   formule: 5800 / 8.5
   unité: km/h
   note: |
     Nous utilisons la vitesse moyenne de vol du modèle MicMac v2.6, déterminée selon [ces données](http://www.abm.fr/voyager-en-avion-le-guide-du-passager/en-complement/distances-et-durees-de-vol.html).
-transport . déplacements professionels . avion . long courrier . empreinte par km:
+transport . déplacements professionnels . avion . long courrier . empreinte par km:
   formule: 0.151
   note: |
     Nous utilisons le facteur d'émissions de la tranche > 3500km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
   unité: kgCO2e/km
 
-transport . déplacements professionels . avion . long courrier . heures de vol:
-  question: Combien d'heures par an voyagez-vous au-delà en vol long courrier  pour vos déplacements professionels?
+transport . déplacements professionnels . avion . long courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous au-delà en vol long courrier  pour vos déplacements professionnels?
   description: |
     Comptez les heures que vous avez passé dans un avion pour des vols d'une distance supérieure à 3500km, c'est-à-dire au-delà de l'Europe et du pourtour méditerranéen. 
     Si vous faites des escales, additionnez simplement les durées de chaque vol.
