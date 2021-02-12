@@ -590,8 +590,13 @@ transport . déplacements professionnels . voiture . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année.
   question: Combien de kilomètres parcourez-vous en voiture par an pour vos déplacements professionnels ?
-  unité: km
-  par défaut: 100
+  suggestions: 
+    zéro: 0
+    traverser la France: 2000
+    10km/jour: 3500
+    20km/jour: 7000
+  unité: km/an
+  par défaut: 3500
 
 transport . déplacements professionnels . voiture . impact usage:
   formule: km * empreinte au kilomètre
@@ -900,8 +905,12 @@ transport . france . voiture . km:
   description: |
     C'est la distance parcourue pour vous rendre depuis votre domicile jusqu'au lieu de votre mobilité (aller seulement)
   question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet (aller seulement)?
+  suggestions: 
+    Nantes↔Paris: 380
+    Nantes↔Lille: 600
+    Nantes↔Marseille: 1000
   unité: km
-  par défaut: 100
+  par défaut: 500
 
 transport . mobilité france . voiture . impact usage:
   formule: 2 * km * empreinte au kilomètre
@@ -1109,9 +1118,13 @@ transport . mobilité internationale . voiture . voyageurs:
 transport . mobilité internationale . voiture . km:
   description: |
     C'est la distance parcourue pour vous rendre depuis votre domicile jusqu'au lieu de votre mobilité (aller seulement)
-  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet (aller seulement)?
+  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet (aller seulement) ?
+  suggestions: 
+    Nantes↔Madrid: 1030
+    Nantes↔Berlin: 1500
+    Nantes↔Londres: 600
   unité: km
-  par défaut: 100
+  par défaut: 1000
 
 transport . mobilité internationale . voiture . impact usage:
   formule: 2 * km * empreinte au kilomètre
