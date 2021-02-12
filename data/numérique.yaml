@@ -162,7 +162,7 @@ numérique . visio:
   unité: kgCO2e
 
 numérique . visio . affirmatif:
-  question: Utilisez-vous la visioconférence ?
+  question: Utilisez-vous la visioconférence (réunion à distance, TP, cours, devoirs, colloque) ?
   par défaut: oui
 
 numérique . visio . empreinte horaire:
