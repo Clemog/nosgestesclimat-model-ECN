@@ -2,11 +2,11 @@ transport . arrêter l'avion:
   icônes: 🛬🧳
   applicable si: 
     une de ces conditions:
-      - transport . déplacements professionels . avion . usager
+      - transport . déplacements professionnels . avion . usager
       - transport . mobilité internationale . moyen = 'avion'
   formule:
     somme:
-      - transport . déplacements professionels . avion
+      - transport . déplacements professionnels . avion
       - transport . mobilité internationale . avion
   description: |
     L'avion a une empreinte importante sur le climat. 
@@ -69,8 +69,8 @@ transport . remplacer avion par train mobilité . impact train mobilité :
 transport . remplacer avion par train pro : 
   titre: Privilégier le train au lieu de l'avion pour vos déplacements courts
   icônes: 🛬🚆
-  applicable si: transport . déplacements professionels . avion . court courrier . heures de vol != 0
-  formule: transport . déplacements professionels . avion . court courrier - impact train pro
+  applicable si: transport . déplacements professionnels . avion . court courrier . heures de vol != 0
+  formule: transport . déplacements professionnels . avion . court courrier - impact train pro
   # Mettre histogramme GES qui compare les trajets train vs avion.
   description: |
 
@@ -89,10 +89,10 @@ transport . remplacer avion par train pro :
    #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
 
 transport . remplacer avion par train pro . km pro:
-  formule: transport . déplacements professionels . avion . court courrier . heures de vol * transport . déplacements professionels . avion . court courrier . vitesse moyenne
+  formule: transport . déplacements professionnels . avion . court courrier . heures de vol * transport . déplacements professionnels . avion . court courrier . vitesse moyenne
 
 transport . remplacer avion par train pro . impact train pro :
-  formule: km pro * transport . déplacements professionels . train . impact par km
+  formule: km pro * transport . déplacements professionnels . train . impact par km
 
 transport . éco-conduite: 
   titre: Adopter une éco-conduite
@@ -101,7 +101,7 @@ transport . éco-conduite:
   formule:
     somme:
       - transport . moyens de transport . voiture . impact usage * 20%
-      - transport . déplacements professionels . voiture . impact usage * 20%
+      - transport . déplacements professionnels . voiture . impact usage * 20%
       - transport . mobilité internationale . voiture . impact usage * 20%
   description: |
     L’éco-conduite est une action simple et efficace qui se tient à la portée de tous.  Elle permet notamment d'économiser en moyenne 15 % de carburant, 

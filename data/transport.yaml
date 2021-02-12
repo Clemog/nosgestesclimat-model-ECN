@@ -10,7 +10,7 @@ transport:
   formule:
     somme: 
       - domicile-travail
-      - déplacements professionels
+      - déplacements professionnels
       - mobilité france
       - mobilité internationale
 
@@ -522,7 +522,7 @@ transport . moyens de transport . deux roues . type . vélo électrique:
 
 #------------------------------------------- Déplacement Pro ----------------------------------------------------
 
-transport . déplacements professionels:
+transport . déplacements professionnels:
   description: |
     A compléter
   applicable si: affirmatif
@@ -537,24 +537,24 @@ transport . déplacements professionels:
       - train
       - avion
 
-transport . déplacements professionels . affirmatif:
-  question: Êtes-vous amené à effectuer des déplacements professionels ?
+transport . déplacements professionnels . affirmatif:
+  question: Êtes-vous amené à effectuer des déplacements professionnels ?
   par défaut: non
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
-transport . déplacements professionels . voiture :
+transport . déplacements professionnels . voiture :
   description: |
     A compléter  
   applicable si : affirmatif
   formule: (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
 
-transport . déplacements professionels . voiture . affirmatif:
-  question: Utilisez-vous la voiture pour vos déplacements professionels?
+transport . déplacements professionnels . voiture . affirmatif:
+  question: Utilisez-vous la voiture pour vos déplacements professionnels?
   par défaut: non
 
-transport . déplacements professionels . voiture . voyageurs:
+transport . déplacements professionnels . voiture . voyageurs:
   question: Quel est le nombre moyen de voyageurs dans la voiture ?
   par défaut: 1
   unité: voyageurs
@@ -564,18 +564,23 @@ transport . déplacements professionels . voiture . voyageurs:
     à deux: 2
     à cinq: 5
 
-transport . déplacements professionels . voiture . km:
+transport . déplacements professionnels . voiture . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année.
-  question: Combien de kilomètres parcourez-vous en voiture par an pour vos déplacements professionels ?
-  unité: km
-  par défaut: 100
+  question: Combien de kilomètres parcourez-vous en voiture par an pour vos déplacements professionnels ?
+  suggestions: 
+    zéro: 0
+    traverser la France: 2000
+    10km/jour: 3500
+    20km/jour: 7000
+  unité: km/an
+  par défaut: 3500
 
-transport . déplacements professionels . voiture . impact usage:
+transport . déplacements professionnels . voiture . impact usage:
   formule: km * empreinte au kilomètre
   unité: kgCO2e
 
-transport . déplacements professionels . voiture . empreinte au kilomètre: 
+transport . déplacements professionnels . voiture . empreinte au kilomètre: 
   description: |
     La valeur de l'empreinte au kilomètre pour les véhicules de l'école a été calculé en considérant une consomation moyenne de 7L au 100. 
   formule: 
@@ -588,7 +593,7 @@ transport . déplacements professionels . voiture . empreinte au kilomètre:
         alors: 0.203
   note: FE école calculé à partir des données du parc automobile de l'école
 
-transport . déplacements professionels . voiture . type: 
+transport . déplacements professionnels . voiture . type: 
   question: Utilisez-vous votre voiture personnelle, une voiture de location ou bien une voiture de l'école ?
   description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
   par défaut: personnelle
@@ -600,11 +605,11 @@ transport . déplacements professionels . voiture . type:
         - location
         - école
 
-transport . déplacements professionels . voiture . type . personnelle:
-transport . déplacements professionels . voiture . type . location:
-transport . déplacements professionels . voiture . type . école:
+transport . déplacements professionnels . voiture . type . personnelle:
+transport . déplacements professionnels . voiture . type . location:
+transport . déplacements professionnels . voiture . type . école:
 
-transport . déplacements professionels . voiture . construction amortie:
+transport . déplacements professionnels . voiture . construction amortie:
   formule: 
     variations: 
       - si: type = 'personnelle'
@@ -616,13 +621,13 @@ transport . déplacements professionels . voiture . construction amortie:
   unité: kgCO2e
   note: Attention division par 0.
 
-transport . déplacements professionels . voiture . construction école:
+transport . déplacements professionnels . voiture . construction école:
   formule: 7000
   description: |
     Le parc auto de l'école ne comporte que des voitures thermiques.
   unité: kgCO2e
 
-transport . déplacements professionels . voiture . amortissement particulier école:
+transport . déplacements professionnels . voiture . amortissement particulier école:
   formule: 5%
   description: |
     LEs voitures ont en moyenne 7,85 ans. Cela correspond à 40% selon la grille prédéfinie par ecolab (cf amortissement particulier)
@@ -630,34 +635,34 @@ transport . déplacements professionels . voiture . amortissement particulier é
 
 #----------------------------------------------- Train -----------------------------------------------------
 
-transport . déplacements professionels . train:
+transport . déplacements professionnels . train:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
   applicable si: affirmatif
   formule: km * impact par km
 
-transport . déplacements professionels . train . affirmatif:
-  question: Utilisez-vous le train pour vos déplacements professionels?
+transport . déplacements professionnels . train . affirmatif:
+  question: Utilisez-vous le train pour vos déplacements professionnels?
   par défaut: non
 
-transport . déplacements professionels . train . impact par km:
+transport . déplacements professionnels . train . impact par km:
   formule: 0.0053
   unité: kgCO2e/km
   note : FE Train grandes lignes - 2019
 
-transport . déplacements professionels . train . km:
-  question: Combien de kilomètres parcourez-vous en train par an pour vos déplacements professionels ?
+transport . déplacements professionnels . train . km:
+  question: Combien de kilomètres parcourez-vous en train par an pour vos déplacements professionnels ?
   description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
   suggestions: 
-    Nantes↔Paris: 700
-    Nantes↔Lyon: 1000
-    Nantes↔Marseille: 1400 
+    Nantes🔁Paris(A/R): 700
+    Nantes🔁Lyon(A/R): 1000
+    Nantes🔁Marseille(A/R): 1400 
   unité: km/an
   par défaut: 1000
 
 #----------------------------------------------- Avion -----------------------------------------------------
 
-transport . déplacements professionels . avion:
+transport . déplacements professionnels . avion:
   applicable si: usager
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/6/6f/Avion_Eurowings%2C_a%C3%A9roport_de_Vienne_%28Autriche%29_ao%C3%BBt_2019.jpg)
@@ -688,25 +693,25 @@ transport . déplacements professionels . avion:
       - long courrier
 
 
-transport . déplacements professionels . avion . usager:
+transport . déplacements professionnels . avion . usager:
   question: Prenez-vous l'avion pour vos déplacements professionnels ?
   par défaut: non
 
-transport . déplacements professionels . avion . court courrier:
+transport . déplacements professionnels . avion . court courrier:
   formule:  heures de vol * vitesse moyenne * empreinte par km
-transport . déplacements professionels . avion . court courrier . vitesse moyenne:
+transport . déplacements professionnels . avion . court courrier . vitesse moyenne:
   formule: 600 / 1.3
   unité: km/h
   note: |
     Nous utilisons la vitesse moyenne de vol pour un Paris Toulouse.
-transport . déplacements professionels . avion . court courrier . empreinte par km:
+transport . déplacements professionnels . avion . court courrier . empreinte par km:
   formule: 0.230
   note: |
     Nous utilisons le facteur d'émission de la tranche de distance < 1000 km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
   unité: kgCO2e/km
 
-transport . déplacements professionels . avion . court courrier . heures de vol:
-  question: Combien d'heures par an voyagez-vous en avion en France métropolitaine pour vos déplacements professionels?
+transport . déplacements professionnels . avion . court courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous en avion en France métropolitaine pour vos déplacements professionnels?
   description: |
     Comptez les heures que vous avez passé dans un avion pour des vols d'une distance inférieure à 1000km (à peu près). Si vous faites des escales, additionnez simplement les durées de chaque vol.
     Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
@@ -718,21 +723,21 @@ transport . déplacements professionels . avion . court courrier . heures de vol
   unité: heures
   par défaut: 0
 
-transport . déplacements professionels . avion . moyen courrier:
+transport . déplacements professionnels . avion . moyen courrier:
   formule:  heures de vol * vitesse moyenne * empreinte par km
-transport . déplacements professionels . avion . moyen courrier . vitesse moyenne:
+transport . déplacements professionnels . avion . moyen courrier . vitesse moyenne:
   formule: 1350 / 2.5
   unité: km/h
   note: |
     Nous utilisons la vitesse moyenne de vol pour un Paris Alger.
-transport . déplacements professionels . avion . moyen courrier . empreinte par km:
+transport . déplacements professionnels . avion . moyen courrier . empreinte par km:
   formule: (0.186 + 0.178) / 2
   note: |
     Nous utilisons la moyenne des facteurs d'émissions des tranches de distance 1000-2000km et 2000-3500km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
   unité: kgCO2e/km
 
-transport . déplacements professionels . avion . moyen courrier . heures de vol:
-  question: Combien d'heures par an voyagez-vous en avion vers l'Europe pour vos déplacements professionels ?
+transport . déplacements professionnels . avion . moyen courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous en avion vers l'Europe pour vos déplacements professionnels ?
   description: |
     Comptez les heures que vous avez passé dans un avion pour des vols d'une distance entre 1000km et 3500km (à peu près). Si vous faites des escales, additionnez simplement les durées de chaque vol.
     Les suggestions sont basées sur la durée minimum arrondie de vol constatée dans les moteurs de recherche, doublée pour considérer un aller-retour.
@@ -744,21 +749,21 @@ transport . déplacements professionels . avion . moyen courrier . heures de vol
   unité: heures
   par défaut: 0
 
-transport . déplacements professionels . avion . long courrier:
+transport . déplacements professionnels . avion . long courrier:
   formule: heures de vol * vitesse moyenne * empreinte par km
-transport . déplacements professionels . avion . long courrier . vitesse moyenne:
+transport . déplacements professionnels . avion . long courrier . vitesse moyenne:
   formule: 5800 / 8.5
   unité: km/h
   note: |
     Nous utilisons la vitesse moyenne de vol du modèle MicMac v2.6, déterminée selon [ces données](http://www.abm.fr/voyager-en-avion-le-guide-du-passager/en-complement/distances-et-durees-de-vol.html).
-transport . déplacements professionels . avion . long courrier . empreinte par km:
+transport . déplacements professionnels . avion . long courrier . empreinte par km:
   formule: 0.151
   note: |
     Nous utilisons le facteur d'émissions de la tranche > 3500km (aller) de [ecolab-transport](https://github.com/betagouv/ecolab-transport/blob/master/ges-transport.yaml#L13).
   unité: kgCO2e/km
 
-transport . déplacements professionels . avion . long courrier . heures de vol:
-  question: Combien d'heures par an voyagez-vous au-delà en vol long courrier  pour vos déplacements professionels?
+transport . déplacements professionnels . avion . long courrier . heures de vol:
+  question: Combien d'heures par an voyagez-vous au-delà en vol long courrier  pour vos déplacements professionnels?
   description: |
     Comptez les heures que vous avez passé dans un avion pour des vols d'une distance supérieure à 3500km, c'est-à-dire au-delà de l'Europe et du pourtour méditerranéen. 
     Si vous faites des escales, additionnez simplement les durées de chaque vol.
@@ -797,8 +802,8 @@ transport . mobilité france . affirmatif:
   description: |
     La mobilité correspond ici à l'éventuelle mobilité effectuée en France lors de l'année scolaire en cours. 
     Qu'elle ait lieu dans le cadre d'un stage ou de la césure, la mobilité est prise en compte ici.
-  question: Avez-vous effectué ou allez-vous effectuer une mobilité france (hors de votre ville de résidence) durant cette année scolaire dans le cadre de vos études ? (hors associatif)
-  par défaut: oui
+  question: Avez-vous effectué ou allez-vous effectuer une mobilité en France (hors de votre ville de résidence) durant cette année scolaire dans le cadre de vos études ? (hors associatif)
+  par défaut: non
 
 transport . mobilité france . moyen:
   question: Quel moyen de transport avez-vous utilisé ou allez-vous utiliser pour votre mobilité ?
@@ -851,9 +856,13 @@ transport . mobilité france . voiture . voyageurs:
 transport . mobilité france . voiture . km:
   description: |
     C'est la distance parcourue pour vous rendre depuis votre domicile jusqu'au lieu de votre mobilité (aller seulement)
-  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet (aller seulement)?
+  question: Combien de kilomètres avez-vous parcouru ou allez-vous parcourir pour effectuer ce trajet (aller seulement)?
   unité: km
-  par défaut: 100
+  suggestions: 
+    Nantes🔁Paris(A/R): 380
+    Nantes🔁Lille(A/R): 600
+    Nantes🔁Marseille(A/R): 1000
+  par défaut: 500
 
 transport . mobilité france . voiture . impact usage:
   formule: 2 * km * empreinte au kilomètre
@@ -882,12 +891,12 @@ transport . mobilité france . train . impact par km:
   unité: kgCO2e/km
 
 transport . mobilité france . train . km:
-  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  question: Combien de kilomètres avez-vous parcouru ou allez-vous parcourir pour effectuer ce trajet ?
   description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
   suggestions: 
-    Nantes↔Paris: 700
-    Nantes↔Lyon: 1000
-    Nantes↔Marseille: 1400 
+    Nantes🔁Paris(A/R): 700
+    Nantes🔁Lyon(A/R): 1000
+    Nantes🔁Marseille(A/R): 1400 
   unité: km
   par défaut: 1000
 
@@ -932,7 +941,7 @@ transport . mobilité france . avion . empreinte par km:
   unité: kgCO2e/km
 
 transport . mobilité france . avion . heures de vol:
-  question: Combien d'heures avez-vous passé dans l'avion pour rejoindre votre lieu de mobilité (aller-retour)?
+  question: Combien d'heures avez-vous passé ou allez-vous passer dans l'avion pour rejoindre votre lieu de mobilité (aller-retour)?
   description: 
   suggestions:
     Nantes🔁Paris(A/R): 2.5
@@ -955,12 +964,12 @@ transport . mobilité france . bus . impact par km:
   unité: kgCO2e/km
 
 transport . mobilité france . bus . km:
-  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  question: Combien de kilomètres avez-vous parcouru ou allez-vous parcourir pour effectuer ce trajet ?
   description: Les suggestions sont basées sur la distance par la route, doublée pour considérer un aller-retour.
   suggestions: 
-    Nantes↔Marseille: 2000
-    Nantes↔Lille: 1200
-    Nantes↔Toulouse: 1150
+    Nantes🔁Marseille(A/R): 2000
+    Nantes🔁Lille(A/R): 1200
+    Nantes🔁Toulouse(A/R): 1150
   unité: km
   par défaut: 1000
 
@@ -1044,9 +1053,13 @@ transport . mobilité internationale . voiture . voyageurs:
 transport . mobilité internationale . voiture . km:
   description: |
     C'est la distance parcourue pour vous rendre depuis votre domicile jusqu'au lieu de votre mobilité (aller seulement)
-  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet (aller seulement)?
+  question: Combien de kilomètres avez-vous parcouru ou allez-vous parcourir pour effectuer ce trajet (aller seulement)?
   unité: km
-  par défaut: 100
+  suggestions: 
+    Nantes🔁Madrid(A/R): 1030
+    Nantes🔁Berlin(A/R): 1500
+    Nantes🔁Londres(A/R): 600
+  par défaut: 1000
 
 transport . mobilité internationale . voiture . impact usage:
   formule: 2 * km * empreinte au kilomètre
@@ -1076,12 +1089,12 @@ transport . mobilité internationale . train . impact par km:
   unité: kgCO2e/km
 
 transport . mobilité internationale . train . km:
-  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  question: Combien de kilomètres avez-vous parcouru ou allez-vous parcourir pour effectuer ce trajet ?
   description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
   suggestions: 
-    Nantes↔Edimbourg: 1500
-    Nantes↔Hambourg: 1600
-    Nantes↔Budapest: 3300
+    Nantes🔁Edimbourg(A/R): 1500
+    Nantes🔁Hambourg(A/R): 1600
+    Nantes🔁Budapest(A/R): 3300
   unité: km
   par défaut: 1000
 
@@ -1126,7 +1139,7 @@ transport . mobilité internationale . avion . empreinte par km:
   unité: kgCO2e/km
 
 transport . mobilité internationale . avion . heures de vol:
-  question: Combien d'heures avez-vous passé dans l'avion pour rejoindre votre lieu de mobilité (aller-retour)?
+  question: Combien d'heures avez-vous passé ou allez-vous passer dans l'avion pour rejoindre votre lieu de mobilité (aller-retour)?
   description: 
   suggestions:
     Paris🔁New York(A/R): 17
@@ -1149,11 +1162,11 @@ transport . mobilité internationale . bus . impact par km:
   unité: kgCO2e/km
 
 transport . mobilité internationale . bus . km:
-  question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
+  question: Combien de kilomètres avez-vous parcouru ou allez-vous parcourir en bus pour effectuer ce trajet ?
   description: Les suggestions sont basées sur la distance par la route, doublée pour considérer un aller-retour.
   suggestions: 
-    Nantes↔Madrid: 2060
-    Nantes↔Copenhague: 3200
-    Nantes↔Milan: 2240
+    Nantes🔁Madrid(A/R): 2060
+    Nantes🔁Copenhague(A/R): 3200
+    Nantes🔁Milan(A/R): 2240
   unité: km
   par défaut: 1000
