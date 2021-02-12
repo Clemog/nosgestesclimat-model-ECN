@@ -797,7 +797,7 @@ transport . mobilité france . affirmatif:
   description: |
     La mobilité correspond ici à l'éventuelle mobilité effectuée en France lors de l'année scolaire en cours. 
     Qu'elle ait lieu dans le cadre d'un stage ou de la césure, la mobilité est prise en compte ici.
-  question: Avez-vous effectué ou allez-vous effectuer une mobilité france (hors de votre ville de résidence) durant cette année scolaire dans le cadre de vos études ?
+  question: Avez-vous effectué ou allez-vous effectuer une mobilité france (hors de votre ville de résidence) durant cette année scolaire dans le cadre de vos études ? (hors associatif)
   par défaut: oui
 
 transport . mobilité france . moyen:
@@ -878,7 +878,7 @@ transport . mobilité france . train:
 
 
 transport . mobilité france . train . impact par km:
-  formule: 0.0055
+  formule: 0.0053
   unité: kgCO2e/km
 
 transport . mobilité france . train . km:
@@ -990,7 +990,7 @@ transport . mobilité internationale . affirmatif:
   description: |
     La mobilité internationale correspond ici à l'éventuelle mobilité effectuée lors de l'année scolaire en cours. 
     Qu'elle ait lieu dans le cadre d'un stage ou de la césure, la mobilité est prise en compte ici.
-  question: Avez-vous effectué ou allez-vous effectuer une mobilité internationale durant cette année scolaire dans le cadre de vos études ?
+  question: Avez-vous effectué ou allez-vous effectuer une mobilité internationale durant cette année scolaire dans le cadre de vos études ? (hors associatif)
   par défaut: oui
 
 transport . mobilité internationale . moyen:
@@ -1071,16 +1071,17 @@ transport . mobilité internationale . train:
 
 
 transport . mobilité internationale . train . impact par km:
-  formule: 0.0053
+  description: En ce qui concerne le facteur d'émission, nous avons choisi de prendre la moyenne des facteurs d'émission de train en Europe.
+  formule: 0.0055
   unité: kgCO2e/km
 
 transport . mobilité internationale . train . km:
   question: Combien de kilomètres avez-vous parcouru pour effectuer ce trajet ?
   description: Les suggestions sont basées sur la distance à vol d'oiseau doublée pour considérer un aller-retour.
   suggestions: 
-    Nantes↔Paris: 700
-    Nantes↔Lyon: 1000
-    Nantes↔Marseille: 1400 
+    Nantes↔Edimbourg: 1500
+    Nantes↔Hambourg: 1600
+    Nantes↔Budapest: 3300
   unité: km
   par défaut: 1000
 
