@@ -63,12 +63,12 @@ associatif . asso:
   formule:
     somme:
       - BDE
-      - BDS
+      - BDS et AS
       - BDA
       - REV
       - TMA
       - CAB
-      - Kids
+      - Kids Népal
       - Fanfrale
   
 associatif . asso . BDE:
@@ -108,7 +108,7 @@ associatif . asso . BDS:
 
     A compléter.
 
-associatif . asso . BDS . empreinte:
+associatif . asso . BDS et AS . empreinte:
   formule:
     somme:
       - talon
@@ -117,44 +117,44 @@ associatif . asso . BDS . empreinte:
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . BDS . adhésion:
+associatif . asso . BDS et AS . adhésion:
   question: A compléter
   par défaut: 0
   période: semaine
   
-associatif . asso . BDS . talon:
+associatif . asso . BDS et AS . talon:
   description: La valeur du talon correspond aux émissions de C02 des activités non sportives de l'AS (achat, entretien de matériel...)
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
   
-associatif . asso . BDS . talon . total:
+associatif . asso . BDS et AS . talon . total:
   formule: 3250
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . BDS . talon . nbre adhérents:
+associatif . asso . BDS et AS . talon . nbre adhérents:
   formule: 350
   unité: kgCO2e
   source: Calcul BC asso 2019
   
-associatif . asso . BDS . empreinte . évènements :
+associatif . asso . BDS et AS . empreinte . évènements :
   applicable si: affirmatif
   formule: 47
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . BDS . empreinte . évènements . affirmatif:
+associatif . asso . BDS et AS . empreinte . évènements . affirmatif:
   question: Avez-vous participé à des évènements sportifs hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
   par défaut: non
   
-associatif . asso . BDS . empreinte . textile :
+associatif . asso . BDS et AS . empreinte . textile :
   applicable si: affirmatif
   formule: 6
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . BDS . empreinte . textile . affirmatif :
+associatif . asso . BDS et AS . empreinte . textile . affirmatif :
   question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
   par défaut: non
 
@@ -265,7 +265,7 @@ associatif . asso . CAB . adhésion:
   par défaut: 0
   période: semaine
 
-associatif . asso . Kids:
+associatif . asso . Kids Népal:
   formule: empreinte * adhésion
   icônes: source/sites/publicodes/images/logo-Kids.png
   description: |
@@ -273,20 +273,20 @@ associatif . asso . Kids:
 
     A compléter.
 
-associatif . asso . Kids . empreinte:
+associatif . asso . Kids Népal . empreinte:
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . Kids . empreinte . total:
+associatif . asso . Kids Népal . empreinte . total:
   formule: 47500
   source: Calcul BC asso 2019
   
-associatif . asso . Kids . empreinte . nbre adhérents:
+associatif . asso . Kids Népal . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
   
-associatif . asso . Kids . adhésion:
+associatif . asso . Kids Népal . adhésion:
   question: A compléter
   par défaut: 0
   période: semaine
