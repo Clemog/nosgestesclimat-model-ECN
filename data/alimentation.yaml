@@ -153,7 +153,7 @@ alimentation . plats . végétarien . nombre:
   #  période: semaine
   
 alimentation . plats . viande 1:
-  titre: Viande 1
+  titre: Viande Blanche
   icônes: 🍗🥓🧀
   description: |
     Repas contenant une pièce de poulet, porc, ou fromage.
@@ -185,7 +185,7 @@ alimentation . plats . viande 1 . nombre:
   période: semaine
 
 alimentation . plats . viande 2:
-  titre: viande 2
+  titre: Viande Rouge
   icônes: 🥩🍖
   description: |
     Repas contenant une pièce de boeuf, veau, ou agneau. 
