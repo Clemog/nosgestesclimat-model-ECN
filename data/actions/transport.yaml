@@ -4,10 +4,12 @@ transport . arrêter l'avion:
     une de ces conditions:
       - transport . déplacements professionnels . avion . usager
       - transport . mobilité internationale . moyen = 'avion'
+      - transport . mobilité france . moyen = 'avion'
   formule:
     somme:
       - transport . déplacements professionnels . avion
       - transport . mobilité internationale . avion
+      - transport . mobilité france . avion
   description: |
     L'avion a une empreinte importante sur le climat. 
 

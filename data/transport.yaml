@@ -807,7 +807,7 @@ transport . mobilité france . affirmatif:
 
 transport . mobilité france . moyen:
   question: Quel moyen de transport avez-vous utilisé ou allez-vous utiliser pour votre mobilité ?
-  par défaut: avion
+  par défaut: train
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -903,6 +903,7 @@ transport . mobilité france . train . km:
 #----------------------------------------------- Avion -----------------------------------------------------
 
 transport . mobilité france . avion:
+  applicable si : transport . mobilité france . moyen = 'avion'
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
