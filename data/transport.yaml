@@ -831,7 +831,7 @@ transport . mobilité france . retour nantes:
     3 retours: 3
     4 retours: 4
     plus de 4 retours: 5.5
-  par défaut: 1
+  par défaut: 0
   unité: retours
 
 #----------------------------------------------- Voiture -----------------------------------------------------
@@ -1028,7 +1028,7 @@ transport . mobilité internationale . retour france:
     3 retours: 3
     4 retours: 4
     plus de 4 retours: 5.5
-  par défaut: 1
+  par défaut: 0
   unité: retours
 
 #----------------------------------------------- Voiture -----------------------------------------------------
