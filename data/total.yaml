@@ -4,18 +4,13 @@ bilan:
   description: |
     Voici une estimation annuelle de votre empreinte carbone liée à votre activité à Centrale Nantes. Elle évolue en fonction de vos réponses.
 
-    C'est votre part des émissions de gaz à effet de serre, donc du réchauffement climatique. 
-
-    Toute l'empreinte des entreprises y est intégrée. Par exemple, si vous roulez en 🚗 voiture sur 10 km, les émissions ne sont pas attribuées au pays qui a extrait du sol ce pétrole, ni à l'entreprise qui l'a raffiné et distribué en station essence, mais au consommateur final dans sa voiture.
+    Le calcul correspond à votre part des émissions de gaz à effet de serre de l'école. 
 
     Une part supplémentaire liée à votre vie personelle est à ajouter pour obtenir votre bilan carbone final. Le but de ce simulateur était de vous donner une idée de l'impact de vos activités professionelles.
+    
     Vous pouvez simuler votre empreinte carbone totale via [NosGEStes Climat](https://nosgestesclimat.fr) dont ce simulateur est tiré. 
 
-    Si l'on fait la somme de l'empreinte carbone de chaque français et chaque autre terrien 🌍, on obtient l'impact total des activités humaines sur le climat. 
-
-    > À noter : cette version **beta** du simulateur donne l'ordre de grandeur de votre empreinte : l'estimation n'est pas à prendre au dixième près.
-
-    Mais qu'est-ce qu'elles signifient, ces émissions en tonnes d'équivalent CO₂ ? Pourquoi c'est important ? **On vous dit tout sur l'empreinte climat** et comment situer cette empreinte (faible, élevée ?) [➡ dans cet article](https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md).
+    > À noter : le simulateur donne un ordre de grandeur de votre empreinte à l'ECN: l'estimation n'est pas à prendre au dixième près.
 
   formule: 
     somme: 

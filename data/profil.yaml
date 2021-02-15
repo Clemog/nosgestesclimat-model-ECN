@@ -269,9 +269,9 @@ profil . labo . AAU . empreinte . total:
   formule: 
     variations: 
       - si: profil . profil-type = 'personnel de recherche ou enseignement'
-        alors: 100
+        alors: profil . profil-type . personnel de recherche ou enseignement
       - si: profil . profil-type = 'doctorant'
-        alors: 100
+        alors: profil . profil-type . doctorant
   unité: kgCO2e
   source: Calcul BC labos
 
