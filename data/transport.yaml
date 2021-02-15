@@ -790,13 +790,13 @@ transport . mobilité france:
   formule:
     variations: 
       - si: moyen = 'voiture'
-        alors: transport . mobilité france . voiture * (1 + retour nantes)
+        alors: transport . mobilité france . voiture
       - si: moyen = 'train'
-        alors: transport . mobilité france . train * (1 + retour nantes)
+        alors: transport . mobilité france . train
       - si: moyen = 'avion'
-        alors: transport . mobilité france . avion * (1 + retour nantes)
+        alors: transport . mobilité france . avion
       - si: moyen = 'bus'
-        alors: transport . mobilité france . bus * (1 + retour nantes)
+        alors: transport . mobilité france . bus
 
 transport . mobilité france . affirmatif:
   description: |
@@ -839,7 +839,7 @@ transport . mobilité france . retour nantes:
 transport . mobilité france . voiture :
   description: |
     A compléter  
-  formule: (construction amortie + impact usage) / voyageurs
+  formule: (1 + mobilité france . retour nantes) * (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
 
 
@@ -883,7 +883,7 @@ transport . mobilité france . voiture . construction amortie:
 transport . mobilité france . train:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
-  formule: km * impact par km
+  formule: (1 + mobilité france . retour nantes) * km * impact par km
 
 
 transport . mobilité france . train . impact par km:
@@ -925,7 +925,7 @@ transport . mobilité france . avion:
     
     Le pseudo-algorithme de myclimate.org, ci-dessous.
     ![](https://imgur.com/hIVvuIw.jpg).
-  formule: heures de vol * vitesse moyenne * empreinte par km
+  formule: (1 + mobilité france . retour nantes) * heures de vol * vitesse moyenne * empreinte par km
 
 
 transport . mobilité france . avion . vitesse moyenne:
@@ -955,7 +955,7 @@ transport . mobilité france . avion . heures de vol:
 transport . mobilité france . bus :
   description: |
     ![](https://sobusygirls.fr/uploads/editor/octobre/09-10/Les%20ongles%20de%20Laure/j-ai-teste-les-voyages-en-bus-2.jpg) 
-  formule: km * impact par km
+  formule: (1 + mobilité france . retour nantes) * km * impact par km
   unité: kgCO2e
 
 
@@ -987,13 +987,13 @@ transport . mobilité internationale:
   formule:
     variations: 
       - si: moyen = 'voiture'
-        alors: transport . mobilité internationale . voiture * (1 + retour france)
+        alors: transport . mobilité internationale . voiture
       - si: moyen = 'train'
-        alors: transport . mobilité internationale . train * (1 + retour france)
+        alors: transport . mobilité internationale . train
       - si: moyen = 'avion'
-        alors: transport . mobilité internationale . avion * (1 + retour france)
+        alors: transport . mobilité internationale . avion
       - si: moyen = 'bus'
-        alors: transport . mobilité internationale . bus * (1 + retour france)
+        alors: transport . mobilité internationale . bus
 
 transport . mobilité internationale . affirmatif:
   description: |
@@ -1036,7 +1036,7 @@ transport . mobilité internationale . retour france:
 transport . mobilité internationale . voiture :
   description: |
     A compléter  
-  formule: (construction amortie + impact usage) / voyageurs
+  formule: (1 + mobilité internationale . retour france) * (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
 
 
@@ -1080,7 +1080,7 @@ transport . mobilité internationale . voiture . construction amortie:
 transport . mobilité internationale . train:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
-  formule: km * impact par km
+  formule: (1 + mobilité internationale . retour france) * km * impact par km
 
 
 transport . mobilité internationale . train . impact par km:
@@ -1123,7 +1123,7 @@ transport . mobilité internationale . avion:
     
     Le pseudo-algorithme de myclimate.org, ci-dessous.
     ![](https://imgur.com/hIVvuIw.jpg).
-  formule: heures de vol * vitesse moyenne * empreinte par km
+  formule: (1 + retour france) * heures de vol * vitesse moyenne * empreinte par km
 
 
 transport . mobilité internationale . avion . vitesse moyenne:
@@ -1153,7 +1153,7 @@ transport . mobilité internationale . avion . heures de vol:
 transport . mobilité internationale . bus :
   description: |
     ![](https://sobusygirls.fr/uploads/editor/octobre/09-10/Les%20ongles%20de%20Laure/j-ai-teste-les-voyages-en-bus-2.jpg) 
-  formule: km * impact par km
+  formule: (1 + mobilité internationale . retour france) * km * impact par km
   unité: kgCO2e
 
 
