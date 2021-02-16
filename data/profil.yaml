@@ -241,7 +241,7 @@ profil . labo:
   description: |
       A choisir :  le labo dont vous faites partie.
 
-      Cette question permet de savoir si vous êtes membre de quelques associations particulièrement émittrices de CO2. Le but de cette question n'est pas de stigmatiser les membres de ces assoications. En effet, ces associations ont des bénéfices sociaux importants, ce qui malheureusement n'apparaît pas dans un Bilan Carbone.
+      Cette question permet de savoir à quel laboratoire vous êtes rattaché·e, afin de mieux attribuer la part des émissions relatives à votre profil. Le but de cette question n'est pas de stigmatiser les membres de ces laboratoires. En effet, ces laboratoires ont des bénéfices scientifiques et technologiques importants, ce qui malheureusement n'apparaît pas dans un Bilan Carbone.
   icônes: 🎉
   formule:
     somme:
