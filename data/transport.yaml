@@ -17,7 +17,6 @@ transport:
 #------------------------------------------- Domicile-Travail -------------------------------------------
 
 transport . domicile-travail:
-  applicable si: jours par semaine
   formule:
     multiplication:
       assiette: moyens de transport
@@ -36,6 +35,7 @@ transport . domicile-travail . jours par semaine:
     tous les jours: 5
 
 transport . moyens de transport:
+  applicable si: transport . domicile-travail . jours par semaine
   titre: Proportions moyens de transport
   description: |
     A répartir parmi 6 moyens de transport qu'un usager de l'ECN est susceptible de prendre pour se rendre à Centrale (combinaisons possibles).
@@ -49,6 +49,7 @@ transport . moyens de transport:
       - deux roues
 
 transport . domicile-travail . aller-retour:
+  applicable si: transport . domicile-travail . jours par semaine
   description: Augmentation de la part de transport Domicile-Travail de 20%, 60% ou 100% respectivement pour de temps en temps (1 fois sur 5), souvent (3 fois sur 5) et tous les jours. 
   question: Vous arrive-t-il de faire un aller-retour dans la journée (pour la pause-dej par exemple)?
   par défaut: "'jamais'"
@@ -525,25 +526,27 @@ transport . moyens de transport . deux roues . type . vélo électrique:
 transport . déplacements professionels:
   description: |
     A compléter
-  applicable si: affirmatif
   non applicable si:
     une de ces conditions:
       - profil . profil-type = 'EI1'
       - profil . profil-type = 'EI2'
       - profil . profil-type = 'EI3'
-  formule:
-    somme:
-      - voiture
-      - train
-      - avion
+  formule : bis 
 
 transport . déplacements professionels . affirmatif:
   question: Êtes-vous amené à effectuer des déplacements professionels ?
   par défaut: non
 
+transport . déplacements professionels . bis: 
+  applicable si: affirmatif
+  formule:
+    somme:
+      - voiture
+      - train
+      - avion
 #----------------------------------------------- Voiture -----------------------------------------------------
 
-transport . déplacements professionels . voiture :
+transport . déplacements professionels . voiture:
   description: |
     A compléter  
   applicable si : affirmatif
