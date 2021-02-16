@@ -3,11 +3,8 @@ profil:
   icônes: 🙂
   description: |
     C'est l'empreinte carbone "fixe" liée au profil d'un usager de l'ECN.
-
     Cette partie prend en compte l'ensemble des émissions de CO2 qui résultent des achats, équipements, bâtiments, chauffage, électricité.
-
     Les chiffres sont basés sur les résultats du bilan carbone de l'ECN 2018.
-
     N'hésitez pas à parcourir à jeter un oeil aux détails du calcul en cliquant sur "valeur profil" dans l'onglet "Somme" ci-dessous, puis sur le profil que vous avez sélectionné.
   unité: kgCO2e
   formule:
@@ -38,9 +35,9 @@ profil . valeur profil:
       - si: profil-type = 'EI3'
         alors: profil-type . EI3
       - si: profil-type = 'doctorant'
-        alors: profil-type . doctorant
+        alors: profil . labo
       - si: profil-type = 'personnel de recherche ou enseignement'
-        alors: profil-type . personnel de recherche ou enseignement
+        alors: profil . labo
       - si: profil-type = 'autre personnel'
         alors: profil-type . autre personnel
 
@@ -128,7 +125,6 @@ profil . étudiants . réseau de chaleur:
 profil . étudiants . constructions:
   formule: 101.2
   unité: kgCO2e 
-
 
 profil . doctorants:
   formule:
@@ -233,5 +229,206 @@ profil . nbre semaines:
       - si: profil-type = 'autre personnel'
         alors: 47
 
+profil . labo:
+  titre: Empreinte des laboratoires
+  applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'doctorant'
+  description: |
+      A choisir :  le labo dont vous faites partie.
+      Cette question permet de savoir à quel laboratoire vous êtes rattaché·e, afin de mieux attribuer la part des émissions relatives à votre profil. Le but de cette question n'est pas de stigmatiser les membres de ces laboratoires. En effet, ces laboratoires ont des bénéfices scientifiques et technologiques importants, ce qui malheureusement n'apparaît pas dans un Bilan Carbone.
+  icônes: 🎉
+  formule:
+    somme:
+      - AAU
+      - GeM
+      - ICI
+      - LHEEA
+      - LS2N
+      - Jean Leray
 
+profil . labo . AAU:
+  formule: empreinte * appartenance
+  icônes: 'Logo-AAU.png'
+  description: |
+    A compléter.
+    A compléter.
+profil . labo . AAU . empreinte:
+  formule: total / nbre membres
+  unité: kgCO2e
+  source: Calcul BC labos
 
+profil . labo . AAU . empreinte . total:
+  formule: 
+    variations: 
+      - si: profil . profil-type = 'personnel de recherche ou enseignement'
+        alors: profil . profil-type . personnel de recherche ou enseignement
+      - si: profil . profil-type = 'doctorant'
+        alors: profil . profil-type . doctorant
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . AAU . empreinte . nbre membres:
+  formule: 1
+  source: Calcul BC labos
+
+profil . labo . AAU . appartenance:
+  question: Êtes-vous membre de ce laboratoire ?
+  par défaut: 1
+  période: semaine
+
+profil . labo . GeM:
+  formule: empreinte * appartenance
+  icônes: 'Logo-GEM.png'
+  description: |
+    A compléter.
+    A compléter.
+    
+profil . labo . GeM . empreinte:
+  formule: total / nbre membres
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . GeM . empreinte . total:
+  formule: 
+    variations: 
+      - si: profil . profil-type = 'personnel de recherche ou enseignement'
+        alors: profil . profil-type . personnel de recherche ou enseignement
+      - si: profil . profil-type = 'doctorant'
+        alors: profil . profil-type . doctorant
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . GeM . empreinte . nbre membres:
+  formule: 1
+  source: Calcul BC labos
+
+profil . labo . GeM . appartenance:
+  question: Êtes-vous membre de ce laboratoire ?
+  par défaut: 0
+  période: semaine
+
+profil . labo . ICI:
+  formule: empreinte * appartenance
+  icônes: 'Logo-ICI.png'
+  description: |
+    A compléter.
+    A compléter.
+    
+profil . labo . ICI . empreinte:
+  formule: total / nbre membres
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . ICI . empreinte . total:
+  formule: 
+    variations: 
+      - si: profil . profil-type = 'personnel de recherche ou enseignement'
+        alors: profil . profil-type . personnel de recherche ou enseignement
+      - si: profil . profil-type = 'doctorant'
+        alors: profil . profil-type . doctorant
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . ICI . empreinte . nbre membres:
+  formule: 1
+  source: Calcul BC labos
+
+profil . labo . ICI . appartenance:
+  question: Êtes-vous membre de ce laboratoire ?
+  par défaut: 0
+  période: semaine
+
+profil . labo . LHEEA:
+  formule: empreinte * appartenance
+  icônes: 'Logo-LHEEA.png'
+  description: |
+    A compléter.
+    A compléter.
+    
+profil . labo . LHEEA . empreinte:
+  formule: total / nbre membres
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . LHEEA . empreinte . total:
+  formule: 
+    variations: 
+      - si: profil . profil-type = 'personnel de recherche ou enseignement'
+        alors: profil . profil-type . personnel de recherche ou enseignement
+      - si: profil . profil-type = 'doctorant'
+        alors: profil . profil-type . doctorant
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . LHEEA . empreinte . nbre membres:
+  formule: 1
+  source: Calcul BC labos
+
+profil . labo . LHEEA . appartenance:
+  question: Êtes-vous membre de ce laboratoire ?
+  par défaut: 0
+  période: semaine
+
+profil . labo . LS2N:
+  formule: empreinte * appartenance
+  icônes: 'Logo-LS2N.png'
+  description: |
+    A compléter.
+    A compléter.
+    
+profil . labo . LS2N . empreinte:
+  formule: total / nbre membres
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . LS2N . empreinte . total:
+  formule: 
+    variations: 
+      - si: profil . profil-type = 'personnel de recherche ou enseignement'
+        alors: profil . profil-type . personnel de recherche ou enseignement
+      - si: profil . profil-type = 'doctorant'
+        alors: profil . profil-type . doctorant
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . LS2N . empreinte . nbre membres:
+  formule: 1
+  source: Calcul BC labos
+
+profil . labo . LS2N . appartenance:
+  question: Êtes-vous membre de ce laboratoire ?
+  par défaut: 0
+  période: semaine
+
+profil . labo . Jean Leray:
+  formule: empreinte * appartenance
+  icônes: 'Logo-JeanLeray.png'
+  description: |
+    A compléter.
+    A compléter.
+    
+profil . labo . Jean Leray . empreinte:
+  formule: total / nbre membres
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . Jean Leray . empreinte . total:
+  formule: 
+    variations: 
+      - si: profil . profil-type = 'personnel de recherche ou enseignement'
+        alors: profil . profil-type . personnel de recherche ou enseignement
+      - si: profil . profil-type = 'doctorant'
+        alors: profil . profil-type . doctorant
+  unité: kgCO2e
+  source: Calcul BC labos
+
+profil . labo . Jean Leray . empreinte . nbre membres:
+  formule: 1
+  source: Calcul BC labos
+
+profil . labo . Jean Leray . appartenance:
+  question: Êtes-vous membre de ce laboratoire ?
+  par défaut: 0
+  période: semaine
