@@ -903,7 +903,10 @@ transport . mobilité france . train . km:
 #----------------------------------------------- Avion -----------------------------------------------------
 
 transport . mobilité france . avion:
-  applicable si : transport . mobilité france . moyen = 'avion'
+  applicable si : 
+    toutes ces conditions:
+      - transport . mobilité france . moyen = 'avion'
+      - transport . mobilité france . affirmatif
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
@@ -1102,7 +1105,10 @@ transport . mobilité internationale . train . km:
 #----------------------------------------------- Avion -----------------------------------------------------
 
 transport . mobilité internationale . avion:
-  applicable si : transport . mobilité internationale . moyen = 'avion'
+  applicable si : 
+    toutes ces conditions:
+      - transport . mobilité internationale . moyen = 'avion'
+      - transport . mobilité internationale . affirmatif
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
