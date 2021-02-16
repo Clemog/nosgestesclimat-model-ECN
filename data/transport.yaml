@@ -1102,6 +1102,7 @@ transport . mobilité internationale . train . km:
 #----------------------------------------------- Avion -----------------------------------------------------
 
 transport . mobilité internationale . avion:
+  applicable si : transport . mobilité internationale . moyen = 'avion'
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
