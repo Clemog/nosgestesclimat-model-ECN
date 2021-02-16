@@ -23,7 +23,7 @@ profil . profil-type:
       possibilités: 
         - EI1
         - EI2
-        - EI3
+        - EI3 ou Master
         - doctorant
         - personnel de recherche ou enseignement
         - autre personnel
@@ -35,8 +35,8 @@ profil . valeur profil:
         alors: profil-type . EI1
       - si: profil-type = 'EI2'
         alors: profil-type . EI2
-      - si: profil-type = 'EI3'
-        alors: profil-type . EI3
+      - si: profil-type = 'EI3 ou Master'
+        alors: profil-type . EI3 ou Master
       - si: profil-type = 'doctorant'
         alors: profil . labo
       - si: profil-type = 'personnel de recherche ou enseignement'
@@ -54,7 +54,7 @@ profil . profil-type . EI2:
     somme:
       - profil . commun
       - profil . étudiants
-profil . profil-type . EI3: 
+profil . profil-type . EI3 ou Master: 
   formule:
     somme:
       - profil . commun
@@ -223,7 +223,7 @@ profil . nbre semaines:
         alors: 39
       - si: profil-type = 'EI2'
         alors: 27
-      - si: profil-type = 'EI3'
+      - si: profil-type = 'EI3 ou Master'
         alors: 27
       - si: profil-type = 'doctorant'
         alors: 47
