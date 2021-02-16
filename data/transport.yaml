@@ -907,6 +907,11 @@ transport . mobilité france . avion:
     toutes ces conditions:
       - transport . mobilité france . moyen = 'avion'
       - transport . mobilité france . affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
@@ -1109,6 +1114,11 @@ transport . mobilité internationale . avion:
     toutes ces conditions:
       - transport . mobilité internationale . moyen = 'avion'
       - transport . mobilité internationale . affirmatif
+  non applicable si:
+    une de ces conditions:
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'autre personnel'
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
