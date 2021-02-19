@@ -822,24 +822,12 @@ transport . mobilité france . moyen . train:
 transport . mobilité france . moyen . avion:
 transport . mobilité france . moyen . bus:
 
-transport . mobilité france . retour nantes:
-  question: Combien avez-vous effectué ou pensez-vous effectuer de retours à votre domicile lors de votre mobilité france ?
-  suggestions: 
-    Aucun: 0
-    1 retour: 1
-    2 retours: 2
-    3 retours: 3
-    4 retours: 4
-    plus de 4 retours: 5.5
-  par défaut: 0
-  unité: retours
-
 #----------------------------------------------- Voiture -----------------------------------------------------
 
 transport . mobilité france . voiture :
   description: |
     A compléter  
-  formule: (1 + mobilité france . retour nantes) * (construction amortie + impact usage) / voyageurs
+  formule: (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
 
 
@@ -883,7 +871,7 @@ transport . mobilité france . voiture . construction amortie:
 transport . mobilité france . train:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
-  formule: (1 + mobilité france . retour nantes) * km * impact par km
+  formule: km * impact par km
 
 
 transport . mobilité france . train . impact par km:
@@ -934,7 +922,7 @@ transport . mobilité france . avion:
     
     Le pseudo-algorithme de myclimate.org, ci-dessous.
     ![](https://imgur.com/hIVvuIw.jpg).
-  formule: (1 + mobilité france . retour nantes) * heures de vol * vitesse moyenne * empreinte par km
+  formule: heures de vol * vitesse moyenne * empreinte par km
 
 
 transport . mobilité france . avion . vitesse moyenne:
@@ -964,7 +952,7 @@ transport . mobilité france . avion . heures de vol:
 transport . mobilité france . bus :
   description: |
     ![](https://sobusygirls.fr/uploads/editor/octobre/09-10/Les%20ongles%20de%20Laure/j-ai-teste-les-voyages-en-bus-2.jpg) 
-  formule: (1 + mobilité france . retour nantes) * km * impact par km
+  formule: km * impact par km
   unité: kgCO2e
 
 
@@ -1028,24 +1016,12 @@ transport . mobilité internationale . moyen . train:
 transport . mobilité internationale . moyen . avion:
 transport . mobilité internationale . moyen . bus:
 
-transport . mobilité internationale . retour france:
-  question: Combien avez-vous effectué ou pensez-vous effectuer de retours en France lors de votre mobilité internationale ?
-  suggestions: 
-    Aucun: 0
-    1 retour: 1
-    2 retours: 2
-    3 retours: 3
-    4 retours: 4
-    plus de 4 retours: 5.5
-  par défaut: 0
-  unité: retours
-
 #----------------------------------------------- Voiture -----------------------------------------------------
 
 transport . mobilité internationale . voiture :
   description: |
     A compléter  
-  formule: (1 + mobilité internationale . retour france) * (construction amortie + impact usage) / voyageurs
+  formule: (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
 
 
@@ -1089,7 +1065,7 @@ transport . mobilité internationale . voiture . construction amortie:
 transport . mobilité internationale . train:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
-  formule: (1 + mobilité internationale . retour france) * km * impact par km
+  formule: km * impact par km
 
 
 transport . mobilité internationale . train . impact par km:
@@ -1141,7 +1117,7 @@ transport . mobilité internationale . avion:
     
     Le pseudo-algorithme de myclimate.org, ci-dessous.
     ![](https://imgur.com/hIVvuIw.jpg).
-  formule: (1 + retour france) * heures de vol * vitesse moyenne * empreinte par km
+  formule: heures de vol * vitesse moyenne * empreinte par km
 
 
 transport . mobilité internationale . avion . vitesse moyenne:
@@ -1171,7 +1147,7 @@ transport . mobilité internationale . avion . heures de vol:
 transport . mobilité internationale . bus :
   description: |
     ![](https://sobusygirls.fr/uploads/editor/octobre/09-10/Les%20ongles%20de%20Laure/j-ai-teste-les-voyages-en-bus-2.jpg) 
-  formule: (1 + mobilité internationale . retour france) * km * impact par km
+  formule: km * impact par km
   unité: kgCO2e
 
 
