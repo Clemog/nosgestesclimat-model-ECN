@@ -2,7 +2,8 @@ actions:
   formule: 
     somme:
       - transport . arrêter l'avion
-      - transport . remplacer avion par train mobilité
+      - transport . remplacer avion par train mobilité france
+      - transport . remplacer avion par train mobilité internationale
       - transport . remplacer avion par train pro
       - transport . éco-conduite
       # - transport . boulot . covoiturage
