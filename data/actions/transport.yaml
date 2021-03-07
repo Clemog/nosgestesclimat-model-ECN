@@ -131,8 +131,6 @@ transport . éco-conduite:
   formule:
     somme:
       - transport . moyens de transport . voiture . impact usage * 20%
-      - transport . déplacements professionnels . voiture . impact usage * 20%
-      - transport . mobilité internationale . voiture . impact usage * 20%
   description: |
     L’éco-conduite est une action simple et efficace qui se tient à la portée de tous.  Elle permet notamment d'économiser en moyenne 15 % de carburant, 
     de réduire les coûts d’entretien du véhicule, de réduire le risque d’accident de 10 à 15 %  en moyenne et de réaliser des économies substantielles pouvant 
