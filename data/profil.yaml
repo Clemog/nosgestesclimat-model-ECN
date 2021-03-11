@@ -24,6 +24,8 @@ profil . profil-type:
         - EI1
         - EI2
         - EI3 ou Master
+        - étudiant ingénieur spécialisé
+        - autres étudiants
         - doctorant
         - personnel de recherche ou enseignement
         - autre personnel
@@ -37,12 +39,19 @@ profil . valeur profil:
         alors: profil-type . EI2
       - si: profil-type = 'EI3 ou Master'
         alors: profil-type . EI3 ou Master
+      - si: profil-type = 'étudiant ingénieur spécialisé'
+        alors: profil-type . EI3 ou Master
+      - si: profil-type = 'autres étudiants'
+        alors: profil-type . EI3 ou Master
       - si: profil-type = 'doctorant'
         alors: profil . labo
       - si: profil-type = 'personnel de recherche ou enseignement'
         alors: profil . labo
       - si: profil-type = 'autre personnel'
         alors: profil-type . autre personnel
+
+profil . profil-type . étudiant ingénieur spécialisé:
+profil . profil-type . autres étudiants:
 
 profil . profil-type . EI1:
   formule:
@@ -224,6 +233,10 @@ profil . nbre semaines:
       - si: profil-type = 'EI2'
         alors: 27
       - si: profil-type = 'EI3 ou Master'
+        alors: 27
+      - si: profil-type = 'étudiant ingénieur spécialisé'
+        alors: 27
+      - si: profil-type = 'autres étudiants'
         alors: 27
       - si: profil-type = 'doctorant'
         alors: 47

@@ -531,6 +531,8 @@ transport . déplacements professionnels:
       - profil . profil-type = 'EI1'
       - profil . profil-type = 'EI2'
       - profil . profil-type = 'EI3 ou Master'
+      - profil . profil-type = 'étudiant ingénieur spécialisé'
+      - profil . profil-type = 'autres étudiants'
   formule:
     somme:
       - voiture
