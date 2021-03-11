@@ -24,7 +24,7 @@ profil . profil-type:
         - EI1
         - EI2
         - EI3 ou Master
-        - étudiant ingénieur spécialisé
+        - étudiant ingénieur de spécialité
         - autres étudiants
         - doctorant
         - personnel de recherche ou enseignement
@@ -39,7 +39,7 @@ profil . valeur profil:
         alors: profil-type . EI2
       - si: profil-type = 'EI3 ou Master'
         alors: profil-type . EI3 ou Master
-      - si: profil-type = 'étudiant ingénieur spécialisé'
+      - si: profil-type = 'étudiant ingénieur de spécialité'
         alors: profil-type . EI3 ou Master
       - si: profil-type = 'autres étudiants'
         alors: profil-type . EI3 ou Master
@@ -50,7 +50,7 @@ profil . valeur profil:
       - si: profil-type = 'autre personnel'
         alors: profil-type . autre personnel
 
-profil . profil-type . étudiant ingénieur spécialisé:
+profil . profil-type . étudiant ingénieur de spécialité:
 profil . profil-type . autres étudiants:
 
 profil . profil-type . EI1:
@@ -234,7 +234,7 @@ profil . nbre semaines:
         alors: 27
       - si: profil-type = 'EI3 ou Master'
         alors: 27
-      - si: profil-type = 'étudiant ingénieur spécialisé'
+      - si: profil-type = 'étudiant ingénieur de spécialité'
         alors: 27
       - si: profil-type = 'autres étudiants'
         alors: 27

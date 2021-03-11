@@ -18,7 +18,7 @@ numérique:
 #       - profil . profil-type = 'EI1'
 #       - profil . profil-type = 'EI2'
 #       - profil . profil-type = 'EI3 ou Master'
-#       - profil . profil-type = 'étudiant ingénieur spécialisé'
+#       - profil . profil-type = 'étudiant ingénieur de spécialité'
 #       - profil . profil-type = 'autres étudiants'
 #   formule: impact / (durée + 1)
 #   note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
