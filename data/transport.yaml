@@ -540,7 +540,7 @@ transport . déplacements professionnels:
       - avion
 
 transport . déplacements professionnels . affirmatif:
-  question: Êtes-vous amené à effectuer des déplacements professionnels ?
+  question: Êtes-vous amené à effectuer des déplacements professionnels (colloques, visites entreprises...) ?
   par défaut: non
 
 #----------------------------------------------- Voiture -----------------------------------------------------
