@@ -70,8 +70,10 @@ transport . remplacer avion par train mobilité france . impact train mobilité 
 transport . remplacer avion par train mobilité internationale: 
   titre: Privilégier le train au lieu de l'avion pour votre mobilité internationale
   icônes: 🛬🚆
-  non applicable si: transport . mobilité internationale . avion . heures de vol > 10
-  applicable si: transport . mobilité internationale . moyen = 'avion'
+  applicable si:
+    toutes ces conditions:
+      - transport . mobilité internationale . moyen = 'avion'
+      - transport . mobilité internationale . avion . heures de vol < 10
   formule: transport . mobilité internationale . avion - impact train mobilité
   # Mettre histogramme GES qui compare les trajets train vs avion.
   description: |
