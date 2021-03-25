@@ -1,7 +1,7 @@
 associatif: 
   couleur: '#77B5FE'
   icônes: 🎉
-  description: Le but est de préciser votre Bilan Carbone en vous questionnant sur votre vie associative au sein de l'école.
+  description: Le but est de préciser votre Bilan Carbone en vous questionnant sur votre vie associative au sein de l'école. En 2018, l’impact carbone des activités associatives s’élevait à 460 tCO2eq, soit 8% du total.
   formule: 
     somme:
       - WEI
@@ -15,6 +15,7 @@ associatif:
 
 associatif . WEI:
   icônes: 🎉
+  description: Le WEI est le premier gros événement de l’année scolaire. Il regroupe plus de 400 Centralien.nes qui font la fête dans un camping. C’est aussi un événement relativement émetteur car plusieurs bus sont nécessaires au transport, beaucoup de nourriture et de boissons sont consommés et plusieurs goodies sont offerts aux participants. Des efforts sont mis en place pour réduire l’impact environnemental de ce weekend, avec par exemple l’interdiction de vaisselle jetable et l’obligation de ramener ses propres couverts ou ecocup. Selon l’éloignement du camping, on trouve une moyenne de 35 kgCO2eq par personne.
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -33,6 +34,7 @@ associatif . WEI . affirmatif:
 
 associatif . Némo:
   icônes: 🎉
+  description: C’est le Némo !!
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -56,7 +58,7 @@ associatif . asso:
       - profil . profil-type = 'personnel de recherche ou enseignement'
       - profil . profil-type = 'autre personnel'
   description: |
-      A choisir :  les différentes assos dont vous faites partie. 
+      A choisir :  les différentes associations dont vous faites partie. 
 
       Cette question permet de savoir si vous êtes membre de quelques associations particulièrement émettrices de CO2. Le but de cette question n'est pas de stigmatiser les membres de ces associations. En effet, ces associations ont des bénéfices sociaux importants, ce qui malheureusement n'apparaît pas dans un Bilan Carbone.
   icônes: 🎉
@@ -77,7 +79,8 @@ associatif . asso . BDE:
   description: |
     Bureau Des Elèves
 
-    A compléter.
+    1000 étudiant.e.s ont cotisé au BDE au début de leur scolarité. Le BDE organise l’intégration des nouveaux étudiants, des distributions de nourriture (des barbecues en gros ;) ) et gère les clubs. 
+    Toutes ces activités émettent du CO2 et nous estimons que chacun.e émet donc une partie de ce CO2 en profitant des activités. C’est une approximation qui a ses limites car tou.te.s les cotisant.e.s ne profitent pas au même niveau des activités du BDE mais il était impossible de préciser davantage l’implication dans les activités du BDE.
 
 associatif . asso . BDE . empreinte:
   formule: total / nbre adhérents
@@ -96,7 +99,7 @@ associatif . asso . BDE . empreinte . nbre adhérents:
   source: Calcul BC asso 2019
 
 associatif . asso . BDE . adhésion:
-  question: A compléter
+  question: Êtes-vous adhérent ?
   par défaut: 1
   période: semaine
 
@@ -105,9 +108,9 @@ associatif . asso . AS:
   formule: empreinte * adhésion
   icônes: 'Logo-BDS.png'
   description: |
-    Bureau Des Sports
+    Association Sportive
 
-    A compléter.
+    Environ 350 personnes cotisent à l’Association Sportive de Centrale Nantes tous les ans. Le même raisonnement que pour le BDE a été appliqué ici : certaines dépenses faites par l’AS servent à tous les cotisants (maintenances des terrains, achat de matériel…). Il faut néanmoins demander si vous participez à des compétitions à l’extérieur de Centrale car seules certaines personnes représentent l’école lors des compétitions sportives.
 
 associatif . asso . AS . empreinte:
   formule:
@@ -119,7 +122,7 @@ associatif . asso . AS . empreinte:
   source: Calcul BC asso 2019
 
 associatif . asso . AS . adhésion:
-  question: A compléter
+  question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
   
@@ -165,7 +168,7 @@ associatif . asso . BDA:
   description: |
     Bureau Des Arts
 
-    A compléter.
+    La méthode est la même que pour le BDE.
 
 associatif . asso . BDA . empreinte:
   formule: total / nbre adhérents
@@ -183,7 +186,7 @@ associatif . asso . BDA . empreinte . nbre adhérents:
   source: Calucul BC asso 2019
   
 associatif . asso . BDA . adhésion:
-  question: A compléter
+  question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
@@ -193,7 +196,10 @@ associatif . asso . REV:
   description: |
     Récup' Eau Vietnam
 
-    A compléter.
+    Les associations humanitaires sont importantes dans la vie associative Centralienne. Leurs activités à l’école leur permettent en partie de financer leurs voyages humanitaires. Malheureusement, ces voyages sont hautement émetteurs de CO2 car ils sont quasi exclusivement effectués en avion, et dans des pays loin de la France.
+    Nous estimons que chaque membre des associations humanitaires a la même part dans les émissions de l’association. Cela veut dire que les étudiants ne partant pas lors des voyages humanitaires auront un Bilan Carbone, sur ce simulateur, plus important que dans la réalité. 
+    Nous avons également décidé de multiplier le Bilan Carbone d’une année avec voyage par la fréquence des voyages. En effet, nous estimons que chaque année, les membres préparent les voyages qui n’ont pas lieu tous les ans. Ces choix sont bien sûr discutables.
+    Le Bilan Carbone élevé d’une association humanitaire ne doit pas masquer tous les bénéfices sociaux que cette association propose.
 
 associatif . asso . REV . empreinte:
   formule: total / nbre adhérents
@@ -210,7 +216,7 @@ associatif . asso . REV . empreinte . nbre adhérents:
   source: Calcul BC asso 2019
 
 associatif . asso . REV . adhésion:
-  question: A compléter
+  question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
@@ -220,7 +226,10 @@ associatif . asso . TMA:
   description: |
     Take My Andes.
     
-    A compléter.
+    Les associations humanitaires sont importantes dans la vie associative Centralienne. Leurs activités à l’école leur permettent en partie de financer leurs voyages humanitaires. Malheureusement, ces voyages sont hautement émetteurs de CO2 car ils sont quasi exclusivement effectués en avion, et dans des pays loin de la France.
+    Nous estimons que chaque membre des associations humanitaires a la même part dans les émissions de l’association. Cela veut dire que les étudiants ne partant pas lors des voyages humanitaires auront un Bilan Carbone, sur ce simulateur, plus important que dans la réalité. 
+    Nous avons également décidé de multiplier le Bilan Carbone d’une année avec voyage par la fréquence des voyages. En effet, nous estimons que chaque année, les membres préparent les voyages qui n’ont pas lieu tous les ans. Ces choix sont bien sûr discutables.
+    Le Bilan Carbone élevé d’une association humanitaire ne doit pas masquer tous les bénéfices sociaux que cette association propose.
 
 associatif . asso . TMA . empreinte:
   formule: total / nbre adhérents
@@ -236,7 +245,7 @@ associatif . asso . TMA . empreinte . nbre adhérents:
   source: Calcul BC asso 2019
 
 associatif . asso . TMA . adhésion:
-  question: A compléter
+  question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
@@ -246,7 +255,10 @@ associatif . asso . CAB:
   description: |
     Culture Au Bénin
 
-    A compléter.
+    Les associations humanitaires sont importantes dans la vie associative Centralienne. Leurs activités à l’école leur permettent en partie de financer leurs voyages humanitaires. Malheureusement, ces voyages sont hautement émetteurs de CO2 car ils sont quasi exclusivement effectués en avion, et dans des pays loin de la France.
+    Nous estimons que chaque membre des associations humanitaires a la même part dans les émissions de l’association. Cela veut dire que les étudiants ne partant pas lors des voyages humanitaires auront un Bilan Carbone, sur ce simulateur, plus important que dans la réalité. 
+    Nous avons également décidé de multiplier le Bilan Carbone d’une année avec voyage par la fréquence des voyages. En effet, nous estimons que chaque année, les membres préparent les voyages qui n’ont pas lieu tous les ans. Ces choix sont bien sûr discutables.
+    Le Bilan Carbone élevé d’une association humanitaire ne doit pas masquer tous les bénéfices sociaux que cette association propose.
 
 associatif . asso . CAB . empreinte:
   formule: total / nbre adhérents
@@ -262,7 +274,7 @@ associatif . asso . CAB . empreinte . nbre adhérents:
   source: Calcul BC asso 2019
 
 associatif . asso . CAB . adhésion:
-  question: A compléter
+  question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
@@ -272,7 +284,10 @@ associatif . asso . Kids:
   description: |
     Kids Népal
 
-    A compléter.
+    Les associations humanitaires sont importantes dans la vie associative Centralienne. Leurs activités à l’école leur permettent en partie de financer leurs voyages humanitaires. Malheureusement, ces voyages sont hautement émetteurs de CO2 car ils sont quasi exclusivement effectués en avion, et dans des pays loin de la France.
+    Nous estimons que chaque membre des associations humanitaires a la même part dans les émissions de l’association. Cela veut dire que les étudiants ne partant pas lors des voyages humanitaires auront un Bilan Carbone, sur ce simulateur, plus important que dans la réalité. 
+    Nous avons également décidé de multiplier le Bilan Carbone d’une année avec voyage par la fréquence des voyages. En effet, nous estimons que chaque année, les membres préparent les voyages qui n’ont pas lieu tous les ans. Ces choix sont bien sûr discutables.
+    Le Bilan Carbone élevé d’une association humanitaire ne doit pas masquer tous les bénéfices sociaux que cette association propose.
 
 associatif . asso . Kids . empreinte:
   formule: total / nbre adhérents
@@ -288,7 +303,7 @@ associatif . asso . Kids . empreinte . nbre adhérents:
   source: Calcul BC asso 2019
   
 associatif . asso . Kids . adhésion:
-  question: A compléter
+  question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
@@ -297,8 +312,6 @@ associatif . asso . Fanfrale:
   icônes: 'Logo-Fanfrale.png'
   description: |
     Fanfrale
-
-    A compléter.
 
 associatif . asso . Fanfrale . empreinte:
   formule: total / nbre adhérents
@@ -314,7 +327,7 @@ associatif . asso . Fanfrale . empreinte . nbre adhérents:
   source: Calcul BC asso 2019
 
 associatif . asso . Fanfrale . adhésion:
-  question: A compléter
+  question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 

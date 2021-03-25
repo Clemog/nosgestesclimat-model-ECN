@@ -2,8 +2,9 @@ transport:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Correspondances_Pey_Berland_août_2016.jpg/640px-Correspondances_Pey_Berland_août_2016.jpg)
     
-    Sans surprise, le transport et avant tout le transport basé sur le pétrole constitue une part très importante de notre empreinte.
-    Pour un usager de l'ECN, l'impact est signficatif pour les déplacements domicile-travail, les déplacements professionnels et les mobilités internationales (étudiants).
+    Sans surprise, le transport ,et avant tout le transport basé sur le pétrole, constitue une part très importante de notre empreinte. 
+    Pour un·e usager·ère de l'ECN, l'impact est significatif pour les déplacements domicile-travail, les déplacements professionnels ainsi que les différentes mobilités (internationales et en France) pour les étudiant·e·s.
+
 
   couleur: '#b71540'
   icônes: 🚦
@@ -18,6 +19,12 @@ transport:
 #------------------------------------------- Domicile-Travail -------------------------------------------
 
 transport . domicile-travail:
+  description: |
+    ![](https://www.mobilitytechgreen.com/wp-content/uploads/2017/08/bicyclecommute.jpg)
+    
+    Les déplacements pendulaires (du domicile jusqu’à l’école) représentent une part importante du bilan carbone de l’école. En 2018, les émissions associées à ce poste s’élevaient à 599 tCO2eq, soit environ 11% du bilan carbone total. 
+    Des disparités entre les catégories d’usager·ère·s étaient visibles, dues aux habitudes de transport de chacun·e, mais également de l’éloignement par rapport à l’établissement. Les automobilistes représentent la majeure partie des émissions liées aux déplacements domicile-travail.
+  
   non applicable si:
     une de ces conditions:
       - jours par semaine = 0
@@ -87,6 +94,9 @@ transport . moyens de transport . neutre:
     Je marche ou je pédale à hauteur de :
 
     ![](https://upload.wikimedia.org/wikipedia/commons/9/95/Man_biking_on_Recife_city.jpg)
+
+    La marche et le vélo (non électrique) font partie des mobilités douces, qui n’émettent pas de GES de manière directe.
+    Les émissions liées à la fabrication (environ 100 kgCO2eq) n’ont pas été prises en compte, car trop faibles face aux autres émissions liées au transport.
   icônes: 🚲
   formule: 0 * pourcent / 100
 
@@ -104,16 +114,10 @@ transport . moyens de transport . voiture :
     J'utilise la voiture à hauteur de :
 
     ![](https://images.unsplash.com/photo-1572312284222-ecf6d70f1907?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80)
+
+    La voiture est aujourd’hui en France essentiellement thermique (essence ou diesel) bien que l’électrique progresse lentement. 
+    En France, on émet en moyenne 193 gCO2eq/km parcouru en voiture. Ce chiffre comprend les émissions dues à la combustion du carburant mais également celles dues à la fabrication. Il faut également noter qu’une voiture française transporte en moyenne 1,6 passager.
     
-    La voiture est aujourd'hui en France essentiellement thermique (essence, diesel), bien que l'électrique progresse lentement.
-    
-    Pourtant, électrique ou thermique, elle reste un moyen de déplacement très peu efficient : 
-    **il s'agit en moyenne de déplacer un humain de 80kg dans une boîte en métal de 1200kg**.
-    
-    Un peu comme si chaque midi, nous faisions à manger pour 10 avant de jeter 90% de la nourriture, 
-    ou que nous décidions de chauffer tout le pâté de maison plutôt que l'intérieur de chacune des 10 maisons.
-    
-    Notons finalement qu'il est important de prendre en compte à la fois l'usage (les km parcourus) et la construction de ce véhicule de plus d'une tonne de matériaux divers.
   icônes: 🚗
   formule:
     multiplication:
@@ -524,7 +528,11 @@ transport . moyens de transport . deux roues . type . vélo électrique:
 
 transport . déplacements professionnels:
   description: |
-    A compléter
+    ![](https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2019%2F06%2FWORK1015-trip.jpg)
+    
+    Les déplacements professionnels, bien que n’étant effectués que par certain·e·s usager·ère·s (personnels de recherche et enseignement, administration, etc.), représentent une part importante des émissions de GES de l’école. 
+    En 2018, les émissions associées à ce poste s’élevaient à 492 tCO2eq, soit environ 9% du bilan carbone total. Les longs trajets, effectués majoritairement en avion, expliquent l’importance de ce poste d’émission. Cet impact peut être limité en favorisant l’utilisation de la visioconférence ou de modes de transports plus “doux”, tels que le train.
+  
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -546,8 +554,6 @@ transport . déplacements professionnels . affirmatif:
 #----------------------------------------------- Voiture -----------------------------------------------------
 
 transport . déplacements professionnels . voiture :
-  description: |
-    A compléter  
   applicable si : affirmatif
   formule: (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
@@ -782,7 +788,11 @@ transport . déplacements professionnels . avion . long courrier . heures de vol
 
 transport . mobilité france:
   description: |
-    La mobilité france correspond à la mobilité de l'année scolaire en cours.
+    ![](https://lepetitjournal.com/sites/default/files/styles/main_article/public/2020-02/photo-1491308056676-205b7c9a7dc1.jpg?itok=vYCqNkei)
+    
+    La mobilité en France concerne l’année civile en cours. S’inscrivent dans cette catégorie tous les départs sur le territoire français dans le cadre des études à Centrale Nantes (double diplômes et stages).
+    N’ont pas été comptés dans le calcul les éventuels retours 	au domicile familial des étudiant·e·s, car ils ont été considérés comme faisant partie de l’impact personnel de ces dernier·ère·s.
+    
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
@@ -827,8 +837,6 @@ transport . mobilité france . moyen . bus:
 #----------------------------------------------- Voiture -----------------------------------------------------
 
 transport . mobilité france . voiture :
-  description: |
-    A compléter  
   formule: (construction amortie + impact usage) / voyageurs
   unité: kgCO2e
 
@@ -874,7 +882,6 @@ transport . mobilité france . train:
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
   formule: km * impact par km
-
 
 transport . mobilité france . train . impact par km:
   formule: 0.0053
@@ -976,7 +983,11 @@ transport . mobilité france . bus . km:
 
 transport . mobilité internationale:
   description: |
-    La mobilité internationale correspond à la mobilité de l'année scolaire en cours.
+    ![](https://www.agrocampus-ouest.fr/sites/www.agrocampus-ouest.fr/files/images/menus/img-partir-semestre-etudes.jpg)
+    
+    La mobilité à l’international concerne l’année civile en cours. S’inscrivent dans cette catégorie tous les départs à l’étranger dans le cadre des études à Centrale Nantes (double diplômes, stages, semestre d’études et S8). 
+    Le but de cette question n'est pas de stigmatiser les élèves effectuant ces mobilités. En effet, au-delà de l’impact carbone, elles ont un impact social et scolaire non négligeables.
+    N’ont pas été comptés dans le calcul les éventuels retours 	au domicile familial des étudiant·e·s, car ils ont été considérés comme faisant partie de l’impact personnel de ces dernier·ère·s.
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
