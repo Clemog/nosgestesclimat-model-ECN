@@ -15,70 +15,70 @@ profil:
       - valeur profil
 
 profil . profil-type:
-  question: Vous êtes ?
-  par défaut : EI1
+  question: You are ?
+  par défaut : first year student
   formule:
     une possibilité: 
       choix obligatoire: oui
       possibilités: 
-        - EI1
-        - EI2
-        - EI3 ou Master
-        - étudiant ingénieur de spécialité
-        - autres étudiants
-        - doctorant
-        - personnel de recherche ou enseignement
-        - autre personnel
+        - first year student
+        - second year student
+        - third year student or Master
+        - specialized student
+        - other students
+        - PhD
+        - researcher or professor
+        - other staff
 
 profil . valeur profil: 
   formule: 
     variations: 
-      - si: profil-type = 'EI1'
-        alors: profil-type . EI1
-      - si: profil-type = 'EI2'
-        alors: profil-type . EI2
-      - si: profil-type = 'EI3 ou Master'
-        alors: profil-type . EI3 ou Master
-      - si: profil-type = 'étudiant ingénieur de spécialité'
-        alors: profil-type . EI3 ou Master
-      - si: profil-type = 'autres étudiants'
-        alors: profil-type . EI3 ou Master
-      - si: profil-type = 'doctorant'
+      - si: profil-type = 'first year student'
+        alors: profil-type . first year student
+      - si: profil-type = 'second year student'
+        alors: profil-type . second year student
+      - si: profil-type = 'third year student or Master'
+        alors: profil-type . third year student or Master
+      - si: profil-type = 'specialized student'
+        alors: profil-type . third year student or Master
+      - si: profil-type = 'other students'
+        alors: profil-type . third year student or Master
+      - si: profil-type = 'PhD'
         alors: profil . labo
-      - si: profil-type = 'personnel de recherche ou enseignement'
+      - si: profil-type = 'researcher or professor'
         alors: profil . labo
-      - si: profil-type = 'autre personnel'
-        alors: profil-type . autre personnel
+      - si: profil-type = 'other staff'
+        alors: profil-type . other staff
 
-profil . profil-type . étudiant ingénieur de spécialité:
-profil . profil-type . autres étudiants:
+profil . profil-type . specialized student:
+profil . profil-type . other students:
 
-profil . profil-type . EI1:
+profil . profil-type . first year student:
   formule:
     somme:
       - profil . commun
       - profil . étudiants
-profil . profil-type . EI2:
+profil . profil-type . second year student:
   formule:
     somme:
       - profil . commun
       - profil . étudiants
-profil . profil-type . EI3 ou Master: 
+profil . profil-type . third year student or Master: 
   formule:
     somme:
       - profil . commun
       - profil . étudiants
-profil . profil-type . doctorant: 
+profil . profil-type . PhD: 
   formule:
     somme:
       - profil . commun
       - profil . doctorants
-profil . profil-type . personnel de recherche ou enseignement:
+profil . profil-type . researcher or professor:
   formule:
     somme:
       - profil . commun
       - profil . personnels de recherche ou enseignement
-profil . profil-type . autre personnel:
+profil . profil-type . other staff:
   formule:
     somme:
       - profil . commun
@@ -228,29 +228,29 @@ profil . autres personnels . constructions:
 profil . nbre semaines: 
   formule:
     variations: 
-      - si: profil-type = 'EI1'
+      - si: profil-type = 'first year student'
         alors: 39
-      - si: profil-type = 'EI2'
+      - si: profil-type = 'second year student'
         alors: 27
-      - si: profil-type = 'EI3 ou Master'
+      - si: profil-type = 'third year student or Master'
         alors: 27
-      - si: profil-type = 'étudiant ingénieur de spécialité'
+      - si: profil-type = 'specialized student'
         alors: 27
-      - si: profil-type = 'autres étudiants'
+      - si: profil-type = 'other students'
         alors: 27
-      - si: profil-type = 'doctorant'
+      - si: profil-type = 'PhD'
         alors: 47
-      - si: profil-type = 'personnel de recherche ou enseignement'
+      - si: profil-type = 'researcher or professor'
         alors: 47
-      - si: profil-type = 'autre personnel'
+      - si: profil-type = 'other staff'
         alors: 47
 
 profil . labo:
   titre: Empreinte des laboratoires
   applicable si:
     une de ces conditions:
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'researcher or professor'
+      - profil . profil-type = 'PhD'
   description: |
       A choisir :  le labo dont vous faites partie.
 
@@ -281,10 +281,10 @@ profil . labo . AAU . empreinte:
 profil . labo . AAU . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'personnel de recherche ou enseignement'
-        alors: profil . profil-type . personnel de recherche ou enseignement
-      - si: profil . profil-type = 'doctorant'
-        alors: profil . profil-type . doctorant
+      - si: profil . profil-type = 'researcher or professor'
+        alors: profil . profil-type . researcher or professor
+      - si: profil . profil-type = 'PhD'
+        alors: profil . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
@@ -313,10 +313,10 @@ profil . labo . GeM . empreinte:
 profil . labo . GeM . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'personnel de recherche ou enseignement'
-        alors: profil . profil-type . personnel de recherche ou enseignement
-      - si: profil . profil-type = 'doctorant'
-        alors: profil . profil-type . doctorant
+      - si: profil . profil-type = 'researcher or professor'
+        alors: profil . profil-type . researcher or professor
+      - si: profil . profil-type = 'PhD'
+        alors: profil . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
@@ -345,10 +345,10 @@ profil . labo . ICI . empreinte:
 profil . labo . ICI . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'personnel de recherche ou enseignement'
-        alors: profil . profil-type . personnel de recherche ou enseignement
-      - si: profil . profil-type = 'doctorant'
-        alors: profil . profil-type . doctorant
+      - si: profil . profil-type = 'researcher or professor'
+        alors: profil . profil-type . researcher or professor
+      - si: profil . profil-type = 'PhD'
+        alors: profil . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
@@ -377,10 +377,10 @@ profil . labo . LHEEA . empreinte:
 profil . labo . LHEEA . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'personnel de recherche ou enseignement'
-        alors: profil . profil-type . personnel de recherche ou enseignement
-      - si: profil . profil-type = 'doctorant'
-        alors: profil . profil-type . doctorant
+      - si: profil . profil-type = 'researcher or professor'
+        alors: profil . profil-type . researcher or professor
+      - si: profil . profil-type = 'PhD'
+        alors: profil . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
@@ -409,10 +409,10 @@ profil . labo . LS2N . empreinte:
 profil . labo . LS2N . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'personnel de recherche ou enseignement'
-        alors: profil . profil-type . personnel de recherche ou enseignement
-      - si: profil . profil-type = 'doctorant'
-        alors: profil . profil-type . doctorant
+      - si: profil . profil-type = 'researcher or professor'
+        alors: profil . profil-type . researcher or professor
+      - si: profil . profil-type = 'PhD'
+        alors: profil . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
@@ -441,10 +441,10 @@ profil . labo . Jean Leray . empreinte:
 profil . labo . Jean Leray . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'personnel de recherche ou enseignement'
-        alors: profil . profil-type . personnel de recherche ou enseignement
-      - si: profil . profil-type = 'doctorant'
-        alors: profil . profil-type . doctorant
+      - si: profil . profil-type = 'researcher or professor'
+        alors: profil . profil-type . researcher or professor
+      - si: profil . profil-type = 'PhD'
+        alors: profil . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
