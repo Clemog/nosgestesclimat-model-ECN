@@ -1,5 +1,5 @@
 
-alimentation: 
+food: 
   couleur: '#e58e26'
   icônes: 🍽
   description: |
@@ -19,13 +19,13 @@ alimentation:
 
 # Ajouter sandwich ? 
 
-alimentation . déjeuner:
+food . déjeuner:
   formule: par semaine * profil . nbre semaines
 
-alimentation . déjeuner . par semaine:
+food . déjeuner . par semaine:
   formule: plats
 
-alimentation . plats:
+food . plats:
   titre: Empreinte de 5 repas
   description: |
       A choisir : 5 plats types pour représenter une semaine professionelle (donc, petit déjeuner, diner et week-end non inclus). 
@@ -33,10 +33,10 @@ alimentation . plats:
       Ceci est la somme de l'empreinte de ces 5 plats.
   formule: 
     somme:
-      - viande 1
-      - viande 2
-      - végétalien
-      - végétarien
+      - white meat
+      - red meat
+      - vegan
+      - vegetarian
       # Dans une v4, nous allons introduire ce régime flexitarien bien documenté
       # - planétaire 
         # A venir dans une v3
@@ -57,11 +57,11 @@ alimentation . plats:
 références: 
   - https://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
-alimentation . plats . végétalien:
+food . plats . vegan:
   formule: empreinte * nombre
   icônes: 🌾🥜🥗
   description: |
-    Repas sans produits animaux.
+    Meal without animal products.
 
     Voici le menu type utilisé pour notre calcul.
 
@@ -79,7 +79,7 @@ alimentation . plats . végétalien:
     | fruits de saison  | 200  | 100  | 2  | 0  | 267  | 53.4  |
     | Pain  | 50  | 125  | 4  | 0,6  | 1520  | 76  |
     | Total  |    | 776  | 29,3  | 29,5  |    | 393,9 |
-alimentation . plats . végétalien . empreinte:
+food . plats . vegan . empreinte:
   formule: 0.394 
   unité: kgCO2e
   note: |
@@ -100,16 +100,16 @@ alimentation . plats . végétalien . empreinte:
     #### Ajout des noix
     
     Pour les noix, nous ajoutons 1 cerneau (10g sans la coquille), et nous utilisons l'empreinte climat de la base [FoodGES](https://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23) de l'ADEME, `1,3kgCO2e/kg ingéré`, et les valeurs nutritives de [la page Wikipedia](https://fr.wikipedia.org/wiki/Noix#Valeur_nutritive). 
-alimentation . plats . végétalien . nombre:
+food . plats . vegan . nombre:
   question: Nombre de plats végétaliens par semaine
   par défaut: 0
   période: semaine
 
-alimentation . plats . végétarien:
+food . plats . vegetarian:
   formule: empreinte * nombre
   icônes: 🥗🍳🧀
   description: |
-    Repas sans chair animale, avec des oeufs ou un peu de fromage.
+    Meal without animal flesh, with eggs or cheese.
 
     Voici le menu type utilisé pour notre calcul.
 
@@ -127,36 +127,36 @@ alimentation . plats . végétarien:
     | Pain  | 50  | 125  | 4  | 0,6  | 1520  | 76  |
     | Total  |    | 776  | 28  | 25,8  |    | 510 |
 
-alimentation . plats . végétarien . empreinte:
+food . plats . vegetarian . empreinte:
   formule: 0.510
   unité: kgCO2e
   note: C'est le "Repas végétarien 1" [ici](https://www.bilans-ges.ademe.fr/documentation/UPLOAD_DOC_FR/index.htm?repas.htm).
 
-alimentation . plats . végétarien . nombre:
+food . plats . vegetarian . nombre:
   question: Nombre de plats végétariens par semaine
   par défaut: 0
   période: semaine
 
 
-  #alimentation . plats . viande 2:
+  #food . plats . red meat:
   #  titre: Animal moins impactant
   #  icônes: 🍣🐚
   #  description: Repas contenant poisson, crustacés, lapin, ou canard.
   #  note: Les viandes chiffrées à 6 - 10 kg CO2e par kg ingéré.
   #  formule: empreinte * nombre
-  #alimentation . plats . viande 2 . empreinte:
+  #food . plats . red meat . empreinte:
   #  formule: 666
   #	note: Pas implémenté encore, non activité.
-  #alimentation . plats . viande 2 . nombre:
+  #food . plats . red meat . nombre:
   #  question: Nombre de plats types
   #  par défaut: 0
   #  période: semaine
   
-alimentation . plats . viande 1:
-  titre: Viande Blanche
+food . plats . white meat:
+  titre: White Meat
   icônes: 🍗🥓🧀
   description: |
-    Repas contenant une pièce de poulet, porc, ou fromage.
+    Meal with chicken or pork.
 
     Des viandes chiffrées à 5-6 kg CO2e par kg ingéré.
 
@@ -176,19 +176,19 @@ alimentation . plats . viande 1:
     | Total  |    | 931  | 55  | 40  |    | 1350 |
   note: C'est le "Repas classique 1 (avec poulet)" [ici](https://www.bilans-ges.ademe.fr/documentation/UPLOAD_DOC_FR/index.htm?repas.htm).
   formule: empreinte * nombre
-alimentation . plats . viande 1 . empreinte:
+food . plats . white meat . empreinte:
   formule: 1.350
   unité: kgCO2e
-alimentation . plats . viande 1 . nombre:
+food . plats . white meat . nombre:
   question: Nombre de plats types
   par défaut: 5
   période: semaine
 
-alimentation . plats . viande 2:
-  titre: Viande Rouge
+food . plats . red meat:
+  titre: Red Meat
   icônes: 🥩🍖
   description: |
-    Repas contenant une pièce de boeuf, veau, ou agneau. 
+    Meal with beef, veal or lamb. 
 
     Les viandes chiffrées à plus de 20 kg CO2e par kg ingéré.
 
@@ -212,19 +212,19 @@ alimentation . plats . viande 2:
 
     Notons que cette catégorie ne correspond pas à la définition vague de la viande rouge, qui peut par exemple inclure le porc ([source](https://fr.wikipedia.org/wiki/Viande_rouge#Eléments_de_définition)).
   formule: empreinte * nombre
-alimentation . plats . viande 2 . empreinte:
+food . plats . red meat . empreinte:
   formule: 6.290
   unité: kgCO2e
   note: C'est le "Repas classique 2 (avec bœuf)" [ici](https://www.bilans-ges.ademe.fr/documentation/UPLOAD_DOC_FR/index.htm?repas.htm).
-alimentation . plats . viande 2 . nombre:
+food . plats . red meat . nombre:
   question: Nombre de plats types
   par défaut: 0
   période: semaine
 
-alimentation . nombre de plats viande: 
-  formule: plats . viande 1 . nombre + plats . viande 2 . nombre
+food . nombre de plats viande: 
+  formule: plats . white meat . nombre + plats . red meat . nombre
 
-alimentation . régime . planétaire: 
+food . régime . planétaire: 
   icônes: 🥗
   description: |
     Un régime décrit en 2019 pour concilier santé et environnement.
@@ -238,7 +238,7 @@ alimentation . régime . planétaire:
 
 #------------------------------------------- Distributeur Automatique -------------------------------------------
 
-alimentation . distributeur automatique:
+food . distributeur automatique:
   icones: 🍫☕
   applicable si: affirmatif
   formule:
@@ -255,11 +255,11 @@ alimentation . distributeur automatique:
       facteur: profil . nbre semaines
   note: Nous faisons ici l'hypothèse que la majorité des consommations aux distributeurs sont du café. Une future version prendra en compte tous les produits disponibles.
 
-alimentation . distributeur automatique . affirmatif:
+food . distributeur automatique . affirmatif:
   question : Utilisez-vous les distributeurs automatiques de la cafétéria pour votre consommation de café?
   par défaut : non
 
-alimentation . distributeur automatique . café:
+food . distributeur automatique . café:
   applicable si: affirmatif
   icônes: ☕
   formule: 
@@ -270,7 +270,7 @@ alimentation . distributeur automatique . café:
   références:
     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
-alimentation . distributeur automatique . café . conso café:
+food . distributeur automatique . café . conso café:
   question: Quelle est votre consommation de café sur une semaine ?
   par défaut: 5
   unité: tasses par semaine
@@ -280,7 +280,7 @@ alimentation . distributeur automatique . café . conso café:
     2/jour: 10
     3/jour: 15
 
-# alimentation . distributeur automatique . consos:
+# food . distributeur automatique . consos:
 #   question : Que consommez-vous au distributeur automatique ?
 #   par défaut: café
 #   formule:
@@ -291,12 +291,12 @@ alimentation . distributeur automatique . café . conso café:
 #         - thé
 #         - chocolat chaud
 
-# alimentation . distributeur automatique . consos . café:
-# alimentation . distributeur automatique . consos . thé:
-# alimentation . distributeur automatique . consos . chocolat chaud:
+# food . distributeur automatique . consos . café:
+# food . distributeur automatique . consos . thé:
+# food . distributeur automatique . consos . chocolat chaud:
 
-# alimentation . distributeur automatique . café:
-#   applicable si: alimentation . distributeur automatique . consos = 'café'
+# food . distributeur automatique . café:
+#   applicable si: food . distributeur automatique . consos = 'café'
 #   icônes: ☕
 #   formule: 
 #     multiplication:
@@ -307,7 +307,7 @@ alimentation . distributeur automatique . café . conso café:
 #     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
 
-# alimentation . distributeur automatique . café . conso café:
+# food . distributeur automatique . café . conso café:
 #   question: Quelle est votre consommation de café sur une semaine ?
 #   par défaut: 5
 #   unité: tasses par semaine
@@ -318,8 +318,8 @@ alimentation . distributeur automatique . café . conso café:
 #     3/jour: 15
 
 
-# alimentation . distributeur automatique . thé:
-#   applicable si: alimentation . distributeur automatique . consos = 'thé'
+# food . distributeur automatique . thé:
+#   applicable si: food . distributeur automatique . consos = 'thé'
 #   icônes: 🍵
 #   formule:
 #     multiplication:
@@ -329,7 +329,7 @@ alimentation . distributeur automatique . café . conso café:
 #   références:
 #     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
-# alimentation . distributeur automatique . thé . conso thé:
+# food . distributeur automatique . thé . conso thé:
 #   question: Quelle est votre consommation de thé sur une semaine ?
 #   par défaut: 5
 #   unité: tasses par semaine
@@ -339,8 +339,8 @@ alimentation . distributeur automatique . café . conso café:
 #     2 par jour: 10
 #     3 par jour: 15
 
-# alimentation . distributeur automatique . chocolat chaud:
-#   applicable si: alimentation . distributeur automatique . consos = 'chocolat chaud'
+# food . distributeur automatique . chocolat chaud:
+#   applicable si: food . distributeur automatique . consos = 'chocolat chaud'
 #   icônes: 🍵
 #   formule:
 #     multiplication:
@@ -350,7 +350,7 @@ alimentation . distributeur automatique . café . conso café:
 #   références:
 #     - http://www.bilans-ges.ademe.fr/fr/actualite/actualite/detail/id/23
 
-# alimentation . distributeur automatique . chocolat chaud . conso chocolat chaud:
+# food . distributeur automatique . chocolat chaud . conso chocolat chaud:
 #   question: Quelle est votre consommation de chocolat chaud sur une semaine ?
 #   par défaut: 5
 #   unité: tasses par semaine
@@ -360,14 +360,14 @@ alimentation . distributeur automatique . café . conso café:
 #     2 par jour: 10
 #     3 par jour: 15
 
-# alimentation . distributeur automatique . boissons froides:
+# food . distributeur automatique . boissons froides:
 #   icônes: 🥤
 #   formule: 
 #     somme: 
 #       - sucrées
 #       - eau en bouteille
 
-# alimentation . distributeur automatique . boissons froides . sucrées:
+# food . distributeur automatique . boissons froides . sucrées:
 #   description: |
 #     Notons que des alternatives au soda, très simples à préparer maison, sont possibles : c'est le cas du [kéfir](https://fr.wikipedia.org/wiki/K%C3%A9fir) ou [Kombucha](https://fr.wikipedia.org/wiki/Kombucha).
 #     Nous n'avons pas évalué les gains d'empreinte offerts par ces alternatives, mais la préparation locale pour cet aliment très lourd, qui évite transports et emballages est sans doutes significative.
@@ -377,12 +377,12 @@ alimentation . distributeur automatique . café . conso café:
 #       assiette: litres
 #       facteur: profil . nbre semaines
 
-# alimentation . distributeur automatique . boissons froides . sucrées . facteur: 
+# food . distributeur automatique . boissons froides . sucrées . facteur: 
 #   formule: 1.1
 #   unité: kgCO2e/l
 #   note: Cette valeur est bien sûr très approximative.
 
-# alimentation . distributeur automatique . boissons froides . sucrées . litres: 
+# food . distributeur automatique . boissons froides . sucrées . litres: 
 #   titre: Consommation de boissons sucrées
 #   question: Quelle est votre consommation par semaine de sodas ou jus de fruit au distributeur?
 #   suggestions: 
@@ -392,7 +392,7 @@ alimentation . distributeur automatique . café . conso café:
 #   unité: l/semaine
 #   par défaut: 0.33
 
-# alimentation . distributeur automatique . boissons froides . eau en bouteille :
+# food . distributeur automatique . boissons froides . eau en bouteille :
 #   description: |
 #     Notons que des alternatives au soda, très simples à préparer maison, sont possibles : c'est le cas du [kéfir](https://fr.wikipedia.org/wiki/K%C3%A9fir) ou [Kombucha](https://fr.wikipedia.org/wiki/Kombucha).
 #     Nous n'avons pas évalué les gains d'empreinte offerts par ces alternatives, mais la préparation locale pour cet aliment très lourd, qui évite transports et emballages est sans doutes significative.
@@ -402,14 +402,14 @@ alimentation . distributeur automatique . café . conso café:
 #       assiette: litres
 #       facteur: profil . nbre semaines
 
-# alimentation . distributeur automatique . boissons froides . eau en bouteille . facteur: 
+# food . distributeur automatique . boissons froides . eau en bouteille . facteur: 
 #   formule: 0.393
 #   unité: kgCO2e/l
 #   note: Eau - en bouteille PET, plate, 0,5L - en magasin, prêt à consommer. Base carbone consultée le 17/11/20.
 #   références: 
 #     - http://www.bilans-ges.ademe.fr/
 
-# alimentation . distributeur automatique . boissons froides . eau en bouteille . litres: 
+# food . distributeur automatique . boissons froides . eau en bouteille . litres: 
 #   titre: Consommation d'eau en bouteille'
 #   question: Quelle est votre consommation par semaine d'eau en bouteille au distributeur?
 #   suggestions: 

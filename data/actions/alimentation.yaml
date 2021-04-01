@@ -1,31 +1,32 @@
-alimentation . réduire viande:
+food . réduire viande:
 
-alimentation . réduire viande . par deux:
+food . réduire viande . par deux:
   applicable si: nombre de plats viande > 0
-  titre: Manger 2 fois moins de viande
+  titre: Divide by 2 meat consumption
   formule: par semaine * profil . nbre semaines
   icônes: 🍖📉
   description: |
-    Il est tout à fait possible de réduire significativement l'empreinte de son alimentation, sans devenir strictement végétarien.
+    Il est tout à fait possible de réduire significativement l'empreinte de son food, sans devenir strictement végétarien.
 
     Sur ce geste, on remplace la moitié de vos repas avec viande par des repas végétarien.
-alimentation . réduire viande . par deux . par semaine:
+food . réduire viande . par deux . par semaine:
   formule: plats - nouveau régime
-alimentation . réduire viande . par deux . par semaine . nouveau régime:
+food . réduire viande . par deux . par semaine . nouveau régime:
   formule: 
     somme: 
-      - plats . viande 1 / 2
-      - plats . viande 2 / 2
-      - plats . végétalien
-      - plats . végétarien
+      - plats . white meat / 2
+      - plats . red meat / 2
+      - plats . vegan
+      - plats . vegetarian
       - compensation végétarienne
 
 
-alimentation . réduire viande . par deux . par semaine . nouveau régime . compensation végétarienne:
-  formule: plats . végétarien . empreinte * (nombre de plats viande / 2)
+food . réduire viande . par deux . par semaine . nouveau régime . compensation végétarienne:
+  formule: plats . vegetarian . empreinte * (nombre de plats viande / 2)
   description: On compense la division par 2 des plats de viande par des plats végétariens.
 
-alimentation . devenir végétarien:
+food . devenir végétarien:
+  titre: Become vegetarian 
   applicable si: nombre de plats viande > 0
   formule: par semaine * profil . nbre semaines
   icônes: 🥗🧀
@@ -34,29 +35,29 @@ alimentation . devenir végétarien:
 
     Moins fort que le régime végétalien, il permet déjà une réduction très importante de l'empreinte sur le climat.
 
-alimentation . devenir végétarien . par semaine:
+food . devenir végétarien . par semaine:
   titre: Différence par semaine
   formule: plats - une semaine végétarienne
 
-alimentation . une semaine végétarienne:
-  formule: 5 * plats . végétarien . empreinte
+food . une semaine végétarienne:
+  formule: 5 * plats . vegetarian . empreinte
 
 
-alimentation . devenir végétalien:
-  applicable si: plats . végétarien . nombre > 0
+food . devenir végétalien:
+  applicable si: plats . vegetarian . nombre > 0
   formule: par semaine * profil . nbre semaines
   icônes: 🥗🌾
   description: Adopter un régime végétalien, donc sans produits animaux.
 
-alimentation . devenir végétalien . par semaine:
+food . devenir végétalien . par semaine:
   titre: Différence par semaine
   formule: plats - une semaine végétalien
 
-alimentation . une semaine végétalien:
-  formule: 5 * plats . végétalien . empreinte
+food . une semaine végétalien:
+  formule: 5 * plats . vegan . empreinte
 
 
-alimentation . gaspillage alimentaire:
+food . gaspillage alimentaire:
   inactive: oui
   icônes: 🍲🚯
   titre: Réduire mon gaspillage alimentaire
@@ -65,27 +66,27 @@ alimentation . gaspillage alimentaire:
     - https://www.ademe.fr/operation-foyers-temoins-estimer-impacts-gaspillage-alimentaire-menages
 
 
-alimentation . déchets . action: 
+food . déchets . action: 
   titre: Passer au zéro déchet
   icônes: 📦🚯
   inactive: oui
   
-alimentation . boisson . eau en bouteille . arrêter:
+food . boisson . eau en bouteille . arrêter:
   titre: Arrêter l'eau en bouteille
   icônes: ➡️🚰
   inactive: oui
 
-alimentation . déchets . composter:
+food . déchets . composter:
   titre: Composter
   icônes: 🐛🌱
   inactive: oui
 
-alimentation . déchets . recyclage:
+food . déchets . recyclage:
   titre: Recycler mes déchets
   icônes: 🗑️♻️
   inactive: oui
 
-alimentation . déchets . vrac:
+food . déchets . vrac:
   titre: Acheter en vrac
   icônes: ⚖️🌾
   inactive: oui
