@@ -1,4 +1,4 @@
-associatif: 
+associative: 
   couleur: '#77B5FE'
   icônes: 🎉
   description: Le but est de préciser votre Bilan Carbone en vous questionnant sur votre vie associative au sein de l'école. En 2018, l’impact carbone des activités associatives s’élevait à 460 tCO2eq, soit 8% du total.
@@ -13,50 +13,50 @@ associatif:
 
 # WEI
 
-associatif . WEI:
+associative . WEI:
   icônes: 🎉
   description: Le WEI est le premier gros événement de l’année scolaire. Il regroupe plus de 400 Centralien.nes qui font la fête dans un camping. C’est aussi un événement relativement émetteur car plusieurs bus sont nécessaires au transport, beaucoup de nourriture et de boissons sont consommés et plusieurs goodies sont offerts aux participants. Des efforts sont mis en place pour réduire l’impact environnemental de ce weekend, avec par exemple l’interdiction de vaisselle jetable et l’obligation de ramener ses propres couverts ou ecocup. Selon l’éloignement du camping, on trouve une moyenne de 35 kgCO2eq par personne.
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
+      - profil . profil-type = 'PhD'
+      - profil . profil-type = 'researcher or professor'
+      - profil . profil-type = 'other staff'
   formule: 35
   unité: kgCO2e
   source: Moyenne des WEI 2018 et 2019 (Bilan carbone - Clubs & assos.xlsx)
   
-associatif . WEI . affirmatif:
+associative . WEI . affirmatif:
   question: Avez-vous participé au week-end d'intégration cette année ?
   par défaut: non
 
 #Némo
 
-associatif . Némo:
+associative . Némo:
   icônes: 🎉
   description: C’est le Némo !!
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
+      - profil . profil-type = 'PhD'
+      - profil . profil-type = 'researcher or professor'
+      - profil . profil-type = 'other staff'
   formule: 30
   unité: kgCO2e
   source: Calcul du BC du némo 2019 
   
-associatif . Némo . affirmatif:
+associative . Némo . affirmatif:
   question: Avez-vous participé au Némo cette année ?
   par défaut: non
 
 #asso
 
-associatif . asso:
+associative . asso:
   titre: Empreinte de la vie associative
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
+      - profil . profil-type = 'researcher or professor'
+      - profil . profil-type = 'other staff'
   description: |
       A choisir :  les différentes associations dont vous faites partie. 
 
@@ -73,7 +73,7 @@ associatif . asso:
       - Kids
       - Fanfrale
   
-associatif . asso . BDE:
+associative . asso . BDE:
   formule: empreinte * adhésion
   icônes: 'Logo-BDE.png'
   description: |
@@ -82,28 +82,28 @@ associatif . asso . BDE:
     1000 étudiant.e.s ont cotisé au BDE au début de leur scolarité. Le BDE organise l’intégration des nouveaux étudiants, des distributions de nourriture (des barbecues en gros ;) ) et gère les clubs. 
     Toutes ces activités émettent du CO2 et nous estimons que chacun.e émet donc une partie de ce CO2 en profitant des activités. C’est une approximation qui a ses limites car tou.te.s les cotisant.e.s ne profitent pas au même niveau des activités du BDE mais il était impossible de préciser davantage l’implication dans les activités du BDE.
 
-associatif . asso . BDE . empreinte:
+associative . asso . BDE . empreinte:
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
     
-associatif . asso . BDE . empreinte . total:
+associative . asso . BDE . empreinte . total:
   description: Cette valeur correspond aux émissions des clubs BDE (hors WEI, Némo et WEN) ainsi que du BDE en lui même
   formule: 54000
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . BDE . empreinte . nbre adhérents:
+associative . asso . BDE . empreinte . nbre adhérents:
   formule: 1000
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . BDE . adhésion:
+associative . asso . BDE . adhésion:
   question: Êtes-vous adhérent ?
   par défaut: 1
   période: semaine
 
-associatif . asso . AS:
+associative . asso . AS:
   applicable si: adhésion = 1
   formule: empreinte * adhésion
   icônes: 'Logo-BDS.png'
@@ -112,7 +112,7 @@ associatif . asso . AS:
 
     Environ 350 personnes cotisent à l’Association Sportive de Centrale Nantes tous les ans. Le même raisonnement que pour le BDE a été appliqué ici : certaines dépenses faites par l’AS servent à tous les cotisants (maintenances des terrains, achat de matériel…). Il faut néanmoins demander si vous participez à des compétitions à l’extérieur de Centrale car seules certaines personnes représentent l’école lors des compétitions sportives.
 
-associatif . asso . AS . empreinte:
+associative . asso . AS . empreinte:
   formule:
     somme:
       - talon
@@ -121,48 +121,48 @@ associatif . asso . AS . empreinte:
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . AS . adhésion:
+associative . asso . AS . adhésion:
   question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
   
-associatif . asso . AS . talon:
+associative . asso . AS . talon:
   description: La valeur du talon correspond aux émissions de C02 des activités non sportives de l'AS (achat, entretien de matériel...)
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
   
-associatif . asso . AS . talon . total:
+associative . asso . AS . talon . total:
   formule: 3250
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . AS . talon . nbre adhérents:
+associative . asso . AS . talon . nbre adhérents:
   formule: 350
   unité: kgCO2e
   source: Calcul BC asso 2019
   
-associatif . asso . AS . empreinte . évènements :
+associative . asso . AS . empreinte . évènements :
   applicable si: affirmatif
   formule: 47
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . AS . empreinte . évènements . affirmatif:
+associative . asso . AS . empreinte . évènements . affirmatif:
   question: Avez-vous participé à des évènements sportifs hors de Nantes (Intercentrales, CCL, championnats régional/national...) ?
   par défaut: non
   
-associatif . asso . AS . empreinte . textile :
+associative . asso . AS . empreinte . textile :
   applicable si: affirmatif
   formule: 6
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . AS . empreinte . textile . affirmatif :
+associative . asso . AS . empreinte . textile . affirmatif :
   question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
   par défaut: non
 
-associatif . asso . BDA:
+associative . asso . BDA:
   formule: empreinte * adhésion
   icônes: 'Logo-BDA.png'
   description: |
@@ -170,27 +170,27 @@ associatif . asso . BDA:
 
     La méthode est la même que pour le BDE.
 
-associatif . asso . BDA . empreinte:
+associative . asso . BDA . empreinte:
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . BDA . empreinte . total:
+associative . asso . BDA . empreinte . total:
   formule: 8000
   unité: kgCO2e
   source: Calucul BC asso 2019
 
-associatif . asso . BDA . empreinte . nbre adhérents:
+associative . asso . BDA . empreinte . nbre adhérents:
   formule: 1000
   unité: kgCO2e
   source: Calucul BC asso 2019
   
-associatif . asso . BDA . adhésion:
+associative . asso . BDA . adhésion:
   question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
-associatif . asso . REV:
+associative . asso . REV:
   formule: empreinte * adhésion
   icônes: 'Logo-REV.png'
   description: |
@@ -201,26 +201,26 @@ associatif . asso . REV:
     Nous avons également décidé de multiplier le Bilan Carbone d’une année avec voyage par la fréquence des voyages. En effet, nous estimons que chaque année, les membres préparent les voyages qui n’ont pas lieu tous les ans. Ces choix sont bien sûr discutables.
     Le Bilan Carbone élevé d’une association humanitaire ne doit pas masquer tous les bénéfices sociaux que cette association propose.
 
-associatif . asso . REV . empreinte:
+associative . asso . REV . empreinte:
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . REV . empreinte . total:
+associative . asso . REV . empreinte . total:
   formule: 60000
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . REV . empreinte . nbre adhérents:
+associative . asso . REV . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
 
-associatif . asso . REV . adhésion:
+associative . asso . REV . adhésion:
   question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
-associatif . asso . TMA:
+associative . asso . TMA:
   formule: empreinte * adhésion
   icônes: 'Logo-TMA.png'
   description: |
@@ -231,25 +231,25 @@ associatif . asso . TMA:
     Nous avons également décidé de multiplier le Bilan Carbone d’une année avec voyage par la fréquence des voyages. En effet, nous estimons que chaque année, les membres préparent les voyages qui n’ont pas lieu tous les ans. Ces choix sont bien sûr discutables.
     Le Bilan Carbone élevé d’une association humanitaire ne doit pas masquer tous les bénéfices sociaux que cette association propose.
 
-associatif . asso . TMA . empreinte:
+associative . asso . TMA . empreinte:
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . TMA . empreinte . total:
+associative . asso . TMA . empreinte . total:
   formule: 15500
   source: Calcul BC asso 2019
   
-associatif . asso . TMA . empreinte . nbre adhérents:
+associative . asso . TMA . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
 
-associatif . asso . TMA . adhésion:
+associative . asso . TMA . adhésion:
   question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
-associatif . asso . CAB:
+associative . asso . CAB:
   formule: empreinte * adhésion
   icônes: 'Logo-CAB.png'
   description: |
@@ -260,25 +260,25 @@ associatif . asso . CAB:
     Nous avons également décidé de multiplier le Bilan Carbone d’une année avec voyage par la fréquence des voyages. En effet, nous estimons que chaque année, les membres préparent les voyages qui n’ont pas lieu tous les ans. Ces choix sont bien sûr discutables.
     Le Bilan Carbone élevé d’une association humanitaire ne doit pas masquer tous les bénéfices sociaux que cette association propose.
 
-associatif . asso . CAB . empreinte:
+associative . asso . CAB . empreinte:
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
   
-associatif . asso . CAB . empreinte . total:
+associative . asso . CAB . empreinte . total:
   formule: 12000
   source: Calcul BC asso 2019
   
-associatif . asso . CAB . empreinte . nbre adhérents:
+associative . asso . CAB . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
 
-associatif . asso . CAB . adhésion:
+associative . asso . CAB . adhésion:
   question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
-associatif . asso . Kids:
+associative . asso . Kids:
   formule: empreinte * adhésion
   icônes: 'Logo-Kids.png'
   description: |
@@ -289,44 +289,44 @@ associatif . asso . Kids:
     Nous avons également décidé de multiplier le Bilan Carbone d’une année avec voyage par la fréquence des voyages. En effet, nous estimons que chaque année, les membres préparent les voyages qui n’ont pas lieu tous les ans. Ces choix sont bien sûr discutables.
     Le Bilan Carbone élevé d’une association humanitaire ne doit pas masquer tous les bénéfices sociaux que cette association propose.
 
-associatif . asso . Kids . empreinte:
+associative . asso . Kids . empreinte:
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . Kids . empreinte . total:
+associative . asso . Kids . empreinte . total:
   formule: 47500
   source: Calcul BC asso 2019
   
-associatif . asso . Kids . empreinte . nbre adhérents:
+associative . asso . Kids . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
   
-associatif . asso . Kids . adhésion:
+associative . asso . Kids . adhésion:
   question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
 
-associatif . asso . Fanfrale:
+associative . asso . Fanfrale:
   formule: empreinte * adhésion
   icônes: 'Logo-Fanfrale.png'
   description: |
     Fanfrale
 
-associatif . asso . Fanfrale . empreinte:
+associative . asso . Fanfrale . empreinte:
   formule: total / nbre adhérents
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . Fanfrale . empreinte . total:
+associative . asso . Fanfrale . empreinte . total:
   formule: 12000
   source: Calcul BC asso 2019
   
-associatif . asso . Fanfrale . empreinte . nbre adhérents:
+associative . asso . Fanfrale . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
 
-associatif . asso . Fanfrale . adhésion:
+associative . asso . Fanfrale . adhésion:
   question: Êtes-vous adhérent ?
   par défaut: 0
   période: semaine
