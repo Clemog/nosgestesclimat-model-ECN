@@ -1,15 +1,16 @@
-transport . arrêter l'avion: 
+transportation . arrêter l'avion: 
+  titre: Stop using air transportation
   icônes: 🛬🧳
   applicable si: 
     une de ces conditions:
-      - transport . déplacements professionnels . avion . usager
-      - transport . mobilité internationale . moyen = 'avion'
-      - transport . mobilité france . moyen = 'avion'
+      - transportation . déplacements professionnels . plane . usager
+      - transportation . mobilité internationale . moyen = 'plane'
+      - transportation . mobilité france . moyen = 'plane'
   formule:
     somme:
-      - transport . déplacements professionnels . avion
-      - transport . mobilité internationale . avion
-      - transport . mobilité france . avion
+      - transportation . déplacements professionnels . plane
+      - transportation . mobilité internationale . plane
+      - transportation . mobilité france . plane
   description: |
     L'avion a une empreinte importante sur le climat. 
 
@@ -38,12 +39,69 @@ transport . arrêter l'avion:
 
     Deuxièmement, on ne peut comparer la voiture et l'avion simplement parce qu'un trajet en avion est en général bien plus long. Quand il s'agit de choisir la destination des vacances par exemple, un trajet en voiture a donc toutes les chances d'être beaucoup moins polluant. Cela dit, notons aussi que nos kilométrages en voiture sont tels que le match est relancé quand on regarde l'empreinte à l'année.
 
-transport . remplacer avion par train mobilité france: 
-  titre: Privilégier le train au lieu de l'avion pour votre mobilité en France
+transportation . remplacer avion par train mobilité france: 
+  titre: Use the train instead of the plane for your national mobility 
   icônes: 🛬🚆
-  non applicable si: transport . mobilité france . avion . heures de vol > 10
-  applicable si: transport . mobilité france . moyen = 'avion'
-  formule: transport . mobilité france . avion - impact train mobilité
+  non applicable si: transportation . mobilité france . plane . heures de vol > 10
+  applicable si: transportation . mobilité france . moyen = 'plane'
+  formule: transportation . mobilité france . plane - impact train mobilité
+  # Mettre histogramme GES qui compare les trajets train vs avion.
+  description: |
+
+    Pour cette action, nous vous porposons de remplacer les trajets courts courrier en plane par des trajets en train. 
+
+    L’avion a bouleversé nos modes de vies et nos façons de voyager. Nous pouvons maintenant aller plus loin, plus vite, plus fréquemment. L’accélération de nos
+    modes de vie que permet l’avion n’est malheureusement pas sans contrepartie sur notre empreinte carbone et sur le climat en général. En effet, il existe
+    notamment un rapport de 100 entre les facteurs d’émissions (quantité de CO2 émise par km parcouru) d’un avion et celui d’un train. A titre d’exemple, un 
+    aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train. C’est pourquoi adapter nos déplacements 
+    en nous tournant vers des offres de mobilités bas carbone et/ou en repensant notre manière de voyager est donc essentiel si l’on souhaite tant à 
+    l’échelle individuelle qu’à l’échelle de la société réduire notre impact sur le climat.
+    [Comparer les modes de transport ici](https://ecolab.ademe.fr/apps/transport) 
+    
+  #chiffres clefs
+   #Un aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train (source Base Carbone)
+   #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
+
+transportation . remplacer avion par train mobilité france . km mobilité:
+  formule: transportation . mobilité france . plane . heures de vol * transportation . mobilité france . plane . vitesse moyenne
+
+transportation . remplacer avion par train mobilité france . impact train mobilité :
+  formule: km mobilité * transportation . mobilité france . train . impact par km
+
+transportation . remplacer avion par train mobilité internationale: 
+  titre: Use the train instead of the plane for your international mobility 
+  icônes: 🛬🚆
+  non applicable si: transportation . mobilité internationale . plane . heures de vol > 10
+  applicable si: transportation . mobilité internationale . moyen = 'plane'
+  formule: transportation . mobilité internationale . plane - impact train mobilité
+  # Mettre histogramme GES qui compare les trajets train vs avion.
+  description: |
+
+    Pour cette action, nous vous porposons de remplacer les trajets courts courrier en avion par des trajets en train. 
+
+    L’avion a bouleversé nos modes de vies et nos façons de voyager. Nous pouvons maintenant aller plus loin, plus vite, plus fréquemment. L’accélération de nos
+    modes de vie que permet l’avion n’est malheureusement pas sans contrepartie sur notre empreinte carbone et sur le climat en général. En effet, il existe
+    notamment un rapport de 100 entre les facteurs d’émissions (quantité de CO2 émise par km parcouru) d’un plane et celui d’un train. A titre d’exemple, un 
+    aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train. C’est pourquoi adapter nos déplacements 
+    en nous tournant vers des offres de mobilités bas carbone et/ou en repensant notre manière de voyager est donc essentiel si l’on souhaite tant à 
+    l’échelle individuelle qu’à l’échelle de la société réduire notre impact sur le climat.
+    [Comparer les modes de transport ici](https://ecolab.ademe.fr/apps/transport) 
+    
+  #chiffres clefs
+   #Un aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train (source Base Carbone)
+   #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
+
+transportation . remplacer avion par train mobilité internationale . km mobilité:
+  formule: transportation . mobilité internationale . plane . heures de vol * transportation . mobilité internationale . plane . vitesse moyenne
+
+transportation . remplacer avion par train mobilité internationale . impact train mobilité :
+  formule: km mobilité * transportation . mobilité internationale . train . impact par km
+
+transportation . remplacer avion par train pro : 
+  titre: Use the train instead of the plane for short business trips 
+  icônes: 🛬🚆
+  applicable si: transportation . déplacements professionnels . plane . court courrier . heures de vol != 0
+  formule: transportation . déplacements professionnels . plane . court courrier - impact train pro
   # Mettre histogramme GES qui compare les trajets train vs avion.
   description: |
 
@@ -61,76 +119,19 @@ transport . remplacer avion par train mobilité france:
    #Un aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train (source Base Carbone)
    #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
 
-transport . remplacer avion par train mobilité france . km mobilité:
-  formule: transport . mobilité france . avion . heures de vol * transport . mobilité france . avion . vitesse moyenne
+transportation . remplacer avion par train pro . km pro:
+  formule: transportation . déplacements professionnels . plane . court courrier . heures de vol * transportation . déplacements professionnels . plane . court courrier . vitesse moyenne
 
-transport . remplacer avion par train mobilité france . impact train mobilité :
-  formule: km mobilité * transport . mobilité france . train . impact par km
+transportation . remplacer avion par train pro . impact train pro :
+  formule: km pro * transportation . déplacements professionnels . train . impact par km
 
-transport . remplacer avion par train mobilité internationale: 
-  titre: Privilégier le train au lieu de l'avion pour votre mobilité internationale
-  icônes: 🛬🚆
-  non applicable si: transport . mobilité internationale . avion . heures de vol > 10
-  applicable si: transport . mobilité internationale . moyen = 'avion'
-  formule: transport . mobilité internationale . avion - impact train mobilité
-  # Mettre histogramme GES qui compare les trajets train vs avion.
-  description: |
-
-    Pour cette action, nous vous porposons de remplacer les trajets courts courrier en avion par des trajets en train. 
-
-    L’avion a bouleversé nos modes de vies et nos façons de voyager. Nous pouvons maintenant aller plus loin, plus vite, plus fréquemment. L’accélération de nos
-    modes de vie que permet l’avion n’est malheureusement pas sans contrepartie sur notre empreinte carbone et sur le climat en général. En effet, il existe
-    notamment un rapport de 100 entre les facteurs d’émissions (quantité de CO2 émise par km parcouru) d’un avion et celui d’un train. A titre d’exemple, un 
-    aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train. C’est pourquoi adapter nos déplacements 
-    en nous tournant vers des offres de mobilités bas carbone et/ou en repensant notre manière de voyager est donc essentiel si l’on souhaite tant à 
-    l’échelle individuelle qu’à l’échelle de la société réduire notre impact sur le climat.
-    [Comparer les modes de transport ici](https://ecolab.ademe.fr/apps/transport) 
-    
-  #chiffres clefs
-   #Un aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train (source Base Carbone)
-   #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
-
-transport . remplacer avion par train mobilité internationale . km mobilité:
-  formule: transport . mobilité internationale . avion . heures de vol * transport . mobilité internationale . avion . vitesse moyenne
-
-transport . remplacer avion par train mobilité internationale . impact train mobilité :
-  formule: km mobilité * transport . mobilité internationale . train . impact par km
-
-transport . remplacer avion par train pro : 
-  titre: Privilégier le train au lieu de l'avion pour vos déplacements courts
-  icônes: 🛬🚆
-  applicable si: transport . déplacements professionnels . avion . court courrier . heures de vol != 0
-  formule: transport . déplacements professionnels . avion . court courrier - impact train pro
-  # Mettre histogramme GES qui compare les trajets train vs avion.
-  description: |
-
-    Pour cette action, nous vous porposons de remplacer les trajets courts courrier en avion par des trajets en train. 
-
-    L’avion a bouleversé nos modes de vies et nos façons de voyager. Nous pouvons maintenant aller plus loin, plus vite, plus fréquemment. L’accélération de nos
-    modes de vie que permet l’avion n’est malheureusement pas sans contrepartie sur notre empreinte carbone et sur le climat en général. En effet, il existe
-    notamment un rapport de 100 entre les facteurs d’émissions (quantité de CO2 émise par km parcouru) d’un avion et celui d’un train. A titre d’exemple, un 
-    aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train. C’est pourquoi adapter nos déplacements 
-    en nous tournant vers des offres de mobilités bas carbone et/ou en repensant notre manière de voyager est donc essentiel si l’on souhaite tant à 
-    l’échelle individuelle qu’à l’échelle de la société réduire notre impact sur le climat.
-    [Comparer les modes de transport ici](https://ecolab.ademe.fr/apps/transport) 
-    
-  #chiffres clefs
-   #Un aller-retour Paris-Marseille émet environ 250 kgCO2eq en avion contre seulement 3 kgCO2eq en train (source Base Carbone)
-   #Choisir de se rendre, depuis Paris, à Barcelone (en train) plutôt qu’à Marrakech (en avion) permettra d’éviter d’émettre 781 kg de CO2eq (source Base Carbone)
-
-transport . remplacer avion par train pro . km pro:
-  formule: transport . déplacements professionnels . avion . court courrier . heures de vol * transport . déplacements professionnels . avion . court courrier . vitesse moyenne
-
-transport . remplacer avion par train pro . impact train pro :
-  formule: km pro * transport . déplacements professionnels . train . impact par km
-
-transport . éco-conduite: 
-  titre: Adopter une éco-conduite
+transportation . éco-conduite: 
+  titre: Opt for eco-driving
   icônes: 🚗☮
-  applicable si: transport . moyens de transport . voiture . pourcent > 0
+  applicable si: transportation . moyens de transport . car . pourcent > 0
   formule:
     somme:
-      - transport . moyens de transport . voiture . impact usage * 20%
+      - transportation . moyens de transport . car . impact usage * 20%
   description: |
     L’éco-conduite est une action simple et efficace qui se tient à la portée de tous.  Elle permet notamment d'économiser en moyenne 15 % de carburant, 
     de réduire les coûts d’entretien du véhicule, de réduire le risque d’accident de 10 à 15 %  en moyenne et de réaliser des économies substantielles pouvant 
@@ -140,16 +141,16 @@ transport . éco-conduite:
     Source : ADEME - [La mobilité en 10 questions](https://www.ademe.fr/mobilite-10-questions).
   note: La source ne donne pas le détail du calcul, nous n'avons que le chiffre de 20% de réduction de consommation.
     
-# transport . boulot:
-# transport . boulot . covoiturage:
+# transportation . boulot:
+# transportation . boulot . covoiturage:
 #   titre: Aller au travail en covoiturage
 #   applicable si:
 #     toutes ces conditions:
-#       - transport . domicile-travail . moyens de transport . voiture . propriétaire
-#       - transport . moyens de transport . voiture . pourcent > 0
-#       - transport . domicile-travail . moyens de transport . voiture . voyageurs = 1
+#       - transportation . domicile-travail . moyens de transport . car . propriétaire
+#       - transportation . moyens de transport . car . pourcent > 0
+#       - transportation . domicile-travail . moyens de transport . car . voyageurs = 1
 #   icônes: 🚗👥
-#   formule: transport . domicile-travail . moyens de transport . voiture . km * transport . domicile-travail . moyens de transport . voiture . empreinte au kilomètre * réduction covoiturage
+#   formule: transportation . domicile-travail . moyens de transport . car . km * transportation . domicile-travail . moyens de transportation . car . empreinte au kilomètre * réduction covoiturage
 #   description: |
 #     Si le covoiturage longue distance est bien connu en France, celui des courtes distances est presque inexistant : aujourd’hui seuls 3 % des déplacements domicile-travail sont réalisés en covoiturage.
 
@@ -160,7 +161,7 @@ transport . éco-conduite:
 #   références: 
 #     - https://theconversation.com/a-quelles-conditions-le-covoiturage-sera-t-il-un-mode-de-transport-durable-124122
 
-# transport . réduction covoiturage:
+# transportation . réduction covoiturage:
 #   formule: 20%
 #   description: |
 #     On pourrait penser que le covoiturage divise par 2 l'empreinte par personne. Mais en réalité, une étude menée en Île-de-France montre que les réductions sont plutôt de l'ordre de 20%... avant les effets rebonds, qui réduisent le gain final du covoiturage à seulement 6%.
@@ -170,10 +171,10 @@ transport . éco-conduite:
 #     - https://theconversation.com/a-quelles-conditions-le-covoiturage-sera-t-il-un-mode-de-transport-durable-124122
 #     - https://www.sciencedirect.com/science/article/pii/S1361920918303201
 
-#transport . empreinte au km covoiturage: 0.2 kgCO2e/km
+#transportation . empreinte au km covoiturage: 0.2 kgCO2e/km
 
 
-# transport . boulot . commun:
+# transportation . boulot . commun:
 #   titre: Aller au travail en transport en commun
 #   icônes: 🚌🚃
 #   description: |
@@ -185,14 +186,14 @@ transport . éco-conduite:
 
 #     > A titre d'exemple les bouchons représentent en Île-de-France par an et par personne [163 heures perdues](https://www.tomtom.com/en_gb/traffic-index/paris-traffic) soit environ 6 jours. 
 
-#   applicable si: transport . moyens de transport . voiture . pourcent > 0
-#   formule: transport . domicile-travail . voiture . km * gain empreinte au km
+#   applicable si: transportation . moyens de transport . car . pourcent > 0
+#   formule: transportation . domicile-travail . car . km * gain empreinte au km
 
-# transport . boulot . commun . gain empreinte au km:
-#   formule: transport . domicile-travail . voiture . empreinte au kilomètre - empreinte
+# transportation . boulot . commun . gain empreinte au km:
+#   formule: transportation . domicile-travail . car . empreinte au kilomètre - empreinte
 
-# transport . boulot . commun . empreinte:
-#   titre: Empreinte transport en commun choisi
+# transportation . boulot . commun . empreinte:
+#   titre: Empreinte transportation en commun choisi
 #   formule:
 #     variations:
 #       - si: type = 'bus'
@@ -204,8 +205,8 @@ transport . éco-conduite:
 #       # - si: type = 'métro'
 #       #   alors: métro . empreinte
   
-# transport . boulot . commun . type:
-#   question: Si vous deviez ne plus prendre votre voiture pour vous rendre au travail quel type de transport en commun pourriez-vous utiliser ?
+# transportation . boulot . commun . type:
+#   question: Si vous deviez ne plus prendre votre voiture pour vous rendre au travail quel type de transportation en commun pourriez-vous utiliser ?
 #   par défaut: bus
 #   formule: 
 #     une possibilité: 
@@ -214,30 +215,30 @@ transport . éco-conduite:
 #         - bus
 #         - tramway
         
-# transport . boulot . commun . type . bus:
-# transport . boulot . commun . type . métro:
-# # transport . boulot . commun . type . tramway:
-# # transport . boulot . commun . type . TER:
+# transportation . boulot . commun . type . bus:
+# transportation . boulot . commun . type . métro:
+# # transportation . boulot . commun . type . tramway:
+# # transportation . boulot . commun . type . TER:
 
-# transport . bus . empreinte:
+# transportation . bus . empreinte:
 #   formule: 0.129
 #   unité: kgCO2e/km 
 #   description: |
 #     Base Carbone consultée le 02/10/20 Autobus moyen - Agglomération de plus de 250 000 habitants
 
-# transport . tramway . empreinte:
+# transportation . tramway . empreinte:
 #   formule: 0.0022
 #   unité: kgCO2e/km 
 #   description: |
 #     Base Carbone consultée le 02/10/20 Tramway - 2019 - Île-de-France
 
-# transport . TER . empreinte:
+# transportation . TER . empreinte:
 #   formule: 0.0248
 #   unité: kgCO2e/km 
 #   description: |
 #     Base Carbone consultée le 02/10/20 TER - 2019 - Traction moyenne 
   
-# transport . métro . empreinte:
+# transportation . métro . empreinte:
 #   formule: 0.0025
 #   unité: kgCO2e/km 
 #   description: |
@@ -260,11 +261,11 @@ transport . éco-conduite:
 #   applicable si: transport . domicile-travail . jours par semaine = 5
 #   formule: empreinte jour voiture * jours télétravaillés * profil . nbre semaines
 
-# transport . boulot . empreinte jour voiture: 
-#   formule: (2 * transport . domicile-travail . voiture . km trajet) * transport . domicile-travail . voiture . empreinte au kilomètre
+# transportation . boulot . empreinte jour voiture: 
+#   formule: (2 * transportation . domicile-travail . car . km trajet) * transportation . domicile-travail . car . empreinte au kilomètre
 #   unité: kgCO2e/jours
 
-# transport . boulot . jours télétravaillés:
+# transportation . boulot . jours télétravaillés:
 #   question: Combien de jours de télétravail par semaine pourriez-vous faire ?
 #   par défaut: 2
 #   unité: jours

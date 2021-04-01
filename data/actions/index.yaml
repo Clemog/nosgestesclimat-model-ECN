@@ -1,14 +1,14 @@
 actions: 
   formule: 
     somme:
-      - transport . arrêter l'avion
-      - transport . remplacer avion par train mobilité france
-      - transport . remplacer avion par train mobilité internationale
-      - transport . remplacer avion par train pro
-      - transport . éco-conduite
-      # - transport . boulot . covoiturage
-      # - transport . boulot . commun 
-      # - transport . boulot . télétravail
+      - transportation . arrêter l'avion
+      - transportation . remplacer avion par train mobilité france
+      - transportation . remplacer avion par train mobilité internationale
+      - transportation . remplacer avion par train pro
+      - transportation . éco-conduite
+      # - transportation . boulot . covoiturage
+      # - transportation . boulot . commun 
+      # - transportation . boulot . télétravail
       - food . réduire viande . par deux
       - food . devenir végétarien
         # J'ai désactivé cette action dans un 1er temps, elle est trop proche en empreinte du végétarien
