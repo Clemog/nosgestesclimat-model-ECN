@@ -1,4 +1,4 @@
-numérique:
+digital:
   couleur: '#B53471'
   icônes: 📺
   formule:
@@ -11,23 +11,23 @@ numérique:
 
 #------------------------------------------------ Téléphone --------------------------------------------------
 
-# numérique . téléphone:
+# digital . téléphone:
 #   applicable si: affirmatif
 #   non applicable si:
 #     une de ces conditions:
-#       - profil . profil-type = 'EI1'
-#       - profil . profil-type = 'EI2'
-#       - profil . profil-type = 'EI3 ou Master'
-#       - profil . profil-type = 'étudiant ingénieur de spécialité'
-#       - profil . profil-type = 'autres étudiants'
+#       - profil . profil-type = 'first year student'
+#       - profil . profil-type = 'second year student'
+#       - profil . profil-type = 'third year student or Master'
+#       - profil . profil-type = 'specialized student'
+#       - profil . profil-type = 'other students'
 #   formule: impact / (durée + 1)
 #   note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
 
-# numérique . téléphone . affirmatif:
+# digital . téléphone . affirmatif:
 #   question: Avez-vous un téléphone portable professionnel ?
 #   par défaut: non
 
-# numérique . téléphone . type:
+# digital . téléphone . type:
 #   icônes: 📱
 #   question: Quel téléphone avez-vous ?
 #   formule:
@@ -40,7 +40,7 @@ numérique:
 #         - smartphone plus de 5 pouces
 #   par défaut: smartphone moins de 5 pouces
 
-# numérique . téléphone . durée:
+# digital . téléphone . durée:
 #   question: Quel âge a-t-il ? 
 #   unité: ans
 #   par défaut: 2
@@ -49,7 +49,7 @@ numérique:
 #     3 ans: 3
 #     5 ans: 5
 
-# numérique . téléphone . impact:
+# digital . téléphone . impact:
 #   icônes: 📱✨
 #   description: >
 #     Les téléphones, et particulièrement les smartphones récents, sont le symbole
@@ -76,14 +76,14 @@ numérique:
 #         smartphone moins de 4,5 pouces: 27.6
 #         smartphone moins de 5 pouces: 32.8
 #         smartphone plus de 5 pouces: 39.1
-# numérique . téléphone . type . mobile basique:
-# numérique . téléphone . type . smartphone moins de 4,5 pouces:
-# numérique . téléphone . type . smartphone moins de 5 pouces:
-# numérique . téléphone . type . smartphone plus de 5 pouces:
+# digital . téléphone . type . mobile basique:
+# digital . téléphone . type . smartphone moins de 4,5 pouces:
+# digital . téléphone . type . smartphone moins de 5 pouces:
+# digital . téléphone . type . smartphone plus de 5 pouces:
 
 #------------------------------------------------ ordinateur --------------------------------------------------
 
-# numérique . ordinateur:
+# digital . ordinateur:
 #   note: |
 #     Pour l'instant, l'utilisateur a un ordinateur fixe avec écran, un portable sans écran, ou rien.
 
@@ -95,11 +95,11 @@ numérique:
 #   formule: facteur / (durée + 1)
 #   unité: kgCO2e
   
-# numérique . ordinateur . affirmatif:
+# digital . ordinateur . affirmatif:
 #   question: Utilisez-vous un ordinateur personnel pour la cadre professionnel ?
 #   par défaut: oui
 
-# numérique . ordinateur . durée:
+# digital . ordinateur . durée:
 #   question: Quel âge a-t-il ?
 #   unité: ans
 #   par défaut: 4
@@ -108,7 +108,7 @@ numérique:
 #     3 ans: 3
 #     5 ans: 5
 
-# numérique . ordinateur . facteur: 
+# digital . ordinateur . facteur: 
 #   formule:
 #     variations: 
 #       - si: type = 'fixe'
@@ -116,7 +116,7 @@ numérique:
 #       - si: type = 'portable'
 #         alors: 156
 
-# numérique . ordinateur . type: 
+# digital . ordinateur . type: 
 #   question: Est-ce un ordinateur portable ou fixe (avec une tour détachée de l'écran) ?
 #   note: |
 #     Le modèle MicMac parle d'ordinateur fixe haute performance ou d'ordinateur portable. 
@@ -129,33 +129,33 @@ numérique:
 #       possibilités:
 #         - portable
 #         - fixe
-# numérique . ordinateur . type . portable:
-# numérique . ordinateur . type . fixe:
+# digital . ordinateur . type . portable:
+# digital . ordinateur . type . fixe:
 
-# numérique . ordinateur . écran fixe: 
+# digital . ordinateur . écran fixe: 
 #   formule: 222
 #   note: Valeur pour un écran de 21 pouces.
 
 #------------------------------------------------ Tablette --------------------------------------------------
 
-# numérique . tablette:
+# digital . tablette:
 #   applicable si: affirmatif
 #   formule: 63 / (durée + 1)
 #   unité: kgCO2e
 #   note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
 
-# numérique . tablette . affirmatif:
+# digital . tablette . affirmatif:
 #   question: Utilisez-vous une tablette personnelle pour la cadre professionnel ?
 #   par défaut: non
 
-# numérique . tablette . durée:
+# digital . tablette . durée:
 #   question: Quel âge a-t-elle ? 
 #   unité: ans
 #   par défaut: 4
 
 #------------------------------------------------ Visio --------------------------------------------------
 
-numérique . visio:
+digital . visio:
   description: |
     A completer
     Une visioconférence sur mobile est en moyenne 3 fois plus impactante pour l’environnement quand on ajoute la vidéo à l’audio.
@@ -163,15 +163,15 @@ numérique . visio:
   applicable si: affirmatif
   unité: kgCO2e
 
-numérique . visio . affirmatif:
+digital . visio . affirmatif:
   question: Utilisez-vous la visioconférence (réunion à distance, TP, cours, devoirs, colloque) ?
   par défaut: oui
 
-numérique . visio . empreinte horaire:
+digital . visio . empreinte horaire:
   formule: empreinte par minute * 60
   unité: kgCO2e/heure
 
-numérique . visio . empreinte par minute:
+digital . visio . empreinte par minute:
   formule: 0.0003
   unité: kgCO2e/minutes
   références: https://greenspector.com/fr/quelle-application-mobile-de-visioconference-pour-reduire-votre-impact/
@@ -179,7 +179,7 @@ numérique . visio . empreinte par minute:
     On se base sur une étude de Greenspector. Ce chiffre correspond à la moyenne de trois scénarios : 
     audio, audio et vidéo, audio et partage d’écran.
 
-numérique . visio . durée journalière:
+digital . visio . durée journalière:
   question: Combien d'heures passez-vous en moyenne en visioconférence par jour dans le cadre scolaire/professionnel ?
   unité: heure
   par défaut: 2
@@ -192,12 +192,12 @@ numérique . visio . durée journalière:
 
 #------------------------------------------------ Internet --------------------------------------------------
 
-numérique . internet: 
+digital . internet: 
   formule: empreinte horaire * durée journalière * (profil . nbre semaines * 5)
   unité: kgCO2e
   note: on ne prend pas en compte l'utilisation d'internet le week-end, à modifier peut-être.
 
-numérique . internet . empreinte horaire:
+digital . internet . empreinte horaire:
   formule: 0.0001 * 20 + 0.00005 * 20
   unité: kgCO2e/heure
   note: |
@@ -215,7 +215,7 @@ numérique . internet . empreinte horaire:
     - https://greenspector.com/fr/moteurs-de-recherches/
     - https://greenspector.com/fr/apps-communication-equipe/
 
-numérique . internet . durée journalière: 
+digital . internet . durée journalière: 
   question: Combien d'heures passez-vous par jour sur internet dans la cadre professionnel (envoi de mail, Web, etc.) ?
   unité: heure
   par défaut: 4
