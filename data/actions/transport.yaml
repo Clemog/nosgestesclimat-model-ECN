@@ -259,7 +259,7 @@ transportation . éco-conduite:
 #   note: On considère ici que cette action concerne les personnes qui utilisent leur voiture pour se rendre au travail.
 
 #   applicable si: transport . domicile-travail . jours par semaine = 5
-#   formule: empreinte jour voiture * jours télétravaillés * profil . nbre semaines
+#   formule: empreinte jour voiture * jours télétravaillés * profile . nbre semaines
 
 # transportation . boulot . empreinte jour voiture: 
 #   formule: (2 * transportation . domicile-travail . car . km trajet) * transportation . domicile-travail . car . empreinte au kilomètre

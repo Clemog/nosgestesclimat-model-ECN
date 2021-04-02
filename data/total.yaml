@@ -14,7 +14,7 @@ bilan:
 
   formule: 
     somme: 
-      - profil
+      - profile
       - transportation
       - food
       - digital

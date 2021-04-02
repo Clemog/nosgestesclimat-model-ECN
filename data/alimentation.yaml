@@ -20,7 +20,7 @@ food:
 # Ajouter sandwich ? 
 
 food . déjeuner:
-  formule: par semaine * profil . nbre semaines
+  formule: par semaine * profile . nbre semaines
 
 food . déjeuner . par semaine:
   formule: plats
@@ -252,7 +252,7 @@ food . distributeur automatique:
           # - eau
           # - barres chocolatée
           # - sandwich
-      facteur: profil . nbre semaines
+      facteur: profile . nbre semaines
   note: Nous faisons ici l'hypothèse que la majorité des consommations aux distributeurs sont du café. Une future version prendra en compte tous les produits disponibles.
 
 food . distributeur automatique . affirmatif:
@@ -375,7 +375,7 @@ food . distributeur automatique . café . conso café:
 #   formule:
 #     multiplication:
 #       assiette: litres
-#       facteur: profil . nbre semaines
+#       facteur: profile . nbre semaines
 
 # food . distributeur automatique . boissons froides . sucrées . facteur: 
 #   formule: 1.1
@@ -400,7 +400,7 @@ food . distributeur automatique . café . conso café:
 #   formule:
 #     multiplication:
 #       assiette: litres
-#       facteur: profil . nbre semaines
+#       facteur: profile . nbre semaines
 
 # food . distributeur automatique . boissons froides . eau en bouteille . facteur: 
 #   formule: 0.393

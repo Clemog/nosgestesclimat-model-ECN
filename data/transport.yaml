@@ -154,7 +154,7 @@ transportation . moyens de transport . car . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année.
   unité: km
-  formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . jours par semaine)
+  formule: km trajet * 2 * (profile . nbre semaines * domicile-travail . jours par semaine)
 
 
 transportation . moyens de transport . car . impact usage:
@@ -328,7 +328,7 @@ transportation . moyens de transport . tram:
   icônes: 🚋
   formule:
     multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
+      assiette: heures par jour * impact par heure * profile . nbre semaines * domicile-travail . jours par semaine
       facteur : pourcent / 100
 
 transportation . moyens de transport . tram . pourcent:
@@ -371,7 +371,7 @@ transportation . moyens de transport . bus:
   icônes: 🚌
   formule:
     multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
+      assiette: heures par jour * impact par heure * profile . nbre semaines * domicile-travail . jours par semaine
       facteur : pourcent / 100
 
 transportation . moyens de transport . bus . pourcent:
@@ -414,7 +414,7 @@ transportation . moyens de transport . train:
   icônes: 🚂
   formule:
     multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
+      assiette: heures par jour * impact par heure * profile . nbre semaines * domicile-travail . jours par semaine
       facteur : pourcent / 100
 
 transportation . moyens de transport . train . pourcent:
@@ -486,7 +486,7 @@ transportation . moyens de transport . deux roues . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année en deux-roues.
   unité: km
-  formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . jours par semaine)
+  formule: km trajet * 2 * (profile . nbre semaines * domicile-travail . jours par semaine)
 
 transportation . moyens de transport . deux roues . empreinte au kilomètre: 
   formule: 
@@ -536,11 +536,11 @@ transportation . déplacements professionnels:
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'first year student'
-      - profil . profil-type = 'second year student'
-      - profil . profil-type = 'third year student or Master'
-      - profil . profil-type = 'specialized student'
-      - profil . profil-type = 'other students'
+      - profile . profil-type = 'first year student'
+      - profile . profil-type = 'second year student'
+      - profile . profil-type = 'third year student or Master'
+      - profile . profil-type = 'apprentice engineer'
+      - profile . profil-type = 'other students'
   formule:
     somme:
       - car
@@ -796,9 +796,9 @@ transportation . mobilité france:
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'PhD'
-      - profil . profil-type = 'researcher or professor'
-      - profil . profil-type = 'other staff'
+      - profile . profil-type = 'PhD'
+      - profile . profil-type = 'researcher or professor'
+      - profile . profil-type = 'other staff'
   formule:
     variations: 
       - si: moyen = 'car'
@@ -906,9 +906,9 @@ transportation . mobilité france . plane:
       - transportation . mobilité france . affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'PhD'
-      - profil . profil-type = 'researcher or professor'
-      - profil . profil-type = 'other staff'
+      - profile . profil-type = 'PhD'
+      - profile . profil-type = 'researcher or professor'
+      - profile . profil-type = 'other staff'
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
@@ -991,9 +991,9 @@ transportation . mobilité internationale:
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'PhD'
-      - profil . profil-type = 'researcher or professor'
-      - profil . profil-type = 'other staff'
+      - profile . profil-type = 'PhD'
+      - profile . profil-type = 'researcher or professor'
+      - profile . profil-type = 'other staff'
   formule:
     variations: 
       - si: moyen = 'car'
@@ -1105,9 +1105,9 @@ transportation . mobilité internationale . plane:
       - transportation . mobilité internationale . affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'PhD'
-      - profil . profil-type = 'researcher or professor'
-      - profil . profil-type = 'other staff'
+      - profile . profil-type = 'PhD'
+      - profile . profil-type = 'researcher or professor'
+      - profile . profil-type = 'other staff'
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     

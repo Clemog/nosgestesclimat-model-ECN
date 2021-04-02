@@ -8,7 +8,7 @@ associative:
       - Némo
       - asso
   unité: kgCO2e
-  source: Valeur moyenne du BC associatif par étudiant (profil-type.xls).
+  source: Valeur moyenne du BC associatif par étudiant (profile-type.xls).
 
 
 # WEI
@@ -19,9 +19,9 @@ associative . WEI:
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'PhD'
-      - profil . profil-type = 'researcher or professor'
-      - profil . profil-type = 'other staff'
+      - profile . profil-type = 'PhD'
+      - profile . profil-type = 'researcher or professor'
+      - profile . profil-type = 'other staff'
   formule: 35
   unité: kgCO2e
   source: Moyenne des WEI 2018 et 2019 (Bilan carbone - Clubs & assos.xlsx)
@@ -38,9 +38,9 @@ associative . Némo:
   applicable si: affirmatif
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'PhD'
-      - profil . profil-type = 'researcher or professor'
-      - profil . profil-type = 'other staff'
+      - profile . profil-type = 'PhD'
+      - profile . profil-type = 'researcher or professor'
+      - profile . profil-type = 'other staff'
   formule: 30
   unité: kgCO2e
   source: Calcul du BC du némo 2019 
@@ -55,8 +55,8 @@ associative . asso:
   titre: Empreinte de la vie associative
   non applicable si:
     une de ces conditions:
-      - profil . profil-type = 'researcher or professor'
-      - profil . profil-type = 'other staff'
+      - profile . profil-type = 'researcher or professor'
+      - profile . profil-type = 'other staff'
   description: |
       A choisir :  les différentes associations dont vous faites partie. 
 

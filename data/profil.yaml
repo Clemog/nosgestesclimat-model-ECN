@@ -1,4 +1,4 @@
-profil: 
+profile: 
   couleur: '#0c2461'
   icônes: 🙂
   description: |
@@ -14,7 +14,7 @@ profil:
     somme :
       - valeur profil
 
-profil . profil-type:
+profile . profil-type:
   question: You are ?
   par défaut : first year student
   formule:
@@ -24,13 +24,13 @@ profil . profil-type:
         - first year student
         - second year student
         - third year student or Master
-        - specialized student
+        - apprentice engineer
         - other students
         - PhD
         - researcher or professor
         - other staff
 
-profil . valeur profil: 
+profile . valeur profil: 
   formule: 
     variations: 
       - si: profil-type = 'first year student'
@@ -39,52 +39,52 @@ profil . valeur profil:
         alors: profil-type . second year student
       - si: profil-type = 'third year student or Master'
         alors: profil-type . third year student or Master
-      - si: profil-type = 'specialized student'
+      - si: profil-type = 'apprentice engineer'
         alors: profil-type . third year student or Master
       - si: profil-type = 'other students'
         alors: profil-type . third year student or Master
       - si: profil-type = 'PhD'
-        alors: profil . labo
+        alors: profile . labo
       - si: profil-type = 'researcher or professor'
-        alors: profil . labo
+        alors: profile . labo
       - si: profil-type = 'other staff'
         alors: profil-type . other staff
 
-profil . profil-type . specialized student:
-profil . profil-type . other students:
+profile . profil-type . apprentice engineer:
+profile . profil-type . other students:
 
-profil . profil-type . first year student:
+profile . profil-type . first year student:
   formule:
     somme:
-      - profil . commun
-      - profil . étudiants
-profil . profil-type . second year student:
+      - profile . commun
+      - profile . étudiants
+profile . profil-type . second year student:
   formule:
     somme:
-      - profil . commun
-      - profil . étudiants
-profil . profil-type . third year student or Master: 
+      - profile . commun
+      - profile . étudiants
+profile . profil-type . third year student or Master: 
   formule:
     somme:
-      - profil . commun
-      - profil . étudiants
-profil . profil-type . PhD: 
+      - profile . commun
+      - profile . étudiants
+profile . profil-type . PhD: 
   formule:
     somme:
-      - profil . commun
-      - profil . doctorants
-profil . profil-type . researcher or professor:
+      - profile . commun
+      - profile . doctorants
+profile . profil-type . researcher or professor:
   formule:
     somme:
-      - profil . commun
-      - profil . personnels de recherche ou enseignement
-profil . profil-type . other staff:
+      - profile . commun
+      - profile . personnels de recherche ou enseignement
+profile . profil-type . other staff:
   formule:
     somme:
-      - profil . commun
-      - profil . autres personnels
+      - profile . commun
+      - profile . autres personnels
 
-profil . commun:
+profile . commun:
   formule:
     somme:
       - électricité
@@ -95,29 +95,29 @@ profil . commun:
       - déchets
       - transport marchandises
 
-profil . commun . électricité:
+profile . commun . électricité:
   formule: 5.6
   unité: kgCO2e
-profil . commun . moutons:
+profile . commun . moutons:
   formule: 0.8
   unité: kgCO2e
-profil . commun . végétation:
+profile . commun . végétation:
   formule: -4.7
   unité: kgCO2e
-profil . commun . achats produits et services:
+profile . commun . achats produits et services:
   formule: 113.7
   unité: kgCO2e
-profil . commun . constructions:
+profile . commun . constructions:
   formule: 36.9
   unité: kgCO2e
-profil . commun . déchets:
+profile . commun . déchets:
   formule: 2.2
   unité: kgCO2e
-profil . commun . transport marchandises:
+profile . commun . transport marchandises:
   formule: 5.4
   unité: kgCO2e
 
-profil . étudiants:
+profile . étudiants:
   formule:
     somme:
       - essence machines expérimentales
@@ -125,20 +125,20 @@ profil . étudiants:
       - réseau de chaleur
       - constructions
 
-profil . étudiants . essence machines expérimentales:
+profile . étudiants . essence machines expérimentales:
   formule: 8.8
   unité: kgCO2e
-profil . étudiants . électricité:
+profile . étudiants . électricité:
   formule: 3.7
   unité: kgCO2e
-profil . étudiants . réseau de chaleur:
+profile . étudiants . réseau de chaleur:
   formule: 47.7
   unité: kgCO2e
-profil . étudiants . constructions:
+profile . étudiants . constructions:
   formule: 101.2
   unité: kgCO2e 
 
-profil . doctorants:
+profile . doctorants:
   formule:
     somme:
       - essence machines expérimentales
@@ -149,29 +149,29 @@ profil . doctorants:
       - achat et entretien machines et équipements
       - constructions
 
-profil . doctorants . essence machines expérimentales:
+profile . doctorants . essence machines expérimentales:
   formule: 19.9
   unité: kgCO2e
-profil . doctorants . gaz:
+profile . doctorants . gaz:
   formule: 81
   unité: kgCO2e
-profil . doctorants . électricité:
+profile . doctorants . électricité:
   formule: 43.5
   unité: kgCO2e
-profil . doctorants . fluides frigorifiques:
+profile . doctorants . fluides frigorifiques:
   formule: 9.3
   unité: kgCO2e
-profil . doctorants . réseau de chaleur:
+profile . doctorants . réseau de chaleur:
   formule: 152.9
   unité: kgCO2e
-profil . doctorants . achat et entretien machines et équipements:
+profile . doctorants . achat et entretien machines et équipements:
   formule: 1266.8
   unité: kgCO2e
-profil . doctorants . constructions:
+profile . doctorants . constructions:
   formule: 705.3
   unité: kgCO2e
 
-profil . personnels de recherche ou enseignement:
+profile . personnels de recherche ou enseignement:
   formule:
     somme:
       - essence machines expérimentales
@@ -182,29 +182,29 @@ profil . personnels de recherche ou enseignement:
       - achat et entretien machines et équipements
       - constructions
 
-profil . personnels de recherche ou enseignement . essence machines expérimentales:
+profile . personnels de recherche ou enseignement . essence machines expérimentales:
   formule: 20
   unité: kgCO2e
-profil . personnels de recherche ou enseignement . gaz:
+profile . personnels de recherche ou enseignement . gaz:
   formule: 81.1
   unité: kgCO2e
-profil . personnels de recherche ou enseignement . électricité:
+profile . personnels de recherche ou enseignement . électricité:
   formule: 43.6
   unité: kgCO2e
-profil . personnels de recherche ou enseignement . fluides frigorifiques:
+profile . personnels de recherche ou enseignement . fluides frigorifiques:
   formule: 9.3
   unité: kgCO2e
-profil . personnels de recherche ou enseignement . réseau de chaleur:
+profile . personnels de recherche ou enseignement . réseau de chaleur:
   formule: 153.1
   unité: kgCO2e
-profil . personnels de recherche ou enseignement . achat et entretien machines et équipements:
+profile . personnels de recherche ou enseignement . achat et entretien machines et équipements:
   formule: 1268.6
   unité: kgCO2e
-profil . personnels de recherche ou enseignement . constructions:
+profile . personnels de recherche ou enseignement . constructions:
   formule: 706.3
   unité: kgCO2e
 
-profil . autres personnels:
+profile . autres personnels:
   formule:
     somme:
       - fluides frigorifiques
@@ -212,20 +212,20 @@ profil . autres personnels:
       - réseau de chaleur
       - constructions
 
-profil . autres personnels . fluides frigorifiques:
+profile . autres personnels . fluides frigorifiques:
   formule: 6
   unité: kgCO2e
-profil . autres personnels . électricité:
+profile . autres personnels . électricité:
   formule: 2.5
   unité: kgCO2e
-profil . autres personnels . réseau de chaleur:
+profile . autres personnels . réseau de chaleur:
   formule: 67.3
   unité: kgCO2e
-profil . autres personnels . constructions:
+profile . autres personnels . constructions:
   formule: 163.2
   unité: kgCO2e
 
-profil . nbre semaines: 
+profile . nbre semaines: 
   formule:
     variations: 
       - si: profil-type = 'first year student'
@@ -234,7 +234,7 @@ profil . nbre semaines:
         alors: 27
       - si: profil-type = 'third year student or Master'
         alors: 27
-      - si: profil-type = 'specialized student'
+      - si: profil-type = 'apprentice engineer'
         alors: 27
       - si: profil-type = 'other students'
         alors: 27
@@ -245,12 +245,12 @@ profil . nbre semaines:
       - si: profil-type = 'other staff'
         alors: 47
 
-profil . labo:
+profile . labo:
   titre: Empreinte des laboratoires
   applicable si:
     une de ces conditions:
-      - profil . profil-type = 'researcher or professor'
-      - profil . profil-type = 'PhD'
+      - profile . profil-type = 'researcher or professor'
+      - profile . profil-type = 'PhD'
   description: |
       A choisir :  le labo dont vous faites partie.
 
@@ -265,7 +265,7 @@ profil . labo:
       - LS2N
       - Jean Leray
 
-profil . labo . AAU:
+profile . labo . AAU:
   formule: empreinte * appartenance
   icônes: 'Logo-AAU.png'
   description: |
@@ -273,31 +273,31 @@ profil . labo . AAU:
 
     A compléter.
 
-profil . labo . AAU . empreinte:
+profile . labo . AAU . empreinte:
   formule: total / nbre membres
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . AAU . empreinte . total:
+profile . labo . AAU . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'researcher or professor'
-        alors: profil . profil-type . researcher or professor
-      - si: profil . profil-type = 'PhD'
-        alors: profil . profil-type . PhD
+      - si: profile . profil-type = 'researcher or professor'
+        alors: profile . profil-type . researcher or professor
+      - si: profile . profil-type = 'PhD'
+        alors: profile . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . AAU . empreinte . nbre membres:
+profile . labo . AAU . empreinte . nbre membres:
   formule: 1
   source: Calcul BC labos
 
-profil . labo . AAU . appartenance:
+profile . labo . AAU . appartenance:
   question: Êtes-vous membre de ce laboratoire ?
   par défaut: 1
   période: semaine
 
-profil . labo . GeM:
+profile . labo . GeM:
   formule: empreinte * appartenance
   icônes: 'Logo-GEM.png'
   description: |
@@ -305,31 +305,31 @@ profil . labo . GeM:
 
     A compléter.
     
-profil . labo . GeM . empreinte:
+profile . labo . GeM . empreinte:
   formule: total / nbre membres
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . GeM . empreinte . total:
+profile . labo . GeM . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'researcher or professor'
-        alors: profil . profil-type . researcher or professor
-      - si: profil . profil-type = 'PhD'
-        alors: profil . profil-type . PhD
+      - si: profile . profil-type = 'researcher or professor'
+        alors: profile . profil-type . researcher or professor
+      - si: profile . profil-type = 'PhD'
+        alors: profile . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . GeM . empreinte . nbre membres:
+profile . labo . GeM . empreinte . nbre membres:
   formule: 1
   source: Calcul BC labos
 
-profil . labo . GeM . appartenance:
+profile . labo . GeM . appartenance:
   question: Êtes-vous membre de ce laboratoire ?
   par défaut: 0
   période: semaine
 
-profil . labo . ICI:
+profile . labo . ICI:
   formule: empreinte * appartenance
   icônes: 'Logo-ICI.png'
   description: |
@@ -337,31 +337,31 @@ profil . labo . ICI:
 
     A compléter.
     
-profil . labo . ICI . empreinte:
+profile . labo . ICI . empreinte:
   formule: total / nbre membres
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . ICI . empreinte . total:
+profile . labo . ICI . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'researcher or professor'
-        alors: profil . profil-type . researcher or professor
-      - si: profil . profil-type = 'PhD'
-        alors: profil . profil-type . PhD
+      - si: profile . profil-type = 'researcher or professor'
+        alors: profile . profil-type . researcher or professor
+      - si: profile . profil-type = 'PhD'
+        alors: profile . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . ICI . empreinte . nbre membres:
+profile . labo . ICI . empreinte . nbre membres:
   formule: 1
   source: Calcul BC labos
 
-profil . labo . ICI . appartenance:
+profile . labo . ICI . appartenance:
   question: Êtes-vous membre de ce laboratoire ?
   par défaut: 0
   période: semaine
 
-profil . labo . LHEEA:
+profile . labo . LHEEA:
   formule: empreinte * appartenance
   icônes: 'Logo-LHEEA.png'
   description: |
@@ -369,31 +369,31 @@ profil . labo . LHEEA:
 
     A compléter.
     
-profil . labo . LHEEA . empreinte:
+profile . labo . LHEEA . empreinte:
   formule: total / nbre membres
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . LHEEA . empreinte . total:
+profile . labo . LHEEA . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'researcher or professor'
-        alors: profil . profil-type . researcher or professor
-      - si: profil . profil-type = 'PhD'
-        alors: profil . profil-type . PhD
+      - si: profile . profil-type = 'researcher or professor'
+        alors: profile . profil-type . researcher or professor
+      - si: profile . profil-type = 'PhD'
+        alors: profile . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . LHEEA . empreinte . nbre membres:
+profile . labo . LHEEA . empreinte . nbre membres:
   formule: 1
   source: Calcul BC labos
 
-profil . labo . LHEEA . appartenance:
+profile . labo . LHEEA . appartenance:
   question: Êtes-vous membre de ce laboratoire ?
   par défaut: 0
   période: semaine
 
-profil . labo . LS2N:
+profile . labo . LS2N:
   formule: empreinte * appartenance
   icônes: 'Logo-LS2N.png'
   description: |
@@ -401,31 +401,31 @@ profil . labo . LS2N:
 
     A compléter.
     
-profil . labo . LS2N . empreinte:
+profile . labo . LS2N . empreinte:
   formule: total / nbre membres
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . LS2N . empreinte . total:
+profile . labo . LS2N . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'researcher or professor'
-        alors: profil . profil-type . researcher or professor
-      - si: profil . profil-type = 'PhD'
-        alors: profil . profil-type . PhD
+      - si: profile . profil-type = 'researcher or professor'
+        alors: profile . profil-type . researcher or professor
+      - si: profile . profil-type = 'PhD'
+        alors: profile . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . LS2N . empreinte . nbre membres:
+profile . labo . LS2N . empreinte . nbre membres:
   formule: 1
   source: Calcul BC labos
 
-profil . labo . LS2N . appartenance:
+profile . labo . LS2N . appartenance:
   question: Êtes-vous membre de ce laboratoire ?
   par défaut: 0
   période: semaine
 
-profil . labo . Jean Leray:
+profile . labo . Jean Leray:
   formule: empreinte * appartenance
   icônes: 'Logo-JeanLeray.png'
   description: |
@@ -433,26 +433,26 @@ profil . labo . Jean Leray:
 
     A compléter.
     
-profil . labo . Jean Leray . empreinte:
+profile . labo . Jean Leray . empreinte:
   formule: total / nbre membres
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . Jean Leray . empreinte . total:
+profile . labo . Jean Leray . empreinte . total:
   formule: 
     variations: 
-      - si: profil . profil-type = 'researcher or professor'
-        alors: profil . profil-type . researcher or professor
-      - si: profil . profil-type = 'PhD'
-        alors: profil . profil-type . PhD
+      - si: profile . profil-type = 'researcher or professor'
+        alors: profile . profil-type . researcher or professor
+      - si: profile . profil-type = 'PhD'
+        alors: profile . profil-type . PhD
   unité: kgCO2e
   source: Calcul BC labos
 
-profil . labo . Jean Leray . empreinte . nbre membres:
+profile . labo . Jean Leray . empreinte . nbre membres:
   formule: 1
   source: Calcul BC labos
 
-profil . labo . Jean Leray . appartenance:
+profile . labo . Jean Leray . appartenance:
   question: Êtes-vous membre de ce laboratoire ?
   par défaut: 0
   période: semaine

@@ -15,11 +15,11 @@ digital:
 #   applicable si: affirmatif
 #   non applicable si:
 #     une de ces conditions:
-#       - profil . profil-type = 'first year student'
-#       - profil . profil-type = 'second year student'
-#       - profil . profil-type = 'third year student or Master'
-#       - profil . profil-type = 'specialized student'
-#       - profil . profil-type = 'other students'
+#       - profile . profil-type = 'first year student'
+#       - profile . profil-type = 'second year student'
+#       - profile . profil-type = 'third year student or Master'
+#       - profile . profil-type = 'apprentice engineer'
+#       - profile . profil-type = 'other students'
 #   formule: impact / (durée + 1)
 #   note: Nous estimons que l'appareil va durer un an de plus que l'âge renseigné au moment de l'estimation.
 
@@ -159,7 +159,7 @@ digital . visio:
   description: |
     A completer
     Une visioconférence sur mobile est en moyenne 3 fois plus impactante pour l’environnement quand on ajoute la vidéo à l’audio.
-  formule: empreinte horaire * durée journalière * (profil . nbre semaines * 5)
+  formule: empreinte horaire * durée journalière * (profile . nbre semaines * 5)
   applicable si: affirmatif
   unité: kgCO2e
 
@@ -193,7 +193,7 @@ digital . visio . durée journalière:
 #------------------------------------------------ Internet --------------------------------------------------
 
 digital . internet: 
-  formule: empreinte horaire * durée journalière * (profil . nbre semaines * 5)
+  formule: empreinte horaire * durée journalière * (profile . nbre semaines * 5)
   unité: kgCO2e
   note: on ne prend pas en compte l'utilisation d'internet le week-end, à modifier peut-être.
 
