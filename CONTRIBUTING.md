@@ -1,10 +1,10 @@
-# Contribuer à ecolab-data
+# Comment contribuer ?
 
 Bienvenue 👋 ! 
 
 Ce dépôt contient un modèle d'empreinte carbone personnelle annuelle, écrit en YAML. Pas de panique, on vous explique plus bas ce que ça veut dire et comment le modifier.
 
-Ce modèle pose des questions sur les aspects de la vie d'un individu qui émettent le plus de gaz à effet de serre (GES) mesuré en CO2e. L'objectif n'est pas d'en faire une comptabilité parfaite, mais la plus représentative en posant un nombre de question qui reste acceptable pour tous, à hauteur de l'engagement personnel moyen aujourd'hui en 2020.
+Ce modèle pose des questions sur les aspects de la vie académique et professionelle d'un individu qui émettent le plus de gaz à effet de serre (GES) mesuré en CO2e. L'objectif n'est pas d'en faire une comptabilité parfaite, mais la plus représentative en posant un nombre de question qui reste acceptable pour tous, à hauteur de l'engagement personnel moyen aujourd'hui.
 
 ## 💾 Les modèles carbone
 
@@ -18,7 +18,7 @@ Par exemple, pour créer un modèle pour la trottinette électrique partagée, i
 - l'électricité et le geste de recharge, parfois par camion, parfois en utilisant les trottinettes elles-memes ! 
 - ...
 
-Evidemment, les modèles ne seront pas publiés directement en production, l'équipe Ecolab et ses partenaires experts se saisira des propositions pour les enrichir et finalement les valider :)
+Evidemment, les modèles ne seront pas publiés directement en production, l'équipe et ses partenaires experts se saisira des propositions pour les enrichir et finalement les valider :)
 
 
 A noter : tout modèle publié ici est publié sous la license MIT. Les modèles sont donc réutilisables librement par tout un chacun :free:
@@ -27,20 +27,17 @@ A noter : tout modèle publié ici est publié sous la license MIT. Les modèles
 
 Le langage est décrit et documenté sur https://publi.codes. Il est développé par l'Etat dans le cadre du projet [mon-entreprise](https://github.com/betagouv/mon-entreprise). 
 
-N'hésitez pas à poser des questions sur le langage ou la contribution en créant une nouvelle *issue*, nous serons ravi d'y répondre.
 
 
 ## 🏗️ En pratique
 
 ### Avant tout : vérifier que votre question n'est pas déjà posée
 
-Il y a de grandes chances que ce soit déjà le cas : direction [l'onglet *issues*](https://github.com/betagouv/ecolab-data/issues), et son moteur de recherche. La pile est déjà bien remplie !
+Il y a de grandes chances que ce soit déjà le cas : direction [l'onglet *issues*](https://github.com/SustainabilityCN/nosgestesclimat-model-ECN/issues), et son moteur de recherche. La pile est déjà bien remplie !
 
 ### Si vous n'avez que ⌛ 2 minutes pour faire une remarque
 
-Si vous avez un compte Github, [créez simplement une issue](https://github.com/laem/ecolab-data/issues/new) qui parle de votre idée ou correction et qui contient le calcul ou les interrogations en français.
-
-Sinon, écrivez-nous sur [notre formulaire de retour](https://ecolab.ademe.fr/apps/climat/contribuer).
+Si vous avez un compte Github, [créez simplement une issue](https://github.com/SustainabilityCN/nosgestesclimat-model-ECN/issues/new) qui parle de votre idée ou correction et qui contient le calcul ou les interrogations en français.
 
 ### Si vous voulez participer à l'amélioration du modèle [⌛ 20 minutes]
 
@@ -83,8 +80,6 @@ prix . avocat:
 
 ### Vous voulez devenir un pro des modèles carbone
 
-Nous travaillons à un environnement Web de développement, vous pouvez en avoir un avant goût sur le [studio publicodes](https://publi.codes/studio). 
+Pour travailler sur ces modèles YAML et voir vos changements mettre à jour l'interface de simulation, il faut adopter la méthode de travail d'un développeur Web.
 
-En attendant, pour travailler sur ces modèles YAML et voir vos changements mettre à jour l'interface de simulation (sans F5, c'est magique), il faut adopter la méthode de travail d'un développeur Web.
-
-Il va falloir se documenter pour comprendre ce qu'est [*git*](https://openclassrooms.com/fr/courses/1233741-gerez-vos-codes-source-avec-git), cloner ce dépôt vers un dossier nommé "ecolab-data", puis cloner [ecolab-climat](https://github.com/betagouv/ecolab-climat) à la même racine, entrer dans ecolab-climat et faire `yarn && yarn start`. Vous pourrez alors modifier les fichiers .yaml et voir en temps réel les résultats des calculs changer, et les simulations poser de nouvelles questions :sparkles: .
+Il va falloir se documenter pour comprendre ce qu'est [*git*](https://openclassrooms.com/fr/courses/1233741-gerez-vos-codes-source-avec-git), puis suivre les explications que vous pourrez trouver sur le dépôt ["Site"](https://github.com/SustainabilityCN/nosgestesclimat-site-ECN) de l'application, juste [ici](https://github.com/SustainabilityCN/nosgestesclimat-site-ECN/blob/master/CONTRIBUTING.md) !
