@@ -7,14 +7,14 @@ Cette TODO list concerne majoritairement des aspects non techniques du simulateu
 ### Contribuer au contenu des questions
 
 - [ ] Relire le contenu des questions du simulateur
-  - Les fichiers liés au modèle de calcul sont accessibles dans ce [dossier](https://github.com/Clemog/ecolab-data/data). Il est possible de modifier les fichiers directement en ligne.
+  - Les fichiers liés au modèle de calcul sont accessibles dans ce [dossier](https://github.com/SustainabilityCN/nosgestesclimat-model-ECN/data). Il est possible de modifier les fichiers directement en ligne.
 
 ### Contribuer au modèle de calcul
 
 - [ ] Créer un fichier Excel un excel répertoriant les BC par personne relatifs aux assos et labos.
 
 - [ ] Mettre à jour les valeurs par défaut pour faire en sorte d'arriver au total moyen correct d'un usager de l'ECN en page d'acceuil.
-  - Les fichiers liés au modèle de calcul sont accessibles dans ce [dossier](https://github.com/Clemog/ecolab-data/data). Il est possible de modifier les fichiers directement en ligne.
+  - Les fichiers liés au modèle de calcul sont accessibles dans ce [dossier](https://github.com/SustainabilityCN/nosgestesclimat-model-ECN/data). Il est possible de modifier les fichiers directement en ligne.
 
 ### Relire et mettre à jour le contenu statique
 

@@ -37,15 +37,15 @@ Il y a de grandes chances que ce soit déjà le cas : direction [l'onglet *issue
 
 ### Si vous n'avez que ⌛ 2 minutes pour faire une remarque
 
-Si vous avez un compte Github, [créez simplement une issue](https://github.com/SustainabilityCN/nosgestesclimat-model-ECN/issues/new) qui parle de votre idée ou correction et qui contient le calcul ou les interrogations en français.
+Si vous avez un compte Github, [créez simplement une issue](https://github.com/SustainabilityCN/-model-ECN/issues/new) qui parle de votre idée ou correction et qui contient le calcul ou les interrogations en français.
 
 ### Si vous voulez participer à l'amélioration du modèle [⌛ 20 minutes]
 
-Tous les textes, par exemple le texte d'une question ou le texte d'une suggestion de saisie, sont stockés dans une [collection de fichiers texte](https://github.com/betagouv/ecolab-data/tree/master/data), classés par grande catégorie (logement, alimentation, etc.). C'est un langage très accessible que vous pouvez modifier directement. Pour cela il vous faut un compte Github, qui peut se créer gratuitement en 2-3 minutes.
+Tous les textes, par exemple le texte d'une question ou le texte d'une suggestion de saisie, sont stockés dans une [collection de fichiers texte](https://github.com/SustainabilityCN/nosgestesclimat-model-ECN/tree/master/data), classés par grande catégorie (logement, alimentation, etc.). C'est un langage très accessible que vous pouvez modifier directement. Pour cela il vous faut un compte Github, qui peut se créer gratuitement en 2-3 minutes.
  
 Puis suivez ces étapes : 
 
-- rendez-vous sur l'un des modèles classés par grande catégorie [ici](https://github.com/betagouv/ecolab-data/tree/master/data). Sélectionnez-en une, par exemple "numérique.yaml". Cliquez sur l'icône ✏ en haut à droite, vous êtes en mode édition !
+- rendez-vous sur l'un des modèles classés par grande catégorie [ici](https://github.com/SustainabilityCN/nosgestesclimat-model-ECN/tree/master/data). Sélectionnez-en une, par exemple "numérique.yaml". Cliquez sur l'icône ✏ en haut à droite, vous êtes en mode édition !
 - cliquez n'importe où dans le contenu du fichier, puis tapez Ctrl-F (pour lancer une recherche), cherchez le texte à modifier (par exemple "Quel est l'age de votre smartphone"), modifiez directement le texte sur cette page (corriger "age" en "âge")
 - puis cliquez sur le bouton vert 🟩 `Propose file change`. Sur la page qui s'affiche intitulée "Comparing changes", cliquez sur le bouton vert `Create pull request`
 - 🎉 Bravo, l'équipe verra votre contribution et la validera si elle est parfaite. Sinon, on en discutera ensemble 🙂.
