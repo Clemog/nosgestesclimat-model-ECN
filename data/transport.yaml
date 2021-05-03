@@ -25,13 +25,11 @@ transport . domicile-travail:
     Les déplacements pendulaires (du domicile jusqu’à l’école) représentent une part importante du bilan carbone de l’école. En 2018, les émissions associées à ce poste s’élevaient à 599 tCO2eq, soit environ 11% du bilan carbone total. 
     Des disparités entre les catégories d’usager·ère·s étaient visibles, dues aux habitudes de transport de chacun·e, mais également de l’éloignement par rapport à l’établissement. Les automobilistes représentent la majeure partie des émissions liées aux déplacements domicile-travail.
   
-  non applicable si:
-    une de ces conditions:
-      - jours par semaine = 0
-  formule:
-    multiplication:
-      assiette: moyens de transport
-      facteur: facteur aller-retour
+  formule:  # Ici nous pourrions utiliser un "non applicable si: jours par semaine = 0" mais un bug fait que la question km deviendra booléenne Oui/Non. Voir https://github.com/betagouv/mon-entreprise/issues/1367
+    variations:
+    - si: jours par semaine = 0
+      alors: 0
+    - sinon: moyens de transport * facteur aller-retour
 
 transport . domicile-travail . jours par semaine:
   question: En moyenne, combien de jours par semaine allez-vous à Centrale ?
@@ -534,20 +532,19 @@ transport . déplacements professionnels:
     
     Les déplacements professionnels, bien que n’étant effectués que par certain·e·s usager·ère·s (personnels de recherche et enseignement, administration, etc.), représentent une part importante des émissions de GES de l’école. 
     En 2018, les émissions associées à ce poste s’élevaient à 492 tCO2eq, soit environ 9% du bilan carbone total. Les longs trajets, effectués majoritairement en avion, expliquent l’importance de ce poste d’émission. Cet impact peut être limité en favorisant l’utilisation de la visioconférence ou de modes de transports plus “doux”, tels que le train.
-  
+
   applicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'EI1'
-      - profil . profil-type = 'EI2'
-      - profil . profil-type = 'EI3 ou Master'
-      - profil . profil-type = 'étudiant ingénieur de spécialité'
-      - profil . profil-type = 'autres étudiants'
   formule:
-    somme:
-      - voiture
-      - train
-      - avion
+    variations:
+      - si:
+          une de ces conditions:
+            - profil . profil-type = 'EI1'
+            - profil . profil-type = 'EI2'
+            - profil . profil-type = 'EI3 ou Master'
+            - profil . profil-type = 'étudiant ingénieur de spécialité'
+            - profil . profil-type = 'autres étudiants'
+        alors: 0
+      - sinon: voiture + train + avion
 
 transport . déplacements professionnels . affirmatif:
   question: Êtes-vous amené à effectuer des déplacements professionnels (colloques, visites entreprises...) ?
@@ -796,13 +793,14 @@ transport . mobilité france:
     N’ont pas été comptés dans le calcul les éventuels retours 	au domicile familial des étudiant·e·s, car ils ont été considérés comme faisant partie de l’impact personnel de ces dernier·ère·s.
     
   applicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
   formule:
-    variations: 
+    variations:
+      - si:
+          une de ces conditions:
+            - profil . profil-type = 'doctorant'
+            - profil . profil-type = 'personnel de recherche ou enseignement'
+            - profil . profil-type = 'autre personnel'
+        alors: 0
       - si: moyen = 'voiture'
         alors: transport . mobilité france . voiture
       - si: moyen = 'train'
@@ -821,7 +819,6 @@ transport . mobilité france . affirmatif:
 
 transport . mobilité france . moyen:
   question: Quel moyen de transport avez-vous utilisé ou allez-vous utiliser pour votre mobilité ?
-  par défaut: train
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -903,15 +900,6 @@ transport . mobilité france . train . km:
 #----------------------------------------------- Avion -----------------------------------------------------
 
 transport . mobilité france . avion:
-  applicable si : 
-    toutes ces conditions:
-      - transport . mobilité france . moyen = 'avion'
-      - transport . mobilité france . affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
@@ -934,7 +922,20 @@ transport . mobilité france . avion:
     
     Le pseudo-algorithme de myclimate.org, ci-dessous.
     ![](https://imgur.com/hIVvuIw.jpg).
-  formule: heures de vol * vitesse moyenne * empreinte par km
+  formule: 
+    variations:
+      - si:
+          une de ces conditions:
+            - profil . profil-type = 'doctorant'
+            - profil . profil-type = 'personnel de recherche ou enseignement'
+            - profil . profil-type = 'autre personnel'
+        alors: 0
+      - si:
+          toutes ces conditions:
+            - transport . mobilité france . moyen = 'avion'
+            - transport . mobilité france . affirmatif      
+        alors: heures de vol * vitesse moyenne * empreinte par km
+      - sinon: 0
 
 
 transport . mobilité france . avion . vitesse moyenne:
@@ -992,13 +993,14 @@ transport . mobilité internationale:
     Le but de cette question n'est pas de stigmatiser les élèves effectuant ces mobilités. En effet, au-delà de l’impact carbone, elles ont un impact social et scolaire non négligeables.
     N’ont pas été comptés dans le calcul les éventuels retours 	au domicile familial des étudiant·e·s, car ils ont été considérés comme faisant partie de l’impact personnel de ces dernier·ère·s.
   applicable si: affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
   formule:
     variations: 
+      - si:
+          une de ces conditions:
+            - profil . profil-type = 'doctorant'
+            - profil . profil-type = 'personnel de recherche ou enseignement'
+            - profil . profil-type = 'autre personnel'
+        alors: 0
       - si: moyen = 'voiture'
         alors: transport . mobilité internationale . voiture
       - si: moyen = 'train'
@@ -1102,15 +1104,6 @@ transport . mobilité internationale . train . km:
 #----------------------------------------------- Avion -----------------------------------------------------
 
 transport . mobilité internationale . avion:
-  applicable si : 
-    toutes ces conditions:
-      - transport . mobilité internationale . moyen = 'avion'
-      - transport . mobilité internationale . affirmatif
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'doctorant'
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
   description: |
     ![](https://images.unsplash.com/photo-1525624286412-4099c83c1bc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80)
     
@@ -1133,7 +1126,20 @@ transport . mobilité internationale . avion:
     
     Le pseudo-algorithme de myclimate.org, ci-dessous.
     ![](https://imgur.com/hIVvuIw.jpg).
-  formule: heures de vol * vitesse moyenne * empreinte par km
+  formule: 
+    variations:
+      - si:
+          une de ces conditions:
+            - profil . profil-type = 'doctorant'
+            - profil . profil-type = 'personnel de recherche ou enseignement'
+            - profil . profil-type = 'autre personnel'
+        alors: 0
+      - si:
+          toutes ces conditions:
+            - transport . mobilité internationale . moyen = 'avion'
+            - transport . mobilité internationale . affirmatif
+        alors: heures de vol * vitesse moyenne * empreinte par km
+      - sinon: 0
 
 
 transport . mobilité internationale . avion . vitesse moyenne:
