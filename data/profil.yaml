@@ -16,7 +16,7 @@ profil:
 
 profil . profil-type:
   question: Vous êtes ?
-  par défaut : EI1
+  par défaut : "'EI1'"
   formule:
     une possibilité: 
       choix obligatoire: oui

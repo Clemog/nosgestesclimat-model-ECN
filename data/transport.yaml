@@ -61,7 +61,7 @@ transport . moyens de transport:
 transport . domicile-travail . aller-retour:
   description: Augmentation de la part de transport Domicile-Travail de 20%, 60% ou 100% respectivement pour de temps en temps (1 fois sur 5), souvent (3 fois sur 5) et tous les jours. 
   question: Vous arrive-t-il de faire un aller-retour dans la journée (pour la pause-dej par exemple)?
-  par défaut: jamais
+  par défaut: "'jamais'"
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -174,7 +174,7 @@ transport . moyens de transport . voiture . empreinte au kilomètre:
 transport . moyens de transport . voiture . motorisation: 
   question: Quel type de voiture utilisez-vous ?
   description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
-  par défaut: thermique
+  par défaut: "'thermique'"
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -509,7 +509,7 @@ transport . moyens de transport . deux roues . empreinte au kilomètre:
 transport . moyens de transport . deux roues . type: 
   question: Quel type de deux-roues utilisez-vous ?
   description: Si vous utilisez plusieurs modes de transport parmi les suivants, choisissez la réponse la plus représentative de votre usage.
-  par défaut: scooter thermique
+  par défaut: "'scooter thermique'"
   formule:
     une possibilité: 
       choix obligatoire: oui
@@ -606,7 +606,7 @@ transport . déplacements professionnels . voiture . empreinte au kilomètre:
 transport . déplacements professionnels . voiture . type: 
   question: Utilisez-vous votre voiture personnelle, une voiture de location ou bien une voiture de l'école ?
   description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
-  par défaut: personnelle
+  par défaut: "'personnelle'"
   formule: 
     une possibilité: 
       choix obligatoire: oui
@@ -830,7 +830,8 @@ transport . mobilité france . moyen:
         - train
         - avion
         - bus
-
+  par défaut: "'train'"
+  
 transport . mobilité france . moyen . voiture:
 transport . mobilité france . moyen . train:  
 transport . mobilité france . moyen . avion:
@@ -1016,7 +1017,7 @@ transport . mobilité internationale . affirmatif:
 
 transport . mobilité internationale . moyen:
   question: Quel moyen de transport avez-vous utilisé ou allez-vous utiliser pour votre mobilité ?
-  par défaut: avion
+  par défaut: "'avion'"
   formule: 
     une possibilité: 
       choix obligatoire: oui
