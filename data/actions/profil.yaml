@@ -1,0 +1,34 @@
+profil . BClabo: 
+  titre: Participer à la réalisation du bilan carbone de son laboratoire ou service
+  icônes: 🖩
+  applicable si:      
+    une de ces conditions:
+      - profil . profil-type = 'personnel de recherche ou enseignement'
+      - profil . profil-type = 'doctorant'
+      - profil . profil-type = 'autre personnel'
+  formule:
+    somme:
+      - profil . personnels de recherche ou enseignement * 20%
+  description: |
+    L'utilisation des bâtiments et des machines a un impact important. Mesurer plus précisémment leur impact, via l'établissement d'un Bilan Carbone, en suivant la démarche Labo 1 point 5, permettrait déjà de cibler des actions plus précises 
+
+    On estime que cette estimation, et les actions qui suivraient, pourrait conduire à 20% de réduction!
+  # aller plus loin: |
+  #   ## Forçage radiatif total
+   
+  #   L'avion a un impact important sur le climat à la fois à cause de ses émissions de CO₂ et d'autres effets (dit forçage radiatif additionnel).
+
+  #   Du fait que les avions volent en haute altitude, la combustion du kérosène crée des traînées et perturbe les cycles d’autres gaz à effet de serre que le CO₂ (vapeur d'eau, eau condensée sous diverses formes, NOx et méthane qui, ensemble, produisent de l'ozone, etc.).
+    
+  #   Ce graphique montre la complexité des effects en jeu (et encore, tout n'y est pas).
+
+  #   ![](https://www.uecna.eu/wp-content/uploads/2017/12/ilusion-diagram1.jpg)
+
+  #   ## Avion vs voiture
+
+  #   On entend souvent que ramenée au passager, elle est du même ordre que celle d'une voiture. C'est vrai, mais ce n'est qu'une partie de l'histoire. 
+
+  #   Premièrement, l'empreinte de la voiture elle-même est élevée. Comparer l'avion à la voiture, ne rend pas ce premier vertueux.
+
+  #   Deuxièmement, on ne peut comparer la voiture et l'avion simplement parce qu'un trajet en avion est en général bien plus long. Quand il s'agit de choisir la destination des vacances par exemple, un trajet en voiture a donc toutes les chances d'être beaucoup moins polluant. Cela dit, notons aussi que nos kilométrages en voiture sont tels que le match est relancé quand on regarde l'empreinte à l'année.
+
