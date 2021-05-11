@@ -224,7 +224,7 @@ alimentation . plats . viande 2 . nombre:
 alimentation . nombre de plats viande: 
   formule: plats . viande 1 . nombre + plats . viande 2 . nombre
 
-alimentation . régime . planétaire: 
+alimentation . régime : 
   icônes: 🥗
   description: |
     Un régime décrit en 2019 pour concilier santé et environnement.
