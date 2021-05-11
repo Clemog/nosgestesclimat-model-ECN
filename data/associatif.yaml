@@ -64,10 +64,6 @@ associatif . Némo . affirmatif:
 
 associatif . asso:
   titre: Empreinte de la vie associative
-  non applicable si:
-    une de ces conditions:
-      - profil . profil-type = 'personnel de recherche ou enseignement'
-      - profil . profil-type = 'autre personnel'
   description: |
       A choisir :  les différentes associations dont vous faites partie. 
 
@@ -83,9 +79,12 @@ associatif . asso:
       - CAB
       - Kids
       - Fanfrale
-  
+
+associatif . asso . BDE . adhésion:
+  par défaut: non 
 associatif . asso . BDE:
-  formule: empreinte * adhésion
+  applicable si: adhésion
+  formule: empreinte
   icônes: 'Logo-BDE.png'
   description: |
     Bureau Des Elèves
@@ -109,14 +108,11 @@ associatif . asso . BDE . empreinte . nbre adhérents:
   unité: kgCO2e
   source: Calcul BC asso 2019
 
-associatif . asso . BDE . adhésion:
-  question: Êtes-vous adhérent ?
-  par défaut: 1
-  période: semaine
-
+associatif . asso . AS . adhésion:
+  par défaut: non 
 associatif . asso . AS:
-  applicable si: adhésion = 1
-  formule: empreinte * adhésion
+  applicable si: adhésion
+  formule: empreinte
   icônes: 'Logo-BDS.png'
   description: |
     Association Sportive
@@ -131,11 +127,6 @@ associatif . asso . AS . empreinte:
       - textile
   unité: kgCO2e
   source: Calcul BC asso 2019
-
-associatif . asso . AS . adhésion:
-  question: Êtes-vous adhérent ?
-  par défaut: 0
-  période: semaine
   
 associatif . asso . AS . talon:
   description: La valeur du talon correspond aux émissions de C02 des activités non sportives de l'AS (achat, entretien de matériel...)
@@ -173,13 +164,14 @@ associatif . asso . AS . empreinte . textile . affirmatif :
   question: Avez-vous acheté des tenues de sport pour le sport que vous pratiquez à Centrale ?
   par défaut: non
 
+associatif . asso . BDA . adhésion:
+  par défaut: non 
 associatif . asso . BDA:
-  formule: empreinte * adhésion
+  applicable si: adhésion
+  formule: empreinte
   icônes: 'Logo-BDA.png'
   description: |
     Bureau Des Arts
-
-    La méthode est la même que pour le BDE.
 
 associatif . asso . BDA . empreinte:
   formule: total / nbre adhérents
@@ -195,14 +187,12 @@ associatif . asso . BDA . empreinte . nbre adhérents:
   formule: 1000
   unité: kgCO2e
   source: Calucul BC asso 2019
-  
-associatif . asso . BDA . adhésion:
-  question: Êtes-vous adhérent ?
-  par défaut: 0
-  période: semaine
 
+associatif . asso . REV . adhésion:
+  par défaut: non 
 associatif . asso . REV:
-  formule: empreinte * adhésion
+  applicable si: adhésion
+  formule: empreinte
   icônes: 'Logo-REV.png'
   description: |
     Récup' Eau Vietnam
@@ -226,13 +216,11 @@ associatif . asso . REV . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
 
-associatif . asso . REV . adhésion:
-  question: Êtes-vous adhérent ?
-  par défaut: 0
-  période: semaine
-
+associatif . asso . TMA . adhésion:
+  par défaut: non 
 associatif . asso . TMA:
-  formule: empreinte * adhésion
+  applicable si: adhésion
+  formule: empreinte
   icônes: 'Logo-TMA.png'
   description: |
     Take My Andes.
@@ -255,13 +243,11 @@ associatif . asso . TMA . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
 
-associatif . asso . TMA . adhésion:
-  question: Êtes-vous adhérent ?
-  par défaut: 0
-  période: semaine
-
+associatif . asso . CAB . adhésion:
+  par défaut: non 
 associatif . asso . CAB:
-  formule: empreinte * adhésion
+  applicable si: adhésion
+  formule: empreinte
   icônes: 'Logo-CAB.png'
   description: |
     Culture Au Bénin
@@ -284,13 +270,11 @@ associatif . asso . CAB . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
 
-associatif . asso . CAB . adhésion:
-  question: Êtes-vous adhérent ?
-  par défaut: 0
-  période: semaine
-
+associatif . asso . Kids . adhésion:
+  par défaut: non 
 associatif . asso . Kids:
-  formule: empreinte * adhésion
+  applicable si: adhésion
+  formule: empreinte
   icônes: 'Logo-Kids.png'
   description: |
     Kids Népal
@@ -312,14 +296,12 @@ associatif . asso . Kids . empreinte . total:
 associatif . asso . Kids . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
-  
-associatif . asso . Kids . adhésion:
-  question: Êtes-vous adhérent ?
-  par défaut: 0
-  période: semaine
 
+associatif . asso . Fanfrale . adhésion:
+  par défaut: non 
 associatif . asso . Fanfrale:
-  formule: empreinte * adhésion
+  applicable si: adhésion
+  formule: empreinte
   icônes: 'Logo-Fanfrale.png'
   description: |
     Fanfrale
@@ -336,10 +318,5 @@ associatif . asso . Fanfrale . empreinte . total:
 associatif . asso . Fanfrale . empreinte . nbre adhérents:
   formule: 30
   source: Calcul BC asso 2019
-
-associatif . asso . Fanfrale . adhésion:
-  question: Êtes-vous adhérent ?
-  par défaut: 0
-  période: semaine
 
 
