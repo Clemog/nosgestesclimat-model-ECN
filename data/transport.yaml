@@ -19,13 +19,16 @@ transport:
 #------------------------------------------- Domicile-Travail -------------------------------------------
 
 transport . domicile-travail:
-  applicable si: jours par semaine > 0  # bug affichage
   description: |
     ![](https://www.mobilitytechgreen.com/wp-content/uploads/2017/08/bicyclecommute.jpg)
     
     Les déplacements pendulaires (du domicile jusqu’à l’école) représentent une part importante du bilan carbone de l’école. En 2018, les émissions associées à ce poste s’élevaient à 599 tCO2eq, soit environ 11% du bilan carbone total. 
     Des disparités entre les catégories d’usager·ère·s étaient visibles, dues aux habitudes de transport de chacun·e, mais également de l’éloignement par rapport à l’établissement. Les automobilistes représentent la majeure partie des émissions liées aux déplacements domicile-travail.
-  formule:  moyens de transport * facteur aller-retour
+  formule:  # Ici nous pourrions utiliser un "non applicable si: jours par semaine = 0" mais un bug fait que la question km deviendra booléenne Oui/Non. Voir https://github.com/betagouv/mon-entreprise/issues/1367
+    variations:
+    - si: jours par semaine = 0
+      alors: 0
+    - sinon: moyens de transport * facteur aller-retour
 
 transport . domicile-travail . jours par semaine:
   question: En moyenne, combien de jours par semaine allez-vous à Centrale ?
