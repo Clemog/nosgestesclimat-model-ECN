@@ -42,7 +42,7 @@ transport . domicile-travail . jours par semaine:
     4 fois/semaine: 4
     tous les jours: 5
 
-transport . moyens de transport:
+transport . domicile-travail . moyens de transport:
   titre: Proportions moyens de transport
   description: |
     A répartir parmi 6 moyens de transport qu'un usager de l'ECN est susceptible de prendre pour se rendre à Centrale (combinaisons possibles).
@@ -86,7 +86,7 @@ transport . domicile-travail . facteur aller-retour:
         alors: 2
 #------------------------------------------- moyens de transport Neutre -------------------------------------------
 
-transport . moyens de transport . neutre:
+transport . domicile-travail . moyens de transport . neutre:
   titre: Marche ou vélo (non électrique)
   description: |
     Je marche ou je pédale à hauteur de :
@@ -98,14 +98,14 @@ transport . moyens de transport . neutre:
   icônes: 🚲
   formule: 0 * pourcent / 100
 
-transport . moyens de transport . neutre . pourcent:
+transport . domicile-travail . moyens de transport . neutre . pourcent:
   question: Part de la marche ou vélo dans la répartition des moyens de transport sur la semaine
   par défaut: 45
   période: semaine
 
 #------------------------------------------- moyen de transport Voiture -------------------------------------------
 
-transport . moyens de transport . voiture :
+transport . domicile-travail . moyens de transport . voiture :
   applicable si: pourcent > 0
   titre: Voiture
   description: |
@@ -122,12 +122,12 @@ transport . moyens de transport . voiture :
       assiette: (construction amortie + impact usage) / voyageurs
       facteur : pourcent / 100
 
-transport . moyens de transport . voiture . pourcent:
+transport . domicile-travail . moyens de transport . voiture . pourcent:
   question: Part de la voiture dans la répartition des moyens de transport sur la semaine
   par défaut: 5
   période: semaine
 
-transport . moyens de transport . voiture . km trajet:
+transport . domicile-travail . moyens de transport . voiture . km trajet:
   question: Quelle est la distance moyenne de votre trajet en voiture (aller simple)?
   description: |
     Ne comptez que les kilomètres d'*un* trajet pour rejoindre votre lieu de travail habituel ou un point relais depuis votre domicile.
@@ -148,18 +148,18 @@ transport . moyens de transport . voiture . km trajet:
     20km: 20
     30km: 30
 
-transport . moyens de transport . voiture . km:
+transport . domicile-travail . moyens de transport . voiture . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année.
   unité: km
   formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . jours par semaine)
 
 
-transport . moyens de transport . voiture . impact usage:
+transport . domicile-travail . moyens de transport . voiture . impact usage:
   formule: km * empreinte au kilomètre
   unité: kgCO2e
 
-transport . moyens de transport . voiture . empreinte au kilomètre: 
+transport . domicile-travail . moyens de transport . voiture . empreinte au kilomètre: 
   formule: 
     variations: 
       - si: motorisation = 'thermique'
@@ -168,7 +168,7 @@ transport . moyens de transport . voiture . empreinte au kilomètre:
         alors: thermique . empreinte au kilomètre * 0.85
       - sinon: électrique . empreinte au kilomètre
 
-transport . moyens de transport . voiture . motorisation: 
+transport . domicile-travail . moyens de transport . voiture . motorisation: 
   question: Quel type de voiture utilisez-vous ?
   description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
   par défaut: "'thermique'"
@@ -179,12 +179,12 @@ transport . moyens de transport . voiture . motorisation:
         - thermique
         - hybride
         - électrique
-transport . moyens de transport . voiture . motorisation . thermique:
-transport . moyens de transport . voiture . motorisation . électrique:
-transport . moyens de transport . voiture . motorisation . hybride:
+transport . domicile-travail . moyens de transport . voiture . motorisation . thermique:
+transport . domicile-travail . moyens de transport . voiture . motorisation . électrique:
+transport . domicile-travail . moyens de transport . voiture . motorisation . hybride:
 
-transport . moyens de transport . voiture . thermique:
-transport . moyens de transport . voiture . thermique . consommation aux 100:
+transport . domicile-travail . moyens de transport . voiture . thermique:
+transport . domicile-travail . moyens de transport . voiture . thermique . consommation aux 100:
   question: Quelle est la consommation moyenne de la voiture ?
   description: |
     Comme pour la motorisation, si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
@@ -197,26 +197,26 @@ transport . moyens de transport . voiture . thermique . consommation aux 100:
     berline: 9
     SUV: 11
 
-transport . moyens de transport . voiture . thermique . consommation au kilomètre:
+transport . domicile-travail . moyens de transport . voiture . thermique . consommation au kilomètre:
   formule: consommation aux 100 / 100
   unité: l/km
-transport . moyens de transport . voiture . thermique . empreinte au litre:
+transport . domicile-travail . moyens de transport . voiture . thermique . empreinte au litre:
   formule: 2.9
   unité: kgCO2e/l
 
-transport . moyens de transport . voiture . thermique . empreinte au kilomètre:
+transport . domicile-travail . moyens de transport . voiture . thermique . empreinte au kilomètre:
   titre: empreinte au km thermique
   formule: consommation au kilomètre * empreinte au litre
 
-transport . moyens de transport . voiture . électrique:
-transport . moyens de transport . voiture . électrique . empreinte au kilomètre:
+transport . domicile-travail . moyens de transport . voiture . électrique:
+transport . domicile-travail . moyens de transport . voiture . électrique . empreinte au kilomètre:
   titre: empreinte au km électrique
   formule: 0.020
   unité: kgCO2e/km
   note: Carburant uniquement. Pas de variations en fonction de la taille de la voiture, il nous faudra trouver ces donnnées
 
 
-transport . moyens de transport . voiture . voyageurs:
+transport . domicile-travail . moyens de transport . voiture . voyageurs:
   question: Quel est le nombre moyen de voyageurs dans la voiture ?
   par défaut: 1
   unité: voyageurs
@@ -226,7 +226,7 @@ transport . moyens de transport . voiture . voyageurs:
     à deux: 2
     à cinq: 5
 
-transport . moyens de transport . voiture . construction amortie:
+transport . domicile-travail . moyens de transport . voiture . construction amortie:
   formule: 
     variations: 
       - si: propriétaire
@@ -235,7 +235,7 @@ transport . moyens de transport . voiture . construction amortie:
   unité: kgCO2e
   note: Attention division par 0.
 
-transport . moyens de transport . voiture . propriétaire:
+transport . domicile-travail . moyens de transport . voiture . propriétaire:
   question: Avez-vous votre propre voiture individuelle ?
   description: |
     Par opposition à l'utilisation exclusive de voitures de location partagées par d'autres personnes le reste du temps, ou l'utilisation de la voiture d'un ami, de la famille.
@@ -243,7 +243,7 @@ transport . moyens de transport . voiture . propriétaire:
   par défaut: oui
 
   
-transport . moyens de transport . voiture . construction:
+transport . domicile-travail . moyens de transport . voiture . construction:
   formule:
     variations: 
       - si: motorisation = 'thermique'
@@ -261,7 +261,7 @@ transport . moyens de transport . voiture . construction:
     
   note: Il nous faudra trouver les variations d'empreinte de la construction, c'est surement significatif, au moins pour l'électrique.
 
-transport . moyens de transport . voiture . amortissement particulier:
+transport . domicile-travail . moyens de transport . voiture . amortissement particulier:
   description: |
     Quand on achète une voiture, on émet déjà une quantité donnée de GES. Disons par exemple, 10 tonnes, pour une durée de vie de la voiture de 10 ans. Ces gaz sont émis l'année de l'achat, ou plus ou moins (certains composants auront déjà été produits). 
     Il serait donc logique du point de vue de l'empreinte sur le climat, d'attribuer les émissions de la construction à la 1ère année : l'effet de serre réchauffant commence dès l'achat !
@@ -286,7 +286,7 @@ transport . moyens de transport . voiture . amortissement particulier:
         alors: 5%
       - sinon: 0%
 
-transport . moyens de transport . voiture . âge:
+transport . domicile-travail . moyens de transport . voiture . âge:
   question: Quelle est l'âge de votre voiture ?
   description: |
     Pour calculer l'empreinte de la construction de la voiture, qu'il ne faut pas négliger, nous utilisons l'âge de la voiture.
@@ -302,13 +302,13 @@ transport . moyens de transport . voiture . âge:
     5 ans: 5
     10 ans: 10
 
-transport . moyens de transport . voiture . durée de vie: 
+transport . domicile-travail . moyens de transport . voiture . durée de vie: 
   formule: 10
   description: |
     Nous considérons qu'une voiture de particulier, comme une voiture de location, est utilisée en moyenne 10 ans avant d'être mise à la casse [source](https://fr.wikipedia.org/wiki/Parc_automobile_fran%C3%A7ais#Anciennet%C3%A9). Cette source donne 9 ans, nous arrondissons à 10.
     En effet, bon nombre de voitures sont par exemple achetées neuves par des entreprises de location, et seront ensuite aquises par un particulier d'occasion.
 
-transport . moyens de transport . voiture . construction amortie . facteur location: 
+transport . domicile-travail . moyens de transport . voiture . construction amortie . facteur location: 
   formule: km / 16300
   note: |
     On attribue à l'utilisateur l'impact de la construction au pro rata de son utilisation par rapport au km parcourus par la voiture sur une année.  
@@ -317,7 +317,7 @@ transport . moyens de transport . voiture . construction amortie . facteur locat
 
 #------------------------------------------- moyen de transport Tram -------------------------------------------
 
-transport . moyens de transport . tram:
+transport . domicile-travail . moyens de transport . tram:
   applicable si: pourcent > 0
   titre : tram
   description: |
@@ -330,12 +330,12 @@ transport . moyens de transport . tram:
       assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
       facteur : pourcent / 100
 
-transport . moyens de transport . tram . pourcent:
+transport . domicile-travail . moyens de transport . tram . pourcent:
   question: Part du tram dans la répartition des moyens de transport sur la semaine
   par défaut: 50
   période: semaine
 
-transport . moyens de transport . tram . impact par heure:
+transport . domicile-travail . moyens de transport . tram . impact par heure:
   formule: 22 * 0.00298
   unité: kgCO2e/heures
   note: Nous avons confondu tram et métro, alors que le modèle MicMac v2.6 ne parle que de métro. 
@@ -345,7 +345,7 @@ transport . moyens de transport . tram . impact par heure:
    - https://fr.wikipedia.org/wiki/Tramway_de_Nantes
    - http://www.bilans-ges.ademe.fr/
 
-transport . moyens de transport . tram . minutes par trajet:
+transport . domicile-travail . moyens de transport . tram . minutes par trajet:
   question: Combien de temps, en moyenne, dure votre trajet en tramway (aller simple)?
   suggestions: 
     10 minutes / trajet: 10
@@ -354,13 +354,13 @@ transport . moyens de transport . tram . minutes par trajet:
   unité: minutes/trajet
   par défaut: 15
 
-transport . moyens de transport . tram . heures par jour:
+transport . domicile-travail . moyens de transport . tram . heures par jour:
   formule: 2 * minutes par trajet / 60
   unité: heures/jour
 
 #------------------------------------------- moyen de transport Bus -------------------------------------------
 
-transport . moyens de transport . bus:
+transport . domicile-travail . moyens de transport . bus:
   applicable si: pourcent > 0
   titre: bus
   description: |
@@ -373,12 +373,12 @@ transport . moyens de transport . bus:
       assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
       facteur : pourcent / 100
 
-transport . moyens de transport . bus . pourcent:
+transport . domicile-travail . moyens de transport . bus . pourcent:
   question: Part du bus dans la répartition des moyens de transport sur la semaine
   par défaut: 0
   période: semaine
 
-transport . moyens de transport . bus . impact par heure:
+transport . domicile-travail . moyens de transport . bus . impact par heure:
   formule: 0.129 * 15
   unité: kgCO2e/heure
   description: |
@@ -388,7 +388,7 @@ transport . moyens de transport . bus . impact par heure:
     - https://www.lemonde.fr/blog/transports/2016/06/15/dans-les-villes-moyennes-des-bus-rapides-mais-vides-et-couteux/
     - http://www.bilans-ges.ademe.fr/
 
-transport . moyens de transport . bus . minutes par trajet:
+transport . domicile-travail . moyens de transport . bus . minutes par trajet:
   question: Combien de temps, en moyenne, dure votre trajet en bus (aller simple)?
   suggestions: 
     10 minutes / trajet: 10
@@ -397,13 +397,13 @@ transport . moyens de transport . bus . minutes par trajet:
   unité: minutes/trajet
   par défaut: 15
 
-transport . moyens de transport . bus . heures par jour:
+transport . domicile-travail . moyens de transport . bus . heures par jour:
   formule: 2 * minutes par trajet / 60
   unité: heures/jour
 
 #------------------------------------------- moyen de transport Train -------------------------------------------
 
-transport . moyens de transport . train:
+transport . domicile-travail . moyens de transport . train:
   applicable si: pourcent > 0
   titre: train
   description: |
@@ -416,12 +416,12 @@ transport . moyens de transport . train:
       assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
       facteur : pourcent / 100
 
-transport . moyens de transport . train . pourcent:
+transport . domicile-travail . moyens de transport . train . pourcent:
   question: Part du train dans la répartition des moyens de transport sur la semaine
   par défaut: 0
   période: semaine
 
-transport . moyens de transport . train . impact par heure:
+transport . domicile-travail . moyens de transport . train . impact par heure:
   formule: 0.0248 * 135
   unité: kgCO2e/heure
   description: |
@@ -429,7 +429,7 @@ transport . moyens de transport . train . impact par heure:
   références: 
     - http://www.bilans-ges.ademe.fr/
 
-transport . moyens de transport . train . minutes par trajet:
+transport . domicile-travail . moyens de transport . train . minutes par trajet:
   question: Combien de temps, en moyenne, dure votre trajet en train (aller simple)?
   suggestions: 
     20 minutes / trajet: 20
@@ -438,13 +438,13 @@ transport . moyens de transport . train . minutes par trajet:
   unité: minutes/trajet
   par défaut: 15
 
-transport . moyens de transport . train . heures par jour:
+transport . domicile-travail . moyens de transport . train . heures par jour:
   formule: 2 * minutes par trajet / 60
   unité: heures/jour
 
 #------------------------------------------- moyen de transport Scooter/moto -------------------------------------------
 
-transport . moyens de transport . deux roues :
+transport . domicile-travail . moyens de transport . deux roues :
   applicable si: pourcent > 0
   titre: Deux-roues
   description: |
@@ -455,12 +455,12 @@ transport . moyens de transport . deux roues :
       assiette: km * empreinte au kilomètre
       facteur : pourcent / 100
 
-transport . moyens de transport . deux roues . pourcent:
+transport . domicile-travail . moyens de transport . deux roues . pourcent:
   question: Part des deux-roues dans la répartition des moyens de transport sur la semaine
   par défaut: 0
   période: semaine
 
-transport . moyens de transport . deux roues . km trajet :
+transport . domicile-travail . moyens de transport . deux roues . km trajet :
   question: Quelle est la distance moyenne de votre trajet en deux-roues (aller simple)?
   description: |
     Ne comptez que les kilomètres d'*un* trajet pour rejoindre votre lieu de travail habituel ou un point relais depuis votre domicile.
@@ -481,13 +481,13 @@ transport . moyens de transport . deux roues . km trajet :
     20km: 20
     30km: 30
 
-transport . moyens de transport . deux roues . km:
+transport . domicile-travail . moyens de transport . deux roues . km:
   description: |
     Distance moyenne parcourue par l'usager à l'année en deux-roues.
   unité: km
   formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . jours par semaine)
 
-transport . moyens de transport . deux roues . empreinte au kilomètre: 
+transport . domicile-travail . moyens de transport . deux roues . empreinte au kilomètre: 
   formule: 
     variations: 
       - si: type = 'moto plus de 250cm3'
@@ -503,7 +503,7 @@ transport . moyens de transport . deux roues . empreinte au kilomètre:
   references: http://www.bilans-ges.ademe.fr/
   note: hypothèse pour le scooter electrique (pas de ref)
 
-transport . moyens de transport . deux roues . type: 
+transport . domicile-travail . moyens de transport . deux roues . type: 
   question: Quel type de deux-roues utilisez-vous ?
   description: Si vous utilisez plusieurs modes de transport parmi les suivants, choisissez la réponse la plus représentative de votre usage.
   par défaut: "'scooter thermique'"
@@ -516,11 +516,11 @@ transport . moyens de transport . deux roues . type:
         - scooter thermique
         - scooter électrique
         - vélo électrique
-transport . moyens de transport . deux roues . type . moto plus de 250cm3:
-transport . moyens de transport . deux roues . type . moto moins de 250cm3:
-transport . moyens de transport . deux roues . type . scooter thermique:
-transport . moyens de transport . deux roues . type . scooter électrique:
-transport . moyens de transport . deux roues . type . vélo électrique:
+transport . domicile-travail . moyens de transport . deux roues . type . moto plus de 250cm3:
+transport . domicile-travail . moyens de transport . deux roues . type . moto moins de 250cm3:
+transport . domicile-travail . moyens de transport . deux roues . type . scooter thermique:
+transport . domicile-travail . moyens de transport . deux roues . type . scooter électrique:
+transport . domicile-travail . moyens de transport . deux roues . type . vélo électrique:
 
 
 #------------------------------------------- Déplacement Pro ----------------------------------------------------
@@ -590,9 +590,9 @@ transport . déplacements professionnels . voiture . empreinte au kilomètre:
   formule: 
     variations: 
       - si: type = 'personnelle'
-        alors: moyens de transport . voiture . empreinte au kilomètre
+        alors: domicile-travail . moyens de transport . voiture . empreinte au kilomètre
       - si: type = 'location'
-        alors: moyens de transport . voiture . empreinte au kilomètre
+        alors: domicile-travail . moyens de transport . voiture . empreinte au kilomètre
       - si: type = 'école'
         alors: 0.203
   note: FE école calculé à partir des données du parc automobile de l'école
@@ -617,11 +617,11 @@ transport . déplacements professionnels . voiture . construction amortie:
   formule: 
     variations: 
       - si: type = 'personnelle'
-        alors: moyens de transport . voiture . construction * moyens de transport . voiture . amortissement particulier
+        alors: domicile-travail . moyens de transport . voiture . construction * domicile-travail . moyens de transport . voiture . amortissement particulier
       - si: type = 'école'
         alors: construction école * amortissement particulier école
       - si: type = 'location'
-        alors: (moyens de transport . voiture . construction / moyens de transport . voiture . durée de vie) * moyens de transport . voiture . construction amortie . facteur location
+        alors: (domicile-travail . moyens de transport . voiture . construction / domicile-travail . moyens de transport . voiture . durée de vie) * domicile-travail . moyens de transport . voiture . construction amortie . facteur location
   unité: kgCO2e
   note: Attention division par 0.
 
@@ -863,10 +863,10 @@ transport . mobilité france . voiture . impact usage:
 transport . mobilité france . voiture . empreinte au kilomètre: 
   description: |
     La valeur de l'empreinte au kilomètre pour les véhicules de l'école a été calculé en considérant une consomation moyenne de 7L au 100. 
-  formule: moyens de transport . voiture . empreinte au kilomètre
+  formule: domicile-travail . moyens de transport . voiture . empreinte au kilomètre
 
 transport . mobilité france . voiture . construction amortie:
-  formule: moyens de transport . voiture . construction * moyens de transport . voiture . amortissement particulier
+  formule: domicile-travail . moyens de transport . voiture . construction * domicile-travail . moyens de transport . voiture . amortissement particulier
   unité: kgCO2e
   note: Attention division par 0.
 
@@ -1063,10 +1063,10 @@ transport . mobilité internationale . voiture . impact usage:
 transport . mobilité internationale . voiture . empreinte au kilomètre: 
   description: |
     La valeur de l'empreinte au kilomètre pour les véhicules de l'école a été calculé en considérant une consomation moyenne de 7L au 100. 
-  formule: moyens de transport . voiture . empreinte au kilomètre
+  formule: domicile-travail . moyens de transport . voiture . empreinte au kilomètre
 
 transport . mobilité internationale . voiture . construction amortie:
-  formule: moyens de transport . voiture . construction * moyens de transport . voiture . amortissement particulier
+  formule: domicile-travail . moyens de transport . voiture . construction * domicile-travail . moyens de transport . voiture . amortissement particulier
   unité: kgCO2e
   note: Attention division par 0.
 
