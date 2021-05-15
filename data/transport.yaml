@@ -106,7 +106,6 @@ transport . domicile-travail . moyens de transport . neutre . pourcent:
 #------------------------------------------- moyen de transport Voiture -------------------------------------------
 
 transport . domicile-travail . moyens de transport . voiture :
-  applicable si: pourcent > 0
   titre: Voiture
   description: |
     J'utilise la voiture à hauteur de :
@@ -117,17 +116,20 @@ transport . domicile-travail . moyens de transport . voiture :
     En France, on émet en moyenne 193 gCO2eq/km parcouru en voiture. Ce chiffre comprend les émissions dues à la combustion du carburant mais également celles dues à la fabrication. Il faut également noter qu’une voiture française transporte en moyenne 1,6 passager.
     
   icônes: 🚗
-  formule:
-    multiplication:
-      assiette: (construction amortie + impact usage) / voyageurs
-      facteur : pourcent / 100
+  formule: 
+    variations: 
+    - si: pourcent = 0
+      alors: 0
+    - sinon: pourcent / 100 * (construction amortie + impact usage) / voyageurs
 
 transport . domicile-travail . moyens de transport . voiture . pourcent:
   question: Part de la voiture dans la répartition des moyens de transport sur la semaine
   par défaut: 5
+  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . voiture . km trajet:
+  applicable si: pourcent > 0
   question: Quelle est la distance moyenne de votre trajet en voiture (aller simple)?
   description: |
     Ne comptez que les kilomètres d'*un* trajet pour rejoindre votre lieu de travail habituel ou un point relais depuis votre domicile.
@@ -169,6 +171,7 @@ transport . domicile-travail . moyens de transport . voiture . empreinte au kilo
       - sinon: électrique . empreinte au kilomètre
 
 transport . domicile-travail . moyens de transport . voiture . motorisation: 
+  applicable si: pourcent > 0
   question: Quel type de voiture utilisez-vous ?
   description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
   par défaut: "'thermique'"
@@ -185,6 +188,10 @@ transport . domicile-travail . moyens de transport . voiture . motorisation . hy
 
 transport . domicile-travail . moyens de transport . voiture . thermique:
 transport . domicile-travail . moyens de transport . voiture . thermique . consommation aux 100:
+  applicable si:
+    une de ces conditions:
+      - motorisation = 'thermique'
+      - motorisation = 'hybride'
   question: Quelle est la consommation moyenne de la voiture ?
   description: |
     Comme pour la motorisation, si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
@@ -217,6 +224,7 @@ transport . domicile-travail . moyens de transport . voiture . électrique . emp
 
 
 transport . domicile-travail . moyens de transport . voiture . voyageurs:
+  applicable si: pourcent > 0
   question: Quel est le nombre moyen de voyageurs dans la voiture ?
   par défaut: 1
   unité: voyageurs
@@ -236,6 +244,7 @@ transport . domicile-travail . moyens de transport . voiture . construction amor
   note: Attention division par 0.
 
 transport . domicile-travail . moyens de transport . voiture . propriétaire:
+  applicable si: pourcent > 0
   question: Avez-vous votre propre voiture individuelle ?
   description: |
     Par opposition à l'utilisation exclusive de voitures de location partagées par d'autres personnes le reste du temps, ou l'utilisation de la voiture d'un ami, de la famille.
@@ -287,7 +296,7 @@ transport . domicile-travail . moyens de transport . voiture . amortissement par
       - sinon: 0%
 
 transport . domicile-travail . moyens de transport . voiture . âge:
-  question: Quelle est l'âge de votre voiture ?
+  question: Quelle est l'âge de la voiture que vous utilisez ?
   description: |
     Pour calculer l'empreinte de la construction de la voiture, qu'il ne faut pas négliger, nous utilisons l'âge de la voiture.
     
@@ -318,21 +327,22 @@ transport . domicile-travail . moyens de transport . voiture . construction amor
 #------------------------------------------- moyen de transport Tram -------------------------------------------
 
 transport . domicile-travail . moyens de transport . tram:
-  applicable si: pourcent > 0
   titre : tram
   description: |
     J'utilise le tram à hauteur de :
 
     ![](https://upload.wikimedia.org/wikipedia/commons/d/de/Tram-de-Nantes.jpg) 🚄
   icônes: 🚋
-  formule:
-    multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
-      facteur : pourcent / 100
+  formule: 
+    variations: 
+    - si: pourcent = 0
+      alors: 0
+    - sinon: pourcent / 100 * heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
 
 transport . domicile-travail . moyens de transport . tram . pourcent:
   question: Part du tram dans la répartition des moyens de transport sur la semaine
   par défaut: 50
+  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . tram . impact par heure:
@@ -346,6 +356,7 @@ transport . domicile-travail . moyens de transport . tram . impact par heure:
    - http://www.bilans-ges.ademe.fr/
 
 transport . domicile-travail . moyens de transport . tram . minutes par trajet:
+  applicable si: pourcent > 0 
   question: Combien de temps, en moyenne, dure votre trajet en tramway (aller simple)?
   suggestions: 
     10 minutes / trajet: 10
@@ -361,21 +372,23 @@ transport . domicile-travail . moyens de transport . tram . heures par jour:
 #------------------------------------------- moyen de transport Bus -------------------------------------------
 
 transport . domicile-travail . moyens de transport . bus:
-  applicable si: pourcent > 0
   titre: bus
   description: |
     J'utilise le bus à hauteur de :
 
     ![](https://upload.wikimedia.org/wikipedia/commons/d/d8/Busway%2C_TAN_%28NANTES%2CFR44%29.jpg)
   icônes: 🚌
-  formule:
-    multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
-      facteur : pourcent / 100
+  formule: 
+    variations: 
+    - si: pourcent = 0
+      alors: 0
+    - sinon: pourcent / 100 * heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
+
 
 transport . domicile-travail . moyens de transport . bus . pourcent:
   question: Part du bus dans la répartition des moyens de transport sur la semaine
   par défaut: 0
+  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . bus . impact par heure:
@@ -404,21 +417,23 @@ transport . domicile-travail . moyens de transport . bus . heures par jour:
 #------------------------------------------- moyen de transport Train -------------------------------------------
 
 transport . domicile-travail . moyens de transport . train:
-  applicable si: pourcent > 0
   titre: train
   description: |
     J'utilise le train à hauteur de :
 
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Alliance_Auch_ligne_6_Allées_Baylac.JPG/640px-Alliance_Auch_ligne_6_Allées_Baylac.JPG)
   icônes: 🚂
-  formule:
-    multiplication:
-      assiette: heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
-      facteur : pourcent / 100
+  formule: 
+    variations: 
+    - si: pourcent = 0
+      alors: 0
+    - sinon: pourcent / 100 * heures par jour * impact par heure * profil . nbre semaines * domicile-travail . jours par semaine
+
 
 transport . domicile-travail . moyens de transport . train . pourcent:
   question: Part du train dans la répartition des moyens de transport sur la semaine
   par défaut: 0
+  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . train . impact par heure:
@@ -445,19 +460,20 @@ transport . domicile-travail . moyens de transport . train . heures par jour:
 #------------------------------------------- moyen de transport Scooter/moto -------------------------------------------
 
 transport . domicile-travail . moyens de transport . deux roues :
-  applicable si: pourcent > 0
   titre: Deux-roues
   description: |
     J'utilise un deux-roues à hauteur de :
   icônes: 🏍
-  formule:
-    multiplication:
-      assiette: km * empreinte au kilomètre
-      facteur : pourcent / 100
+  formule: 
+    variations: 
+    - si: pourcent = 0
+      alors: 0
+    - sinon: pourcent / 100 * km * empreinte au kilomètre
 
 transport . domicile-travail . moyens de transport . deux roues . pourcent:
   question: Part des deux-roues dans la répartition des moyens de transport sur la semaine
   par défaut: 0
+  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . deux roues . km trajet :
