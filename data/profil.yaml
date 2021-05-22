@@ -87,34 +87,30 @@ profil . profil-type . autre personnel:
 profil . commun:
   formule:
     somme:
-      - électricité
+      - réseau de chaleur
       - moutons
       - végétation
       - achats produits et services
       - constructions
-      - déchets
-      - transport marchandises
+      - déplacements forums
 
-profil . commun . électricité:
-  formule: 5.6
+profil . commun . réseau de chaleur:
+  formule: 8.2
   unité: kgCO2e
 profil . commun . moutons:
-  formule: 0.8
+  formule: 0.7
   unité: kgCO2e
 profil . commun . végétation:
-  formule: -4.7
+  formule: -3.6
   unité: kgCO2e
 profil . commun . achats produits et services:
-  formule: 113.7
+  formule: 91.5
   unité: kgCO2e
 profil . commun . constructions:
-  formule: 36.9
+  formule: 78.2
   unité: kgCO2e
-profil . commun . déchets:
-  formule: 2.2
-  unité: kgCO2e
-profil . commun . transport marchandises:
-  formule: 5.4
+profil . commun . déplacements forums:
+  formule: 3.2
   unité: kgCO2e
 
 profil . étudiants:
@@ -123,19 +119,27 @@ profil . étudiants:
       - essence machines expérimentales
       - électricité
       - réseau de chaleur
+      - produits et services
       - constructions
+      - déchets
 
 profil . étudiants . essence machines expérimentales:
-  formule: 8.8
+  formule: 1.6
   unité: kgCO2e
 profil . étudiants . électricité:
-  formule: 3.7
+  formule: 42.6
   unité: kgCO2e
 profil . étudiants . réseau de chaleur:
-  formule: 47.7
+  formule: 35.1
+  unité: kgCO2e
+profil . étudiants . produits et services:
+  formule: 772.8
   unité: kgCO2e
 profil . étudiants . constructions:
-  formule: 101.2
+  formule: 97.3
+  unité: kgCO2e 
+profil . étudiants . déchets:
+  formule: 1.1
   unité: kgCO2e 
 
 profil . doctorants:
@@ -145,30 +149,42 @@ profil . doctorants:
       - gaz
       - fluides frigorifiques
       - électricité
+      - supercalculateur
       - réseau de chaleur
       - achat et entretien machines et équipements
       - constructions
+      - déchets
+      - déplacements personnes extérieures
 
 profil . doctorants . essence machines expérimentales:
-  formule: 19.9
+  formule: 15.8
   unité: kgCO2e
 profil . doctorants . gaz:
-  formule: 81
+  formule: 73.9
   unité: kgCO2e
-profil . doctorants . électricité:
-  formule: 43.5
+profil . doctorants . électricité: #hors SEM REV
+  formule: 65.2
+  unité: kgCO2e
+profil . doctorants . supercalculateur:
+  formule: 35.6
   unité: kgCO2e
 profil . doctorants . fluides frigorifiques:
-  formule: 9.3
+  formule: 22.1
   unité: kgCO2e
 profil . doctorants . réseau de chaleur:
-  formule: 152.9
+  formule: 157.6
   unité: kgCO2e
 profil . doctorants . achat et entretien machines et équipements:
-  formule: 1266.8
+  formule: 2199
   unité: kgCO2e
 profil . doctorants . constructions:
-  formule: 705.3
+  formule: 465.6
+  unité: kgCO2e
+profil . doctorants . déchets:
+  formule: 8.7
+  unité: kgCO2e
+profil . doctorants . déplacements personnes extérieures:
+  formule: 177.5
   unité: kgCO2e
 
 profil . personnels de recherche ou enseignement:
@@ -178,30 +194,42 @@ profil . personnels de recherche ou enseignement:
       - gaz
       - fluides frigorifiques
       - électricité
+      - supercalculateur
       - réseau de chaleur
       - achat et entretien machines et équipements
       - constructions
+      - déchets
+      - déplacements personnes extérieures
 
 profil . personnels de recherche ou enseignement . essence machines expérimentales:
-  formule: 20
+  formule: 24.4
   unité: kgCO2e
 profil . personnels de recherche ou enseignement . gaz:
-  formule: 81.1
+  formule: 114.3
   unité: kgCO2e
-profil . personnels de recherche ou enseignement . électricité:
-  formule: 43.6
+profil . personnels de recherche ou enseignement . électricité: #hors SEM REV
+  formule: 65.8
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . supercalculateur:
+  formule: 55
   unité: kgCO2e
 profil . personnels de recherche ou enseignement . fluides frigorifiques:
-  formule: 9.3
+  formule: 34.3
   unité: kgCO2e
 profil . personnels de recherche ou enseignement . réseau de chaleur:
-  formule: 153.1
+  formule: 243.7
   unité: kgCO2e
 profil . personnels de recherche ou enseignement . achat et entretien machines et équipements:
-  formule: 1268.6
+  formule: 5034
   unité: kgCO2e
-profil . personnels de recherche ou enseignement . constructions:
-  formule: 706.3
+profil . personnels de recherche ou enseignement . constructions: #hors SEM REV
+  formule: 720
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . déchets:
+  formule: 17.4
+  unité: kgCO2e
+profil . personnels de recherche ou enseignement . déplacements personnes extérieures:
+  formule: 137.2
   unité: kgCO2e
 
 profil . autres personnels:
@@ -211,39 +239,47 @@ profil . autres personnels:
       - électricité
       - réseau de chaleur
       - constructions
+      - produits et services
+      - déchets
 
 profil . autres personnels . fluides frigorifiques:
-  formule: 6
+  formule: 2.8
   unité: kgCO2e
 profil . autres personnels . électricité:
-  formule: 2.5
+  formule: 65.6
   unité: kgCO2e
 profil . autres personnels . réseau de chaleur:
-  formule: 67.3
+  formule: 52.4
   unité: kgCO2e
 profil . autres personnels . constructions:
-  formule: 163.2
+  formule: 160
+  unité: kgCO2e
+profil . autres personnels . produits et services:
+  formule: 1.65
+  unité: kgCO2e
+profil . autres personnels . déchets:
+  formule: 8.7
   unité: kgCO2e
 
 profil . nbre semaines: 
   formule:
     variations: 
       - si: profil-type = 'EI1'
-        alors: 39
+        alors: 38
       - si: profil-type = 'EI2'
-        alors: 27
+        alors: 26
       - si: profil-type = 'EI3 ou Master'
-        alors: 27
+        alors: 26
       - si: profil-type = 'étudiant ingénieur de spécialité'
-        alors: 27
+        alors: 38
       - si: profil-type = 'autres étudiants'
-        alors: 27
+        alors: 29
       - si: profil-type = 'doctorant'
-        alors: 47
+        alors: 45
       - si: profil-type = 'personnel de recherche ou enseignement'
-        alors: 47
+        alors: 46
       - si: profil-type = 'autre personnel'
-        alors: 47
+        alors: 46
 
 profil . labo:
   couleur: '#B53471'
