@@ -108,7 +108,7 @@ alimentation . plats . végétalien . nombre:
         une de ces conditions:
          - profil . profil-type = 'EI1'
          - profil . profil-type = 'EI2'
-         - profil . profil-type = 'EI3 ou master'
+         - profil . profil-type = 'EI3 ou Master'
          - profil . profil-type = 'étudiant ingénieur de spécialité'
          - profil . profil-type = 'autres étudiants'
       alors: 0
@@ -150,7 +150,7 @@ alimentation . plats . végétarien . nombre:
         une de ces conditions:
         - profil . profil-type = 'EI1'
         - profil . profil-type = 'EI2'
-        - profil . profil-type = 'EI3 ou master'
+        - profil . profil-type = 'EI3 ou Master'
         - profil . profil-type = 'étudiant ingénieur de spécialité'
         - profil . profil-type = 'autres étudiants'
       alors: 1
@@ -207,7 +207,7 @@ alimentation . plats . viande 1 . nombre:
         une de ces conditions:
         - profil . profil-type = 'EI1'
         - profil . profil-type = 'EI2'
-        - profil . profil-type = 'EI3 ou master'
+        - profil . profil-type = 'EI3 ou Master'
         - profil . profil-type = 'étudiant ingénieur de spécialité'
         - profil . profil-type = 'autres étudiants'
       alors: 4
@@ -254,7 +254,7 @@ alimentation . plats . viande 2 . nombre:
         une de ces conditions:
         - profil . profil-type = 'EI1'
         - profil . profil-type = 'EI2'
-        - profil . profil-type = 'EI3 ou master'
+        - profil . profil-type = 'EI3 ou Master'
         - profil . profil-type = 'étudiant ingénieur de spécialité'
         - profil . profil-type = 'autres étudiants'
       alors: 0
