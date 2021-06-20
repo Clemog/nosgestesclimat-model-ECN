@@ -100,7 +100,7 @@ transport . domicile-travail . moyens de transport . neutre:
 
 transport . domicile-travail . moyens de transport . neutre . pourcent:
   question: Part de la marche ou vélo dans la répartition des moyens de transport sur la semaine
-  par défaut: 45
+  par défaut: 50
   période: semaine
 
 #------------------------------------------- moyen de transport Voiture -------------------------------------------
@@ -124,12 +124,11 @@ transport . domicile-travail . moyens de transport . voiture :
 
 transport . domicile-travail . moyens de transport . voiture . pourcent:
   question: Part de la voiture dans la répartition des moyens de transport sur la semaine
-  par défaut: 5
+  par défaut: 0
   unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . voiture . km trajet:
-  applicable si: pourcent > 0
   question: Quelle est la distance moyenne de votre trajet en voiture (aller simple)?
   description: |
     Ne comptez que les kilomètres d'*un* trajet pour rejoindre votre lieu de travail habituel ou un point relais depuis votre domicile.
@@ -156,6 +155,101 @@ transport . domicile-travail . moyens de transport . voiture . km:
   unité: km
   formule: km trajet * 2 * (profil . nbre semaines * domicile-travail . jours par semaine)
 
+transport . domicile-travail . moyens de transport . voiture . motorisation: 
+  question: Quel type de voiture utilisez-vous ?
+  description: |
+    Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
+  
+    > Note : vous êtes étonnés de voir cette question alors que vous avez répondu "non" à "Avez vous votre voiture individuelle" ? C'est normal : dès que vous faites des kilomètres en voiture, nous devons connaitre ses caractéristiques, même si elle n'est pas à vous, pour calculer votre empreinte.
+  par défaut: "'thermique'"
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - thermique
+        - hybride
+        - électrique
+transport . domicile-travail . moyens de transport . voiture . motorisation . thermique:
+  titre: Thermique (diesel/essence)
+transport . domicile-travail . moyens de transport . voiture . motorisation . électrique:
+transport . domicile-travail . moyens de transport . voiture . motorisation . hybride:
+
+transport . domicile-travail . moyens de transport . voiture . thermique: oui # sans le 'oui', une question vide est posée
+
+transport . domicile-travail . moyens de transport . voiture . gabarit:
+  applicable si: km > 0
+  question: Quel est le gabarit de la voiture ?
+  description: |
+    Plus une voiture est lourde et haute donc avec une forte prise au vent, plus elle consomme donc plus elle pollue ! 
+    Comme pour la motorisation, si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
+  par défaut: "'moyenne'"
+  formule: 
+    une possibilité:
+      choix obligatoire: oui
+      possibilités: 
+        - petite
+        - moyenne
+        - berline
+        - SUV
+
+transport . domicile-travail . moyens de transport . voiture . gabarit . petite:
+transport . domicile-travail . moyens de transport . voiture . gabarit . moyenne:
+transport . domicile-travail . moyens de transport . voiture . gabarit . berline:
+transport . domicile-travail . moyens de transport . voiture . gabarit . SUV:
+
+transport . domicile-travail . moyens de transport . voiture . thermique . consommation aux 100:
+  question: Connaissez-vous la consommation moyenne de la voiture ?
+  description: |
+    Comme pour la motorisation, si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
+  par défaut: consommation estimée
+  unité: l/centkm
+  note: Les suggestions de réponse sont à la louche, à préciser et sourcer.
+
+transport . domicile-travail . moyens de transport . voiture . consommation estimée:
+  formule:
+    variations: 
+      - si: gabarit = 'petite' 
+        alors: 6 l/centkm
+      - si: gabarit = 'moyenne'
+        alors: 7 l/centkm
+      - si: gabarit = 'berline'
+        alors: 9 l/centkm
+      - si: gabarit = 'SUV'
+        alors: 11 l/centkm
+
+transport . domicile-travail . moyens de transport . voiture . thermique . consommation au kilomètre:
+  formule: consommation aux 100 / 100
+  unité: l/km
+
+  
+transport . domicile-travail . moyens de transport . voiture . thermique . empreinte au litre:
+  formule: 2.9
+  unité: kgCO2e/l
+
+transport . domicile-travail . moyens de transport . voiture . thermique . empreinte au kilomètre:
+  titre: empreinte au km thermique
+  formule: consommation au kilomètre * empreinte au litre
+  note: Cette méthode de calcul, plutôt qu'un barème gabarit -> empreinte au km, permet à l'utilisateur qui connait la consommation moyenne réelle de sa voiture de la saisir pour plus de précision.
+
+transport . domicile-travail . moyens de transport . voiture . électrique: oui
+
+transport . domicile-travail . moyens de transport . voiture . électrique . empreinte au kilomètre:
+  titre: empreinte au km électrique
+  unité: kgCO2e/km
+  formule: 
+    variations: 
+      - si: gabarit = 'petite'
+        alors: 0.0159
+      - si: gabarit = 'moyenne'
+        alors: 0.0198
+      - sinon: 0.0273
+  note: |
+    Nous faisons la correspondance suivante entre notre gabarit et les données de la base bilan-GES: 
+      - petite -> "entrée de gamme - véhicule léger"
+      - moyenne -> "coeur de gamme - véhicule compact"
+      - berline et SUV -> "haut de gamme - berline"
+  références: 
+    bilan-GES: https://www.bilans-ges.ademe.fr/fr/basecarbone/donnees-consulter/liste-element?recherche=voiture
 
 transport . domicile-travail . moyens de transport . voiture . impact usage:
   formule: km * empreinte au kilomètre
@@ -169,62 +263,18 @@ transport . domicile-travail . moyens de transport . voiture . empreinte au kilo
       - si: motorisation = 'hybride'
         alors: thermique . empreinte au kilomètre * 0.85
       - sinon: électrique . empreinte au kilomètre
-
-transport . domicile-travail . moyens de transport . voiture . motorisation: 
-  applicable si: pourcent > 0
-  question: Quel type de voiture utilisez-vous ?
-  description: Si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
-  par défaut: "'thermique'"
-  formule: 
-    une possibilité: 
-      choix obligatoire: oui
-      possibilités:
-        - thermique
-        - hybride
-        - électrique
-transport . domicile-travail . moyens de transport . voiture . motorisation . thermique:
-transport . domicile-travail . moyens de transport . voiture . motorisation . électrique:
-transport . domicile-travail . moyens de transport . voiture . motorisation . hybride:
-
-transport . domicile-travail . moyens de transport . voiture . thermique:
-transport . domicile-travail . moyens de transport . voiture . thermique . consommation aux 100:
-  applicable si:
-    une de ces conditions:
-      - motorisation = 'thermique'
-      - motorisation = 'hybride'
-  question: Quelle est la consommation moyenne de la voiture ?
-  description: |
-    Comme pour la motorisation, si vous utilisez plusieurs voitures (par exemple dans le cas où vous n'en possédez pas une), choisissez la réponse la plus représentative de votre usage.
-  par défaut: 6.5
-  unité: l/100km
-  note: Les suggestions de réponse sont à la louche, à préciser et sourcer.
-  suggestions: 
-    petite: 6
-    moyenne: 7
-    berline: 9
-    SUV: 11
-
-transport . domicile-travail . moyens de transport . voiture . thermique . consommation au kilomètre:
-  formule: consommation aux 100 / 100
-  unité: l/km
-transport . domicile-travail . moyens de transport . voiture . thermique . empreinte au litre:
-  formule: 2.9
-  unité: kgCO2e/l
-
-transport . domicile-travail . moyens de transport . voiture . thermique . empreinte au kilomètre:
-  titre: empreinte au km thermique
-  formule: consommation au kilomètre * empreinte au litre
-
-transport . domicile-travail . moyens de transport . voiture . électrique:
-transport . domicile-travail . moyens de transport . voiture . électrique . empreinte au kilomètre:
-  titre: empreinte au km électrique
-  formule: 0.020
-  unité: kgCO2e/km
-  note: Carburant uniquement. Pas de variations en fonction de la taille de la voiture, il nous faudra trouver ces donnnées
-
+  note: |
+    Pour la voiture hybride, nous n'avons pour l'instant pas utilisé les valeurs de la base bilan-GES, car elles sont compliquées à interprêter : 
+      - la catégorie "hybride rechargeable" a une empreinte étonnamment faible (du niveau de l'électrique), mais surtout 0 émissions à la combustion. Ce serait donc un véhicule essence qui n'utilise pas d'essence à l'usage ? [Un sujet récent] sur le forum de bilan-GES n'explique pas l'incohérence.
+      - la différence entre Hybride full Prius et Hybride full P2 n'est pas expliquée
+      - dans ces 2 catégories, il n'y pas l'entrée de gamme.
+    L'étude FNH-Carbone4 pourrait être utilisée pour l'empreinte au km des véhicules hybrides rechargeables. Voici l'hypothèse structurante retenue : 
+    > Répartition des modes de roulage (thermique / électrique) pour les hybrides : 50% / 50% en 2016
+    Mais on notera la controverse récente sur l'empreinte des véhicules hybrides rechargeable suite à [une étude](https://www.transportenvironment.org/press/les-hybrides-rechargeables-au-cœur-d’un-nouveau-scandale-d’émissions-des-tests-révèlent-des) de Transport & Environnement faisant état d'une empreinte réelle incomparable à l'empreinte annoncée par les constructeurs.
+    Nous avons donc pour l'instant retenu le calcul du calculateur MicMac qui est la base de Nos Gestes Climat, dont la source est malheureusement inaccessible : 
+    > Hybride : enlever 15 % aux consommations ci-dessus (source ADEME : http://www2.ademe.fr/servlet/KBaseShow?catid=13655)
 
 transport . domicile-travail . moyens de transport . voiture . voyageurs:
-  applicable si: pourcent > 0
   question: Quel est le nombre moyen de voyageurs dans la voiture ?
   par défaut: 1
   unité: voyageurs
@@ -244,7 +294,6 @@ transport . domicile-travail . moyens de transport . voiture . construction amor
   note: Attention division par 0.
 
 transport . domicile-travail . moyens de transport . voiture . propriétaire:
-  applicable si: pourcent > 0
   question: Avez-vous votre propre voiture individuelle ?
   description: |
     Par opposition à l'utilisation exclusive de voitures de location partagées par d'autres personnes le reste du temps, ou l'utilisation de la voiture d'un ami, de la famille.
@@ -253,22 +302,98 @@ transport . domicile-travail . moyens de transport . voiture . propriétaire:
 
   
 transport . domicile-travail . moyens de transport . voiture . construction:
-  formule:
+  formule: 
     variations: 
       - si: motorisation = 'thermique'
-        alors: 7000
-      - si: motorisation = 'hybride'
-        alors: 7000
+        alors: barème thermique
       - si: motorisation = 'électrique'
-        alors: 12000
+        alors: barème électrique
+      - sinon: barème hybride
   unité: kgCO2e
   description: |
+    ![](https://i.imgur.com/uIlZcEjl.jpg)
     Une voiture est un gros, très gros objet, qui pèse souvent plus d'une tonne et demi. En conséquence, sa construction a une empreinte importante. 
     En particulier, la construction d'une voiture électrique de gamme équivalente à une thermique émet plus de gaz à effet de serre. C'est notamment du à la batterie et son poids important.
     Malgré cela, en France, sur la durée de vie de la voiture et donc les km parcourus, le choix de la voiture électrique est nettement mieux pour le climat. 
     Mieux, mais loin d'être faible ! En 2020, il ne s'agit plus seulement de comparer des solutions techniques entre elles, il s'agit d'évaluer ses achats par rapport aux objectifs climat.
     
-  note: Il nous faudra trouver les variations d'empreinte de la construction, c'est surement significatif, au moins pour l'électrique.
+  note: |
+    
+    Nous utilisons l'étude [FNH-Carbone4](https://github.com/betagouv/ecolab-data/files/5945898/vehicule_electrique_rapport.pdf).
+    Pour l'instant, nous n'avons que deux gabarits, la citadine et la berline.
+    p. 12.
+    ![](https://user-images.githubusercontent.com/1177762/107264406-3afdd980-6a43-11eb-87ad-a09681240949.png)
+    Nous prenons la "production et fin de vie" et lui retranchons les "crédits de recyclage", et les données de 2016 plutôt que le scénario prospectif 2030.
+    p. 57 et 58.
+    ![](https://user-images.githubusercontent.com/1177762/107265071-1eae6c80-6a44-11eb-9b51-c2aee3bfcf3c.png)
+    ![](https://user-images.githubusercontent.com/1177762/107265098-2706a780-6a44-11eb-8681-7901f00e057b.png)
+
+transport . domicile-travail . moyens de transport . voiture . construction . barème thermique:
+  formule: 
+    variations:
+      - si:
+          une de ces conditions: 
+            - gabarit = 'petite'
+            - gabarit = 'moyenne'
+        alors: 6700 - 1100
+      - si:
+          une de ces conditions: 
+            - gabarit = 'berline'
+            - gabarit = 'SUV'
+        alors: 7600 - 1300
+  unité: kgCO2e
+
+transport . domicile-travail . moyens de transport . voiture . construction . barème électrique:
+  formule: 
+    variations:
+      - si:
+          une de ces conditions: 
+            - gabarit = 'petite'
+            - gabarit = 'moyenne'
+        alors: 10200 - 2200
+      - si:
+          une de ces conditions: 
+            - gabarit = 'berline'
+            - gabarit = 'SUV'
+        alors: 20200 - 6600
+  unité: kgCO2e
+
+transport . domicile-travail . moyens de transport . voiture . construction . barème hybride:
+  formule: 
+    variations:
+      - si:
+          une de ces conditions: 
+            - gabarit = 'petite'
+            - gabarit = 'moyenne'
+        alors: 9600 - 2000
+      - si:
+          une de ces conditions: 
+            - gabarit = 'berline'
+            - gabarit = 'SUV'
+        alors: 6900 - 2400
+  unité: kgCO2e
+  note: Ètonnamment, la berline a moins d'empreinte construction que la citadine... A voir si l'étude relève ce mystère.
+
+
+transport . domicile-travail . moyens de transport . voiture . âge:
+  applicable si: 
+    toutes ces conditions: 
+      - km > 0
+      - propriétaire # Nous ne devrions pas avoir à poser ces conditions. Publicodes devrait déterminer lui-même qu'elles sont à poser après la question des km et la question propriétaire, mais la nouvelle version de publicodes a perdu ce côté magique.
+  question: Quel est l'âge de la voiture que vous utilisez?
+  description: | 
+    Pour calculer l'empreinte de la construction de la voiture, qu'il ne faut pas négliger, nous utilisons l'âge de la voiture.
+    
+    Répondez bien avec *l'âge de la voiture*, pas le nombre d'année qu'elle a passé en votre possession : il y a en effet de grandes chances que vous l'ayez achetée d'occasion.
+    Si vous êtes deux à utiliser deux voitures, vous pouvez simplement vous en attribuer une, ou entrer une moyenne de leurs caractéristiques.
+    Si vous possédez plusieurs voitures utilisées uniquement par vous même, ~~vendez au moins la deuxième~~ ce cas n'est pas encore prévu.
+  unité: années
+  par défaut: 9 années
+  suggestions: 
+    6 mois: 0.5 
+    1 an et demi: 1.5
+    5 ans: 5
+    10 ans: 10
 
 transport . domicile-travail . moyens de transport . voiture . amortissement particulier:
   description: |
@@ -295,24 +420,8 @@ transport . domicile-travail . moyens de transport . voiture . amortissement par
         alors: 5%
       - sinon: 0%
 
-transport . domicile-travail . moyens de transport . voiture . âge:
-  question: Quelle est l'âge de la voiture que vous utilisez ?
-  description: |
-    Pour calculer l'empreinte de la construction de la voiture, qu'il ne faut pas négliger, nous utilisons l'âge de la voiture.
-    
-    Répondez bien avec *l'âge de la voiture*, pas le nombre d'année qu'elle a passé en votre possession : il y a en effet de grandes chances que vous l'ayez achetée d'occasion.
-    Si vous êtes deux à utiliser deux voitures, vous pouvez simplement vous en attribuer une, ou entrer une moyenne de leurs caractéristiques.
-    Si vous possédez plusieurs voitures utilisées uniquement par vous même, ~~vendez au moins la deuxième~~ ce cas n'est pas encore prévu.
-  unité: années
-  par défaut: 8
-  suggestions: 
-    6 mois: 0.5 
-    1 an et demi: 1.5
-    5 ans: 5
-    10 ans: 10
-
 transport . domicile-travail . moyens de transport . voiture . durée de vie: 
-  formule: 10
+  formule: 19
   description: |
     Nous considérons qu'une voiture de particulier, comme une voiture de location, est utilisée en moyenne 10 ans avant d'être mise à la casse [source](https://fr.wikipedia.org/wiki/Parc_automobile_fran%C3%A7ais#Anciennet%C3%A9). Cette source donne 9 ans, nous arrondissons à 10.
     En effet, bon nombre de voitures sont par exemple achetées neuves par des entreprises de location, et seront ensuite aquises par un particulier d'occasion.
@@ -807,13 +916,13 @@ transport . mobilité france:
     N’ont pas été comptés dans le calcul les éventuels retours 	au domicile familial des étudiant·e·s, car ils ont été considérés comme faisant partie de l’impact personnel de ces dernier·ère·s.
   formule:
     variations:
-      - si: moyen = 'voiture'
+      - si: deplacantmobilite . moyen = 'voiture'
         alors: transport . mobilité france . voiture
-      - si: moyen = 'train'
+      - si: deplacantmobilite . moyen = 'train'
         alors: transport . mobilité france . train
-      - si: moyen = 'avion'
+      - si: deplacantmobilite . moyen = 'avion'
         alors: transport . mobilité france . avion
-      - si: moyen = 'bus'
+      - si: deplacantmobilite . moyen = 'bus'
         alors: transport . mobilité france . bus
 
 transport . mobilité france . deplacantmobilite:
@@ -827,7 +936,7 @@ transport . mobilité france . deplacantmobilite:
   question: Avez-vous effectué ou allez-vous effectuer une mobilité en France (hors de votre ville de résidence) durant cette année scolaire dans le cadre de vos études ? (hors associatif)
   par défaut: non
 
-transport . mobilité france . moyen:
+transport . mobilité france . deplacantmobilite . moyen:
   question: Quel moyen de transport avez-vous utilisé ou allez-vous utiliser pour votre mobilité ?
   formule: 
     une possibilité: 
@@ -839,10 +948,10 @@ transport . mobilité france . moyen:
         - bus
   par défaut: "'train'"
   
-transport . mobilité france . moyen . voiture:
-transport . mobilité france . moyen . train:  
-transport . mobilité france . moyen . avion:
-transport . mobilité france . moyen . bus:
+transport . mobilité france . deplacantmobilite . moyen . voiture:
+transport . mobilité france . deplacantmobilite . moyen . train:  
+transport . mobilité france . deplacantmobilite . moyen . avion:
+transport . mobilité france . deplacantmobilite . moyen . bus:
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
@@ -942,7 +1051,7 @@ transport . mobilité france . avion:
         alors: 0
       - si:
           toutes ces conditions:
-            - transport . mobilité france . moyen = 'avion'
+            - transport . mobilité france . deplacantmobilite . moyen = 'avion'
             - transport . mobilité france . deplacantmobilite      
         alors: heures de vol * vitesse moyenne * empreinte par km
       - sinon: 0
@@ -1005,13 +1114,13 @@ transport . mobilité internationale:
     N’ont pas été comptés dans le calcul les éventuels retours 	au domicile familial des étudiant·e·s, car ils ont été considérés comme faisant partie de l’impact personnel de ces dernier·ère·s.
   formule:
     variations: 
-      - si: moyen = 'voiture'
+      - si: deplacantmobilite . moyen = 'voiture'
         alors: transport . mobilité internationale . voiture
-      - si: moyen = 'train'
+      - si: deplacantmobilite . moyen = 'train'
         alors: transport . mobilité internationale . train
-      - si: moyen = 'avion'
+      - si: deplacantmobilite . moyen = 'avion'
         alors: transport . mobilité internationale . avion
-      - si: moyen = 'bus'
+      - si: deplacantmobilite . moyen = 'bus'
         alors: transport . mobilité internationale . bus
 
 transport . mobilité internationale . deplacantmobilite:
@@ -1025,7 +1134,7 @@ transport . mobilité internationale . deplacantmobilite:
   question: Avez-vous effectué ou allez-vous effectuer une mobilité internationale durant cette année scolaire dans le cadre de vos études ? (hors associatif)
   par défaut: oui
 
-transport . mobilité internationale . moyen:
+transport . mobilité internationale . deplacantmobilite . moyen:
   question: Quel moyen de transport avez-vous utilisé ou allez-vous utiliser pour votre mobilité ?
   par défaut: "'avion'"
   formule: 
@@ -1037,10 +1146,10 @@ transport . mobilité internationale . moyen:
         - avion
         - bus
 
-transport . mobilité internationale . moyen . voiture:
-transport . mobilité internationale . moyen . train:  
-transport . mobilité internationale . moyen . avion:
-transport . mobilité internationale . moyen . bus:
+transport . mobilité internationale . deplacantmobilite . moyen . voiture:
+transport . mobilité internationale . deplacantmobilite . moyen . train:  
+transport . mobilité internationale . deplacantmobilite . moyen . avion:
+transport . mobilité internationale . deplacantmobilite . moyen . bus:
 
 #----------------------------------------------- Voiture -----------------------------------------------------
 
@@ -1144,7 +1253,7 @@ transport . mobilité internationale . avion:
         alors: 0
       - si:
           toutes ces conditions:
-            - transport . mobilité internationale . moyen = 'avion'
+            - transport . mobilité internationale . deplacantmobilite . moyen = 'avion'
             - transport . mobilité internationale . deplacantmobilite
         alors: heures de vol * vitesse moyenne * empreinte par km
       - sinon: 0
