@@ -102,6 +102,7 @@ transport . domicile-travail . moyens de transport . neutre . pourcent:
   question: Part de la marche ou vélo dans la répartition des moyens de transport sur la semaine
   par défaut: 50
   période: semaine
+  
 
 #------------------------------------------- moyen de transport Voiture -------------------------------------------
 
@@ -125,7 +126,6 @@ transport . domicile-travail . moyens de transport . voiture :
 transport . domicile-travail . moyens de transport . voiture . pourcent:
   question: Part de la voiture dans la répartition des moyens de transport sur la semaine
   par défaut: 0
-  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . voiture . km trajet:
@@ -451,7 +451,6 @@ transport . domicile-travail . moyens de transport . tram:
 transport . domicile-travail . moyens de transport . tram . pourcent:
   question: Part du tram dans la répartition des moyens de transport sur la semaine
   par défaut: 50
-  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . tram . impact par heure:
@@ -497,7 +496,6 @@ transport . domicile-travail . moyens de transport . bus:
 transport . domicile-travail . moyens de transport . bus . pourcent:
   question: Part du bus dans la répartition des moyens de transport sur la semaine
   par défaut: 0
-  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . bus . impact par heure:
@@ -542,7 +540,6 @@ transport . domicile-travail . moyens de transport . train:
 transport . domicile-travail . moyens de transport . train . pourcent:
   question: Part du train dans la répartition des moyens de transport sur la semaine
   par défaut: 0
-  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . train . impact par heure:
@@ -582,7 +579,6 @@ transport . domicile-travail . moyens de transport . deux roues :
 transport . domicile-travail . moyens de transport . deux roues . pourcent:
   question: Part des deux-roues dans la répartition des moyens de transport sur la semaine
   par défaut: 0
-  unité: %
   période: semaine
 
 transport . domicile-travail . moyens de transport . deux roues . km trajet :
